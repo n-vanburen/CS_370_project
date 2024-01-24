@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="test again">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="testing">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +37,7 @@
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/cs249code",
     "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
+    "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
@@ -73,64 +73,11 @@
       <option name="project" value="LOCAL" />
       <updated>1705960814824</updated>
     </task>
-    <task id="LOCAL-00003" summary="testing">
-      <option name="closed" value="true" />
-      <created>1705964725299</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1705964725299</updated>
-    </task>
-    <task id="LOCAL-00004" summary="testing">
-      <option name="closed" value="true" />
-      <created>1705964770748</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1705964770748</updated>
-    </task>
-    <task id="LOCAL-00005" summary="testing">
-      <option name="closed" value="true" />
-      <created>1705965526630</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1705965526630</updated>
-    </task>
-    <task id="LOCAL-00006" summary="testing">
-      <option name="closed" value="true" />
-      <created>1705967421069</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1705967421069</updated>
-    </task>
-    <task id="LOCAL-00007" summary="test again">
-      <option name="closed" value="true" />
-      <created>1705972097125</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1705972097125</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tested Branch" />
     <MESSAGE value="testing" />
-    <MESSAGE value="test again" />
-    <option name="LAST_COMMIT_MESSAGE" value="test again" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing" />
   </component>
 </project>
