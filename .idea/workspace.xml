@@ -4,112 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="testing">
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="test again">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/_blit_info.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/_camera.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/_pygame.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/_surface.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/camera.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/font.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/freetype.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/include/_pygame.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/include/bitmask.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/include/pgcompat.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/include/pgimport.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/include/pgplatform.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/include/pygame.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/include/pygame_bufferproxy.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/include/pygame_font.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/include/pygame_freetype.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/include/pygame_mask.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/include/pygame_mixer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/include/sse2neon.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/mask.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/mixer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/palette.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/pgarrinter.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/pgbufferproxy.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/pgcompat.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/pgopengl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/pgplatform.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/pygame.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/scrap.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/simd_blitters.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.11/pygame/surface.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/_blit_info.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/_camera.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/_pygame.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/_surface.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/camera.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/font.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/freetype.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/include/_pygame.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/include/bitmask.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/include/pgcompat.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/include/pgimport.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/include/pgplatform.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/include/pygame.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/include/pygame_bufferproxy.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/include/pygame_font.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/include/pygame_freetype.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/include/pygame_mask.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/include/pygame_mixer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/include/sse2neon.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/mask.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/mixer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/palette.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/pgarrinter.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/pgbufferproxy.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/pgcompat.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/pgopengl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/pgplatform.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/pygame.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/scrap.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/simd_blitters.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Include/site/python3.9/pygame/surface.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/_camera.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/_freetype.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/_sdl2/audio.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/_sdl2/controller.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/_sdl2/mixer.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/_sdl2/sdl2.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/_sdl2/touch.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/_sdl2/video.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/_sprite.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/base.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/bufferproxy.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/color.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/constants.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/display.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/draw.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/event.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/font.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/gfxdraw.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/image.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/imageext.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/joystick.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/key.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/mask.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/math.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/mixer.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/mixer_music.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/mouse.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/newbuffer.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/pixelarray.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/pixelcopy.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/pypm.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/rect.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/rwobject.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/scrap.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/surface.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/surflock.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/time.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame/transform.cp311-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Scripts/pip-3.11.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Scripts/pip3.11.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Scripts/wheel-3.11.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Scripts/wheel3.11.exe" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +36,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/cs249code",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
   }
@@ -209,12 +105,32 @@
       <option name="project" value="LOCAL" />
       <updated>1705967421069</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="test again">
+      <option name="closed" value="true" />
+      <created>1705972097125</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1705972097125</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Tested Branch" />
     <MESSAGE value="testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing" />
+    <MESSAGE value="test again" />
+    <option name="LAST_COMMIT_MESSAGE" value="test again" />
   </component>
 </project>
