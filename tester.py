@@ -10,7 +10,7 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 # BACKGROUND
 background = pygame.image.load('Background.png').convert()
-backgroundTransform = pygame.transform.scale(background, (1400, 700))
+backgroundTransform = pygame.transform.scale(background, (1200, 700))
 canvas.blit(backgroundTransform, (0, 0))
 pygame.display.update()
 # LEFT TOWER
@@ -23,14 +23,14 @@ pygame.draw.rect(canvas, BLACK, towerRectangle1, 2)
 # RIGHT TOWER
 tower2 = pygame.image.load('Tower.png').convert()
 towerTransform2 = pygame.transform.scale(tower2, (100, 100))
-canvas.blit(towerTransform2, (1250, 300))
+canvas.blit(towerTransform2, (1050, 300))
 pygame.display.update()
-towerRectangle2 = pygame.Rect(1250, 300, 100, 100)
+towerRectangle2 = pygame.Rect(1050, 300, 100, 100)
 pygame.draw.rect(canvas, BLACK, towerRectangle2, 2)
 # LEFT BARRIER LINE
 pygame.draw.line(canvas, BLACK, (200, 0), (200, 700), 2)
 # RIGHT BARRIER LINE
-pygame.draw.line(canvas, BLACK, (1200, 0), (1200, 700), 2)
+pygame.draw.line(canvas, BLACK, (1000, 0), (1000, 700), 2)
 
 # TITLE OF CANVAS
 pygame.display.set_caption("My Board")
