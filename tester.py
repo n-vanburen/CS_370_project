@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 
 # CREATING CANVAS/SIZE
-canvas = pygame.display.set_mode((1400, 700))
+canvas = pygame.display.set_mode((1200, 700))
 # COLORS
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
