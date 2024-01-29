@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="commit to pull">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="GeeksForGeeks pygame tutorial work" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706477547140</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="GeeksForGeeks pygame tutorial work">
+      <option name="closed" value="true" />
+      <created>1706494190671</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706494190671</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,6 +160,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="testing" />
     <MESSAGE value="Worked on moving/adding the background, tower images with rectangle borders, and began diving into timer related stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Worked on moving/adding the background, tower images with rectangle borders, and began diving into timer related stuff" />
+    <MESSAGE value="GeeksForGeeks pygame tutorial work" />
+    <option name="LAST_COMMIT_MESSAGE" value="GeeksForGeeks pygame tutorial work" />
   </component>
 </project>
