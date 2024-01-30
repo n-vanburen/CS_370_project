@@ -40,8 +40,10 @@ def blockMove(x, y):
 def crash():
     global blockYPosition
 
+    # checks that block has entered the same horizontal space as player
     if playerYPosition < (blockYPosition+pixel):
 
+        # checks that player in under block
         if ((blockXPosition <= playerXPosition <= (blockXPosition + pixel))
         or (blockXPosition <= (playerXPosition + pixel) <= (blockXPosition + pixel))):
             blockYPosition = height + 1000
