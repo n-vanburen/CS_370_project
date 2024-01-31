@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="Fixed screen dimensions">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="GeeksForGeeks pygame tutorial work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collisionDetection.py" beforeDir="false" afterPath="$PROJECT_DIR$/collisionDetection.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +60,7 @@
       <recent name="C:\CS_370_project\venv\Lib\site-packages" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.tester">
+  <component name="RunManager">
     <configuration name="clickToDraw" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="CS_370_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -120,8 +120,7 @@
       <option name="presentableId" value="Default" />
       <updated>1705956012949</updated>
       <workItem from="1706473643731" duration="602000" />
-      <workItem from="1706474258486" duration="4551000" />
-      <workItem from="1706542627000" duration="2897000" />
+      <workItem from="1706474258486" duration="3639000" />
     </task>
     <task id="LOCAL-00001" summary="testing">
       <option name="closed" value="true" />
@@ -147,15 +146,23 @@
       <option name="project" value="LOCAL" />
       <updated>1706477547140</updated>
     </task>
-    <task id="LOCAL-00004" summary="Fixed screen dimensions">
+    <task id="LOCAL-00004" summary="GeeksForGeeks pygame tutorial work">
       <option name="closed" value="true" />
-      <created>1706480356612</created>
+      <created>1706494190671</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1706480356612</updated>
+      <updated>1706494190671</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="GeeksForGeeks pygame tutorial work">
+      <option name="closed" value="true" />
+      <created>1706547474772</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1706547474772</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,15 +171,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="testing" />
     <MESSAGE value="Worked on moving/adding the background, tower images with rectangle borders, and began diving into timer related stuff" />
-    <MESSAGE value="Fixed screen dimensions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed screen dimensions" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/CS_370_project$customEvent.coverage" NAME="customEvent Coverage Results" MODIFIED="1706473078358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$tester.coverage" NAME="tester Coverage Results" MODIFIED="1706547993166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$scaleNRotateWMouse.coverage" NAME="scaleNRotateWMouse Coverage Results" MODIFIED="1706473392898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$clickToDraw.coverage" NAME="clickToDraw Coverage Results" MODIFIED="1706473802000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$InputTextBox.coverage" NAME="InputTextBox Coverage Results" MODIFIED="1706473203460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$moveImgWMouse.coverage" NAME="moveImgWMouse Coverage Results" MODIFIED="1706472665257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <MESSAGE value="GeeksForGeeks pygame tutorial work" />
+    <option name="LAST_COMMIT_MESSAGE" value="GeeksForGeeks pygame tutorial work" />
   </component>
 </project>
