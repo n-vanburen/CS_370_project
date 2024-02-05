@@ -29,10 +29,10 @@ class Sprite(pygame.sprite.Sprite):
             self.rect.x = 0
 
 
-def crash():
+def crash(sprite1, sprite2):
     global COLLISION
-    if (enemyCar.rect.x <= playerCar.rect.x <= enemyCar.rect.x+enemyCar.width
-            or enemyCar.rect.x <= playerCar.rect.x+playerCar.width <= enemyCar.rect.x+enemyCar.width):
+    if (sprite1.rect.x <= sprite2.rect.x <= sprite1.rect.x+enemyCar.width
+            or sprite1.rect.x <= sprite2.rect.x+playerCar.width <= sprite1.rect.x+enemyCar.width):
         COLLISION = True
         print("CRASH")
 
@@ -49,6 +49,7 @@ size = (WIDTH, HEIGHT)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("SPRITE HORIZONTAL COLLISION")
 
+# lists for each lane (?)
 all_sprites_list = pygame.sprite.Group()
 
 playerCar = Sprite(COLOR_1, 20, 30)
@@ -73,7 +74,7 @@ while running:
             if event.key == pygame.K_x:
                 running = False
 
-    crash()
+    crash(playerCar, enemyCar)
 
     if not COLLISION:
         playerMove = 1
