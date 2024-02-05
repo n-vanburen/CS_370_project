@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="GeeksForGeeks pygame tutorial work">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/tester.py" afterDir="false" />
-    </list>
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="Display visuals update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,7 +166,7 @@
       <workItem from="1706474258486" duration="3639000" />
       <workItem from="1706740118437" duration="880000" />
       <workItem from="1706907632074" duration="1149000" />
-      <workItem from="1707146234758" duration="1983000" />
+      <workItem from="1707146234758" duration="2364000" />
     </task>
     <task id="LOCAL-00001" summary="testing">
       <option name="closed" value="true" />
@@ -212,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706547474772</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Display visuals update">
+      <option name="closed" value="true" />
+      <created>1707152240591</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1707152240591</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,11 +237,12 @@
     <MESSAGE value="testing" />
     <MESSAGE value="Worked on moving/adding the background, tower images with rectangle borders, and began diving into timer related stuff" />
     <MESSAGE value="GeeksForGeeks pygame tutorial work" />
-    <option name="LAST_COMMIT_MESSAGE" value="GeeksForGeeks pygame tutorial work" />
+    <MESSAGE value="Display visuals update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Display visuals update" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CS_370_project$customEvent.coverage" NAME="customEvent Coverage Results" MODIFIED="1706473078358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$tester.coverage" NAME="tester Coverage Results" MODIFIED="1707146991666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$tester.coverage" NAME="tester Coverage Results" MODIFIED="1707152103734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CS_370_project$scaleNRotateWMouse.coverage" NAME="scaleNRotateWMouse Coverage Results" MODIFIED="1706473392898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CS_370_project$clickToDraw.coverage" NAME="clickToDraw Coverage Results" MODIFIED="1706717411339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CS_370_project$spriteHorizontalCollision.coverage" NAME="spriteHorizontalCollision Coverage Results" MODIFIED="1706724207949" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
