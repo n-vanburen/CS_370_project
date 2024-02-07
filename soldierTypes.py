@@ -2,12 +2,14 @@ import pygame
 pygame.init()  # need this for font
 
 font = pygame.font.Font(None, 20)
+screen = pygame.display.set_mode((800,  500))
 
 
 class Fighter(pygame.sprite.Sprite):
     height = 50
     width = 50
     moving = True
+    text_surface = font.render("text", True, (0, 0, 0))
 
     # constructor
     def __init__(self, color, health, attack_strength, speed, cost, team):
@@ -25,22 +27,26 @@ class Fighter(pygame.sprite.Sprite):
         pygame.draw.rect(self.image, color, pygame.Rect(0, 0, self.width, self.height))
         self.rect = self.image.get_rect()
 
-        self.text_surface = font.render(str(self.health), True, (0, 0, 0))
-        self.image.blit(self.text_surface, (self.rect.x+5, self.rect.y+5))
+        # self.text_surface = font.render(str(self.health), True, (0, 0, 0))
+        # self.image.blit(self.text_surface, (self.rect.x+5, self.rect.y+5))
+        self.update_health_label()
 
     def move_right(self, pixels):
         self.rect.x += pixels
-        # if self.rect.x >= WIDTH-self.width:
-        # self.rect.x = WIDTH-self.width
+        if self.rect.x >= screen.get_width()-self.width:
+            self.rect.x = screen.get_width()-self.width
 
     def move_left(self, pixels):
         self.rect.x -= pixels
-        # if self.rect.x <= 0:
-        # self.rect.x = 0
+        if self.rect.x <= 0:
+            self.rect.x = 0
 
     def update_health_label(self):
-        self.text_surface = font.render(str(self.health), True, (0, 0, 0))
-        self.image.blit(self.text_surface, (self.rect.x+5, self.rect.y+5))
+        # text_surface = font.render(input_text, True, (255, 255, 255))
+        # screen.blit(text_surface, (input_rect.x + 5, input_rect.y + 5))
+        self.text_surface = font.render(str(self.health), True, (150, 150, 150))
+        # screen.blit(self.text_surface, (self.rect.x+self.rect.width+10, self.rect.y+self.rect.height+10))
+        screen.blit(self.text_surface, (self.rect.x+5, self.rect.y+5))
 
 
 class FootSoldier(Fighter):

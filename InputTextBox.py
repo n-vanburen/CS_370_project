@@ -38,6 +38,7 @@ while running:
 
                 # store current text minus last char
                 input_text = input_text[:-1]
+                other_text = other_text[:-1]
 
             else:
                 input_text += event.unicode
