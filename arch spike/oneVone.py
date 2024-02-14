@@ -113,6 +113,11 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+        # what troop
+            # get lane
+            # create troop
+            # spawn(lane, troop)
+
     # see if any monster in the lane is colliding
     for mortal in mortal_list:
         for god in god_list:
