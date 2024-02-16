@@ -1,7 +1,15 @@
-# from tutorial: https://www.geeksforgeeks.org/pygame-drawing-objects-and-shapes/?ref=lbp
-
 import pygame
+import socket
+import pickle
+
 pygame.init()
+
+
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+
+server_address = ('192.168.235.87', 12345)
+client_socket.connect(server_address)
 
 window = pygame.display.set_mode((600, 600))
 window.fill((255, 255, 255))
@@ -16,13 +24,16 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        # stores a new coordinate where you will draw a circle based on where you click
         elif event.type == pygame.MOUSEBUTTONDOWN:
             position = event.pos
             circle_pos.append(position)
 
-    # draws the circles where you've clicked
-    for position in circle_pos:
-        pygame.draw.circle(window, color, position, circle_radius)
+
+            data = pickle.dumps(circle_pos)
+            client_socket.sendall(data)
 
     pygame.display.update()
+
+
+client_socket.close()
+pygame.quit()
