@@ -92,9 +92,9 @@ lane_left = 210
 lane1_top = 175
 lane2_top = 275
 lane3_top = 375
-top_lane = pygame.draw.rect(screen, BLACK, pygame.Rect((lane_left, lane1_top), lane_size), 2)
-middle_lane = pygame.draw.rect(screen, BLACK, pygame.Rect((lane_left, lane2_top), lane_size), 2)
-bottom_lane = pygame.draw.rect(screen, BLACK, pygame.Rect((lane_left, lane3_top), lane_size), 2)
+top_lane = pygame.Rect((lane_left, lane1_top), lane_size)
+middle_lane = pygame.Rect((lane_left, lane2_top), lane_size)
+bottom_lane = pygame.Rect((lane_left, lane3_top), lane_size)
 
 # Troop Deploy Zones
 t_deploy_size = (t_deploy_width, t_deploy_height) = (40, 98)
@@ -103,14 +103,14 @@ t_deploy2_top = 276
 t_deploy3_top = 376
 # Mortal
 m_t_deploy_left = 170
-m_deploy1 = pygame.draw.rect(screen, GREY, pygame.Rect((m_t_deploy_left, t_deploy1_top), t_deploy_size))
-m_deploy2 = pygame.draw.rect(screen, GREY, pygame.Rect((m_t_deploy_left, t_deploy2_top), t_deploy_size))
-m_deploy3 = pygame.draw.rect(screen, GREY, pygame.Rect((m_t_deploy_left, t_deploy3_top), t_deploy_size))
+m_deploy1 = pygame.Rect((m_t_deploy_left, t_deploy1_top), t_deploy_size)
+m_deploy2 = pygame.Rect((m_t_deploy_left, t_deploy2_top), t_deploy_size)
+m_deploy3 = pygame.Rect((m_t_deploy_left, t_deploy3_top), t_deploy_size)
 # God
 g_t_deploy_left = 992
-g_deploy1 = pygame.draw.rect(screen, GREY, pygame.Rect((g_t_deploy_left, t_deploy1_top), t_deploy_size))
-g_deploy2 = pygame.draw.rect(screen, GREY, pygame.Rect((g_t_deploy_left, t_deploy2_top), t_deploy_size))
-g_deploy3 = pygame.draw.rect(screen, GREY, pygame.Rect((g_t_deploy_left, t_deploy3_top), t_deploy_size))
+g_deploy1 = pygame.Rect((g_t_deploy_left, t_deploy1_top), t_deploy_size)
+g_deploy2 = pygame.Rect((g_t_deploy_left, t_deploy2_top), t_deploy_size)
+g_deploy3 = pygame.Rect((g_t_deploy_left, t_deploy3_top), t_deploy_size)
 
 
 def load_background():

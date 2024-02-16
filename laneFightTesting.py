@@ -2,7 +2,7 @@
 # import gameBoard
 # from gameBoard import *
 from soldierTypes import *
-# pygame is already imported in the soldierTypes file
+# commented imports are already imported in the soldierTypes file
 
 
 def crash(fighter1, fighter2):
@@ -40,15 +40,120 @@ def defeat(fighter):
         god_list.remove(fighter)
 
 
-# other possible functions:
-    # Initializing the fighters -- takes number for what button (one for mortal one for god)
-    # deploying the fighters -- takes number for what lane (one for mortal one for god)
+def mortal_troop_creation(troop_type):
+    global m_tb_pressed
+
+    # create mortal troops to prep for deployment
+    if troop_type == 1:
+        new_mortal = FootSoldier()
+    elif troop_type == 2:
+        new_mortal = Eagle()
+    elif troop_type == 3:
+        new_mortal = Archer()
+    elif troop_type == 4:
+        new_mortal = Cavalry()
+    elif troop_type == 5:
+        new_mortal = TrojanHorse()
+    elif troop_type == 6:
+        new_mortal = Achilles()
+    else:
+        new_mortal = FootSoldier()
+        # impossible, but just to get the IDE to stop complaining
+
+    mortal_creation_list.append(new_mortal)
+
+    # if there is a successful creation, allow for deployment
+    m_tb_pressed = True
+
+
+def god_troop_creation(troop_type):
+    global g_tb_pressed
+
+    # create god troops to prep for deployment
+    if troop_type == 1:
+        new_god = Minion()
+    elif troop_type == 2:
+        new_god = Harpy()
+    elif troop_type == 3:
+        new_god = Sorceress()
+    elif troop_type == 4:
+        new_god = Hellhound()
+    elif troop_type == 5:
+        new_god = Cyclops()
+    elif troop_type == 6:
+        new_god = Medusa()
+    else:
+        new_god = Minion()
+        # impossible, but just to get the IDE to stop complaining
+
+    god_creation_list.append(new_god)
+
+    # if there is a successful creation, allow for deployment
+    g_tb_pressed = True
+
+
+def mortal_troop_deploy(lane):
+    global m_tb_pressed
+    global mortal_creation_index
+
+    # If a troop hasn't been chosen (and created when there are enough coins), nothing will happen
+    if m_tb_pressed:
+
+        # make the mortal drawable and draw it in the correct lane
+        current_mortal = mortal_creation_list[mortal_creation_index]
+        mortal_list.add(current_mortal)
+        current_mortal.rect.x = left_barrier_coord
+
+        if lane == 1:
+            current_mortal.rect.y = lane1_top + current_mortal.height/2
+        elif lane == 2:
+            current_mortal.rect.y = lane2_top + current_mortal.height/2
+        elif lane == 3:
+            current_mortal.rect.y = lane3_top + current_mortal.height/2
+
+        # the player has deployed their troop, don't let them do it again
+        # (important for when coins are implemented)
+        m_tb_pressed = False
+        # increment the index so the next troop deployment doesn't affect this one
+        mortal_creation_index += 1
+
+
+def god_troop_deploy(lane):
+    global g_tb_pressed
+    global god_creation_index
+
+    # If a troop hasn't been chosen (and created when there are enough coins), nothing will happen
+    if g_tb_pressed:
+
+        # make the god drawable and draw it in the correct lane
+        current_god = god_creation_list[god_creation_index]
+        god_list.add(current_god)
+        current_god.rect.x = right_barrier_coord - current_god.width
+
+        if lane == 1:
+            current_god.rect.y = lane1_top + current_god.height/2
+        elif lane == 2:
+            current_god.rect.y = lane2_top + current_god.height/2
+        elif lane == 3:
+            current_god.rect.y = lane3_top + current_god.height/2
+
+        # the player has deployed their troop, don't let them do it again
+        # (important for when coins are implemented)
+        g_tb_pressed = False
+        # increment the index so the next troop deployment doesn't affect this one
+        god_creation_index += 1
+
 
 mortal_list = pygame.sprite.Group()
 god_list = pygame.sprite.Group()
 
 m_tb_pressed = False
 g_tb_pressed = False
+
+mortal_creation_list = []
+god_creation_list = []
+mortal_creation_index = 0
+god_creation_index = 0
 
 running = True
 mouse = pygame.mouse.get_pos()
@@ -68,63 +173,33 @@ while running:
             # mortal troop choices -- make deployment possible and create the fighters
             if (m_tb_1.left <= mouse[0] <= m_tb_1.left+tb_width
                     and m_tb_1.top <= mouse[1] <= m_tb_1.top+tb_height):
-                mortal = FootSoldier()
-                m_tb_pressed = True
-                # initializes a fighter and makes deployment possible
-                print("mortal troop 1 button pressed")
+                mortal_troop_creation(1)
             elif (m_tb_2.left <= mouse[0] <= m_tb_2.left+tb_width
                     and m_tb_2.top <= mouse[1] <= m_tb_2.top+tb_height):
-                mortal = Eagle()
-                m_tb_pressed = True
-                print("mortal troop 2 button pressed")
+                mortal_troop_creation(2)
             elif (m_tb_3.left <= mouse[0] <= m_tb_3.left+tb_width
                     and m_tb_3.top <= mouse[1] <= m_tb_3.top+tb_height):
-                mortal = Archer()
-                m_tb_pressed = True
-                print("mortal troop 3 button pressed")
+                mortal_troop_creation(3)
             elif (m_tb_4.left <= mouse[0] <= m_tb_4.left+tb_width
                     and m_tb_4.top <= mouse[1] <= m_tb_4.top+tb_height):
-                mortal = Cavalry()
-                m_tb_pressed = True
-                print("mortal troop 4 button pressed")
+                mortal_troop_creation(4)
             elif (m_tb_5.left <= mouse[0] <= m_tb_5.left+tb_width
                     and m_tb_5.top <= mouse[1] <= m_tb_5.top+tb_height):
-                mortal = TrojanHorse()
-                m_tb_pressed = True
-                print("mortal troop 5 button pressed")
+                mortal_troop_creation(5)
             elif (m_tb_6.left <= mouse[0] <= m_tb_6.left+tb_width
                     and m_tb_6.top <= mouse[1] <= m_tb_6.top+tb_height):
-                mortal = Achilles()
-                m_tb_pressed = True
-                print("mortal troop 6 button pressed")
+                mortal_troop_creation(6)
 
             # mortal deployment lane choices -- spawn the fighter created above in correct lane
             elif (m_deploy1.left <= mouse[0] <= m_deploy1.left+t_deploy_width
                     and m_deploy1.top <= mouse[1] <= m_deploy1.top+t_deploy_height):
-                if m_tb_pressed:
-                    mortal_list.add(mortal)
-                    mortal.rect.x = right_barrier_coord - mortal.width
-                    mortal.rect.y = lane1_top + mortal.height/2
-                    # deploy the mortal to the chosen lane
-                    m_tb_pressed = False
-                    # reset the pressed_variable so, they can't just spawn another
-                    print("Mortal deployment for lane 1 pressed")
+                mortal_troop_deploy(1)
             elif (m_deploy2.left <= mouse[0] <= m_deploy2.left+t_deploy_width
                     and m_deploy2.top <= mouse[1] <= m_deploy2.top+t_deploy_height):
-                if m_tb_pressed:
-                    mortal_list.add(mortal)
-                    mortal.rect.x = right_barrier_coord - mortal.width
-                    mortal.rect.y = lane2_top + mortal.height/2
-                    m_tb_pressed = False
-                    print("Mortal deployment for lane 2 pressed")
+                mortal_troop_deploy(2)
             elif (m_deploy3.left <= mouse[0] <= m_deploy3.left+t_deploy_width
                   and m_deploy3.top <= mouse[1] <= m_deploy3.top+t_deploy_height):
-                if m_tb_pressed:
-                    mortal_list.add(mortal)
-                    mortal.rect.x = right_barrier_coord - mortal.width
-                    mortal.rect.y = lane2_top + mortal.height/2
-                    m_tb_pressed = False
-                    print("Mortal deployment for lane 3 pressed")
+                mortal_troop_deploy(3)
             else:
                 m_tb_pressed = False
                 # if they didn't choice a valid deployment, nothing will happen
@@ -132,57 +207,36 @@ while running:
             # god troop choices -- make deployment possible and create the fighters
             if (g_tb_1.left <= mouse[0] <= g_tb_1.left+tb_width
                     and g_tb_1.top <= mouse[1] <= g_tb_1.top+tb_height):
-                god = Minion()
-                g_tb_pressed = True
-                # initializes a fighter and makes deployment possible
+                god_troop_creation(1)
             elif (g_tb_2.left <= mouse[0] <= g_tb_2.left+tb_width
                     and g_tb_2.top <= mouse[1] <= g_tb_2.top+tb_height):
-                god = Harpy()
-                g_tb_pressed = True
+                god_troop_creation(2)
             elif (g_tb_3.left <= mouse[0] <= g_tb_3.left+tb_width
                     and g_tb_3.top <= mouse[1] <= g_tb_3.top+tb_height):
-                god = Sorceress()
-                g_tb_pressed = True
+                god_troop_creation(3)
             elif (g_tb_4.left <= mouse[0] <= g_tb_4.left+tb_width
                     and g_tb_4.top <= mouse[1] <= g_tb_4.top+tb_height):
-                god = Hellhound()
-                g_tb_pressed = True
+                god_troop_creation(4)
             elif (g_tb_5.left <= mouse[0] <= g_tb_5.left+tb_width
                     and g_tb_5.top <= mouse[1] <= g_tb_5.top+tb_height):
-                god = Cyclops
-                g_tb_pressed = True
+                god_troop_creation(5)
             elif (g_tb_6.left <= mouse[0] <= g_tb_6.left+tb_width
                     and g_tb_6.top <= mouse[1] <= g_tb_6.top+tb_height):
-                god = Medusa()
-                g_tb_pressed = True
+                god_troop_creation(6)
 
             # mortal deployment lane choices -- spawn the fighter created above in correct lane
             elif (g_deploy1.left <= mouse[0] <= g_deploy1.left+t_deploy_width
                     and g_deploy1.top <= mouse[1] <= g_deploy1.top+t_deploy_height):
-                if g_tb_pressed:
-                    god_list.add(god)
-                    god.rect.x = right_barrier_coord - god.width
-                    god.rect.y = lane1_top + god.height/2
-                    # deploy the god to the chosen lane
-                    g_tb_pressed = False
-                    # reset the pressed_variable so, they can't just spawn another
+                god_troop_deploy(1)
             elif (g_deploy2.left <= mouse[0] <= g_deploy2.left+t_deploy_width
                   and g_deploy2.top <= mouse[1] <= g_deploy2.top+t_deploy_height):
-                if g_tb_pressed:
-                    god_list.add(god)
-                    god.rect.x = right_barrier_coord - god.width
-                    god.rect.y = lane2_top + god.height/2
-                    g_tb_pressed = False
+                god_troop_deploy(2)
             elif (g_deploy3.left <= mouse[0] <= g_deploy3.left+t_deploy_width
                   and g_deploy3.top <= mouse[1] <= g_deploy3.top+t_deploy_height):
-                if g_tb_pressed:
-                    god_list.add(god)
-                    god.rect.x = right_barrier_coord - god.width
-                    god.rect.y = lane3_top + god.height/2
-                    g_tb_pressed = False
+                god_troop_deploy(3)
             else:
                 g_tb_pressed = False
-                # if they didn't choice a valid deployment, nothing will happen
+                # if they didn't choose a valid deployment, nothing will happen
 
     # get the new mouse position
     mouse = pygame.mouse.get_pos()

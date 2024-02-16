@@ -1,5 +1,4 @@
 # import pygame
-# import gameBoard
 from gameBoard import *
 # pygame.init()  # need this for font
 # commented out is already included in gameBoard
