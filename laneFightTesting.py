@@ -6,10 +6,12 @@ from soldierTypes import *
 
 
 def crash(fighter1, fighter2):
-    # if fighter1 collides with fighter2 horizontally
-    if (fighter1.rect.x <= fighter2.rect.x <= fighter1.rect.x+fighter1.width
-            or fighter1.rect.x <= fighter2.rect.x+fighter2.width <= fighter1.rect.x+fighter1.width):
-        fight(fighter1, fighter2)
+    # if the fighters are in the same lane
+    if fighter1.rect.y == fighter2.rect.y:
+        # if fighter1 collides with fighter2
+        if (fighter1.rect.x <= fighter2.rect.x <= fighter1.rect.x+fighter1.width
+                or fighter1.rect.x <= fighter2.rect.x+fighter2.width <= fighter1.rect.x+fighter1.width):
+            fight(fighter1, fighter2)
 
 
 def fight(fighter1, fighter2):

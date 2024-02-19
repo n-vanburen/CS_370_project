@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3eacb4e2-352b-4a49-930f-ca9f009d200f" name="Changes" comment="making arch spike">
-      <change afterPath="$PROJECT_DIR$/clienttest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clienttest2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clienttest3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clienttest4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servertest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servertest2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servertest3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servertest4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/twistedserver.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/twsitedclient.py" afterDir="false" />
+    <list default="true" id="3eacb4e2-352b-4a49-930f-ca9f009d200f" name="Changes" comment="Working on troop spawning">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/arch spike/clickToDraw.py" beforeDir="false" afterPath="$PROJECT_DIR$/arch spike/clickToDraw.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arch spike/collisionDetection.py" beforeDir="false" afterPath="$PROJECT_DIR$/arch spike/collisionDetection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laneFightTesting.py" beforeDir="false" afterPath="$PROJECT_DIR$/laneFightTesting.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,22 +32,23 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2c34aQ3GqidGl1o7ZkTx3l9aNz6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/CS_370_project/arch spike",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/CS_370_project/arch spike&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\CS_370_project\arch spike" />
