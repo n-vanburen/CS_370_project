@@ -96,13 +96,12 @@ def god_troop_creation(troop_type):
 
 def mortal_troop_deploy(lane):
     global m_tb_pressed
-    global mortal_creation_index
 
     # If a troop hasn't been chosen (and created when there are enough coins), nothing will happen
     if m_tb_pressed:
 
         # make the mortal drawable and draw it in the correct lane
-        current_mortal = mortal_creation_list[mortal_creation_index]
+        current_mortal = mortal_creation_list[-1]
         mortal_list.add(current_mortal)
         current_mortal.rect.x = left_barrier_coord
 
@@ -116,19 +115,16 @@ def mortal_troop_deploy(lane):
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
         m_tb_pressed = False
-        # increment the index so the next troop deployment doesn't affect this one
-        mortal_creation_index += 1
 
 
 def god_troop_deploy(lane):
     global g_tb_pressed
-    global god_creation_index
 
     # If a troop hasn't been chosen (and created when there are enough coins), nothing will happen
     if g_tb_pressed:
 
         # make the god drawable and draw it in the correct lane
-        current_god = god_creation_list[god_creation_index]
+        current_god = god_creation_list[-1]
         god_list.add(current_god)
         current_god.rect.x = right_barrier_coord - current_god.width
 
@@ -142,8 +138,6 @@ def god_troop_deploy(lane):
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
         g_tb_pressed = False
-        # increment the index so the next troop deployment doesn't affect this one
-        god_creation_index += 1
 
 
 mortal_list = pygame.sprite.Group()
@@ -154,8 +148,6 @@ g_tb_pressed = False
 
 mortal_creation_list = []
 god_creation_list = []
-mortal_creation_index = 0
-god_creation_index = 0
 
 running = True
 mouse = pygame.mouse.get_pos()
