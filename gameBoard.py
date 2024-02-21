@@ -40,7 +40,7 @@ font = pygame.font.SysFont("Font.tff", 36)
 # Main game loop timer
 clock = pygame.time.Clock()
 start_time = pygame.time.get_ticks()  # Get the starting time of the game
-game_duration = 1 * 10 * 1000  # 5 minutes in milliseconds
+game_duration = 5 * 60 * 1000  # 5 minutes in milliseconds
 timed_out = False
 
 # Ability Buttons
@@ -130,7 +130,6 @@ def load_background():
 # Function to draw the main game screen
 def draw_game_screen():
     global timed_out
-    global game_duration
 
     load_background()
 
@@ -209,12 +208,13 @@ def draw_game_screen():
 
     # Render the timer text
     timer_text = f"Time Left: {minutes:02}:{seconds:02}"
-    timer_surface = font.render(timer_text, True, BLACK)
-    screen.blit(timer_surface, (507, 20))
 
     if elapsed_time >= game_duration:
         timed_out = True
+        timer_text = "Time Left: 00:00"
 
+    timer_surface = font.render(timer_text, True, BLACK)
+    screen.blit(timer_surface, (507, 20))
     # clock.tick(60)
 
 

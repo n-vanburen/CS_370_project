@@ -1,6 +1,7 @@
 # import pygame
 # import gameBoard
 # from gameBoard import *
+import gameBoard
 from soldierTypes import *
 # commented imports are already imported in the soldierTypes file
 
@@ -164,8 +165,7 @@ while running:
     screen.fill((0, 0, 0))
     draw_game_screen()
 
-    # elapsed_time = 1000000000000000
-    if timed_out:
+    if gameBoard.timed_out:
         running = False
 
     for event in pygame.event.get():

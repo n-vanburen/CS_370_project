@@ -21,7 +21,7 @@ font = pygame.font.SysFont("Font.tff", 36)
 
 #Game variables
 start_time = pygame.time.get_ticks()  # Get the starting time of the game
-game_duration = 1 * 60 * 1000  # 5 minutes in milliseconds
+game_duration = 5 * 60 * 1000  # 5 minutes in milliseconds
 
 # Main game loop
 clock = pygame.time.Clock()
