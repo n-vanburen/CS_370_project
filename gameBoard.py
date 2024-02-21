@@ -215,7 +215,6 @@ def draw_game_screen():
 
     timer_surface = font.render(timer_text, True, BLACK)
     screen.blit(timer_surface, (507, 20))
-    # clock.tick(60)
 
 
 # Title of Canvas
