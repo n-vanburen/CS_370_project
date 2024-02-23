@@ -1,4 +1,6 @@
 import pygame
+import sys
+
 pygame.init()
 
 # Canvas/Size
@@ -32,6 +34,14 @@ right_barrier_coord = 990
 timer_coord = (500, 0)
 timer_size = (200, 75)
 timer = pygame.Rect(timer_coord, timer_size)
+# Timer Fonts
+font = pygame.font.SysFont("Font.tff", 36)
+# Timer Game variables
+# Main game loop timer
+clock = pygame.time.Clock()
+start_time = pygame.time.get_ticks()  # Get the starting time of the game
+game_duration = 5 * 60 * 1000  # 5 minutes in milliseconds
+timed_out = False
 
 # Ability Buttons
 # b = button, m = mortal, g = god
@@ -119,6 +129,8 @@ def load_background():
 
 # Function to draw the main game screen
 def draw_game_screen():
+    global timed_out
+
     load_background()
 
     # Towers
@@ -184,6 +196,25 @@ def draw_game_screen():
     pygame.draw.rect(screen, GREY, g_deploy1)
     pygame.draw.rect(screen, GREY, g_deploy2)
     pygame.draw.rect(screen, GREY, g_deploy3)
+
+    # Calculate elapsed time
+    current_time = pygame.time.get_ticks()
+    elapsed_time = current_time - start_time
+    # elapsed_time = 10000
+
+    # Convert milliseconds to minutes and seconds
+    minutes = (game_duration - elapsed_time) // 60000
+    seconds = ((game_duration - elapsed_time) // 1000) % 60
+
+    # Render the timer text
+    timer_text = f"Time Left: {minutes:02}:{seconds:02}"
+
+    if elapsed_time >= game_duration:
+        timed_out = True
+        timer_text = "Time Left: 00:00"
+
+    timer_surface = font.render(timer_text, True, BLACK)
+    screen.blit(timer_surface, (507, 20))
 
 
 # Title of Canvas

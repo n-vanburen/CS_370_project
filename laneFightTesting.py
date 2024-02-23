@@ -1,6 +1,7 @@
 # import pygame
 # import gameBoard
 # from gameBoard import *
+import gameBoard
 from soldierTypes import *
 # commented imports are already imported in the soldierTypes file
 
@@ -164,6 +165,9 @@ while running:
     screen.fill((0, 0, 0))
     draw_game_screen()
 
+    if gameBoard.timed_out:
+        running = False
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -268,4 +272,13 @@ while running:
 
     pygame.display.update()
 
+# Game over
+game_over_text = font.render("Time's up! Game Over!", True, BLACK)
+game_over_rect = game_over_text.get_rect(center=(1200 // 2, 700 // 2))
+screen.blit(game_over_text, game_over_rect)
+pygame.display.flip()
+
+# Wait for a few seconds before quitting
+pygame.time.wait(3000)
 pygame.quit()
+sys.exit()
