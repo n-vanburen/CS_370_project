@@ -1,7 +1,10 @@
 import pygame
-import sys
+# import sys
 
 pygame.init()
+
+# fonts
+font = pygame.font.SysFont("Font.tff", 36)
 
 # Canvas/Size
 screen_size = (screen_w, screen_h) = (1200, 700)
@@ -25,6 +28,8 @@ tower_img = pygame.image.load('Tower.png').convert()
 tower_img = pygame.transform.scale(tower_img, tower_size)
 left_tower_rect = pygame.Rect(left_tower_dest, tower_size)
 right_tower_rect = pygame.Rect(right_tower_dest, tower_size)
+left_tower_health = 100
+right_tower_health = 100
 
 # Barrier Lines
 left_barrier_coord = 210
@@ -34,10 +39,7 @@ right_barrier_coord = 990
 timer_coord = (500, 0)
 timer_size = (200, 75)
 timer = pygame.Rect(timer_coord, timer_size)
-# Timer Fonts
-font = pygame.font.SysFont("Font.tff", 36)
 # Timer Game variables
-# Main game loop timer
 clock = pygame.time.Clock()
 start_time = pygame.time.get_ticks()  # Get the starting time of the game
 game_duration = 5 * 60 * 1000  # 5 minutes in milliseconds
@@ -137,9 +139,17 @@ def draw_game_screen():
     # Left
     screen.blit(tower_img, left_tower_dest)
     pygame.draw.rect(screen, BLACK, left_tower_rect, 2)
+    left_tower_text_surface = font.render(str(left_tower_health), True, BLACK)
+    left_tower_health_dest = ((left_tower_rect.x + left_tower_rect.w/2) -
+                              left_tower_text_surface.get_width()/2, left_tower_rect.y-30)
+    screen.blit(left_tower_text_surface, left_tower_health_dest)
     # Right
     screen.blit(tower_img, right_tower_dest)
     pygame.draw.rect(screen, BLACK, right_tower_rect, 2)
+    right_tower_text_surface = font.render(str(right_tower_health), True, BLACK)
+    right_tower_health_dest = ((right_tower_rect.x + right_tower_rect.w/2) -
+                               right_tower_text_surface.get_width()/2, right_tower_rect.y-30)
+    screen.blit(right_tower_text_surface, right_tower_health_dest)
 
     # Barrier Lines
     # Left
