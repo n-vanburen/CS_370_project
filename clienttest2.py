@@ -31,8 +31,8 @@ def draw_circle(position):
     pygame.draw.circle(window, color, position, circle_radius)
     pygame.display.update()
 
-def send_position(position, color):
-    client.send(pickle.dumps(position, color))
+def send_position(position):
+    client.send(pickle.dumps(position))
 
 receive_thread = threading.Thread(target=receive)
 receive_thread.start()
