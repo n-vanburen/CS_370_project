@@ -4,19 +4,15 @@ import pickle
 
 pygame.init()
 
+server_address = ('192.168.235.87', 12345)  # Update with the server's IP address and port
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-
-server_address = ('192.168.235.87', 12345)
 client_socket.connect(server_address)
 
 window = pygame.display.set_mode((600, 600))
 window.fill((255, 255, 255))
 
-circle_pos = []
 circle_radius = 60
-color = (0, 0, 255)
 
 running = True
 while running:
@@ -24,15 +20,14 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            position = event.pos
-            circle_pos.append(position)
-
-            data = pickle.dumps(circle_pos)
-            client_socket.sendall(data)
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:  # Left mouse button clicked
+                mouse_position = pygame.mouse.get_pos()
+                circle_pos = [mouse_position]
+                data = pickle.dumps(circle_pos)
+                client_socket.send(data)
 
     pygame.display.update()
-
 
 client_socket.close()
 pygame.quit()

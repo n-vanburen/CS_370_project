@@ -2,8 +2,8 @@ import socket
 import threading
 import pickle
 
-SERVER_HOST = '192.168.235.87'
-SERVER_PORT = 55555
+SERVER_HOST = '127.0.0.1'
+SERVER_PORT = 12345
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((SERVER_HOST, SERVER_PORT))
@@ -38,3 +38,4 @@ def receive():
 
 print("Server is running...")
 receive()
+

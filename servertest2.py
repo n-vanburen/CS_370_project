@@ -1,59 +1,71 @@
 import pygame
 import socket
 import pickle
+import threading
 
 pygame.init()
 
-# Create a TCP/IP socket
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# Bind the socket to the address and port
-server_address = ('192.168.235.87', 12345)  # Update the IP address and port as needed
+server_address = ('192.168.235.87', 12345)  # Update with your server's IP address and port
 server_socket.bind(server_address)
 
-# Listen for incoming connections
-server_socket.listen(1)
+server_socket.listen(2)  # Allowing up to 2 clients to connect
 
 print("Server is listening for connections...")
 
-# Accept incoming connection
-client_socket, client_address = server_socket.accept()
-print(f"Connection from {client_address} established.")
+clients = []
+lock = threading.Lock()
 
-window = pygame.display.set_mode((600, 600))
-window.fill((255, 255, 255))
+def handle_client(client_socket, client_index):
+    while True:
+        data = client_socket.recv(1024)
+        circle_pos = pickle.loads(data)
+        with lock:
+            for position in circle_pos:
+                pygame.draw.circle(window, colors[client_index], position, circle_radius)
+        pygame.display.update()
+        send_circles_to_clients()
 
-circle_radius = 60
-color = (0, 0, 255)
+def send_circles_to_clients():
+    circles_data = pickle.dumps(circle_positions)
+    for client_socket in clients:
+        client_socket.send(circles_data)
 
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+try:
+    for i in range(2):
+        client_socket, client_address = server_socket.accept()
+        print(f"Connection from {client_address} established.")
+        clients.append(client_socket)
+        threading.Thread(target=handle_client, args=(client_socket, i)).start()
 
-    # Receive data size from client
-    data_size = client_socket.recv(2048)
-    data_size = int(data_size.decode())
+    window = pygame.display.set_mode((600, 600))
+    window.fill((255, 255, 255))
 
-    # Receive data from client based on data size
-    received_data = b""
-    while len(received_data) < data_size:
-        packet = client_socket.recv(data_size - len(received_data))
-        if not packet:
-            break
-        received_data += packet
+    circle_radius = 60
+    colors = [(0, 0, 255), (0, 255, 0)]  # Different colors for each client
+    circle_positions = []
 
-    # Deserialize received data
-    circle_pos = pickle.loads(received_data)
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
-    # draws the circles where you've clicked
-    for position in circle_pos:
-        pygame.draw.circle(window, color, position, circle_radius)
+        mouse_state = pygame.mouse.get_pressed()
+        if mouse_state[0]:  # Left mouse button clicked
+            mouse_position = pygame.mouse.get_pos()
+            with lock:
+                circle_positions.append(mouse_position)
+            pygame.draw.circle(window, colors[0], mouse_position, circle_radius)
+            pygame.display.update()
+            send_circles_to_clients()
 
-    pygame.display.update()
+except Exception as e:
+    print("An error occurred:", e)
 
-# Clean up the connection
-client_socket.close()
-server_socket.close()
-pygame.quit()
+finally:
+    for client_socket in clients:
+        client_socket.close()
+    server_socket.close()
+    pygame.quit()

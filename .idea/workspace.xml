@@ -5,12 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3eacb4e2-352b-4a49-930f-ca9f009d200f" name="Changes" comment="network testing">
-      <change afterPath="$PROJECT_DIR$/clienttest1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servertest5.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servertest6.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/basicserver.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clientgame1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clientgame2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/servergame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clienttest.py" beforeDir="false" afterPath="$PROJECT_DIR$/clienttest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servertest.py" beforeDir="false" afterPath="$PROJECT_DIR$/servertest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clienttest1.py" beforeDir="false" afterPath="$PROJECT_DIR$/clienttest1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clienttest2.py" beforeDir="false" afterPath="$PROJECT_DIR$/clienttest2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clienttest3.py" beforeDir="false" afterPath="$PROJECT_DIR$/clienttest3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clienttest4.py" beforeDir="false" afterPath="$PROJECT_DIR$/clienttest4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servertest2.py" beforeDir="false" afterPath="$PROJECT_DIR$/servertest2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servertest3.py" beforeDir="false" afterPath="$PROJECT_DIR$/servertest3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servertest4.py" beforeDir="false" afterPath="$PROJECT_DIR$/servertest4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servertest6.py" beforeDir="false" afterPath="$PROJECT_DIR$/servertest6.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +41,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/twistedtester2.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client2.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client3.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -89,7 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708117544292</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="network testing">
+      <option name="closed" value="true" />
+      <created>1708702368356</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708702368356</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

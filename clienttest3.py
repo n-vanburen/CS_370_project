@@ -1,22 +1,41 @@
 import pygame
 import socket
+import threading
 import pickle
 
+SERVER_HOST = '192.168.235.87'
+SERVER_PORT = 55555
+
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect((SERVER_HOST, SERVER_PORT))
+
 pygame.init()
-
-# Create a TCP/IP socket
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-# Connect the socket to the server's address and port
-server_address = ('192.168.235.87', 12345)  # Update the IP address and port as needed
-client_socket.connect(server_address)
 
 window = pygame.display.set_mode((600, 600))
 window.fill((255, 255, 255))
 
-circle_pos = []
 circle_radius = 60
-color = (0, 0, 255)
+color = (0, 255, 0)
+
+def receive():
+    while True:
+        try:
+            message = pickle.loads(client.recv(1024))
+            draw_circle(message)
+        except:
+            print("An error occurred!")
+            client.close()
+            break
+
+def draw_circle(position):
+    pygame.draw.circle(window, color, position, circle_radius)
+    pygame.display.update()
+
+def send_position(position):
+    client.send(pickle.dumps(position))
+
+receive_thread = threading.Thread(target=receive)
+receive_thread.start()
 
 running = True
 while running:
@@ -26,20 +45,7 @@ while running:
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             position = event.pos
-            circle_pos.append(position)
+            send_position(position)
 
-            # Serialize circle_pos
-            data = pickle.dumps(circle_pos)
-
-            # Send data size to server
-            data_size_bytes = len(data).to_bytes(4, byteorder='big')
-            client_socket.sendall(data_size_bytes)
-
-            # Send serialized data to server
-            client_socket.sendall(data)
-
-    pygame.display.update()
-
-# Clean up the connection
-client_socket.close()
 pygame.quit()
+client.close()
