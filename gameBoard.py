@@ -42,7 +42,7 @@ timer = pygame.Rect(timer_coord, timer_size)
 # Timer Game variables
 clock = pygame.time.Clock()
 start_time = pygame.time.get_ticks()  # Get the starting time of the game
-game_duration = 5 * 60 * 1000  # 5 minutes in milliseconds
+game_duration = 5 * 60 * 1000 + 1000  # 5 minutes in milliseconds
 timed_out = False
 
 # Ability Buttons
