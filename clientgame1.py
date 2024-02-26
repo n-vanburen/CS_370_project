@@ -1,3 +1,4 @@
+import pygame
 import socket
 import threading
 import pickle
@@ -6,73 +7,41 @@ import pickle
 # from gameBoard import *
 import gameBoard
 from soldierTypes import *
-
-# Define server address and port
-SERVER_HOST = '0.0.0.0'
-SERVER_PORT = 55555
-
-# Create a socket object
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-# Bind the socket to the address and port
-server_socket.bind((SERVER_HOST, SERVER_PORT))
-
-# Listen for incoming connections
-server_socket.listen()
-
-# List to store all client connections
-client_connections = []
-
-# Function to handle each client's connection
-def handle_client(client_socket, client_address):
-    print(f"New connection from {client_address}")
-
-    while True:
-        try:
-            # Receive data from the client
-            data = client_socket.recv(1024)
-            if not data:
-                break
-
-            # Broadcast the received data to all clients (except the sender)
-            for connection in client_connections:
-                if connection != client_socket:
-                    connection.sendall(data)
-
-        except Exception as e:
-            print(f"Error handling client {client_address}: {e}")
-            break
-
-    # Close the connection with the client
-    client_socket.close()
-    print(f"Connection with {client_address} closed")
-
-# Function to accept incoming connections and handle them
-def accept_connections():
-    while True:
-        client_socket, client_address = server_socket.accept()
-        client_connections.append(client_socket)
-
-        # Start a new thread to handle the client
-        client_thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
-        client_thread.start()
-
-# Start accepting connections
-print("Server is running...")
-accept_connections()
-# import pygame
-# import gameBoard
-# from gameBoard import *
-import gameBoard
-from soldierTypes import *
 # commented imports are already imported in the soldierTypes file
 
+SERVER_HOST = '127.0.0.1'
+SERVER_PORT = 55555
 
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect((SERVER_HOST, SERVER_PORT))
+
+def send_action(action):
+    client.send(pickle.dumps(action))
+
+pygame.init()
+
+# Your game code here...
+
+# Inside your event loop where troop creation and deployment occur:
+# Example event handling:
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            # Check if the mouse click corresponds to troop creation or deployment
+            # Example:
+            if event.button == 1:  # Left mouse button clicked
+                position = event.pos
+                action = ("create_troop", position)  # Example action format
+                send_action(action)
+            elif event.button == 3:  # Right mouse button clicked
+                position = event.pos
+                action = ("deploy_troop", position)  # Example action format
+                send_action(action)
 def crash(fighter1, fighter2):
     # if fighter1 collides with fighter2 horizontally
     if (fighter1.rect.x <= fighter2.rect.x <= fighter1.rect.x+fighter1.width
             or fighter1.rect.x <= fighter2.rect.x+fighter2.width <= fighter1.rect.x+fighter1.width):
-        fight(fighter1, fighter2)
+                fight(fighter1, fighter2)
 
 
 def fight(fighter1, fighter2):

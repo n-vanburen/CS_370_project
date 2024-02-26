@@ -2,12 +2,12 @@ import pygame
 import socket
 import pickle
 import threading
-
+import random
 pygame.init()
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server_address = ('192.168.235.87', 12345)  # Update with your server's IP address and port
+server_address = ('192.168.235.87', 12345)  # Update the IP address and port as needed
 server_socket.bind(server_address)
 
 server_socket.listen(2)  # Allowing up to 2 clients to connect
@@ -43,7 +43,7 @@ try:
     window.fill((255, 255, 255))
 
     circle_radius = 60
-    colors = [(0, 0, 255), (0, 255, 0)]  # Different colors for each client
+    colors = [(random.randrange(0,255), random.randrange(0,255), random.randrange(0,255)), (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))]  # Different colors for each client
     circle_positions = []
 
     running = True
@@ -69,3 +69,4 @@ finally:
         client_socket.close()
     server_socket.close()
     pygame.quit()
+
