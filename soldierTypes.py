@@ -10,6 +10,9 @@ class Fighter(pygame.sprite.Sprite):
     height = 50
     width = 50
     moving = True
+    crash = False
+    hit_right_barrier = False
+    hit_left_barrier = False
     text_surface = font.render("text", True, (0, 0, 0))
 
     # constructor
@@ -36,11 +39,17 @@ class Fighter(pygame.sprite.Sprite):
         self.rect.x += pixels
         if self.rect.x >= right_barrier_coord-self.width:
             self.rect.x = right_barrier_coord-self.width
+            self.hit_right_barrier = True
+        else:
+            self.hit_right_barrier = False
 
     def move_left(self, pixels):
         self.rect.x -= pixels
         if self.rect.x <= left_barrier_coord:
             self.rect.x = left_barrier_coord
+            self.hit_left_barrier = True
+        else:
+            self.hit_left_barrier = False
 
     def update_health_label(self):
         # text_surface = font.render(input_text, True, (255, 255, 255))

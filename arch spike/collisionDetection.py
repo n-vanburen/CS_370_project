@@ -23,8 +23,11 @@ playerYPosition = height-pixel-10
 playerXPositionChange = 0
 
 # define function for setting image at specific coordinates
+
+
 def playerMove(x, y):
     pygame.draw.rect(screen, green, [(x, y), (pixel, pixel)])
+
 
 blockXPosition = random.randint(0, (width-pixel))
 blockYPosition = 0 - pixel
@@ -33,8 +36,11 @@ blockXPositionChange = 0
 blockYPositionChange = 2
 
 # function for moving block
+
+
 def blockMove(x, y):
     pygame.draw.rect(screen, red, [x, y, pixel, pixel])
+
 
 # collision detection functino
 def crash():
@@ -45,7 +51,7 @@ def crash():
 
         # checks that player in under block
         if ((blockXPosition <= playerXPosition <= (blockXPosition + pixel))
-        or (blockXPosition <= (playerXPosition + pixel) <= (blockXPosition + pixel))):
+                or (blockXPosition <= (playerXPosition + pixel) <= (blockXPosition + pixel))):
             blockYPosition = height + 1000
             print('CRASH')
 
