@@ -5,24 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3eacb4e2-352b-4a49-930f-ca9f009d200f" name="Changes" comment="network testing">
-      <change afterPath="$PROJECT_DIR$/basicserver.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clientgame1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clientgame2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servergame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clienttest.py" beforeDir="false" afterPath="$PROJECT_DIR$/clienttest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clienttest1.py" beforeDir="false" afterPath="$PROJECT_DIR$/clienttest1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clienttest2.py" beforeDir="false" afterPath="$PROJECT_DIR$/clienttest2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clienttest3.py" beforeDir="false" afterPath="$PROJECT_DIR$/clienttest3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clienttest4.py" beforeDir="false" afterPath="$PROJECT_DIR$/clienttest4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servertest2.py" beforeDir="false" afterPath="$PROJECT_DIR$/servertest2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servertest3.py" beforeDir="false" afterPath="$PROJECT_DIR$/servertest3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servertest4.py" beforeDir="false" afterPath="$PROJECT_DIR$/servertest4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servertest6.py" beforeDir="false" afterPath="$PROJECT_DIR$/servertest6.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laneFightTesting.py" beforeDir="false" afterPath="$PROJECT_DIR$/laneFighting.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +33,7 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2c34aQ3GqidGl1o7ZkTx3l9aNz6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -117,7 +103,8 @@
     <MESSAGE value="socket, server and client testing" />
     <MESSAGE value="making arch spike" />
     <MESSAGE value="network testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="network testing" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
