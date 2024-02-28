@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3eacb4e2-352b-4a49-930f-ca9f009d200f" name="Changes" comment="network testing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientgame2.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientgame2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clienttest2.py" beforeDir="false" afterPath="$PROJECT_DIR$/clienttest2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laneFightTesting.py" beforeDir="false" afterPath="$PROJECT_DIR$/laneFighting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clienttest3.py" beforeDir="false" afterPath="$PROJECT_DIR$/workingclient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servertest3.py" beforeDir="false" afterPath="$PROJECT_DIR$/workingserver.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +35,6 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2c34aQ3GqidGl1o7ZkTx3l9aNz6" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -96,15 +97,22 @@
       <option name="project" value="LOCAL" />
       <updated>1708702368356</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="network testing">
+      <option name="closed" value="true" />
+      <created>1708967796410</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708967796410</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="socket, server and client testing" />
     <MESSAGE value="making arch spike" />
     <MESSAGE value="network testing" />
-    <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="network testing" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
