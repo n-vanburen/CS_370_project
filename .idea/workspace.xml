@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3eacb4e2-352b-4a49-930f-ca9f009d200f" name="Changes" comment="network testing">
-      <change afterPath="$PROJECT_DIR$/clientgpt.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clientgpt2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servergpt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientgame1.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientgame1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientgame2.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientgame2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servergame.py" beforeDir="false" afterPath="$PROJECT_DIR$/servergame.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +113,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708991399106</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="network testing">
+      <option name="closed" value="true" />
+      <created>1709310973465</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1709310973465</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

@@ -7,9 +7,10 @@ import pickle
 # from gameBoard import *
 import gameBoard
 from soldierTypes import *
+import sys
 # commented imports are already imported in the soldierTypes file
 
-SERVER_HOST = '127.0.0.1'
+SERVER_HOST = '192.168.235.87'
 SERVER_PORT = 55555
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -17,7 +18,38 @@ client.connect((SERVER_HOST, SERVER_PORT))
 
 def send_action(action):
     client.send(pickle.dumps(action))
+def handle_server_message():
+    while True:
+        try:
+            message = pickle.loads(client.recv(1024))
+            action, data = message
 
+            if action == 'create_mortal':
+                troop_type = data
+                god_troop_creation(troop_type)
+                print("hi")
+
+            elif action == 'deploy_mortal':
+                lane = data
+                current_god = god_creation_list[-1]
+                god_list.add(current_god)
+                current_god.rect.x = left_barrier_coord
+
+                if lane == 1:
+                    current_god.rect.y = lane1_top + current_god.height/2
+                elif lane == 2:
+                    current_god.rect.y = lane2_top + current_god.height/2
+                elif lane == 3:
+                    current_god.rect.y = lane3_top + current_god.height/2
+                print("hi2")
+            pygame.display.update()
+        except:
+            print("An error occurred!")
+            client.close()
+            break
+
+receive_thread = threading.Thread(target=handle_server_message)
+receive_thread.start()
 pygame.init()
 
 # Your game code here...
@@ -80,7 +112,7 @@ def mortal_troop_creation(troop_type):
         # impossible, but just to get the IDE to stop complaining
 
     mortal_creation_list.append(new_mortal)
-
+    send_action(('mortal_creation', troop_type))
     # if there is a successful creation, allow for deployment
     m_tb_pressed = True
 
@@ -128,7 +160,7 @@ def mortal_troop_deploy(lane):
             current_mortal.rect.y = lane2_top + current_mortal.height/2
         elif lane == 3:
             current_mortal.rect.y = lane3_top + current_mortal.height/2
-
+        send_action(('mortal_deploy', lane))
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
         m_tb_pressed = False
@@ -174,6 +206,7 @@ def tower_damage(side, fighter):
             gameBoard.left_tower_health = 0
             draw_game_screen()
             running = False
+
 
 
 mortal_list = pygame.sprite.Group()

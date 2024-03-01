@@ -11,7 +11,7 @@ import sys
 
 # commented imports are already imported in the soldierTypes file
 
-SERVER_HOST = '127.0.0.1'
+SERVER_HOST = '192.168.235.87'
 SERVER_PORT = 55555
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -19,6 +19,38 @@ client.connect((SERVER_HOST, SERVER_PORT))
 
 def send_action(action):
     client.send(pickle.dumps(action))
+def handle_server_message():
+    while True:
+        try:
+            message = pickle.loads(client.recv(1024))
+            action, data = message
+
+            if action == 'create_mortal':
+                troop_type = data
+                mortal_troop_creation(troop_type)
+                print("hi")
+
+            elif action == 'deploy_mortal':
+                lane = data
+                current_mortal = mortal_creation_list[-1]
+                mortal_list.add(current_mortal)
+                current_mortal.rect.x = left_barrier_coord
+
+                if lane == 1:
+                    current_mortal.rect.y = lane1_top + current_mortal.height/2
+                elif lane == 2:
+                    current_mortal.rect.y = lane2_top + current_mortal.height/2
+                elif lane == 3:
+                    current_mortal.rect.y = lane3_top + current_mortal.height/2
+                print("hi2")
+            pygame.display.update()
+        except:
+            print("An error occurred!")
+            client.close()
+            break
+
+receive_thread = threading.Thread(target=handle_server_message)
+receive_thread.start()
 
 pygame.init()
 
@@ -108,7 +140,7 @@ def god_troop_creation(troop_type):
         # impossible, but just to get the IDE to stop complaining
 
     god_creation_list.append(new_god)
-
+    send_action(('mortal_creation', troop_type))
     # if there is a successful creation, allow for deployment
     g_tb_pressed = True
 
@@ -133,6 +165,7 @@ def mortal_troop_deploy(lane):
 
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
+        send_action(lane)
         m_tb_pressed = False
 
 
@@ -144,7 +177,7 @@ def god_troop_deploy(lane):
 
         # make the god drawable and draw it in the correct lane
         current_god = god_creation_list[-1]
-        god_list.add(current_god)
+        send_action(god_list.add(current_god))
         current_god.rect.x = right_barrier_coord - current_god.width
 
         if lane == 1:
@@ -153,7 +186,7 @@ def god_troop_deploy(lane):
             current_god.rect.y = lane2_top + current_god.height/2
         elif lane == 3:
             current_god.rect.y = lane3_top + current_god.height/2
-
+        send_action(('mortal_deploy', lane))
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
         g_tb_pressed = False

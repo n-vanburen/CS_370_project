@@ -2,7 +2,7 @@ import socket
 import threading
 import pickle
 
-SERVER_HOST = '127.0.0.1'
+SERVER_HOST = '192.168.235.87'
 SERVER_PORT = 55555
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -15,16 +15,38 @@ def broadcast(message):
     for client in clients:
         client.send(pickle.dumps(message))
 
+
+# Inside receive function before starting the thread
 def handle(client):
     while True:
         try:
             message = pickle.loads(client.recv(1024))
             broadcast(message)
+
+            # Additional logic to handle troop creation and deployment
+            action, data = message
+            if action == 'mortal_creation':
+                broadcast(('create_mortal', data))
+                print("hi")
+            elif action == 'mortal_deploy':
+                broadcast(('deploy_mortal', data))
+                print("hi2")
+
         except:
             index = clients.index(client)
             clients.remove(client)
             client.close()
             break
+#def handle(client):
+    #while True:
+        #try:
+            #message = pickle.loads(client.recv(1024))
+            #broadcast(message)
+        #except:
+            #index = clients.index(client)
+            #clients.remove(client)
+            #client.close()
+            #break
 
 def receive():
     while True:
