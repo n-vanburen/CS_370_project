@@ -22,26 +22,15 @@ pygame.init()
 
 # Your game code here...
 
-# Inside your event loop where troop creation and deployment occur:
-# Example event handling:
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            # Check if the mouse click corresponds to troop creation or deployment
-            # Example:
-            if event.button == 1:  # Left mouse button clicked
-                position = event.pos
-                action = ("create_troop", position)  # Example action format
-                send_action(action)
-            elif event.button == 3:  # Right mouse button clicked
-                position = event.pos
-                action = ("deploy_troop", position)  # Example action format
-                send_action(action)
 def crash(fighter1, fighter2):
-    # if fighter1 collides with fighter2 horizontally
-    if (fighter1.rect.x <= fighter2.rect.x <= fighter1.rect.x+fighter1.width
-            or fighter1.rect.x <= fighter2.rect.x+fighter2.width <= fighter1.rect.x+fighter1.width):
-                    fight(fighter1, fighter2)
+    # if the fighters are in the same lane
+    if fighter1.rect.y == fighter2.rect.y:
+        # if fighter1 collides with fighter2
+        if (fighter1.rect.x <= fighter2.rect.x <= fighter1.rect.x+fighter1.width
+                or fighter1.rect.x <= fighter2.rect.x+fighter2.width <= fighter1.rect.x+fighter1.width):
+            fight(fighter1, fighter2)
+            fighter1.crash = True
+            fighter2.crash = True
 
 
 def fight(fighter1, fighter2):
@@ -58,10 +47,8 @@ def fight(fighter1, fighter2):
     # check if a fighter has been defeated
     if fighter1.health <= 0:
         defeat(fighter1)
-        fighter2.moving = True
     if fighter2.health <= 0:
         defeat(fighter2)
-        fighter1.moving = True
 
 
 def defeat(fighter):
@@ -126,13 +113,12 @@ def god_troop_creation(troop_type):
 
 def mortal_troop_deploy(lane):
     global m_tb_pressed
-    global mortal_creation_index
 
     # If a troop hasn't been chosen (and created when there are enough coins), nothing will happen
     if m_tb_pressed:
 
         # make the mortal drawable and draw it in the correct lane
-        current_mortal = mortal_creation_list[mortal_creation_index]
+        current_mortal = mortal_creation_list[-1]
         mortal_list.add(current_mortal)
         current_mortal.rect.x = left_barrier_coord
 
@@ -146,19 +132,16 @@ def mortal_troop_deploy(lane):
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
         m_tb_pressed = False
-        # increment the index so the next troop deployment doesn't affect this one
-        mortal_creation_index += 1
 
 
 def god_troop_deploy(lane):
     global g_tb_pressed
-    global god_creation_index
 
     # If a troop hasn't been chosen (and created when there are enough coins), nothing will happen
     if g_tb_pressed:
 
         # make the god drawable and draw it in the correct lane
-        current_god = god_creation_list[god_creation_index]
+        current_god = god_creation_list[-1]
         god_list.add(current_god)
         current_god.rect.x = right_barrier_coord - current_god.width
 
@@ -172,8 +155,25 @@ def god_troop_deploy(lane):
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
         g_tb_pressed = False
-        # increment the index so the next troop deployment doesn't affect this one
-        god_creation_index += 1
+
+
+def tower_damage(side, fighter):
+    global running
+
+    # win/lose condition 2: defeated towers
+
+    if side == "r":
+        gameBoard.right_tower_health -= fighter.attack_strength
+        if gameBoard.right_tower_health <= 0:
+            gameBoard.right_tower_health = 0
+            draw_game_screen()
+            running = False
+    else:
+        gameBoard.left_tower_health -= fighter.attack_strength
+        if gameBoard.left_tower_health <= 0:
+            gameBoard.left_tower_health = 0
+            draw_game_screen()
+            running = False
 
 
 mortal_list = pygame.sprite.Group()
@@ -181,11 +181,8 @@ god_list = pygame.sprite.Group()
 
 m_tb_pressed = False
 g_tb_pressed = False
-
 mortal_creation_list = []
 god_creation_list = []
-mortal_creation_index = 0
-god_creation_index = 0
 
 running = True
 mouse = pygame.mouse.get_pos()
@@ -196,6 +193,7 @@ while running:
     screen.fill((0, 0, 0))
     draw_game_screen()
 
+    # win/lose condition 1: time ran out
     if gameBoard.timed_out:
         running = False
 
@@ -285,9 +283,32 @@ while running:
     for mortal in mortal_list:
         if mortal.moving:
             mortal.move_right(mortal.speed)
+
+        # if they've reached the tower already, but a troop is spawned to push them back
+        if mortal.crash and mortal.hit_right_barrier:
+            mortal.rect.x -= mortal.width
+            mortal.hit_right_barrier = False
+            print("push back")
+        # otherwise, they can attack the tower
+        elif mortal.hit_right_barrier:
+            tower_damage("r", mortal)
+
+        # reset crash and moving in case of defeat for next run
+        mortal.crash = False
+        mortal.moving = True
+
     for god in god_list:
         if god.moving:
             god.move_left(god.speed)
+
+        if god.crash and god.hit_left_barrier:
+            god.rect.x -= god.width
+            god.hit_left_barrier = False
+        elif god.hit_left_barrier:
+            tower_damage("l", god)
+
+        god.crash = False
+        god.moving = True
 
     # updates
     mortal_list.draw(screen)
