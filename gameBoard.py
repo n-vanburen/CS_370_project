@@ -210,7 +210,6 @@ def draw_game_screen():
     # Calculate elapsed time
     current_time = pygame.time.get_ticks()
     elapsed_time = current_time - start_time
-    # elapsed_time = 10000
 
     # Convert milliseconds to minutes and seconds
     minutes = (game_duration - elapsed_time) // 60000
