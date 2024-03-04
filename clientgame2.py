@@ -24,16 +24,16 @@ def handle_server_message():
             message = pickle.loads(client.recv(1024))
             action, data = message
 
-            if action == 'create_mortal':
+            if action == 'create_god':
                 troop_type = data
                 god_troop_creation(troop_type)
                 print("hi")
 
-            elif action == 'deploy_mortal':
+            elif action == 'deploy_god':
                 lane = data
                 current_god = god_creation_list[-1]
                 god_list.add(current_god)
-                current_god.rect.x = left_barrier_coord
+                current_god.rect.x = right_barrier_coord - current_god.width
 
                 if lane == 1:
                     current_god.rect.y = lane1_top + current_god.height/2
@@ -45,8 +45,7 @@ def handle_server_message():
             pygame.display.update()
         except:
             print("An error occurred!")
-            client.close()
-            break
+
 
 receive_thread = threading.Thread(target=handle_server_message)
 receive_thread.start()
