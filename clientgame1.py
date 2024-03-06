@@ -140,7 +140,7 @@ def god_troop_creation(troop_type):
         # impossible, but just to get the IDE to stop complaining
 
     god_creation_list.append(new_god)
-    send_action(('mortal_creation', troop_type))
+    send_action(('god_creation', troop_type))
     # if there is a successful creation, allow for deployment
     g_tb_pressed = True
 
@@ -165,7 +165,6 @@ def mortal_troop_deploy(lane):
 
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
-        send_action(lane)
         m_tb_pressed = False
 
 
@@ -177,7 +176,7 @@ def god_troop_deploy(lane):
 
         # make the god drawable and draw it in the correct lane
         current_god = god_creation_list[-1]
-        send_action(god_list.add(current_god))
+        god_list.add(current_god)
         current_god.rect.x = right_barrier_coord - current_god.width
 
         if lane == 1:
@@ -186,7 +185,7 @@ def god_troop_deploy(lane):
             current_god.rect.y = lane2_top + current_god.height/2
         elif lane == 3:
             current_god.rect.y = lane3_top + current_god.height/2
-        send_action(('mortal_deploy', lane))
+        send_action(('god_deploy', lane))
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
         g_tb_pressed = False
