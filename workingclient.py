@@ -3,7 +3,7 @@ import socket
 import threading
 import pickle
 
-SERVER_HOST = '192.168.235.87'
+SERVER_HOST = input("what is the IP of the server")
 SERVER_PORT = 55555
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
