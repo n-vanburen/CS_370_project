@@ -1,6 +1,5 @@
 import socket
 import threading
-import pickle
 
 SERVER_HOST = socket.gethostbyname(socket.gethostname())
 SERVER_PORT = 55555
@@ -10,23 +9,6 @@ server.bind((SERVER_HOST, SERVER_PORT))
 server.listen()
 
 clients = []
-
-
-def broadcast(message):
-    for client in clients:
-        client.send(pickle.dumps(message))
-
-
-def handle(client):
-    while True:
-        try:
-            message = pickle.loads(client.recv(1024))
-            broadcast(message)
-        except:
-            index = clients.index(client)
-            clients.remove(client)
-            client.close()
-            break
 
 
 def receive():
@@ -40,6 +22,5 @@ def receive():
         thread.start()
 
 
-print("Server is running...")
-print("Server IP: " + SERVER_HOST)
+print("Server is running...", SERVER_HOST)
 receive()

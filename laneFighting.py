@@ -22,8 +22,6 @@ def fight(fighter1, fighter2):
     # deal damage while having collided
     fighter1.health -= fighter2.attack_strength
     fighter2.health -= fighter1.attack_strength
-    print(str(fighter1.health))
-    print(str(fighter2.health))
 
     # check if a fighter has been defeated
     if fighter1.health <= 0:
@@ -33,7 +31,6 @@ def fight(fighter1, fighter2):
 
 
 def defeat(fighter):
-    print('defeat')
     if fighter.team == 'm':
         mortal_list.remove(fighter)
     else:
@@ -278,7 +275,6 @@ while running:
         if mortal.crash and mortal.hit_right_barrier:
             mortal.rect.x -= mortal.width
             mortal.hit_right_barrier = False
-            print("push back")
         # otherwise, they can attack the tower
         elif mortal.hit_right_barrier:
             tower_damage("r", mortal)
@@ -323,7 +319,7 @@ elif left_tower_defeat:
     game_over_text = font.render("Game Over! Gods Win!", True, BLACK)
 else:
     game_over_text = ""
-    #impossible but to get IDE to stop complaining
+    # impossible but to get IDE to stop complaining
 
 game_over_rect = game_over_text.get_rect(center=(1200 // 2, 700 // 2))
 screen.blit(game_over_text, game_over_rect)
