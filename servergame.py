@@ -43,16 +43,7 @@ def handle(client):
             clients.remove(client)
             client.close()
             break
-#def handle(client):
-    #while True:
-        #try:
-            #message = pickle.loads(client.recv(1024))
-            #broadcast(message)
-        #except:
-            #index = clients.index(client)
-            #clients.remove(client)
-            #client.close()
-            #break
+
 
 def receive():
     while True:
