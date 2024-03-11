@@ -273,7 +273,7 @@ while running:
                     if gameBoard.mortals_coins >= 300:
                         gameBoard.mortals_coins -= 300
                         gameBoard.mortal_coin_level += 1
-                if gameBoard.mortal_coin_level == 2:
+                elif gameBoard.mortal_coin_level == 2:
                     if gameBoard.mortals_coins >= 500:
                         gameBoard.mortals_coins -= 500
                         gameBoard.mortal_coin_level += 1
@@ -283,7 +283,7 @@ while running:
                     if gameBoard.gods_coins >= 300:
                         gameBoard.gods_coins -= 300
                         gameBoard.god_coin_level += 1
-                if gameBoard.god_coin_level == 2:
+                elif gameBoard.god_coin_level == 2:
                     if gameBoard.gods_coins >= 500:
                         gameBoard.gods_coins -= 500
                         gameBoard.god_coin_level += 1
