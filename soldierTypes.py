@@ -1,4 +1,5 @@
 # import pygame
+import gameBoard
 from gameBoard import *
 # pygame.init()  # need this for font
 # commented out is already included in gameBoard
@@ -201,3 +202,53 @@ class Medusa(Fighter):
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost, self.team)
+
+
+class Arrow(pygame.sprite.Sprite):
+    height = 10
+    width = 25
+    halfway = False  # the archers only have a range of half the battlefield
+    team = 'm'
+    attack_strength = 5
+    speed = 0.6
+    color = BLACK
+    crash = False
+
+    # constructor
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.Surface([self.width, self.height])
+        pygame.draw.rect(self.image, self.color, pygame.Rect(0, 0, self.width, self.height))
+        self.rect = self.image.get_rect()
+
+    def move_right(self, pixels):
+        self.rect.x += pixels
+        if self.rect.x+self.width >= gameBoard.screen_w/2:
+            self.halfway = True
+        else:
+            self.halfway = False
+
+
+class Spell(pygame.sprite.Sprite):
+    height = 10
+    width = 25
+    halfway = False  # the archers only have a range of half the battlefield
+    team = 'g'
+    attack_strength = 5
+    speed = 0.6
+    color = WHITE
+    crash = False
+
+    # constructor
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.Surface([self.width, self.height])
+        pygame.draw.rect(self.image, self.color, pygame.Rect(0, 0, self.width, self.height))
+        self.rect = self.image.get_rect()
+
+    def move_left(self, pixels):
+        self.rect.x -= pixels
+        if self.rect.x <= gameBoard.screen_w/2:
+            self.halfway = True
+        else:
+            self.halfway = False

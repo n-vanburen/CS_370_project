@@ -44,6 +44,7 @@ clock = pygame.time.Clock()
 start_time = pygame.time.get_ticks()  # Get the starting time of the game
 game_duration = 5 * 60 * 1000 + 1000  # 5 minutes in milliseconds
 timed_out = False
+elapsed_time = 0
 
 # Ability Buttons
 # b = button, m = mortal, g = god
@@ -132,6 +133,7 @@ def load_background():
 # Function to draw the main game screen
 def draw_game_screen():
     global timed_out
+    global elapsed_time
 
     load_background()
 
