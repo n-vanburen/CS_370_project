@@ -60,12 +60,19 @@ g_ability1_b = pygame.Rect(g_ability1_coord, ability_size)
 g_ability2_b = pygame.Rect(g_ability2_coord, ability_size)
 
 # Coins
-coin_size = (80, 40)
+coin_size =(coin_w,coin_h)= (80, 40)
+one_second_tracker = 1000
+# Mortal's initial balance/level
+mortals_coins = 50
+mortal_coin_level = 1
 # Mortal
 m_coin_display_coord = (10, 520)
 m_coin_upgrade_b_coord = (120, 520)
 m_coin_display = pygame.Rect(m_coin_display_coord, coin_size)
 m_coin_upgrade_b = pygame.Rect(m_coin_upgrade_b_coord, coin_size)
+# God's initial coin balance/level
+gods_coins = 50
+god_coin_level = 1
 # God
 g_coin_display_coord = (1000, 520)
 g_coin_upgrade_b_coord = (1110, 520)
@@ -132,7 +139,9 @@ def load_background():
 # Function to draw the main game screen
 def draw_game_screen():
     global timed_out
-
+    global one_second_tracker
+    global mortals_coins
+    global gods_coins
     load_background()
 
     # Towers
@@ -225,6 +234,49 @@ def draw_game_screen():
     timer_surface = font.render(timer_text, True, BLACK)
     screen.blit(timer_surface, (507, 20))
 
+    # Generate coins every second
+    if one_second_tracker <= elapsed_time:
+        if mortal_coin_level == 1:
+            mortals_coins += 10
+        elif mortal_coin_level == 2:
+            mortals_coins += 25
+        elif mortal_coin_level == 3:
+            mortals_coins += 50
+        if god_coin_level == 1:
+            gods_coins += 10
+        elif god_coin_level == 2:
+            gods_coins += 25
+        elif god_coin_level == 3:
+            gods_coins += 50
+        one_second_tracker += 1000
 
+    # Display to screen current coins
+    fontCoins = pygame.font.Font("Font.ttf", 14)
+    mortal_coin_text = fontCoins.render(f"Coins: {mortals_coins}", True, (0, 0, 0))
+    screen.blit(mortal_coin_text, (m_coin_display.x+4, m_coin_display.y+6))
+    gods_coin_text = fontCoins.render(f"Coins: {gods_coins}", True, (0, 0, 0))
+    screen.blit(gods_coin_text, (g_coin_display.x+4, g_coin_display.y+6))
+
+    # Display to screen current levels and upgrade cost
+    mortal_coin_level_text = fontCoins.render(f"Level: {mortal_coin_level}", True, (0, 0, 0))
+    screen.blit(mortal_coin_level_text, (m_coin_upgrade_b.x+16, m_coin_upgrade_b.y))
+    god_coin_level_text = fontCoins.render(f"Level: {god_coin_level}", True, (0, 0, 0))
+    screen.blit(god_coin_level_text, (g_coin_upgrade_b.x+16, g_coin_upgrade_b.y))
+    if god_coin_level == 1:
+        g_upgrade_cost = 300
+    elif god_coin_level == 2:
+        g_upgrade_cost = 500
+    if mortal_coin_level == 1:
+        m_upgrade_cost = 300
+    elif mortal_coin_level == 2:
+        m_upgrade_cost = 500
+
+    fontCoinsUpgrade = pygame.font.Font("Font.ttf", 12)
+    if mortal_coin_level < 3:
+        mortal_coin_upgrade_text = fontCoinsUpgrade.render(f"Upgrade: {m_upgrade_cost}", True, (0, 0, 0))
+        screen.blit(mortal_coin_upgrade_text, (m_coin_upgrade_b.x+2, m_coin_upgrade_b.y+16))
+    if god_coin_level < 3:
+        god_coin_upgrade_text = fontCoinsUpgrade.render(f"Upgrade: {g_upgrade_cost}", True, (0, 0, 0))
+        screen.blit(god_coin_upgrade_text, (g_coin_upgrade_b.x+2, g_coin_upgrade_b.y+16))
 # Title of Canvas
 pygame.display.set_caption("Lightning Town")
