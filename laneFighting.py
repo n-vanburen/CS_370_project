@@ -33,6 +33,10 @@ def fight(fighter1, fighter2):
 def defeat(fighter):
     if fighter.team == 'm':
         mortal_list.remove(fighter)
+
+        # for the handling of a single archer per lane
+        if isinstance(fighter, Archer):
+            if fighter.rect.y
     else:
         god_list.remove(fighter)
 
@@ -97,15 +101,38 @@ def mortal_troop_deploy(lane):
 
         # make the mortal drawable and draw it in the correct lane
         current_mortal = mortal_creation_list[-1]
-        mortal_list.add(current_mortal)
         current_mortal.rect.x = left_barrier_coord
 
         if lane == 1:
             current_mortal.rect.y = lane1_top + current_mortal.height/2
+            if isinstance(current_mortal, Archer):
+                if not archer_in_lane[0]:
+                    archer_in_lane[0] = True
+                    mortal_list.add(current_mortal)
+                else:
+                    m_tb_pressed = False
+            else:
+                mortal_list.add(current_mortal)
         elif lane == 2:
             current_mortal.rect.y = lane2_top + current_mortal.height/2
+            if isinstance(current_mortal, Archer):
+                if not archer_in_lane[1]:
+                    archer_in_lane[1] = True
+                    mortal_list.add(current_mortal)
+                else:
+                    m_tb_pressed = False
+            else:
+                mortal_list.add(current_mortal)
         elif lane == 3:
             current_mortal.rect.y = lane3_top + current_mortal.height/2
+            if isinstance(current_mortal, Archer):
+                if not archer_in_lane[2]:
+                    archer_in_lane[2] = True
+                    mortal_list.add(current_mortal)
+                else:
+                    m_tb_pressed = False
+            else:
+                mortal_list.add(current_mortal)
 
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
@@ -158,8 +185,32 @@ def tower_damage(side, fighter):
             running = False
 
 
+def ranged_hit(fighter, projectile):
+    # if they are in the same lane
+    if (fighter.rect.y <= projectile.rect.y <= fighter.rect.y+fighter.height
+            or fighter.rect.y <= projectile.rect.y+projectile.height <= fighter.rect.y+fighter.height):
+        # if fighter collides with arrow/spell
+        if (fighter.rect.x <= projectile.rect.x <= fighter.rect.x+fighter.width
+                or fighter.rect.x <= projectile.rect.x+projectile.width <= fighter.rect.x+fighter.width):
+            # only let a projectile deal damage once
+            if not projectile.crash:
+                projectile.crash = True
+
+                fighter.health -= projectile.attack_strength
+                if fighter.health <= 0:
+                    defeat(fighter)
+
+                if projectile.team == 'm':
+                    arrow_list.remove(projectile)
+                else:
+                    spell_list.remove(projectile)
+
+
 mortal_list = pygame.sprite.Group()
 god_list = pygame.sprite.Group()
+
+arrow_list = pygame.sprite.Group()
+spell_list = pygame.sprite.Group()
 
 m_tb_pressed = False
 g_tb_pressed = False
@@ -168,6 +219,9 @@ god_creation_list = []
 
 right_tower_defeat = False
 left_tower_defeat = False
+
+archer_in_lane = [False, False, False]
+sorceress_in_lane = [False, False, False]
 
 font = pygame.font.SysFont("Font.tff", 36)
 
@@ -261,6 +315,16 @@ while running:
     # get the new mouse position
     mouse = pygame.mouse.get_pos()
 
+    # long-ranged attacks
+    # check to see if anyone got hit by an arrow/spell
+    for mortal in mortal_list:
+        for spell in spell_list:
+            ranged_hit(mortal, spell)
+    for god in god_list:
+        for arrow in arrow_list:
+            ranged_hit(god, arrow)
+
+    # short range attacks
     # see if any monster in the lane is colliding
     for mortal in mortal_list:
         for god in god_list:
@@ -283,6 +347,14 @@ while running:
         mortal.crash = False
         mortal.moving = True
 
+        # if the mortal is an archer, launch an arrow (delay based on elapsed time later)
+        if isinstance(mortal, Archer):
+            if gameBoard.elapsed_time % 10000 <= 50:
+                new_arrow = Arrow()
+                arrow_list.add(new_arrow)
+                new_arrow.rect.x = mortal.rect.x + mortal.width
+                new_arrow.rect.y = mortal.rect.y + mortal.height/2 - new_arrow.height/2
+
     for god in god_list:
         if god.moving:
             god.move_left(god.speed)
@@ -296,9 +368,27 @@ while running:
         god.crash = False
         god.moving = True
 
+        if isinstance(god, Sorceress):
+            if gameBoard.elapsed_time % 5000 <= 50:
+                new_spell = Spell()
+                spell_list.add(new_spell)
+                new_spell.rect.x = god.rect.x - new_spell.width
+                new_spell.rect.y = god.rect.y + god.height/2 - new_spell.height/2
+
+    for arrow in arrow_list:
+        arrow.move_right(arrow.speed)
+        if arrow.halfway:
+            arrow_list.remove(arrow)
+    for spell in spell_list:
+        spell.move_left(spell.speed)
+        if spell.halfway:
+            spell_list.remove(spell)
+
     # updates
     mortal_list.draw(screen)
     god_list.draw(screen)
+    arrow_list.draw(screen)
+    spell_list.draw(screen)
 
     # update health label (after .draw() so that it isn't overwritten
     for mortal in mortal_list:
@@ -318,7 +408,7 @@ elif right_tower_defeat:
 elif left_tower_defeat:
     game_over_text = font.render("Game Over! Gods Win!", True, BLACK)
 else:
-    game_over_text = ""
+    game_over_text = font.render("", True, BLACK)
     # impossible but to get IDE to stop complaining
 
 game_over_rect = game_over_text.get_rect(center=(1200 // 2, 700 // 2))
