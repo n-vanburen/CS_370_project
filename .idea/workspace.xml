@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3eacb4e2-352b-4a49-930f-ca9f009d200f" name="Changes" comment="dynamic IP connection test">
+    <list default="true" id="3eacb4e2-352b-4a49-930f-ca9f009d200f" name="Changes" comment="Archers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameBoard.py" beforeDir="false" afterPath="$PROJECT_DIR$/gameBoard.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laneFighting.py" beforeDir="false" afterPath="$PROJECT_DIR$/laneFighting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soldierTypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/soldierTypes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +28,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
   "lastFilter": {
@@ -148,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709323665823</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Archers">
+      <option name="closed" value="true" />
+      <created>1710177607190</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1710177607190</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,7 +175,8 @@
     <MESSAGE value="network testing" />
     <MESSAGE value="Fixed timer to be at 5 mins" />
     <MESSAGE value="dynamic IP connection test" />
-    <option name="LAST_COMMIT_MESSAGE" value="dynamic IP connection test" />
+    <MESSAGE value="Archers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Archers" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
