@@ -44,6 +44,7 @@ clock = pygame.time.Clock()
 start_time = pygame.time.get_ticks()  # Get the starting time of the game
 game_duration = 5 * 60 * 1000 + 1000  # 5 minutes in milliseconds
 timed_out = False
+elapsed_time = 0
 
 # Ability Buttons
 # b = button, m = mortal, g = god
@@ -142,6 +143,8 @@ def draw_game_screen():
     global one_second_tracker
     global mortals_coins
     global gods_coins
+    global elapsed_time
+
     load_background()
 
     # Towers

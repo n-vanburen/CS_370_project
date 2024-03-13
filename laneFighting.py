@@ -1,4 +1,5 @@
 import sys
+import random
 import gameBoard
 from soldierTypes import *
 
@@ -20,8 +21,23 @@ def fight(fighter1, fighter2):
     fighter2.moving = False
 
     # deal damage while having collided
-    fighter1.health -= fighter2.attack_strength
-    fighter2.health -= fighter1.attack_strength
+    if gameBoard.elapsed_time-fighter1.spawn_time >= fighter1.attack_time_counter:
+        print("1")
+        fighter2.health -= fighter1.attack_strength
+        print(str(fighter2.health))
+        print(str(gameBoard.elapsed_time))
+        tmp_attack_delay1 = random.randint(fighter1.attack_speed/2, fighter1.attack_speed)
+        print(str(tmp_attack_delay1))
+        fighter1.attack_time_counter = gameBoard.elapsed_time-fighter1.spawn_time + tmp_attack_delay1
+
+    if gameBoard.elapsed_time-fighter2.spawn_time >= fighter2.attack_time_counter:
+        print("2")
+        fighter1.health -= fighter2.attack_strength
+        print(str(fighter1.health))
+        print(str(gameBoard.elapsed_time))
+        tmp_attack_delay2 = random.randint(fighter2.attack_speed/2, fighter2.attack_speed)
+        print(str(tmp_attack_delay2))
+        fighter2.attack_time_counter = gameBoard.elapsed_time-fighter2.spawn_time + tmp_attack_delay2
 
     # check if a fighter has been defeated
     if fighter1.health <= 0:
@@ -109,6 +125,21 @@ def god_troop_creation(troop_type):
         # if there is a successful creation, allow for deployment
         g_tb_pressed = False
 
+
+def buy_mortal(new_mortal):
+    mortal_list.add(new_mortal)
+    gameBoard.mortals_coins -= new_mortal.cost
+    new_mortal.spawn_time = pygame.time.get_ticks()
+    new_mortal.attack_time_counter = pygame.time.get_ticks()
+
+
+def buy_god(new_god):
+    god_list.add(new_god)
+    gameBoard.gods_coins -= new_god.cost
+    new_god.spawn_time = pygame.time.get_ticks()
+    new_god.attack_time_counter = pygame.time.get_ticks()
+
+
 def mortal_troop_deploy(lane):
     global m_tb_pressed
 
@@ -122,40 +153,37 @@ def mortal_troop_deploy(lane):
         if lane == 1:
             current_mortal.rect.y = lane1_top + current_mortal.height/2
             if not isinstance(current_mortal, Archer):
-                mortal_list.add(current_mortal)
+                buy_mortal(current_mortal)
             else:
                 if not archer_in_lane[0]:
                     archer_in_lane[0] = True
-                    mortal_list.add(current_mortal)
+                    buy_mortal(current_mortal)
                 else:
                     m_tb_pressed = False
         elif lane == 2:
             current_mortal.rect.y = lane2_top + current_mortal.height/2
             if not isinstance(current_mortal, Archer):
-                mortal_list.add(current_mortal)
+                buy_mortal(current_mortal)
             else:
                 if not archer_in_lane[1]:
                     archer_in_lane[1] = True
-                    mortal_list.add(current_mortal)
+                    buy_mortal(current_mortal)
                 else:
                     m_tb_pressed = False
         elif lane == 3:
             current_mortal.rect.y = lane3_top + current_mortal.height/2
             if not isinstance(current_mortal, Archer):
-                mortal_list.add(current_mortal)
+                buy_mortal(current_mortal)
             else:
                 if not archer_in_lane[2]:
                     archer_in_lane[2] = True
-                    mortal_list.add(current_mortal)
+                    buy_mortal(current_mortal)
                 else:
                     m_tb_pressed = False
 
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
         m_tb_pressed = False
-
-        # Subtracts the cost of the troop
-        gameBoard.mortals_coins -= current_mortal.cost
 
 
 def god_troop_deploy(lane):
@@ -171,31 +199,31 @@ def god_troop_deploy(lane):
         if lane == 1:
             current_god.rect.y = lane1_top + current_god.height/2
             if not isinstance(current_god, Sorceress):
-                god_list.add(current_god)
+                buy_god(current_god)
             else:
                 if not sorceress_in_lane[0]:
                     sorceress_in_lane[0] = True
-                    god_list.add(current_god)
+                    buy_god(current_god)
                 else:
                     g_tb_pressed = False
         elif lane == 2:
             current_god.rect.y = lane2_top + current_god.height/2
             if not isinstance(current_god, Sorceress):
-                god_list.add(current_god)
+                buy_god(current_god)
             else:
                 if not sorceress_in_lane[1]:
                     sorceress_in_lane[1] = True
-                    god_list.add(current_god)
+                    buy_god(current_god)
                 else:
                     g_tb_pressed = False
         elif lane == 3:
             current_god.rect.y = lane3_top + current_god.height/2
             if not isinstance(current_god, Sorceress):
-                god_list.add(current_god)
+                buy_god(current_god)
             else:
                 if not sorceress_in_lane[2]:
                     sorceress_in_lane[2] = True
-                    god_list.add(current_god)
+                    buy_god(current_god)
                 else:
                     g_tb_pressed = False
 
@@ -203,8 +231,6 @@ def god_troop_deploy(lane):
         # (important for when coins are implemented)
         g_tb_pressed = False
 
-        #Subtracts the cost of the troop
-        gameBoard.gods_coins -= current_god.cost
 
 def tower_damage(side, fighter):
     global running
@@ -414,11 +440,14 @@ while running:
 
         # if the mortal is an archer, launch an arrow (delay based on elapsed time later)
         if isinstance(mortal, Archer):
-            if gameBoard.elapsed_time % 10000 <= 50:
+            if gameBoard.elapsed_time-mortal.spawn_time >= mortal.attack_time_counter:
                 new_arrow = Arrow()
                 arrow_list.add(new_arrow)
                 new_arrow.rect.x = mortal.rect.x + mortal.width
                 new_arrow.rect.y = mortal.rect.y + mortal.height/2 - new_arrow.height/2
+
+                random_attack_delay = random.randint(mortal.attack_speed/2, mortal.attack_speed)
+                mortal.attack_time_counter += random_attack_delay
 
     for god in god_list:
         if god.moving:
@@ -434,11 +463,14 @@ while running:
         god.moving = True
 
         if isinstance(god, Sorceress):
-            if gameBoard.elapsed_time % 10000 <= 50:
+            if gameBoard.elapsed_time-god.spawn_time >= god.attack_time_counter:
                 new_spell = Spell()
                 spell_list.add(new_spell)
                 new_spell.rect.x = god.rect.x - new_spell.width
                 new_spell.rect.y = god.rect.y + god.height/2 - new_spell.height/2
+
+                random_attack_delay = random.randint(god.attack_speed/2, god.attack_speed)
+                god.attack_time_counter += random_attack_delay
 
     for arrow in arrow_list:
         arrow.move_right(arrow.speed)
