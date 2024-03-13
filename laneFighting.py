@@ -74,10 +74,12 @@ def mortal_troop_creation(troop_type):
         new_mortal = FootSoldier()
         # impossible, but just to get the IDE to stop complaining
 
-    mortal_creation_list.append(new_mortal)
-
-    # if there is a successful creation, allow for deployment
-    m_tb_pressed = True
+    if gameBoard.mortals_coins >= new_mortal.cost:
+        mortal_creation_list.append(new_mortal)
+        m_tb_pressed = True
+    else:
+        # if there is a successful creation, allow for deployment
+        m_tb_pressed = False
 
 
 def god_troop_creation(troop_type):
@@ -100,11 +102,12 @@ def god_troop_creation(troop_type):
         new_god = Minion()
         # impossible, but just to get the IDE to stop complaining
 
-    god_creation_list.append(new_god)
-
-    # if there is a successful creation, allow for deployment
-    g_tb_pressed = True
-
+    if gameBoard.gods_coins >= new_god.cost:
+        god_creation_list.append(new_god)
+        g_tb_pressed = True
+    else:
+        # if there is a successful creation, allow for deployment
+        g_tb_pressed = False
 
 def mortal_troop_deploy(lane):
     global m_tb_pressed
@@ -150,6 +153,9 @@ def mortal_troop_deploy(lane):
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
         m_tb_pressed = False
+
+        # Subtracts the cost of the troop
+        gameBoard.mortals_coins -= current_mortal.cost
 
 
 def god_troop_deploy(lane):
@@ -197,6 +203,8 @@ def god_troop_deploy(lane):
         # (important for when coins are implemented)
         g_tb_pressed = False
 
+        #Subtracts the cost of the troop
+        gameBoard.gods_coins -= current_god.cost
 
 def tower_damage(side, fighter):
     global running
@@ -348,6 +356,27 @@ while running:
                 g_tb_pressed = False
                 # if they didn't choose a valid deployment, nothing will happen
 
+            # Coin Upgrade Test Mortal/God
+            if (m_coin_upgrade_b.left <= mouse[0] <= m_coin_upgrade_b.left+coin_w
+                    and m_coin_upgrade_b.top <= mouse[1] <= m_coin_upgrade_b.top+coin_h):
+                if gameBoard.mortal_coin_level == 1:
+                    if gameBoard.mortals_coins >= 300:
+                        gameBoard.mortals_coins -= 300
+                        gameBoard.mortal_coin_level += 1
+                elif gameBoard.mortal_coin_level == 2:
+                    if gameBoard.mortals_coins >= 500:
+                        gameBoard.mortals_coins -= 500
+                        gameBoard.mortal_coin_level += 1
+            if (g_coin_upgrade_b.left <= mouse[0] <= g_coin_upgrade_b.left+coin_w
+                    and g_coin_upgrade_b.top <= mouse[1] <= g_coin_upgrade_b.top+coin_h):
+                if gameBoard.god_coin_level == 1:
+                    if gameBoard.gods_coins >= 300:
+                        gameBoard.gods_coins -= 300
+                        gameBoard.god_coin_level += 1
+                elif gameBoard.god_coin_level == 2:
+                    if gameBoard.gods_coins >= 500:
+                        gameBoard.gods_coins -= 500
+                        gameBoard.god_coin_level += 1
     # get the new mouse position
     mouse = pygame.mouse.get_pos()
 

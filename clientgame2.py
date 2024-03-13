@@ -10,7 +10,7 @@ from soldierTypes import *
 import sys
 # commented imports are already imported in the soldierTypes file
 
-SERVER_HOST = '192.168.235.87'
+SERVER_HOST = input("what is the IP of the server\n")
 SERVER_PORT = 55555
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -270,38 +270,7 @@ while running:
                 # if they didn't choice a valid deployment, nothing will happen
 
             # god troop choices -- make deployment possible and create the fighters
-            if (g_tb_1.left <= mouse[0] <= g_tb_1.left+tb_width
-                    and g_tb_1.top <= mouse[1] <= g_tb_1.top+tb_height):
-                god_troop_creation(1)
-            elif (g_tb_2.left <= mouse[0] <= g_tb_2.left+tb_width
-                  and g_tb_2.top <= mouse[1] <= g_tb_2.top+tb_height):
-                god_troop_creation(2)
-            elif (g_tb_3.left <= mouse[0] <= g_tb_3.left+tb_width
-                  and g_tb_3.top <= mouse[1] <= g_tb_3.top+tb_height):
-                god_troop_creation(3)
-            elif (g_tb_4.left <= mouse[0] <= g_tb_4.left+tb_width
-                  and g_tb_4.top <= mouse[1] <= g_tb_4.top+tb_height):
-                god_troop_creation(4)
-            elif (g_tb_5.left <= mouse[0] <= g_tb_5.left+tb_width
-                  and g_tb_5.top <= mouse[1] <= g_tb_5.top+tb_height):
-                god_troop_creation(5)
-            elif (g_tb_6.left <= mouse[0] <= g_tb_6.left+tb_width
-                  and g_tb_6.top <= mouse[1] <= g_tb_6.top+tb_height):
-                god_troop_creation(6)
 
-            # mortal deployment lane choices -- spawn the fighter created above in correct lane
-            elif (g_deploy1.left <= mouse[0] <= g_deploy1.left+t_deploy_width
-                  and g_deploy1.top <= mouse[1] <= g_deploy1.top+t_deploy_height):
-                god_troop_deploy(1)
-            elif (g_deploy2.left <= mouse[0] <= g_deploy2.left+t_deploy_width
-                  and g_deploy2.top <= mouse[1] <= g_deploy2.top+t_deploy_height):
-                god_troop_deploy(2)
-            elif (g_deploy3.left <= mouse[0] <= g_deploy3.left+t_deploy_width
-                  and g_deploy3.top <= mouse[1] <= g_deploy3.top+t_deploy_height):
-                god_troop_deploy(3)
-            else:
-                g_tb_pressed = False
-                # if they didn't choose a valid deployment, nothing will happen
 
     # get the new mouse position
     mouse = pygame.mouse.get_pos()

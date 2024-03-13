@@ -11,7 +11,7 @@ import sys
 
 # commented imports are already imported in the soldierTypes file
 
-SERVER_HOST = '192.168.235.87'
+SERVER_HOST = input("what is the IP of the server\n")
 SERVER_PORT = 55555
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -46,8 +46,7 @@ def handle_server_message():
             pygame.display.update()
         except:
             print("An error occurred!")
-            client.close()
-            break
+
 
 receive_thread = threading.Thread(target=handle_server_message)
 receive_thread.start()
@@ -236,40 +235,6 @@ while running:
             running = False
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-
-            # mortal troop choices -- make deployment possible and create the fighters
-            if (m_tb_1.left <= mouse[0] <= m_tb_1.left+tb_width
-                    and m_tb_1.top <= mouse[1] <= m_tb_1.top+tb_height):
-                mortal_troop_creation(1)
-            elif (m_tb_2.left <= mouse[0] <= m_tb_2.left+tb_width
-                  and m_tb_2.top <= mouse[1] <= m_tb_2.top+tb_height):
-                mortal_troop_creation(2)
-            elif (m_tb_3.left <= mouse[0] <= m_tb_3.left+tb_width
-                  and m_tb_3.top <= mouse[1] <= m_tb_3.top+tb_height):
-                mortal_troop_creation(3)
-            elif (m_tb_4.left <= mouse[0] <= m_tb_4.left+tb_width
-                  and m_tb_4.top <= mouse[1] <= m_tb_4.top+tb_height):
-                mortal_troop_creation(4)
-            elif (m_tb_5.left <= mouse[0] <= m_tb_5.left+tb_width
-                  and m_tb_5.top <= mouse[1] <= m_tb_5.top+tb_height):
-                mortal_troop_creation(5)
-            elif (m_tb_6.left <= mouse[0] <= m_tb_6.left+tb_width
-                  and m_tb_6.top <= mouse[1] <= m_tb_6.top+tb_height):
-                mortal_troop_creation(6)
-
-            # mortal deployment lane choices -- spawn the fighter created above in correct lane
-            elif (m_deploy1.left <= mouse[0] <= m_deploy1.left+t_deploy_width
-                  and m_deploy1.top <= mouse[1] <= m_deploy1.top+t_deploy_height):
-                mortal_troop_deploy(1)
-            elif (m_deploy2.left <= mouse[0] <= m_deploy2.left+t_deploy_width
-                  and m_deploy2.top <= mouse[1] <= m_deploy2.top+t_deploy_height):
-                mortal_troop_deploy(2)
-            elif (m_deploy3.left <= mouse[0] <= m_deploy3.left+t_deploy_width
-                  and m_deploy3.top <= mouse[1] <= m_deploy3.top+t_deploy_height):
-                mortal_troop_deploy(3)
-            else:
-                m_tb_pressed = False
-                # if they didn't choice a valid deployment, nothing will happen
 
             # god troop choices -- make deployment possible and create the fighters
             if (g_tb_1.left <= mouse[0] <= g_tb_1.left+tb_width
