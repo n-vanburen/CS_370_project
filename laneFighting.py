@@ -160,7 +160,6 @@ def god_troop_deploy(lane):
 
         # make the god drawable and draw it in the correct lane
         current_god = god_creation_list[-1]
-        god_list.add(current_god)
         current_god.rect.x = right_barrier_coord - current_god.width
 
         if lane == 1:
@@ -168,8 +167,8 @@ def god_troop_deploy(lane):
             if not isinstance(current_god, Sorceress):
                 god_list.add(current_god)
             else:
-                if not archer_in_lane[0]:
-                    archer_in_lane[0] = True
+                if not sorceress_in_lane[0]:
+                    sorceress_in_lane[0] = True
                     god_list.add(current_god)
                 else:
                     g_tb_pressed = False
@@ -178,8 +177,8 @@ def god_troop_deploy(lane):
             if not isinstance(current_god, Sorceress):
                 god_list.add(current_god)
             else:
-                if not archer_in_lane[1]:
-                    archer_in_lane[1] = True
+                if not sorceress_in_lane[1]:
+                    sorceress_in_lane[1] = True
                     god_list.add(current_god)
                 else:
                     g_tb_pressed = False
@@ -188,8 +187,8 @@ def god_troop_deploy(lane):
             if not isinstance(current_god, Sorceress):
                 god_list.add(current_god)
             else:
-                if not archer_in_lane[2]:
-                    archer_in_lane[2] = True
+                if not sorceress_in_lane[2]:
+                    sorceress_in_lane[2] = True
                     god_list.add(current_god)
                 else:
                     g_tb_pressed = False
