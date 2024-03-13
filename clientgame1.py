@@ -11,7 +11,7 @@ import sys
 
 # commented imports are already imported in the soldierTypes file
 
-SERVER_HOST = input("what is the IP of the server")
+SERVER_HOST = '192.168.235.87'
 SERVER_PORT = 55555
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

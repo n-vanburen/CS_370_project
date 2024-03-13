@@ -36,9 +36,22 @@ def defeat(fighter):
 
         # for the handling of a single archer per lane
         if isinstance(fighter, Archer):
-            if fighter.rect.y
+            if fighter.rect.y == lane1_top + fighter.height/2:
+                archer_in_lane[0] = False
+            elif fighter.rect.y == lane2_top + fighter.height/2:
+                archer_in_lane[1] = False
+            elif fighter.rect.y == lane3_top + fighter.height/2:
+                archer_in_lane[2] = False
     else:
         god_list.remove(fighter)
+
+        if isinstance(fighter, Sorceress):
+            if fighter.rect.y == lane1_top + fighter.height/2:
+                sorceress_in_lane[0] = False
+            elif fighter.rect.y == lane2_top + fighter.height/2:
+                sorceress_in_lane[1] = False
+            elif fighter.rect.y == lane3_top + fighter.height/2:
+                sorceress_in_lane[2] = False
 
 
 def mortal_troop_creation(troop_type):
@@ -105,34 +118,34 @@ def mortal_troop_deploy(lane):
 
         if lane == 1:
             current_mortal.rect.y = lane1_top + current_mortal.height/2
-            if isinstance(current_mortal, Archer):
+            if not isinstance(current_mortal, Archer):
+                mortal_list.add(current_mortal)
+            else:
                 if not archer_in_lane[0]:
                     archer_in_lane[0] = True
                     mortal_list.add(current_mortal)
                 else:
                     m_tb_pressed = False
-            else:
-                mortal_list.add(current_mortal)
         elif lane == 2:
             current_mortal.rect.y = lane2_top + current_mortal.height/2
-            if isinstance(current_mortal, Archer):
+            if not isinstance(current_mortal, Archer):
+                mortal_list.add(current_mortal)
+            else:
                 if not archer_in_lane[1]:
                     archer_in_lane[1] = True
                     mortal_list.add(current_mortal)
                 else:
                     m_tb_pressed = False
-            else:
-                mortal_list.add(current_mortal)
         elif lane == 3:
             current_mortal.rect.y = lane3_top + current_mortal.height/2
-            if isinstance(current_mortal, Archer):
+            if not isinstance(current_mortal, Archer):
+                mortal_list.add(current_mortal)
+            else:
                 if not archer_in_lane[2]:
                     archer_in_lane[2] = True
                     mortal_list.add(current_mortal)
                 else:
                     m_tb_pressed = False
-            else:
-                mortal_list.add(current_mortal)
 
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
@@ -152,10 +165,34 @@ def god_troop_deploy(lane):
 
         if lane == 1:
             current_god.rect.y = lane1_top + current_god.height/2
+            if not isinstance(current_god, Sorceress):
+                god_list.add(current_god)
+            else:
+                if not archer_in_lane[0]:
+                    archer_in_lane[0] = True
+                    god_list.add(current_god)
+                else:
+                    g_tb_pressed = False
         elif lane == 2:
             current_god.rect.y = lane2_top + current_god.height/2
+            if not isinstance(current_god, Sorceress):
+                god_list.add(current_god)
+            else:
+                if not archer_in_lane[1]:
+                    archer_in_lane[1] = True
+                    god_list.add(current_god)
+                else:
+                    g_tb_pressed = False
         elif lane == 3:
             current_god.rect.y = lane3_top + current_god.height/2
+            if not isinstance(current_god, Sorceress):
+                god_list.add(current_god)
+            else:
+                if not archer_in_lane[2]:
+                    archer_in_lane[2] = True
+                    god_list.add(current_god)
+                else:
+                    g_tb_pressed = False
 
         # the player has deployed their troop, don't let them do it again
         # (important for when coins are implemented)
@@ -369,7 +406,7 @@ while running:
         god.moving = True
 
         if isinstance(god, Sorceress):
-            if gameBoard.elapsed_time % 5000 <= 50:
+            if gameBoard.elapsed_time % 10000 <= 50:
                 new_spell = Spell()
                 spell_list.add(new_spell)
                 new_spell.rect.x = god.rect.x - new_spell.width
