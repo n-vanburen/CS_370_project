@@ -139,6 +139,7 @@ def load_background():
 
 # Function to draw the main game screen
 def draw_game_screen():
+    global elapsed_time
     global timed_out
     global one_second_tracker
     global mortals_coins
@@ -170,26 +171,40 @@ def draw_game_screen():
     pygame.draw.line(screen, BLACK, (right_barrier_coord, 0), (right_barrier_coord, screen_h), 2)
 
     # Center Top Timer Box
+    pygame.draw.rect(screen, WHITE, timer)
     pygame.draw.rect(screen, BLACK, timer, 2)
 
     # Ability Buttons
     # Mortal
+    pygame.draw.rect(screen, WHITE, m_ability1_b)
+    pygame.draw.rect(screen, WHITE, m_ability2_b)
     pygame.draw.rect(screen, BLACK, m_ability1_b, 2)
     pygame.draw.rect(screen, BLACK, m_ability2_b, 2)
     # God
+    pygame.draw.rect(screen, WHITE, g_ability1_b)
+    pygame.draw.rect(screen, WHITE, g_ability2_b)
     pygame.draw.rect(screen, BLACK, g_ability1_b, 2)
     pygame.draw.rect(screen, BLACK, g_ability2_b, 2)
 
     # Coins
     # Mortal
+    pygame.draw.rect(screen, WHITE, m_coin_display)
+    pygame.draw.rect(screen, WHITE, m_coin_upgrade_b)
     pygame.draw.rect(screen, BLACK, m_coin_display, 2)
     pygame.draw.rect(screen, BLACK, m_coin_upgrade_b, 2)
     # God
+    pygame.draw.rect(screen, WHITE, g_coin_display)
+    pygame.draw.rect(screen, WHITE, g_coin_upgrade_b)
     pygame.draw.rect(screen, BLACK, g_coin_display, 2)
     pygame.draw.rect(screen, BLACK, g_coin_upgrade_b, 2)
-
     # Troop Spawn Buttons
     # Mortal
+    pygame.draw.rect(screen, WHITE, m_tb_1)
+    pygame.draw.rect(screen, WHITE, m_tb_2)
+    pygame.draw.rect(screen, WHITE, m_tb_3)
+    pygame.draw.rect(screen, WHITE, m_tb_4)
+    pygame.draw.rect(screen, WHITE, m_tb_5)
+    pygame.draw.rect(screen, WHITE, m_tb_6)
     pygame.draw.rect(screen, BLACK, m_tb_1, 2)
     pygame.draw.rect(screen, BLACK, m_tb_2, 2)
     pygame.draw.rect(screen, BLACK, m_tb_3, 2)
@@ -197,13 +212,18 @@ def draw_game_screen():
     pygame.draw.rect(screen, BLACK, m_tb_5, 2)
     pygame.draw.rect(screen, BLACK, m_tb_6, 2)
     # God
+    pygame.draw.rect(screen, WHITE, g_tb_1)
+    pygame.draw.rect(screen, WHITE, g_tb_2)
+    pygame.draw.rect(screen, WHITE, g_tb_3)
+    pygame.draw.rect(screen, WHITE, g_tb_4)
+    pygame.draw.rect(screen, WHITE, g_tb_5)
+    pygame.draw.rect(screen, WHITE, g_tb_6)
     pygame.draw.rect(screen, BLACK, g_tb_1, 2)
     pygame.draw.rect(screen, BLACK, g_tb_2, 2)
     pygame.draw.rect(screen, BLACK, g_tb_3, 2)
     pygame.draw.rect(screen, BLACK, g_tb_4, 2)
     pygame.draw.rect(screen, BLACK, g_tb_5, 2)
     pygame.draw.rect(screen, BLACK, g_tb_6, 2)
-
     # Lanes
     pygame.draw.rect(screen, BLACK, top_lane, 2)
     pygame.draw.rect(screen, BLACK, middle_lane, 2)
