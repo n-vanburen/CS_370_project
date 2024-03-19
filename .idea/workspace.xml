@@ -4,10 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="Coin upgrade bug fix">
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment=".">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Background.png" beforeDir="false" afterPath="$PROJECT_DIR$/Background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameBoard.py" beforeDir="false" afterPath="$PROJECT_DIR$/gameBoard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arch spike/sprite.py" beforeDir="false" afterPath="$PROJECT_DIR$/arch spike/sprite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basicserver.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientgame1.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientgame1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientgame2.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientgame2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clienttest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clienttest1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clienttest2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clienttest4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servergame.py" beforeDir="false" afterPath="$PROJECT_DIR$/servergame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servertest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servertest2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servertest4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servertest5.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servertest6.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/twistedserver.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/twsitedclient.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,8 +208,7 @@
       <workItem from="1709571117914" duration="4767000" />
       <workItem from="1709744047479" duration="2321000" />
       <workItem from="1710014938832" duration="3449000" />
-      <workItem from="1710167468597" duration="9464000" />
-      <workItem from="1710345265383" duration="4210000" />
+      <workItem from="1710167468597" duration="8328000" />
     </task>
     <task id="LOCAL-00001" summary="testing">
       <option name="closed" value="true" />
@@ -320,31 +338,7 @@
       <option name="project" value="LOCAL" />
       <updated>1709571508695</updated>
     </task>
-    <task id="LOCAL-00017" summary="Coin Currency System, Troop Deployment Costs, Coin Upgrade Feature">
-      <option name="closed" value="true" />
-      <created>1710177878457</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1710177878457</updated>
-    </task>
-    <task id="LOCAL-00018" summary=".">
-      <option name="closed" value="true" />
-      <created>1710178053879</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1710178053879</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Coin upgrade bug fix">
-      <option name="closed" value="true" />
-      <created>1710179144879</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1710179144879</updated>
-    </task>
-    <option name="localTasksCounter" value="20" />
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,26 +364,8 @@
     <MESSAGE value="Timer Feature Completed" />
     <MESSAGE value="Fixed timer to be at 5 mins" />
     <MESSAGE value="Rename" />
-    <MESSAGE value="Coin Currency System, Troop Deployment Costs, Coin Upgrade Feature" />
     <MESSAGE value="." />
-    <MESSAGE value="Coin upgrade bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Coin upgrade bug fix" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/CS_370_project$twistedTester.coverage" NAME="twistedTester Coverage Results" MODIFIED="1707324996003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$tester.coverage" NAME="tester Coverage Results" MODIFIED="1707926394143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$scaleNRotateWMouse.coverage" NAME="scaleNRotateWMouse Coverage Results" MODIFIED="1706473392898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$soldierTypes.coverage" NAME="soldierTypes Coverage Results" MODIFIED="1710014345699" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$moveImgWMouse.coverage" NAME="moveImgWMouse Coverage Results" MODIFIED="1706472665257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$clienttest.coverage" NAME="clienttest Coverage Results" MODIFIED="1708367008833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$customEvent.coverage" NAME="customEvent Coverage Results" MODIFIED="1706473078358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$laneFightTesting.coverage" NAME="laneFightTesting Coverage Results" MODIFIED="1709142798576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$gameBoard.coverage" NAME="gameBoard Coverage Results" MODIFIED="1710019278286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$laneFighting.coverage" NAME="laneFighting Coverage Results" MODIFIED="1710350339433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$spriteHorizontalCollision.coverage" NAME="spriteHorizontalCollision Coverage Results" MODIFIED="1706724207949" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$clickToDraw.coverage" NAME="clickToDraw Coverage Results" MODIFIED="1710178171415" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$sprite.coverage" NAME="sprite Coverage Results" MODIFIED="1706717434471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$InputTextBox.coverage" NAME="InputTextBox Coverage Results" MODIFIED="1706473203460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS_370_project$Test.coverage" NAME="Test Coverage Results" MODIFIED="1708368277705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <MESSAGE value="dynamic server ip" />
+    <option name="LAST_COMMIT_MESSAGE" value="dynamic server ip" />
   </component>
 </project>

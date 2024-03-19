@@ -8,6 +8,7 @@ import pickle
 import gameBoard
 from soldierTypes import *
 import sys
+# from laneFighting import *
 # commented imports are already imported in the soldierTypes file
 
 SERVER_HOST = input("what is the IP of the server\n")
@@ -190,6 +191,8 @@ def god_troop_deploy(lane):
 
 def tower_damage(side, fighter):
     global running
+    global left_tower_defeat
+    global right_tower_defeat
 
     # win/lose condition 2: defeated towers
 
@@ -197,12 +200,14 @@ def tower_damage(side, fighter):
         gameBoard.right_tower_health -= fighter.attack_strength
         if gameBoard.right_tower_health <= 0:
             gameBoard.right_tower_health = 0
+            right_tower_defeat = True
             draw_game_screen()
             running = False
     else:
         gameBoard.left_tower_health -= fighter.attack_strength
         if gameBoard.left_tower_health <= 0:
             gameBoard.left_tower_health = 0
+            left_tower_defeat = True
             draw_game_screen()
             running = False
 
@@ -213,6 +218,8 @@ god_list = pygame.sprite.Group()
 
 m_tb_pressed = False
 g_tb_pressed = False
+right_tower_defeat = False
+left_tower_defeat = False
 mortal_creation_list = []
 god_creation_list = []
 
@@ -270,7 +277,16 @@ while running:
                 # if they didn't choice a valid deployment, nothing will happen
 
             # god troop choices -- make deployment possible and create the fighters
-
+                if (m_coin_upgrade_b.left <= mouse[0] <= m_coin_upgrade_b.left+coin_w
+                        and m_coin_upgrade_b.top <= mouse[1] <= m_coin_upgrade_b.top+coin_h):
+                    if gameBoard.mortal_coin_level == 1:
+                        if gameBoard.mortals_coins >= 300:
+                            gameBoard.mortals_coins -= 300
+                            gameBoard.mortal_coin_level += 1
+                    if gameBoard.mortal_coin_level == 2:
+                        if gameBoard.mortals_coins >= 500:
+                            gameBoard.mortals_coins -= 500
+                            gameBoard.mortal_coin_level += 1
 
     # get the new mouse position
     mouse = pygame.mouse.get_pos()
@@ -326,7 +342,15 @@ while running:
     pygame.display.update()
 
 # Game over
-game_over_text = font.render("Time's up! Game Over!", True, BLACK)
+if gameBoard.timed_out:
+    game_over_text = font.render("Time's up! Game Over!", True, BLACK)
+elif right_tower_defeat:
+    game_over_text = font.render("Game Over! Mortals Win!", True, BLACK)
+elif left_tower_defeat:
+    game_over_text = font.render("Game Over! Gods Win!", True, BLACK)
+else:
+    game_over_text = ""
+
 game_over_rect = game_over_text.get_rect(center=(1200 // 2, 700 // 2))
 screen.blit(game_over_text, game_over_rect)
 pygame.display.flip()

@@ -15,6 +15,8 @@ class Sprite(pygame.sprite.Sprite):
         self.width = width
 
         self.image = pygame.Surface([width, height])
+        self.player_img = pygame.image.load('Tower.png').convert()
+        self.image.blit(self.player_img, self.image.get_rect().x, self.image.get_rect().y)
         self.image.fill(SURFACE_COLOR)
         # any pixels set to the color key will become transparent
         self.image.set_colorkey(COLOR)
