@@ -2,6 +2,8 @@ import sys
 import random
 import gameBoard
 from soldierTypes import *
+from StartMenu import *
+import StartMenu
 
 
 def crash(fighter1, fighter2):
@@ -20,30 +22,36 @@ def fight(fighter1, fighter2):
     fighter1.moving = False
     fighter2.moving = False
 
-    # deal damage while having collided
-    if gameBoard.elapsed_time-fighter1.spawn_time >= fighter1.attack_time_counter:
+    # ensure the first attack is not simultaneous
+    if fighter1.first_hit:
+        add_attack_delay(fighter1)
+        fighter1.first_hit = False
+    if fighter2.first_hit:
+        add_attack_delay(fighter2)
+        fighter2.first_hit = False
+
+    # deal damage while having collided (attack delay applicable)
+    if can_attack(fighter1):
         print("1")
         fighter2.health -= fighter1.attack_strength
         print(str(fighter2.health))
         print(str(gameBoard.elapsed_time))
-        tmp_attack_delay1 = random.randint(fighter1.attack_speed/2, fighter1.attack_speed)
-        print(str(tmp_attack_delay1))
-        fighter1.attack_time_counter = gameBoard.elapsed_time-fighter1.spawn_time + tmp_attack_delay1
+        add_attack_delay(fighter1)
 
-    if gameBoard.elapsed_time-fighter2.spawn_time >= fighter2.attack_time_counter:
+    if can_attack(fighter2):
         print("2")
         fighter1.health -= fighter2.attack_strength
         print(str(fighter1.health))
         print(str(gameBoard.elapsed_time))
-        tmp_attack_delay2 = random.randint(fighter2.attack_speed/2, fighter2.attack_speed)
-        print(str(tmp_attack_delay2))
-        fighter2.attack_time_counter = gameBoard.elapsed_time-fighter2.spawn_time + tmp_attack_delay2
+        add_attack_delay(fighter2)
 
     # check if a fighter has been defeated
     if fighter1.health <= 0:
         defeat(fighter1)
+        fighter2.first_hit = True
     if fighter2.health <= 0:
         defeat(fighter2)
+        fighter1.first_hit = True
 
 
 def defeat(fighter):
@@ -90,11 +98,12 @@ def mortal_troop_creation(troop_type):
         new_mortal = FootSoldier()
         # impossible, but just to get the IDE to stop complaining
 
+    # make sure they have enough coins to purchase the troop
     if gameBoard.mortals_coins >= new_mortal.cost:
         mortal_creation_list.append(new_mortal)
+        # if there is a successful creation, allow for deployment
         m_tb_pressed = True
     else:
-        # if there is a successful creation, allow for deployment
         m_tb_pressed = False
 
 
@@ -120,9 +129,9 @@ def god_troop_creation(troop_type):
 
     if gameBoard.gods_coins >= new_god.cost:
         god_creation_list.append(new_god)
+        # if there is a successful creation, allow for deployment
         g_tb_pressed = True
     else:
-        # if there is a successful creation, allow for deployment
         g_tb_pressed = False
 
 
@@ -130,14 +139,12 @@ def buy_mortal(new_mortal):
     mortal_list.add(new_mortal)
     gameBoard.mortals_coins -= new_mortal.cost
     new_mortal.spawn_time = pygame.time.get_ticks()
-    new_mortal.attack_time_counter = pygame.time.get_ticks()
 
 
 def buy_god(new_god):
     god_list.add(new_god)
     gameBoard.gods_coins -= new_god.cost
     new_god.spawn_time = pygame.time.get_ticks()
-    new_god.attack_time_counter = pygame.time.get_ticks()
 
 
 def mortal_troop_deploy(lane):
@@ -182,7 +189,7 @@ def mortal_troop_deploy(lane):
                     m_tb_pressed = False
 
         # the player has deployed their troop, don't let them do it again
-        # (important for when coins are implemented)
+        # (important for coins)
         m_tb_pressed = False
 
 
@@ -228,7 +235,7 @@ def god_troop_deploy(lane):
                     g_tb_pressed = False
 
         # the player has deployed their troop, don't let them do it again
-        # (important for when coins are implemented)
+        # (important for coins)
         g_tb_pressed = False
 
 
@@ -237,22 +244,38 @@ def tower_damage(side, fighter):
     global left_tower_defeat
     global right_tower_defeat
 
-    # win/lose condition 2: defeated towers
+    if fighter.first_hit:
+        add_attack_delay(fighter)
+        fighter.first_hit = False
 
-    if side == "r":
-        gameBoard.right_tower_health -= fighter.attack_strength
-        if gameBoard.right_tower_health <= 0:
-            gameBoard.right_tower_health = 0
-            right_tower_defeat = True
-            draw_game_screen()
-            running = False
-    else:
-        gameBoard.left_tower_health -= fighter.attack_strength
-        if gameBoard.left_tower_health <= 0:
-            gameBoard.left_tower_health = 0
-            left_tower_defeat = True
-            draw_game_screen()
-            running = False
+    # win/lose condition 2: defeated towers
+    if can_attack(fighter):
+        add_attack_delay(fighter)
+
+        if side == "r":
+            gameBoard.right_tower_health -= fighter.attack_strength
+            if gameBoard.right_tower_health <= 0:
+                gameBoard.right_tower_health = 0
+                right_tower_defeat = True
+                draw_game_screen()
+                running = False
+        else:
+            gameBoard.left_tower_health -= fighter.attack_strength
+            if gameBoard.left_tower_health <= 0:
+                gameBoard.left_tower_health = 0
+                left_tower_defeat = True
+                draw_game_screen()
+                running = False
+
+
+def add_attack_delay(fighter):
+    delay = random.randint(500, fighter.attack_speed)
+    fighter.attack_time_counter = gameBoard.elapsed_time-fighter.spawn_time + delay
+
+
+def can_attack(fighter):
+    # checks that the attack delay has been respected
+    return gameBoard.elapsed_time-fighter.spawn_time >= fighter.attack_time_counter
 
 
 def ranged_hit(fighter, projectile):
@@ -276,6 +299,31 @@ def ranged_hit(fighter, projectile):
                     spell_list.remove(projectile)
 
 
+def mortal_coin_upgrade():
+    if gameBoard.mortal_coin_level == 1:
+        if gameBoard.mortals_coins >= 300:
+            gameBoard.mortals_coins -= 300
+            gameBoard.mortal_coin_level += 1
+    elif gameBoard.mortal_coin_level == 2:
+        if gameBoard.mortals_coins >= 500:
+            gameBoard.mortals_coins -= 500
+            gameBoard.mortal_coin_level += 1
+
+
+def god_coin_upgrade():
+    if gameBoard.god_coin_level == 1:
+        if gameBoard.gods_coins >= 300:
+            gameBoard.gods_coins -= 300
+            gameBoard.god_coin_level += 1
+    elif gameBoard.god_coin_level == 2:
+        if gameBoard.gods_coins >= 500:
+            gameBoard.gods_coins -= 500
+            gameBoard.god_coin_level += 1
+
+
+# which screen to display: s = start menu, c = connection, g = gameBoard, e = end menu, u = user manual/stats
+which_screen = "c"
+
 mortal_list = pygame.sprite.Group()
 god_list = pygame.sprite.Group()
 
@@ -293,226 +341,260 @@ left_tower_defeat = False
 archer_in_lane = [False, False, False]
 sorceress_in_lane = [False, False, False]
 
-font = pygame.font.SysFont("Font.tff", 36)
+# font = pygame.font.SysFont("Font.tff", 36)
 
 running = True
-mouse = pygame.mouse.get_pos()
 clock = pygame.time.Clock()
 while running:
     clock.tick(20)
 
-    screen.fill((0, 0, 0))
-    draw_game_screen()
+    if which_screen == "g":
+        screen.fill((0, 0, 0))
+        draw_game_screen()
 
-    # win/lose condition 1: time ran out
-    if gameBoard.timed_out:
-        running = False
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        # win/lose condition 1: time ran out
+        if gameBoard.timed_out:
             running = False
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
-            # mortal troop choices -- make deployment possible and create the fighters
-            if (m_tb_1.left <= mouse[0] <= m_tb_1.left+tb_width
-                    and m_tb_1.top <= mouse[1] <= m_tb_1.top+tb_height):
-                mortal_troop_creation(1)
-            elif (m_tb_2.left <= mouse[0] <= m_tb_2.left+tb_width
-                    and m_tb_2.top <= mouse[1] <= m_tb_2.top+tb_height):
-                mortal_troop_creation(2)
-            elif (m_tb_3.left <= mouse[0] <= m_tb_3.left+tb_width
-                    and m_tb_3.top <= mouse[1] <= m_tb_3.top+tb_height):
-                mortal_troop_creation(3)
-            elif (m_tb_4.left <= mouse[0] <= m_tb_4.left+tb_width
-                    and m_tb_4.top <= mouse[1] <= m_tb_4.top+tb_height):
-                mortal_troop_creation(4)
-            elif (m_tb_5.left <= mouse[0] <= m_tb_5.left+tb_width
-                    and m_tb_5.top <= mouse[1] <= m_tb_5.top+tb_height):
-                mortal_troop_creation(5)
-            elif (m_tb_6.left <= mouse[0] <= m_tb_6.left+tb_width
-                    and m_tb_6.top <= mouse[1] <= m_tb_6.top+tb_height):
-                mortal_troop_creation(6)
+            if event.type == pygame.MOUSEBUTTONDOWN:
 
-            # mortal deployment lane choices -- spawn the fighter created above in correct lane
-            elif (m_deploy1.left <= mouse[0] <= m_deploy1.left+t_deploy_width
-                    and m_deploy1.top <= mouse[1] <= m_deploy1.top+t_deploy_height):
-                mortal_troop_deploy(1)
-            elif (m_deploy2.left <= mouse[0] <= m_deploy2.left+t_deploy_width
-                    and m_deploy2.top <= mouse[1] <= m_deploy2.top+t_deploy_height):
-                mortal_troop_deploy(2)
-            elif (m_deploy3.left <= mouse[0] <= m_deploy3.left+t_deploy_width
-                  and m_deploy3.top <= mouse[1] <= m_deploy3.top+t_deploy_height):
-                mortal_troop_deploy(3)
-            else:
-                m_tb_pressed = False
-                # if they didn't choice a valid deployment, nothing will happen
+                # mortal troop choices -- make deployment possible and create the fighters
+                if m_tb_1.collidepoint(event.pos):
+                    mortal_troop_creation(1)
+                elif m_tb_2.collidepoint(event.pos):
+                    mortal_troop_creation(2)
+                elif m_tb_3.collidepoint(event.pos):
+                    mortal_troop_creation(3)
+                elif m_tb_4.collidepoint(event.pos):
+                    mortal_troop_creation(4)
+                elif m_tb_5.collidepoint(event.pos):
+                    mortal_troop_creation(5)
+                elif m_tb_6.collidepoint(event.pos):
+                    mortal_troop_creation(6)
 
-            # god troop choices -- make deployment possible and create the fighters
-            if (g_tb_1.left <= mouse[0] <= g_tb_1.left+tb_width
-                    and g_tb_1.top <= mouse[1] <= g_tb_1.top+tb_height):
-                god_troop_creation(1)
-            elif (g_tb_2.left <= mouse[0] <= g_tb_2.left+tb_width
-                    and g_tb_2.top <= mouse[1] <= g_tb_2.top+tb_height):
-                god_troop_creation(2)
-            elif (g_tb_3.left <= mouse[0] <= g_tb_3.left+tb_width
-                    and g_tb_3.top <= mouse[1] <= g_tb_3.top+tb_height):
-                god_troop_creation(3)
-            elif (g_tb_4.left <= mouse[0] <= g_tb_4.left+tb_width
-                    and g_tb_4.top <= mouse[1] <= g_tb_4.top+tb_height):
-                god_troop_creation(4)
-            elif (g_tb_5.left <= mouse[0] <= g_tb_5.left+tb_width
-                    and g_tb_5.top <= mouse[1] <= g_tb_5.top+tb_height):
-                god_troop_creation(5)
-            elif (g_tb_6.left <= mouse[0] <= g_tb_6.left+tb_width
-                    and g_tb_6.top <= mouse[1] <= g_tb_6.top+tb_height):
-                god_troop_creation(6)
+                # mortal deployment lane choices -- spawn the fighter created above in correct lane
+                elif m_deploy1.collidepoint(event.pos):
+                    mortal_troop_deploy(1)
+                elif m_deploy2.collidepoint(event.pos):
+                    mortal_troop_deploy(2)
+                elif m_deploy3.collidepoint(event.pos):
+                    mortal_troop_deploy(3)
+                else:
+                    m_tb_pressed = False
+                    # if they didn't choice a valid deployment, nothing will happen
 
-            # mortal deployment lane choices -- spawn the fighter created above in correct lane
-            elif (g_deploy1.left <= mouse[0] <= g_deploy1.left+t_deploy_width
-                    and g_deploy1.top <= mouse[1] <= g_deploy1.top+t_deploy_height):
-                god_troop_deploy(1)
-            elif (g_deploy2.left <= mouse[0] <= g_deploy2.left+t_deploy_width
-                  and g_deploy2.top <= mouse[1] <= g_deploy2.top+t_deploy_height):
-                god_troop_deploy(2)
-            elif (g_deploy3.left <= mouse[0] <= g_deploy3.left+t_deploy_width
-                  and g_deploy3.top <= mouse[1] <= g_deploy3.top+t_deploy_height):
-                god_troop_deploy(3)
-            else:
-                g_tb_pressed = False
-                # if they didn't choose a valid deployment, nothing will happen
+                # god troop choices -- make deployment possible and create the fighters
+                if g_tb_1.collidepoint(event.pos):
+                    god_troop_creation(1)
+                elif g_tb_2.collidepoint(event.pos):
+                    god_troop_creation(2)
+                elif g_tb_3.collidepoint(event.pos):
+                    god_troop_creation(3)
+                elif g_tb_4.collidepoint(event.pos):
+                    god_troop_creation(4)
+                elif g_tb_5.collidepoint(event.pos):
+                    god_troop_creation(5)
+                elif g_tb_6.collidepoint(event.pos):
+                    god_troop_creation(6)
 
-            # Coin Upgrade Test Mortal/God
-            if (m_coin_upgrade_b.left <= mouse[0] <= m_coin_upgrade_b.left+coin_w
-                    and m_coin_upgrade_b.top <= mouse[1] <= m_coin_upgrade_b.top+coin_h):
-                if gameBoard.mortal_coin_level == 1:
-                    if gameBoard.mortals_coins >= 300:
-                        gameBoard.mortals_coins -= 300
-                        gameBoard.mortal_coin_level += 1
-                elif gameBoard.mortal_coin_level == 2:
-                    if gameBoard.mortals_coins >= 500:
-                        gameBoard.mortals_coins -= 500
-                        gameBoard.mortal_coin_level += 1
-            if (g_coin_upgrade_b.left <= mouse[0] <= g_coin_upgrade_b.left+coin_w
-                    and g_coin_upgrade_b.top <= mouse[1] <= g_coin_upgrade_b.top+coin_h):
-                if gameBoard.god_coin_level == 1:
-                    if gameBoard.gods_coins >= 300:
-                        gameBoard.gods_coins -= 300
-                        gameBoard.god_coin_level += 1
-                elif gameBoard.god_coin_level == 2:
-                    if gameBoard.gods_coins >= 500:
-                        gameBoard.gods_coins -= 500
-                        gameBoard.god_coin_level += 1
-    # get the new mouse position
-    mouse = pygame.mouse.get_pos()
+                # mortal deployment lane choices -- spawn the fighter created above in correct lane
+                elif g_deploy1.collidepoint(event.pos):
+                    god_troop_deploy(1)
+                elif g_deploy2.collidepoint(event.pos):
+                    god_troop_deploy(2)
+                elif g_deploy3.collidepoint(event.pos):
+                    god_troop_deploy(3)
+                else:
+                    g_tb_pressed = False
+                    # if they didn't choose a valid deployment, nothing will happen
 
-    # long-ranged attacks
-    # check to see if anyone got hit by an arrow/spell
-    for mortal in mortal_list:
-        for spell in spell_list:
-            ranged_hit(mortal, spell)
-    for god in god_list:
-        for arrow in arrow_list:
-            ranged_hit(god, arrow)
+                # Coin Upgrade Test Mortal/God
+                if m_coin_upgrade_b.collidepoint(event.pos):
+                    mortal_coin_upgrade()
+                if g_coin_upgrade_b.collidepoint(event.pos):
+                    god_coin_upgrade()
 
-    # short range attacks
-    # see if any monster in the lane is colliding
-    for mortal in mortal_list:
+        # long-ranged attacks
+        # check to see if anyone got hit by an arrow/spell
+        for mortal in mortal_list:
+            for spell in spell_list:
+                ranged_hit(mortal, spell)
         for god in god_list:
-            crash(mortal, god)
+            for arrow in arrow_list:
+                ranged_hit(god, arrow)
 
-    # move the players
-    for mortal in mortal_list:
-        if mortal.moving:
-            mortal.move_right(mortal.speed)
+        # short range attacks
+        # see if any monster in the lane is colliding
+        for mortal in mortal_list:
+            for god in god_list:
+                crash(mortal, god)
 
-        # if they've reached the tower already, but a troop is spawned to push them back
-        if mortal.crash and mortal.hit_right_barrier:
-            mortal.rect.x -= mortal.width
-            mortal.hit_right_barrier = False
-        # otherwise, they can attack the tower
-        elif mortal.hit_right_barrier:
-            tower_damage("r", mortal)
+        # move the players
+        for mortal in mortal_list:
+            if mortal.moving:
+                mortal.move_right(mortal.speed)
 
-        # reset crash and moving in case of defeat for next run
-        mortal.crash = False
-        mortal.moving = True
+            # if they've reached the tower already, but a troop is spawned to push them back
+            if mortal.crash and mortal.hit_right_barrier:
+                mortal.rect.x -= mortal.width
+                mortal.hit_right_barrier = False
+            # otherwise, they can attack the tower
+            elif mortal.hit_right_barrier:
+                tower_damage("r", mortal)
 
-        # if the mortal is an archer, launch an arrow (delay based on elapsed time later)
-        if isinstance(mortal, Archer):
-            if gameBoard.elapsed_time-mortal.spawn_time >= mortal.attack_time_counter:
-                new_arrow = Arrow()
-                arrow_list.add(new_arrow)
-                new_arrow.rect.x = mortal.rect.x + mortal.width
-                new_arrow.rect.y = mortal.rect.y + mortal.height/2 - new_arrow.height/2
+            # reset crash and moving in case of defeat for next run
+            mortal.crash = False
+            mortal.moving = True
 
-                random_attack_delay = random.randint(mortal.attack_speed/2, mortal.attack_speed)
-                mortal.attack_time_counter += random_attack_delay
+            # if the mortal is an archer, launch an arrow (delay based on elapsed time later)
+            if isinstance(mortal, Archer):
+                if can_attack(mortal):
+                    new_arrow = Arrow()
+                    arrow_list.add(new_arrow)
+                    new_arrow.rect.x = mortal.rect.x + mortal.width
+                    new_arrow.rect.y = mortal.rect.y + mortal.height/2 - new_arrow.height/2
 
-    for god in god_list:
-        if god.moving:
-            god.move_left(god.speed)
+                    random_attack_delay = random.randint(mortal.attack_speed/2, mortal.attack_speed)
+                    mortal.attack_time_counter += random_attack_delay
 
-        if god.crash and god.hit_left_barrier:
-            god.rect.x -= god.width
-            god.hit_left_barrier = False
-        elif god.hit_left_barrier:
-            tower_damage("l", god)
+        for god in god_list:
+            if god.moving:
+                god.move_left(god.speed)
 
-        god.crash = False
-        god.moving = True
+            if god.crash and god.hit_left_barrier:
+                god.rect.x -= god.width
+                god.hit_left_barrier = False
+            elif god.hit_left_barrier:
+                tower_damage("l", god)
 
-        if isinstance(god, Sorceress):
-            if gameBoard.elapsed_time-god.spawn_time >= god.attack_time_counter:
-                new_spell = Spell()
-                spell_list.add(new_spell)
-                new_spell.rect.x = god.rect.x - new_spell.width
-                new_spell.rect.y = god.rect.y + god.height/2 - new_spell.height/2
+            god.crash = False
+            god.moving = True
 
-                random_attack_delay = random.randint(god.attack_speed/2, god.attack_speed)
-                god.attack_time_counter += random_attack_delay
+            if isinstance(god, Sorceress):
+                if can_attack(god):
+                    new_spell = Spell()
+                    spell_list.add(new_spell)
+                    new_spell.rect.x = god.rect.x - new_spell.width
+                    new_spell.rect.y = god.rect.y + god.height/2 - new_spell.height/2
 
-    for arrow in arrow_list:
-        arrow.move_right(arrow.speed)
-        if arrow.halfway:
-            arrow_list.remove(arrow)
-    for spell in spell_list:
-        spell.move_left(spell.speed)
-        if spell.halfway:
-            spell_list.remove(spell)
+                    random_attack_delay = random.randint(god.attack_speed/2, god.attack_speed)
+                    god.attack_time_counter += random_attack_delay
 
-    # updates
-    mortal_list.draw(screen)
-    god_list.draw(screen)
-    arrow_list.draw(screen)
-    spell_list.draw(screen)
+        # move the arrows/spells and de-spawn them if they're out of range
+        for arrow in arrow_list:
+            arrow.move_right(arrow.speed)
+            if arrow.halfway:
+                arrow_list.remove(arrow)
+        for spell in spell_list:
+            spell.move_left(spell.speed)
+            if spell.halfway:
+                spell_list.remove(spell)
 
-    # update health label (after .draw() so that it isn't overwritten
-    for mortal in mortal_list:
-        mortal.update_health_label()
-        mortal.update()
-    for god in god_list:
-        god.update_health_label()
-        god.update()
+        # draw sprites
+        mortal_list.draw(screen)
+        god_list.draw(screen)
+        arrow_list.draw(screen)
+        spell_list.draw(screen)
+
+        # update health labels (after .draw() so that it isn't overwritten)
+        for mortal in mortal_list:
+            mortal.update_health_label()
+            mortal.update()
+        for god in god_list:
+            god.update_health_label()
+            god.update()
+
+    elif which_screen == "s":
+        StartMenu.draw_start_menu()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+
+                # start the game
+                if start_b.collidepoint(event.pos):
+                    # check that both players have clicked start before starting (NEEDED)
+                    which_screen = "g"
+                    gameBoard.start_time = pygame.time.get_ticks()
+                # display stats
+                if stats_b.collidepoint(event.pos):
+                    which_screen = "u"
+                # quit game
+                if quit_b.collidepoint(event.pos):
+                    running = False
+
+    elif which_screen == "c":
+        StartMenu.draw_connection_screen()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if input_box.collidepoint(event.pos):
+                    StartMenu.ip_displayed = ""
+                    StartMenu.input_box_active = True
+                else:
+                    StartMenu.input_box_active = False
+
+                if get_ip_b.collidepoint(event.pos):
+                    StartMenu.ip_displayed = "SERVER_IP"
+                    # (NEEDED)
+                if connect_b.collidepoint(event.pos):
+                    which_screen = "s"
+                    # for now (NEEDS TO CHANGE), just go to start menu (until networking added here)
+                    # Connect to the server with whatever ip_displayed is (NEEDED)
+
+                # both clients have connected (boolean list in server) (one will have clicked host server)
+                # and at least one chose a role (choice blacked out for other player)
+                # both connect and a role have to have been clicked
+                # then, the start menu will be displayed (NEEDED)
+
+            # This is how the input box text is changed by the user
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_BACKSPACE:
+                    if StartMenu.input_box_active:
+                        # store current text minus last char
+                        StartMenu.ip_displayed = StartMenu.ip_displayed[:-1]
+                else:
+                    if StartMenu.input_box_active:
+                        StartMenu.ip_displayed += event.unicode
+
+    elif which_screen == "u":
+        draw_stats_screen()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if back_b.collidepoint(event.pos):
+                    which_screen = "s"
 
     pygame.display.update()
 
-# Game over
+# Game over (temporary until a game-over screen)
 if gameBoard.timed_out:
-    game_over_text = font.render("Time's up! Game Over!", True, BLACK)
+    game_over_text = main_font.render("Time's up! Game Over!", True, BLACK)
 elif right_tower_defeat:
-    game_over_text = font.render("Game Over! Mortals Win!", True, BLACK)
+    game_over_text = main_font.render("Game Over! Mortals Win!", True, BLACK)
 elif left_tower_defeat:
-    game_over_text = font.render("Game Over! Gods Win!", True, BLACK)
+    game_over_text = main_font.render("Game Over! Gods Win!", True, BLACK)
 else:
-    game_over_text = font.render("", True, BLACK)
-    # impossible but to get IDE to stop complaining
+    game_over_text = main_font.render("", True, BLACK)
+    # this one will only happen if a player closes the window prematurely
 
 game_over_rect = game_over_text.get_rect(center=(1200 // 2, 700 // 2))
 screen.blit(game_over_text, game_over_rect)
 pygame.display.flip()
 
 # Wait for a few seconds before quitting
-pygame.time.wait(3000)
+# pygame.time.wait(3000)
 pygame.quit()
 sys.exit()

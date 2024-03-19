@@ -14,6 +14,7 @@ class Fighter(pygame.sprite.Sprite):
     crash = False
     hit_right_barrier = False
     hit_left_barrier = False
+    first_hit = True
     text_surface = font.render("text", True, (0, 0, 0))
     attack_time_counter = 0
     spawn_time = 0
