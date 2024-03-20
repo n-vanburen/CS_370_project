@@ -1,8 +1,11 @@
 import socket
 import threading
 import pickle
+import os
 
-SERVER_HOST = '192.168.235.87'
+ip = os.popen('ipconfig').read()
+index = ip.find("IPv4", ip.find("IPv4")+1)
+SERVER_HOST = ip[index+36:index+50]
 SERVER_PORT = 55555
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -10,6 +13,7 @@ server.bind((SERVER_HOST, SERVER_PORT))
 server.listen()
 
 clients = []
+
 
 def broadcast(message):
     for client in clients:
