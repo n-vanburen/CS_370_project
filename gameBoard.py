@@ -4,7 +4,7 @@ import pygame
 pygame.init()
 
 # fonts
-font = pygame.font.SysFont("Font.tff", 36)
+main_font = pygame.font.SysFont("Font.tff", 36)
 
 # Canvas/Size
 screen_size = (screen_w, screen_h) = (1200, 700)
@@ -14,6 +14,9 @@ screen = pygame.display.set_mode(screen_size)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREY = (150, 150, 150)
+MAIN_GREEN = (163, 188, 48)
+SECOND_GREEN = (170,225,92)
+THIRD_GREEN = (217,231,129)
 
 # Background
 background_img = pygame.image.load('Background.png').convert()
@@ -44,6 +47,7 @@ clock = pygame.time.Clock()
 start_time = pygame.time.get_ticks()  # Get the starting time of the game
 game_duration = 5 * 60 * 1000 + 1000  # 5 minutes in milliseconds
 timed_out = False
+elapsed_time = 0
 
 # Ability Buttons
 # b = button, m = mortal, g = god
@@ -143,22 +147,24 @@ def draw_game_screen():
     global one_second_tracker
     global mortals_coins
     global gods_coins
+    global elapsed_time
+
     load_background()
 
     # Towers
     # Left
     screen.blit(tower_img, left_tower_dest)
     pygame.draw.rect(screen, BLACK, left_tower_rect, 2)
-    left_tower_text_surface = font.render(str(left_tower_health), True, BLACK)
-    left_tower_health_dest = ((left_tower_rect.x + left_tower_rect.w/2) -
-                              left_tower_text_surface.get_width()/2, left_tower_rect.y-30)
+    left_tower_text_surface = main_font.render(str(left_tower_health), True, BLACK)
+    left_tower_health_dest = ((left_tower_rect.x + left_tower_rect.w) - (left_tower_text_surface.get_width()+3),
+                                (left_tower_rect.y + left_tower_rect.h) - left_tower_text_surface.get_height())
     screen.blit(left_tower_text_surface, left_tower_health_dest)
     # Right
     screen.blit(tower_img, right_tower_dest)
     pygame.draw.rect(screen, BLACK, right_tower_rect, 2)
-    right_tower_text_surface = font.render(str(right_tower_health), True, BLACK)
-    right_tower_health_dest = ((right_tower_rect.x + right_tower_rect.w/2) -
-                               right_tower_text_surface.get_width()/2, right_tower_rect.y-30)
+    right_tower_text_surface = main_font.render(str(right_tower_health), True, BLACK)
+    right_tower_health_dest = ((right_tower_rect.x + right_tower_rect.w) - (right_tower_text_surface.get_width()+3),
+                              (right_tower_rect.y + right_tower_rect.h) - right_tower_text_surface.get_height())
     screen.blit(right_tower_text_surface, right_tower_health_dest)
 
     # Barrier Lines
@@ -168,40 +174,40 @@ def draw_game_screen():
     pygame.draw.line(screen, BLACK, (right_barrier_coord, 0), (right_barrier_coord, screen_h), 2)
 
     # Center Top Timer Box
-    pygame.draw.rect(screen, WHITE, timer)
+    pygame.draw.rect(screen, SECOND_GREEN, timer)
     pygame.draw.rect(screen, BLACK, timer, 2)
 
     # Ability Buttons
     # Mortal
-    pygame.draw.rect(screen, WHITE, m_ability1_b)
-    pygame.draw.rect(screen, WHITE, m_ability2_b)
+    pygame.draw.rect(screen, THIRD_GREEN, m_ability1_b)
+    pygame.draw.rect(screen, THIRD_GREEN, m_ability2_b)
     pygame.draw.rect(screen, BLACK, m_ability1_b, 2)
     pygame.draw.rect(screen, BLACK, m_ability2_b, 2)
     # God
-    pygame.draw.rect(screen, WHITE, g_ability1_b)
-    pygame.draw.rect(screen, WHITE, g_ability2_b)
+    pygame.draw.rect(screen, THIRD_GREEN, g_ability1_b)
+    pygame.draw.rect(screen, THIRD_GREEN, g_ability2_b)
     pygame.draw.rect(screen, BLACK, g_ability1_b, 2)
     pygame.draw.rect(screen, BLACK, g_ability2_b, 2)
 
     # Coins
     # Mortal
-    pygame.draw.rect(screen, WHITE, m_coin_display)
-    pygame.draw.rect(screen, WHITE, m_coin_upgrade_b)
+    pygame.draw.rect(screen, SECOND_GREEN, m_coin_display)
+    pygame.draw.rect(screen, SECOND_GREEN, m_coin_upgrade_b)
     pygame.draw.rect(screen, BLACK, m_coin_display, 2)
     pygame.draw.rect(screen, BLACK, m_coin_upgrade_b, 2)
     # God
-    pygame.draw.rect(screen, WHITE, g_coin_display)
-    pygame.draw.rect(screen, WHITE, g_coin_upgrade_b)
+    pygame.draw.rect(screen, SECOND_GREEN, g_coin_display)
+    pygame.draw.rect(screen, SECOND_GREEN, g_coin_upgrade_b)
     pygame.draw.rect(screen, BLACK, g_coin_display, 2)
     pygame.draw.rect(screen, BLACK, g_coin_upgrade_b, 2)
     # Troop Spawn Buttons
     # Mortal
-    pygame.draw.rect(screen, WHITE, m_tb_1)
-    pygame.draw.rect(screen, WHITE, m_tb_2)
-    pygame.draw.rect(screen, WHITE, m_tb_3)
-    pygame.draw.rect(screen, WHITE, m_tb_4)
-    pygame.draw.rect(screen, WHITE, m_tb_5)
-    pygame.draw.rect(screen, WHITE, m_tb_6)
+    pygame.draw.rect(screen, THIRD_GREEN, m_tb_1)
+    pygame.draw.rect(screen, THIRD_GREEN, m_tb_3)
+    pygame.draw.rect(screen, THIRD_GREEN, m_tb_2)
+    pygame.draw.rect(screen, THIRD_GREEN, m_tb_4)
+    pygame.draw.rect(screen, THIRD_GREEN, m_tb_5)
+    pygame.draw.rect(screen, THIRD_GREEN, m_tb_6)
     pygame.draw.rect(screen, BLACK, m_tb_1, 2)
     pygame.draw.rect(screen, BLACK, m_tb_2, 2)
     pygame.draw.rect(screen, BLACK, m_tb_3, 2)
@@ -209,12 +215,12 @@ def draw_game_screen():
     pygame.draw.rect(screen, BLACK, m_tb_5, 2)
     pygame.draw.rect(screen, BLACK, m_tb_6, 2)
     # God
-    pygame.draw.rect(screen, WHITE, g_tb_1)
-    pygame.draw.rect(screen, WHITE, g_tb_2)
-    pygame.draw.rect(screen, WHITE, g_tb_3)
-    pygame.draw.rect(screen, WHITE, g_tb_4)
-    pygame.draw.rect(screen, WHITE, g_tb_5)
-    pygame.draw.rect(screen, WHITE, g_tb_6)
+    pygame.draw.rect(screen, THIRD_GREEN, g_tb_1)
+    pygame.draw.rect(screen, THIRD_GREEN, g_tb_2)
+    pygame.draw.rect(screen, THIRD_GREEN, g_tb_3)
+    pygame.draw.rect(screen, THIRD_GREEN, g_tb_4)
+    pygame.draw.rect(screen, THIRD_GREEN, g_tb_5)
+    pygame.draw.rect(screen, THIRD_GREEN, g_tb_6)
     pygame.draw.rect(screen, BLACK, g_tb_1, 2)
     pygame.draw.rect(screen, BLACK, g_tb_2, 2)
     pygame.draw.rect(screen, BLACK, g_tb_3, 2)
@@ -222,6 +228,9 @@ def draw_game_screen():
     pygame.draw.rect(screen, BLACK, g_tb_5, 2)
     pygame.draw.rect(screen, BLACK, g_tb_6, 2)
     # Lanes
+    pygame.draw.rect(screen, MAIN_GREEN, top_lane)
+    pygame.draw.rect(screen, MAIN_GREEN, middle_lane)
+    pygame.draw.rect(screen, MAIN_GREEN, bottom_lane)
     pygame.draw.rect(screen, BLACK, top_lane, 2)
     pygame.draw.rect(screen, BLACK, middle_lane, 2)
     pygame.draw.rect(screen, BLACK, bottom_lane, 2)
@@ -251,7 +260,7 @@ def draw_game_screen():
         timed_out = True
         timer_text = "Time Left: 00:00"
 
-    timer_surface = font.render(timer_text, True, BLACK)
+    timer_surface = main_font.render(timer_text, True, BLACK)
     screen.blit(timer_surface, (507, 20))
 
     # Generate coins every second
@@ -298,5 +307,6 @@ def draw_game_screen():
     if god_coin_level < 3:
         god_coin_upgrade_text = fontCoinsUpgrade.render(f"Upgrade: {g_upgrade_cost}", True, (0, 0, 0))
         screen.blit(god_coin_upgrade_text, (g_coin_upgrade_b.x+2, g_coin_upgrade_b.y+16))
+
 # Title of Canvas
 pygame.display.set_caption("Lightning Town")
