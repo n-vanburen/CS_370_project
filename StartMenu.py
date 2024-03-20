@@ -86,6 +86,39 @@ back_b_text_surface = s_button_font.render("<- Back", True, BLACK)
 back_b_text_dest = (((back_b.left+back_b.w/2)-back_b_text_surface.get_width()/2),
                     ((back_b.top+back_b.h/2)-back_b_text_surface.get_height()/2))
 
+# end menu
+# main box -- same size as start menu, reuse main_menu_rect
+
+# winner text
+winner = "Mortals Win!"
+winner_text_surface = title_font.render(winner, True, BLACK)
+winner_text_dest = (((main_menu_rect.left + main_menu_rect.w/2) - winner_text_surface.get_width()/2),
+                    main_menu_rect.top + 50)
+
+# play again button
+play_b = pygame.Rect(((main_menu_rect.left+main_menu_rect.w/2-s_button_w/2),
+                      (main_menu_rect.top+winner_text_surface.get_height()+main_menu_rect.h/8+50)), s_button_size)
+play_b_text_surface = s_button_font.render("Play Again", True, BLACK)
+play_b_text_dest = (((play_b.left+play_b.w/2)-play_b_text_surface.get_width()/2),
+                    ((play_b.top+play_b.h/2)-play_b_text_surface.get_height()/2))
+
+# new opponent button
+new_opp_b = pygame.Rect((play_b.left, play_b.top+s_button_h+main_menu_rect.h/8), s_button_size)
+new_opp_b_text_surface = s_button_font.render("New Opponent", True, BLACK)
+new_opp_b_text_dest = (((new_opp_b.left+new_opp_b.w/2)-new_opp_b_text_surface.get_width()/2),
+                       ((new_opp_b.top+new_opp_b.h/2)-new_opp_b_text_surface.get_height()/2))
+
+# scoreboard button (if we have it, change /8 to /10 and add 25 on play_b not 50)
+# scores_b = pygame.Rect((new_opp_b.left, new_opp_b.top+s_button_h+main_menu_rect.h/10), s_button_size)
+# scores_b_text_surface = s_button_font.render("Scoreboard", True, BLACK)
+# scores_b_text_dest = (((scores_b.left+scores_b.w/2)-scores_b_text_surface.get_width()/2),
+#                      ((scores_b.top+scores_b.h/2)-scores_b_text_surface.get_height()/2))
+
+# quit button
+e_quit_b = pygame.Rect((new_opp_b.left, new_opp_b.top+s_button_h+main_menu_rect.h/8), s_button_size)
+e_quit_b_text_surface = s_button_font.render("Quit", True, BLACK)
+e_quit_b_text_dest = (((e_quit_b.left+e_quit_b.w/2)-e_quit_b_text_surface.get_width()/2),
+                      ((e_quit_b.top+e_quit_b.h/2)-e_quit_b_text_surface.get_height()/2))
 
 def draw_connection_screen():
     global ip_displayed
@@ -162,3 +195,37 @@ def draw_stats_screen():
 
     # pygame.Surface.set_colorkey(user_manual_img, (255, 255, 255))
     screen.blit(user_manual_img, (stats_main_box.left, stats_main_box.top))
+
+
+def draw_end_screen():
+    global winner
+    global winner_text_surface
+    global winner_text_dest
+
+    load_background()
+
+    pygame.draw.rect(screen, MAIN_GREEN, main_menu_rect)
+    pygame.draw.rect(screen, BLACK, main_menu_rect, 2)
+
+    winner_text_surface = title_font.render(winner, True, BLACK)
+    winner_text_dest = (((main_menu_rect.left + main_menu_rect.w/2) - winner_text_surface.get_width()/2),
+                        main_menu_rect.top + 50)
+    screen.blit(winner_text_surface, winner_text_dest)
+
+    pygame.draw.rect(screen, THIRD_GREEN, play_b)
+    pygame.draw.rect(screen, BLACK, play_b, 2)
+    screen.blit(play_b_text_surface, play_b_text_dest)
+
+    pygame.draw.rect(screen, THIRD_GREEN, new_opp_b)
+    pygame.draw.rect(screen, BLACK, new_opp_b, 2)
+    screen.blit(new_opp_b_text_surface, new_opp_b_text_dest)
+
+    # pygame.draw.rect(screen, THIRD_GREEN, scores_b)
+    # pygame.draw.rect(screen, BLACK, scores_b, 2)
+    # screen.blit(scores_b_text_surface, scores_b_text_dest)
+
+    pygame.draw.rect(screen, THIRD_GREEN, e_quit_b)
+    pygame.draw.rect(screen, BLACK, e_quit_b, 2)
+    screen.blit(e_quit_b_text_surface, e_quit_b_text_dest)
+
+

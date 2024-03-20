@@ -4,6 +4,7 @@ import gameBoard
 from soldierTypes import *
 from StartMenu import *
 import StartMenu
+import os
 
 
 def crash(fighter1, fighter2):
@@ -165,6 +166,7 @@ def mortal_troop_deploy(lane):
                 if not archer_in_lane[0]:
                     archer_in_lane[0] = True
                     buy_mortal(current_mortal)
+                    add_attack_delay(current_mortal)
                 else:
                     m_tb_pressed = False
         elif lane == 2:
@@ -175,6 +177,7 @@ def mortal_troop_deploy(lane):
                 if not archer_in_lane[1]:
                     archer_in_lane[1] = True
                     buy_mortal(current_mortal)
+                    add_attack_delay(current_mortal)
                 else:
                     m_tb_pressed = False
         elif lane == 3:
@@ -185,6 +188,7 @@ def mortal_troop_deploy(lane):
                 if not archer_in_lane[2]:
                     archer_in_lane[2] = True
                     buy_mortal(current_mortal)
+                    add_attack_delay(current_mortal)
                 else:
                     m_tb_pressed = False
 
@@ -211,6 +215,7 @@ def god_troop_deploy(lane):
                 if not sorceress_in_lane[0]:
                     sorceress_in_lane[0] = True
                     buy_god(current_god)
+                    add_attack_delay(current_god)
                 else:
                     g_tb_pressed = False
         elif lane == 2:
@@ -221,6 +226,7 @@ def god_troop_deploy(lane):
                 if not sorceress_in_lane[1]:
                     sorceress_in_lane[1] = True
                     buy_god(current_god)
+                    add_attack_delay(current_god)
                 else:
                     g_tb_pressed = False
         elif lane == 3:
@@ -231,6 +237,7 @@ def god_troop_deploy(lane):
                 if not sorceress_in_lane[2]:
                     sorceress_in_lane[2] = True
                     buy_god(current_god)
+                    add_attack_delay(current_god)
                 else:
                     g_tb_pressed = False
 
@@ -241,8 +248,7 @@ def god_troop_deploy(lane):
 
 def tower_damage(side, fighter):
     global running
-    global left_tower_defeat
-    global right_tower_defeat
+    global which_screen
 
     if fighter.first_hit:
         add_attack_delay(fighter)
@@ -256,16 +262,16 @@ def tower_damage(side, fighter):
             gameBoard.right_tower_health -= fighter.attack_strength
             if gameBoard.right_tower_health <= 0:
                 gameBoard.right_tower_health = 0
-                right_tower_defeat = True
                 draw_game_screen()
-                running = False
+                which_screen = "e"
+                StartMenu.winner = "Mortals Win!"
         else:
             gameBoard.left_tower_health -= fighter.attack_strength
             if gameBoard.left_tower_health <= 0:
                 gameBoard.left_tower_health = 0
-                left_tower_defeat = True
                 draw_game_screen()
-                running = False
+                which_screen = "e"
+                StartMenu.winner = "Gods Win!"
 
 
 def add_attack_delay(fighter):
@@ -324,6 +330,12 @@ def god_coin_upgrade():
 # which screen to display: s = start menu, c = connection, g = gameBoard, e = end menu, u = user manual/stats
 which_screen = "c"
 
+# get the ip of the localhost
+ip = os.popen('ipconfig').read()
+index = ip.find("IPv4", ip.find("IPv4")+1)
+# localhost_ip = ip[index+36:index+50]
+localhost_ip = ip[index+36: ip.find(" ", index+36)-1]
+
 mortal_list = pygame.sprite.Group()
 god_list = pygame.sprite.Group()
 
@@ -334,9 +346,6 @@ m_tb_pressed = False
 g_tb_pressed = False
 mortal_creation_list = []
 god_creation_list = []
-
-right_tower_defeat = False
-left_tower_defeat = False
 
 archer_in_lane = [False, False, False]
 sorceress_in_lane = [False, False, False]
@@ -354,7 +363,8 @@ while running:
 
         # win/lose condition 1: time ran out
         if gameBoard.timed_out:
-            running = False
+            which_screen = "e"
+            StartMenu.winner = "Time's Up! No Winner!"
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -459,7 +469,7 @@ while running:
                     new_arrow.rect.y = mortal.rect.y + mortal.height/2 - new_arrow.height/2
 
                     random_attack_delay = random.randint(mortal.attack_speed/2, mortal.attack_speed)
-                    mortal.attack_time_counter += random_attack_delay
+                    mortal.attack_time_counter = gameBoard.elapsed_time-mortal.spawn_time + random_attack_delay
 
         for god in god_list:
             if god.moving:
@@ -482,7 +492,7 @@ while running:
                     new_spell.rect.y = god.rect.y + god.height/2 - new_spell.height/2
 
                     random_attack_delay = random.randint(god.attack_speed/2, god.attack_speed)
-                    god.attack_time_counter += random_attack_delay
+                    god.attack_time_counter = gameBoard.elapsed_time-god.spawn_time + random_attack_delay
 
         # move the arrows/spells and de-spawn them if they're out of range
         for arrow in arrow_list:
@@ -521,6 +531,25 @@ while running:
                 if start_b.collidepoint(event.pos):
                     # check that both players have clicked start before starting (NEEDED)
                     which_screen = "g"
+                    # reset all variables, so it's a new game in case this is round 2
+                    mortal_list.empty()
+                    god_list.empty()
+                    arrow_list.empty()
+                    spell_list.empty()
+                    m_tb_pressed = False
+                    g_tb_pressed = False
+                    mortal_creation_list.clear()
+                    god_creation_list.clear()
+                    archer_in_lane = [False, False, False]
+                    sorceress_in_lane = [False, False, False]
+                    gameBoard.right_tower_health = 100
+                    gameBoard.left_tower_health = 100
+                    gameBoard.gods_coins = 50
+                    gameBoard.mortals_coins = 50
+                    gameBoard.god_coin_level = 1
+                    gameBoard.mortal_coin_level = 1
+                    gameBoard.one_second_tracker = 1000
+                    gameBoard.timed_out = False
                     gameBoard.start_time = pygame.time.get_ticks()
                 # display stats
                 if stats_b.collidepoint(event.pos):
@@ -544,8 +573,7 @@ while running:
                     StartMenu.input_box_active = False
 
                 if get_ip_b.collidepoint(event.pos):
-                    StartMenu.ip_displayed = "SERVER_IP"
-                    # (NEEDED)
+                    StartMenu.ip_displayed = localhost_ip
                 if connect_b.collidepoint(event.pos):
                     which_screen = "s"
                     # for now (NEEDS TO CHANGE), just go to start menu (until networking added here)
@@ -577,10 +605,25 @@ while running:
                 if back_b.collidepoint(event.pos):
                     which_screen = "s"
 
+    elif which_screen == "e":
+        draw_end_screen()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if play_b.collidepoint(event.pos):
+                    which_screen = "s"
+                elif new_opp_b.collidepoint(event.pos):
+                    which_screen = "c"
+                elif e_quit_b.collidepoint(event.pos):
+                    running = False
+
     pygame.display.update()
 
 # Game over (temporary until a game-over screen)
-if gameBoard.timed_out:
+"""if gameBoard.timed_out:
     game_over_text = main_font.render("Time's up! Game Over!", True, BLACK)
 elif right_tower_defeat:
     game_over_text = main_font.render("Game Over! Mortals Win!", True, BLACK)
@@ -591,7 +634,7 @@ else:
     # this one will only happen if a player closes the window prematurely
 
 game_over_rect = game_over_text.get_rect(center=(1200 // 2, 700 // 2))
-screen.blit(game_over_text, game_over_rect)
+screen.blit(game_over_text, game_over_rect)"""
 pygame.display.flip()
 
 # Wait for a few seconds before quitting
