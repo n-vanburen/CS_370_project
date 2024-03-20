@@ -1,4 +1,6 @@
 # import pygame
+import pygame.display
+
 import gameBoard
 from gameBoard import *
 # pygame.init()  # need this for font
@@ -20,7 +22,7 @@ class Fighter(pygame.sprite.Sprite):
     spawn_time = 0
 
     # constructor
-    def __init__(self, color, health, attack_strength, speed, cost, team, attack_speed):
+    def __init__(self, color, health, attack_strength, speed, cost, team, attack_speed, photo):
         super().__init__()
         # inherits from pygame.sprite.Sprite class, so you need to call super().__init__()
 
@@ -32,9 +34,13 @@ class Fighter(pygame.sprite.Sprite):
         self.attack_speed = attack_speed
 
         self.image = pygame.Surface([self.width, self.height])
-        self.image = pygame.image.load("tower.png").convert_alpha()
-        self.image = pygame.transform.scale(self.image, (self.width, self.height))
+        #if Sorceress or Cyclops:
+            #self.image = pygame.transform.flip(pygame.image.load(self.photo).convert_alpha(),True, False)
+        #else:
+            #self.image = pygame.image.load(self.photo).convert_alpha()
+        self.image = pygame.transform.scale(self.photo, (75,75))
         self.rect = self.image.get_rect()
+
 
         # pygame.draw.rect(self.image, color, pygame.Rect(0, 0, self.width, self.height))
         # self.rect = self.image.get_rect()
@@ -75,10 +81,10 @@ class FootSoldier(Fighter):
     team = 'm'
     color = (255, 255, 255)
     attack_speed = 5000
-
+    photo = pygame.image.load("heroknight_attack1_0.png").convert_alpha()
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed)
+                         self.team, self.attack_speed, self.photo)
 
 
 class Minion(Fighter):
@@ -89,10 +95,10 @@ class Minion(Fighter):
     team = 'g'
     color = (73, 52, 33)
     attack_speed = 5000
-
+    photo = pygame.transform.flip(pygame.image.load("Minotaur.png").convert_alpha(),True,False)
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed)
+                         self.team, self.attack_speed, self.photo)
 
 
 class Eagle(Fighter):
@@ -103,10 +109,10 @@ class Eagle(Fighter):
     team = 'm'
     color = (21, 92, 240)
     attack_speed = 4000
-
+    photo = pygame.transform.flip(pygame.image.load("eagle.png").convert_alpha(),True,False)
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed)
+                         self.team, self.attack_speed, self.photo)
 
 
 class Harpy(Fighter):
@@ -117,10 +123,10 @@ class Harpy(Fighter):
     team = 'g'
     color = (63, 76, 20)
     attack_speed = 4000
-
+    photo = pygame.image.load("harpy.png").convert_alpha()
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed)
+                         self.team, self.attack_speed, self.photo)
 
 
 class Archer(Fighter):
@@ -131,10 +137,10 @@ class Archer(Fighter):
     team = 'm'
     color = (45, 90, 55)
     attack_speed = 10000
-
+    photo = pygame.image.load("preview.png").convert_alpha()
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed)
+                         self.team, self.attack_speed, self.photo)
 
 
 class Sorceress(Fighter):
@@ -145,10 +151,10 @@ class Sorceress(Fighter):
     team = 'g'
     color = (20, 21, 22)
     attack_speed = 10000
-
+    photo = pygame.transform.flip(pygame.image.load("b_witch_idle.png").convert_alpha(), True, False)
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed)
+                         self.team, self.attack_speed, self.photo)
 
 
 class Cavalry(Fighter):
@@ -159,10 +165,10 @@ class Cavalry(Fighter):
     team = 'm'
     color = (40, 80, 120)
     attack_speed = 3000
-
+    photo = pygame.image.load("cavalry.jpg").convert_alpha()
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed)
+                         self.team, self.attack_speed, self.photo)
 
 
 class Hellhound(Fighter):
@@ -173,10 +179,10 @@ class Hellhound(Fighter):
     team = 'g'
     color = (200, 70, 90)
     attack_speed = 3000
-
+    photo = pygame.image.load("hellhouns.jpg").convert_alpha()
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed)
+                         self.team, self.attack_speed, self.photo)
 
 
 class TrojanHorse(Fighter):
@@ -187,10 +193,10 @@ class TrojanHorse(Fighter):
     team = 'm'
     color = (60, 72, 32)
     attack_speed = 8000
-
+    photo = pygame.image.load("horse.png").convert_alpha()
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed)
+                         self.team, self.attack_speed, self.photo)
 
 
 class Cyclops(Fighter):
@@ -201,10 +207,10 @@ class Cyclops(Fighter):
     team = 'g'
     color = (5, 50, 100)
     attack_speed = 8000
-
+    photo = pygame.transform.flip(pygame.image.load("Cyclops.png").convert_alpha(), True, False)
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed)
+                         self.team, self.attack_speed, self.photo)
 
 
 class Achilles(Fighter):
@@ -215,10 +221,10 @@ class Achilles(Fighter):
     team = 'm'
     color = (20, 200, 100)
     attack_speed = 6000
-
+    photo = pygame.image.load("achilles.jpg").convert_alpha()
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed)
+                         self.team, self.attack_speed, self.photo)
 
 
 class Medusa(Fighter):
@@ -229,10 +235,10 @@ class Medusa(Fighter):
     team = 'g'
     color = (70, 30, 20)
     attack_speed = 6000
-
+    photo = pygame.image.load("medusa.jpg").convert_alpha()
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed)
+                         self.team, self.attack_speed, self.photo)
 
 
 class Arrow(pygame.sprite.Sprite):
@@ -248,8 +254,10 @@ class Arrow(pygame.sprite.Sprite):
     # constructor
     def __init__(self):
         super().__init__()
-        self.image = pygame.Surface([self.width, self.height])
-        pygame.draw.rect(self.image, self.color, pygame.Rect(0, 0, self.width, self.height))
+        self.image = pygame.image.load("Static.png").convert_alpha()
+        self.image = pygame.transform.scale(self.image, (self.width, self.height))
+        # self.image = pygame.Surface([self.width, self.height])
+        # pygame.draw.rect(self.image, self.color, pygame.Rect(0, 0, self.width, self.height))
         self.rect = self.image.get_rect()
 
     def move_right(self, pixels):
