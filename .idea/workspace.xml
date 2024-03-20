@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="Attack Speed">
-      <change afterPath="$PROJECT_DIR$/StartMenu.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_manual.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameBoard.py" beforeDir="false" afterPath="$PROJECT_DIR$/gameBoard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laneFighting.py" beforeDir="false" afterPath="$PROJECT_DIR$/laneFighting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soldierTypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/soldierTypes.py" afterDir="false" />
-    </list>
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="work with state machine" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -347,7 +340,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710179144879</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="work with state machine">
+      <option name="closed" value="true" />
+      <created>1710878452704</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1710878452704</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,6 +377,7 @@
     <MESSAGE value="Coin Currency System, Troop Deployment Costs, Coin Upgrade Feature" />
     <MESSAGE value="." />
     <MESSAGE value="Coin upgrade bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Coin upgrade bug fix" />
+    <MESSAGE value="work with state machine" />
+    <option name="LAST_COMMIT_MESSAGE" value="work with state machine" />
   </component>
 </project>
