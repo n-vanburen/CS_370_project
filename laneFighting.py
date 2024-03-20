@@ -143,6 +143,16 @@ def god_troop_deploy(lane):
         #Subtracts the cost of the troop
         gameBoard.gods_coins -= current_god.cost
 
+def mortal_heal_ability():
+    for mortal in mortal_list:
+        mortal.health += 50
+        #if mortal.health > mortal.max_health:
+            #mortal.health = mortal.max_health
+        mortal.update_health_label()
+        mortal.update()
+
+
+
 def tower_damage(side, fighter):
     global running
     global left_tower_defeat
@@ -287,6 +297,13 @@ while running:
                     if gameBoard.gods_coins >= 500:
                         gameBoard.gods_coins -= 500
                         gameBoard.god_coin_level += 1
+
+            if (m_ability2_b.left <= mouse[0] <= m_ability2_b.left+800
+                and m_ability2_b.top <= mouse[0] <= m_ability2_b.top+125):
+                    mortal_heal_ability()
+                    print("Hi")
+
+
     # get the new mouse position
     mouse = pygame.mouse.get_pos()
 

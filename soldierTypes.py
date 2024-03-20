@@ -27,9 +27,12 @@ class Fighter(pygame.sprite.Sprite):
         self.team = team
 
         self.image = pygame.Surface([self.width, self.height])
-
-        pygame.draw.rect(self.image, color, pygame.Rect(0, 0, self.width, self.height))
+        self.image = pygame.image.load("tower.png").convert_alpha()
+        self.image = pygame.transform.scale(self.image, (self.width, self.height))
         self.rect = self.image.get_rect()
+
+        # pygame.draw.rect(self.image, color, pygame.Rect(0, 0, self.width, self.height))
+        # self.rect = self.image.get_rect()
 
         # self.text_surface = font.render(str(self.health), True, (0, 0, 0))
         # self.image.blit(self.text_surface, (self.rect.x+5, self.rect.y+5))

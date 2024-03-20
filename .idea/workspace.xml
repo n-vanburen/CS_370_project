@@ -5,28 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment=".">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/arch spike/sprite.py" beforeDir="false" afterPath="$PROJECT_DIR$/arch spike/sprite.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basicserver.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientgame1.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientgame1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientgame2.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientgame2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clienttest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clienttest1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clienttest2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clienttest4.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servergame.py" beforeDir="false" afterPath="$PROJECT_DIR$/servergame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servertest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servertest2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servertest4.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servertest5.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servertest6.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/twistedserver.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/twsitedclient.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/laneFighting.py" beforeDir="false" afterPath="$PROJECT_DIR$/laneFighting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soldierTypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/soldierTypes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -338,7 +320,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709571508695</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary=".">
+      <option name="closed" value="true" />
+      <created>1710868375230</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1710868375230</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,8 +354,8 @@
     <MESSAGE value="Timer Feature Completed" />
     <MESSAGE value="Fixed timer to be at 5 mins" />
     <MESSAGE value="Rename" />
-    <MESSAGE value="." />
     <MESSAGE value="dynamic server ip" />
-    <option name="LAST_COMMIT_MESSAGE" value="dynamic server ip" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>
