@@ -1,6 +1,5 @@
 import sys
 import random
-import gameBoard
 from soldierTypes import *
 from StateMachine import *
 import StateMachine
@@ -36,14 +35,14 @@ def fight(fighter1, fighter2):
         print("1")
         fighter2.health -= fighter1.attack_strength
         print(str(fighter2.health))
-        print(str(gameBoard.elapsed_time))
+        print(str(StateMachine.elapsed_time))
         add_attack_delay(fighter1)
 
     if can_attack(fighter2):
         print("2")
         fighter1.health -= fighter2.attack_strength
         print(str(fighter1.health))
-        print(str(gameBoard.elapsed_time))
+        print(str(StateMachine.elapsed_time))
         add_attack_delay(fighter2)
 
     # check if a fighter has been defeated
@@ -100,7 +99,7 @@ def mortal_troop_creation(troop_type):
         # impossible, but just to get the IDE to stop complaining
 
     # make sure they have enough coins to purchase the troop
-    if gameBoard.mortals_coins >= new_mortal.cost:
+    if StateMachine.mortals_coins >= new_mortal.cost:
         mortal_creation_list.append(new_mortal)
         # if there is a successful creation, allow for deployment
         m_tb_pressed = True
@@ -128,7 +127,7 @@ def god_troop_creation(troop_type):
         new_god = Minion()
         # impossible, but just to get the IDE to stop complaining
 
-    if gameBoard.gods_coins >= new_god.cost:
+    if StateMachine.gods_coins >= new_god.cost:
         god_creation_list.append(new_god)
         # if there is a successful creation, allow for deployment
         g_tb_pressed = True
@@ -138,13 +137,13 @@ def god_troop_creation(troop_type):
 
 def buy_mortal(new_mortal):
     mortal_list.add(new_mortal)
-    gameBoard.mortals_coins -= new_mortal.cost
+    StateMachine.mortals_coins -= new_mortal.cost
     new_mortal.spawn_time = pygame.time.get_ticks()
 
 
 def buy_god(new_god):
     god_list.add(new_god)
-    gameBoard.gods_coins -= new_god.cost
+    StateMachine.gods_coins -= new_god.cost
     new_god.spawn_time = pygame.time.get_ticks()
 
 
@@ -249,11 +248,10 @@ def god_troop_deploy(lane):
 def mortal_heal_ability():
     for mortal in mortal_list:
         mortal.health += 50
-        #if mortal.health > mortal.max_health:
-            #mortal.health = mortal.max_health
+        """if mortal.health > mortal.max_health:
+            mortal.health = mortal.max_health"""
         mortal.update_health_label()
         mortal.update()
-
 
 
 def tower_damage(side, fighter):
@@ -269,16 +267,16 @@ def tower_damage(side, fighter):
         add_attack_delay(fighter)
 
         if side == "r":
-            gameBoard.right_tower_health -= fighter.attack_strength
-            if gameBoard.right_tower_health <= 0:
-                gameBoard.right_tower_health = 0
+            StateMachine.right_tower_health -= fighter.attack_strength
+            if StateMachine.right_tower_health <= 0:
+                StateMachine.right_tower_health = 0
                 draw_game_screen()
                 which_screen = "e"
                 StateMachine.winner = "Mortals Win!"
         else:
-            gameBoard.left_tower_health -= fighter.attack_strength
-            if gameBoard.left_tower_health <= 0:
-                gameBoard.left_tower_health = 0
+            StateMachine.left_tower_health -= fighter.attack_strength
+            if StateMachine.left_tower_health <= 0:
+                StateMachine.left_tower_health = 0
                 draw_game_screen()
                 which_screen = "e"
                 StateMachine.winner = "Gods Win!"
@@ -286,12 +284,12 @@ def tower_damage(side, fighter):
 
 def add_attack_delay(fighter):
     delay = random.randint(500, fighter.attack_speed)
-    fighter.attack_time_counter = gameBoard.elapsed_time-fighter.spawn_time + delay
+    fighter.attack_time_counter = StateMachine.elapsed_time-fighter.spawn_time + delay
 
 
 def can_attack(fighter):
     # checks that the attack delay has been respected
-    return gameBoard.elapsed_time-fighter.spawn_time >= fighter.attack_time_counter
+    return StateMachine.elapsed_time-fighter.spawn_time >= fighter.attack_time_counter
 
 
 def ranged_hit(fighter, projectile):
@@ -316,28 +314,28 @@ def ranged_hit(fighter, projectile):
 
 
 def mortal_coin_upgrade():
-    if gameBoard.mortal_coin_level == 1:
-        if gameBoard.mortals_coins >= 300:
-            gameBoard.mortals_coins -= 300
-            gameBoard.mortal_coin_level += 1
-    elif gameBoard.mortal_coin_level == 2:
-        if gameBoard.mortals_coins >= 500:
-            gameBoard.mortals_coins -= 500
-            gameBoard.mortal_coin_level += 1
+    if StateMachine.mortal_coin_level == 1:
+        if StateMachine.mortals_coins >= 300:
+            StateMachine.mortals_coins -= 300
+            StateMachine.mortal_coin_level += 1
+    elif StateMachine.mortal_coin_level == 2:
+        if StateMachine.mortals_coins >= 500:
+            StateMachine.mortals_coins -= 500
+            StateMachine.mortal_coin_level += 1
 
 
 def god_coin_upgrade():
-    if gameBoard.god_coin_level == 1:
-        if gameBoard.gods_coins >= 300:
-            gameBoard.gods_coins -= 300
-            gameBoard.god_coin_level += 1
-    elif gameBoard.god_coin_level == 2:
-        if gameBoard.gods_coins >= 500:
-            gameBoard.gods_coins -= 500
-            gameBoard.god_coin_level += 1
+    if StateMachine.god_coin_level == 1:
+        if StateMachine.gods_coins >= 300:
+            StateMachine.gods_coins -= 300
+            StateMachine.god_coin_level += 1
+    elif StateMachine.god_coin_level == 2:
+        if StateMachine.gods_coins >= 500:
+            StateMachine.gods_coins -= 500
+            StateMachine.god_coin_level += 1
 
 
-# which screen to display: s = start menu, c = connection, g = gameBoard, e = end menu, u = user manual/stats
+# which screen to display: s = start menu, c = connection, g = game board, e = end menu, u = user manual/stats
 which_screen = "c"
 
 # get the ip of the localhost
@@ -372,7 +370,7 @@ while running:
         draw_game_screen()
 
         # win/lose condition 1: time ran out
-        if gameBoard.timed_out:
+        if StateMachine.timed_out:
             which_screen = "e"
             StateMachine.winner = "Time's Up! No Winner!"
 
@@ -483,7 +481,7 @@ while running:
                     new_arrow.rect.y = mortal.rect.y + mortal.height/2 - new_arrow.height/2
 
                     random_attack_delay = random.randint(mortal.attack_speed/2, mortal.attack_speed)
-                    mortal.attack_time_counter = gameBoard.elapsed_time-mortal.spawn_time + random_attack_delay
+                    mortal.attack_time_counter = StateMachine.elapsed_time-mortal.spawn_time + random_attack_delay
 
         for god in god_list:
             if god.moving:
@@ -506,7 +504,7 @@ while running:
                     new_spell.rect.y = god.rect.y + god.height/2 - new_spell.height/2
 
                     random_attack_delay = random.randint(god.attack_speed/2, god.attack_speed)
-                    god.attack_time_counter = gameBoard.elapsed_time-god.spawn_time + random_attack_delay
+                    god.attack_time_counter = StateMachine.elapsed_time-god.spawn_time + random_attack_delay
 
         # move the arrows/spells and de-spawn them if they're out of range
         for arrow in arrow_list:
@@ -556,15 +554,15 @@ while running:
                     god_creation_list.clear()
                     archer_in_lane = [False, False, False]
                     sorceress_in_lane = [False, False, False]
-                    gameBoard.right_tower_health = 100
-                    gameBoard.left_tower_health = 100
-                    gameBoard.gods_coins = 50
-                    gameBoard.mortals_coins = 50
-                    gameBoard.god_coin_level = 1
-                    gameBoard.mortal_coin_level = 1
-                    gameBoard.one_second_tracker = 1000
-                    gameBoard.timed_out = False
-                    gameBoard.start_time = pygame.time.get_ticks()
+                    StateMachine.right_tower_health = 100
+                    StateMachine.left_tower_health = 100
+                    StateMachine.gods_coins = 50
+                    StateMachine.mortals_coins = 50
+                    StateMachine.god_coin_level = 1
+                    StateMachine.mortal_coin_level = 1
+                    StateMachine.one_second_tracker = 1000
+                    StateMachine.timed_out = False
+                    StateMachine.start_time = pygame.time.get_ticks()
                 # display stats
                 if stats_b.collidepoint(event.pos):
                     which_screen = "u"
@@ -636,19 +634,7 @@ while running:
 
     pygame.display.update()
 
-# Game over (temporary until a game-over screen)
-"""if gameBoard.timed_out:
-    game_over_text = main_font.render("Time's up! Game Over!", True, BLACK)
-elif right_tower_defeat:
-    game_over_text = main_font.render("Game Over! Mortals Win!", True, BLACK)
-elif left_tower_defeat:
-    game_over_text = main_font.render("Game Over! Gods Win!", True, BLACK)
-else:
-    game_over_text = main_font.render("", True, BLACK)
-    # this one will only happen if a player closes the window prematurely
 
-game_over_rect = game_over_text.get_rect(center=(1200 // 2, 700 // 2))
-screen.blit(game_over_text, game_over_rect)"""
 pygame.display.flip()
 
 # Wait for a few seconds before quitting

@@ -10,8 +10,8 @@ screen_size = (screen_w, screen_h) = (1200, 700)
 screen = pygame.display.set_mode(screen_size)
 
 # fonts
-main_font = pygame.font.SysFont("Font.tff", 36)
-fontCoins = pygame.font.Font("Font.tff", 14)
+main_font = pygame.font.SysFont("Font.ttf", 36)
+fontCoins = pygame.font.Font("Font.ttf", 14)
 title_font = pygame.font.SysFont("Font.tff", 75)
 s_button_font = pygame.font.SysFont("Font.tff", 36)
 ip_font = pygame.font.SysFont("Font.tff", 23)
