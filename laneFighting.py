@@ -2,8 +2,8 @@ import sys
 import random
 import gameBoard
 from soldierTypes import *
-from StartMenu import *
-import StartMenu
+from StateMachine import *
+import StateMachine
 import os
 
 
@@ -274,14 +274,14 @@ def tower_damage(side, fighter):
                 gameBoard.right_tower_health = 0
                 draw_game_screen()
                 which_screen = "e"
-                StartMenu.winner = "Mortals Win!"
+                StateMachine.winner = "Mortals Win!"
         else:
             gameBoard.left_tower_health -= fighter.attack_strength
             if gameBoard.left_tower_health <= 0:
                 gameBoard.left_tower_health = 0
                 draw_game_screen()
                 which_screen = "e"
-                StartMenu.winner = "Gods Win!"
+                StateMachine.winner = "Gods Win!"
 
 
 def add_attack_delay(fighter):
@@ -374,7 +374,7 @@ while running:
         # win/lose condition 1: time ran out
         if gameBoard.timed_out:
             which_screen = "e"
-            StartMenu.winner = "Time's Up! No Winner!"
+            StateMachine.winner = "Time's Up! No Winner!"
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -533,7 +533,7 @@ while running:
             god.update()
 
     elif which_screen == "s":
-        StartMenu.draw_start_menu()
+        StateMachine.draw_start_menu()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -573,7 +573,7 @@ while running:
                     running = False
 
     elif which_screen == "c":
-        StartMenu.draw_connection_screen()
+        StateMachine.draw_connection_screen()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -581,13 +581,13 @@ while running:
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if input_box.collidepoint(event.pos):
-                    StartMenu.ip_displayed = ""
-                    StartMenu.input_box_active = True
+                    StateMachine.ip_displayed = ""
+                    StateMachine.input_box_active = True
                 else:
-                    StartMenu.input_box_active = False
+                    StateMachine.input_box_active = False
 
                 if get_ip_b.collidepoint(event.pos):
-                    StartMenu.ip_displayed = localhost_ip
+                    StateMachine.ip_displayed = localhost_ip
                 if connect_b.collidepoint(event.pos):
                     which_screen = "s"
                     # for now (NEEDS TO CHANGE), just go to start menu (until networking added here)
@@ -601,12 +601,12 @@ while running:
             # This is how the input box text is changed by the user
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_BACKSPACE:
-                    if StartMenu.input_box_active:
+                    if StateMachine.input_box_active:
                         # store current text minus last char
-                        StartMenu.ip_displayed = StartMenu.ip_displayed[:-1]
+                        StateMachine.ip_displayed = StateMachine.ip_displayed[:-1]
                 else:
-                    if StartMenu.input_box_active:
-                        StartMenu.ip_displayed += event.unicode
+                    if StateMachine.input_box_active:
+                        StateMachine.ip_displayed += event.unicode
 
     elif which_screen == "u":
         draw_stats_screen()

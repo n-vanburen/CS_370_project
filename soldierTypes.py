@@ -1,8 +1,9 @@
+import pygame
 # import pygame
 import pygame.display
 
 import gameBoard
-from gameBoard import *
+# from gameBoard import *
 # pygame.init()  # need this for font
 # commented out is already included in gameBoard
 
@@ -51,16 +52,16 @@ class Fighter(pygame.sprite.Sprite):
 
     def move_right(self, pixels):
         self.rect.x += pixels
-        if self.rect.x >= right_barrier_coord-self.width:
-            self.rect.x = right_barrier_coord-self.width
+        if self.rect.x >= gameBoard.right_barrier_coord-self.width:
+            self.rect.x = gameBoard.right_barrier_coord-self.width
             self.hit_right_barrier = True
         else:
             self.hit_right_barrier = False
 
     def move_left(self, pixels):
         self.rect.x -= pixels
-        if self.rect.x <= left_barrier_coord:
-            self.rect.x = left_barrier_coord
+        if self.rect.x <= gameBoard.left_barrier_coord:
+            self.rect.x = gameBoard.left_barrier_coord
             self.hit_left_barrier = True
         else:
             self.hit_left_barrier = False
@@ -70,7 +71,7 @@ class Fighter(pygame.sprite.Sprite):
         # screen.blit(text_surface, (input_rect.x + 5, input_rect.y + 5))
         self.text_surface = font.render(str(self.health), True, (150, 150, 150))
         # screen.blit(self.text_surface, (self.rect.x+self.rect.width+10, self.rect.y+self.rect.height+10))
-        screen.blit(self.text_surface, (self.rect.x+5, self.rect.y+5))
+        gameBoard.screen.blit(self.text_surface, (self.rect.x+5, self.rect.y+5))
 
 
 class FootSoldier(Fighter):
@@ -248,7 +249,7 @@ class Arrow(pygame.sprite.Sprite):
     team = 'm'
     attack_strength = 5
     speed = 0.6
-    color = BLACK
+    color = gameBoard.BLACK
     crash = False
 
     # constructor
@@ -275,7 +276,7 @@ class Spell(pygame.sprite.Sprite):
     team = 'g'
     attack_strength = 5
     speed = 0.6
-    color = WHITE
+    color = gameBoard.WHITE
     crash = False
 
     # constructor
