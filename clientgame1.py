@@ -1,11 +1,11 @@
-import pygame
+# import pygame
 import socket
 import threading
 import pickle
 # import pygame
 # import gameBoard
-# from gameBoard import *
-import gameBoard
+from gameBoard import *
+# import gameBoard
 from soldierTypes import *
 import sys
 
@@ -17,8 +17,11 @@ SERVER_PORT = 55555
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect((SERVER_HOST, SERVER_PORT))
 
+
 def send_action(action):
     client.send(pickle.dumps(action))
+
+
 def handle_server_message():
     while True:
         try:
@@ -54,6 +57,7 @@ receive_thread.start()
 pygame.init()
 
 # Your game code here...
+
 
 def crash(fighter1, fighter2):
     # if the fighters are in the same lane
@@ -276,7 +280,7 @@ while running:
                 g_tb_pressed = False
                 # if they didn't choose a valid deployment, nothing will happen
             if (g_coin_upgrade_b.left <= mouse[0] <= g_coin_upgrade_b.left+coin_w
-                        and g_coin_upgrade_b.top <= mouse[1] <= g_coin_upgrade_b.top+coin_h):
+                    and g_coin_upgrade_b.top <= mouse[1] <= g_coin_upgrade_b.top+coin_h):
                 if gameBoard.god_coin_level == 1:
                     if gameBoard.gods_coins >= 300:
                         gameBoard.gods_coins -= 300

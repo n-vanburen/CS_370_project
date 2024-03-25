@@ -1,8 +1,10 @@
+import pygame
 # import pygame
-import pygame.display
+# import pygame.display
 
-import gameBoard
-from gameBoard import *
+# import gameBoard
+# from gameBoard import *
+import StateMachine
 # pygame.init()  # need this for font
 # commented out is already included in gameBoard
 
@@ -32,15 +34,16 @@ class Fighter(pygame.sprite.Sprite):
         self.cost = cost
         self.team = team
         self.attack_speed = attack_speed
+        self.color = color
+        self.photo = photo
 
         self.image = pygame.Surface([self.width, self.height])
-        #if Sorceress or Cyclops:
-            #self.image = pygame.transform.flip(pygame.image.load(self.photo).convert_alpha(),True, False)
-        #else:
-            #self.image = pygame.image.load(self.photo).convert_alpha()
-        self.image = pygame.transform.scale(self.photo, (75,75))
+        """if Sorceress or Cyclops:
+            self.image = pygame.transform.flip(pygame.image.load(self.photo).convert_alpha(),True, False)
+        else:
+            self.image = pygame.image.load(self.photo).convert_alpha()"""
+        self.image = pygame.transform.scale(self.photo, (75, 75))
         self.rect = self.image.get_rect()
-
 
         # pygame.draw.rect(self.image, color, pygame.Rect(0, 0, self.width, self.height))
         # self.rect = self.image.get_rect()
@@ -51,16 +54,16 @@ class Fighter(pygame.sprite.Sprite):
 
     def move_right(self, pixels):
         self.rect.x += pixels
-        if self.rect.x >= right_barrier_coord-self.width:
-            self.rect.x = right_barrier_coord-self.width
+        if self.rect.x >= StateMachine.right_barrier_coord-self.width:
+            self.rect.x = StateMachine.right_barrier_coord-self.width
             self.hit_right_barrier = True
         else:
             self.hit_right_barrier = False
 
     def move_left(self, pixels):
         self.rect.x -= pixels
-        if self.rect.x <= left_barrier_coord:
-            self.rect.x = left_barrier_coord
+        if self.rect.x <= StateMachine.left_barrier_coord:
+            self.rect.x = StateMachine.left_barrier_coord
             self.hit_left_barrier = True
         else:
             self.hit_left_barrier = False
@@ -70,7 +73,7 @@ class Fighter(pygame.sprite.Sprite):
         # screen.blit(text_surface, (input_rect.x + 5, input_rect.y + 5))
         self.text_surface = font.render(str(self.health), True, (150, 150, 150))
         # screen.blit(self.text_surface, (self.rect.x+self.rect.width+10, self.rect.y+self.rect.height+10))
-        screen.blit(self.text_surface, (self.rect.x+5, self.rect.y+5))
+        StateMachine.screen.blit(self.text_surface, (self.rect.x+5, self.rect.y+5))
 
 
 class FootSoldier(Fighter):
@@ -82,6 +85,7 @@ class FootSoldier(Fighter):
     color = (255, 255, 255)
     attack_speed = 5000
     photo = pygame.image.load("heroknight_attack1_0.png").convert_alpha()
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
                          self.team, self.attack_speed, self.photo)
@@ -95,7 +99,8 @@ class Minion(Fighter):
     team = 'g'
     color = (73, 52, 33)
     attack_speed = 5000
-    photo = pygame.transform.flip(pygame.image.load("Minotaur.png").convert_alpha(),True,False)
+    photo = pygame.transform.flip(pygame.image.load("Minotaur.png").convert_alpha(), True, False)
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
                          self.team, self.attack_speed, self.photo)
@@ -109,7 +114,8 @@ class Eagle(Fighter):
     team = 'm'
     color = (21, 92, 240)
     attack_speed = 4000
-    photo = pygame.transform.flip(pygame.image.load("eagle.png").convert_alpha(),True,False)
+    photo = pygame.transform.flip(pygame.image.load("eagle.png").convert_alpha(), True, False)
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
                          self.team, self.attack_speed, self.photo)
@@ -124,6 +130,7 @@ class Harpy(Fighter):
     color = (63, 76, 20)
     attack_speed = 4000
     photo = pygame.image.load("harpy.png").convert_alpha()
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
                          self.team, self.attack_speed, self.photo)
@@ -138,6 +145,7 @@ class Archer(Fighter):
     color = (45, 90, 55)
     attack_speed = 10000
     photo = pygame.image.load("preview.png").convert_alpha()
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
                          self.team, self.attack_speed, self.photo)
@@ -152,6 +160,7 @@ class Sorceress(Fighter):
     color = (20, 21, 22)
     attack_speed = 10000
     photo = pygame.transform.flip(pygame.image.load("b_witch_idle.png").convert_alpha(), True, False)
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
                          self.team, self.attack_speed, self.photo)
@@ -166,6 +175,7 @@ class Cavalry(Fighter):
     color = (40, 80, 120)
     attack_speed = 3000
     photo = pygame.image.load("cavalry.jpg").convert_alpha()
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
                          self.team, self.attack_speed, self.photo)
@@ -180,6 +190,7 @@ class Hellhound(Fighter):
     color = (200, 70, 90)
     attack_speed = 3000
     photo = pygame.image.load("hellhouns.jpg").convert_alpha()
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
                          self.team, self.attack_speed, self.photo)
@@ -194,6 +205,7 @@ class TrojanHorse(Fighter):
     color = (60, 72, 32)
     attack_speed = 8000
     photo = pygame.image.load("horse.png").convert_alpha()
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
                          self.team, self.attack_speed, self.photo)
@@ -208,6 +220,7 @@ class Cyclops(Fighter):
     color = (5, 50, 100)
     attack_speed = 8000
     photo = pygame.transform.flip(pygame.image.load("Cyclops.png").convert_alpha(), True, False)
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
                          self.team, self.attack_speed, self.photo)
@@ -222,6 +235,7 @@ class Achilles(Fighter):
     color = (20, 200, 100)
     attack_speed = 6000
     photo = pygame.image.load("achilles.jpg").convert_alpha()
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
                          self.team, self.attack_speed, self.photo)
@@ -236,6 +250,7 @@ class Medusa(Fighter):
     color = (70, 30, 20)
     attack_speed = 6000
     photo = pygame.image.load("medusa.jpg").convert_alpha()
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
                          self.team, self.attack_speed, self.photo)
@@ -248,7 +263,7 @@ class Arrow(pygame.sprite.Sprite):
     team = 'm'
     attack_strength = 5
     speed = 0.6
-    color = BLACK
+    color = StateMachine.BLACK
     crash = False
 
     # constructor
@@ -262,7 +277,7 @@ class Arrow(pygame.sprite.Sprite):
 
     def move_right(self, pixels):
         self.rect.x += pixels
-        if self.rect.x+self.width >= gameBoard.screen_w/2:
+        if self.rect.x+self.width >= StateMachine.screen_w/2:
             self.halfway = True
         else:
             self.halfway = False
@@ -275,7 +290,7 @@ class Spell(pygame.sprite.Sprite):
     team = 'g'
     attack_strength = 5
     speed = 0.6
-    color = WHITE
+    color = StateMachine.WHITE
     crash = False
 
     # constructor
@@ -287,7 +302,7 @@ class Spell(pygame.sprite.Sprite):
 
     def move_left(self, pixels):
         self.rect.x -= pixels
-        if self.rect.x <= gameBoard.screen_w/2:
+        if self.rect.x <= StateMachine.screen_w/2:
             self.halfway = True
         else:
             self.halfway = False
