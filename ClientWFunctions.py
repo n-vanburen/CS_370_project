@@ -5,46 +5,7 @@ import StateMachine
 from StateMachine import *
 import sys
 import os
-import socket
-import threading
-import pickle
 import random
-
-
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-
-def send_action(action):
-    client.send(pickle.dumps(action))
-
-
-def handle_server_message():
-    while True:
-        try:
-            message = pickle.loads(client.recv(1024))
-            action, data = message
-
-            if action == 'create_mortal':
-                troop_type = data
-                gamePlayFunctions.mortal_troop_creation(troop_type)
-                print("hi")
-
-            elif action == 'deploy_mortal':
-                lane = data
-                gamePlayFunctions.mortal_troop_deploy(lane)
-                print("hi2")
-            pygame.display.update()
-        except:
-            print("An error occurred!")
-
-
-def connect_to_server(server_host):
-    server_port = 12345
-
-    client.connect((server_host, server_port))
-
-    receive_thread = threading.Thread(target=handle_server_message)
-    receive_thread.start()
 
 
 # to stop players from accessing buttons that aren't theirs
