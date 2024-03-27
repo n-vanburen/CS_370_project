@@ -26,7 +26,6 @@ def handle(client):
     while True:
         try:
             message = pickle.loads(client.recv(1024))
-            broadcast(message)
 
             # Additional logic to handle troop creation and deployment
             action, data = message
@@ -42,6 +41,7 @@ def handle(client):
             elif action == 'god_deploy':
                 broadcast(('deploy_god', data))
                 print("hi4")
+            break
 
         except:
             index = clients.index(client)

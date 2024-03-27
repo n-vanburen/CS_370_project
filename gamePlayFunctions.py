@@ -62,7 +62,8 @@ def handle_server_message():
                     print("hi4")
             pygame.display.update()
         except:
-            print("An error occurred!")
+            print("you fool")
+            break
 
 
 def connect_to_server(server_host):
