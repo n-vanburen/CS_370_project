@@ -436,7 +436,7 @@ while running:
                 if g_coin_upgrade_b.collidepoint(event.pos):
                     god_coin_upgrade()
                 #if (m_ability2_b.left <= mouse[0] <= m_ability2_b.left+800
-                     #       and m_ability2_b.top <= mouse[0] <= m_ability2_b.top+125):
+                     #       and m_ability2_b.top <= mouse[1] <= m_ability2_b.top+125):
                     #mortal_heal_ability()
                     #print("Hi")
 

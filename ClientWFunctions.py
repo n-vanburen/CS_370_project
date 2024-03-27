@@ -1,3 +1,4 @@
+import gamePlayFunctions
 from gamePlayFunctions import *
 from soldierTypes import *
 import StateMachine
@@ -7,6 +8,7 @@ import os
 import socket
 import threading
 import pickle
+import random
 
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -24,21 +26,12 @@ def handle_server_message():
 
             if action == 'create_mortal':
                 troop_type = data
-                mortal_troop_creation(troop_type)
+                gamePlayFunctions.mortal_troop_creation(troop_type)
                 print("hi")
 
             elif action == 'deploy_mortal':
                 lane = data
-                current_mortal = mortal_creation_list[-1]
-                mortal_list.add(current_mortal)
-                current_mortal.rect.x = left_barrier_coord
-
-                if lane == 1:
-                    current_mortal.rect.y = lane1_top + current_mortal.height/2
-                elif lane == 2:
-                    current_mortal.rect.y = lane2_top + current_mortal.height/2
-                elif lane == 3:
-                    current_mortal.rect.y = lane3_top + current_mortal.height/2
+                gamePlayFunctions.mortal_troop_deploy(lane)
                 print("hi2")
             pygame.display.update()
         except:
@@ -46,7 +39,7 @@ def handle_server_message():
 
 
 def connect_to_server(server_host):
-    server_port = 55555
+    server_port = 12345
 
     client.connect((server_host, server_port))
 
@@ -57,28 +50,11 @@ def connect_to_server(server_host):
 # to stop players from accessing buttons that aren't theirs
 player_role = "m"
 
-# which screen to display: s = start menu, c = connection, g = game board, e = end menu, u = user manual/stats
-which_screen = "c"
-
 # get the ip of the localhost
 ip = os.popen('ipconfig').read()
 index = ip.find("IPv4", ip.find("IPv4")+1)
 # localhost_ip = ip[index+36:index+50]
 localhost_ip = ip[index+36: ip.find(" ", index+36)-1]
-
-mortal_list = pygame.sprite.Group()
-god_list = pygame.sprite.Group()
-
-arrow_list = pygame.sprite.Group()
-spell_list = pygame.sprite.Group()
-
-m_tb_pressed = False
-g_tb_pressed = False
-mortal_creation_list = []
-god_creation_list = []
-
-archer_in_lane = [False, False, False]
-sorceress_in_lane = [False, False, False]
 
 # font = pygame.font.SysFont("Font.tff", 36)
 
@@ -87,13 +63,13 @@ clock = pygame.time.Clock()
 while running:
     clock.tick(20)
 
-    if which_screen == "g":
+    if gamePlayFunctions.which_screen == "g":
         screen.fill((0, 0, 0))
         draw_game_screen()
 
         # win/lose condition 1: time ran out
         if StateMachine.timed_out:
-            which_screen = "e"
+            gamePlayFunctions.which_screen = "e"
             StateMachine.winner = "Time's Up! No Winner!"
 
         for event in pygame.event.get():
@@ -106,78 +82,78 @@ while running:
                 if player_role == "m":
                     # mortal troop choices -- make deployment possible and create the fighters
                     if m_tb_1.collidepoint(event.pos):
-                        mortal_troop_creation(1)
+                        gamePlayFunctions.mortal_troop_creation(1)
                     elif m_tb_2.collidepoint(event.pos):
-                        mortal_troop_creation(2)
+                        gamePlayFunctions.mortal_troop_creation(2)
                     elif m_tb_3.collidepoint(event.pos):
-                        mortal_troop_creation(3)
+                        gamePlayFunctions.mortal_troop_creation(3)
                     elif m_tb_4.collidepoint(event.pos):
-                        mortal_troop_creation(4)
+                        gamePlayFunctions.mortal_troop_creation(4)
                     elif m_tb_5.collidepoint(event.pos):
-                        mortal_troop_creation(5)
+                        gamePlayFunctions.mortal_troop_creation(5)
                     elif m_tb_6.collidepoint(event.pos):
-                        mortal_troop_creation(6)
+                        gamePlayFunctions.mortal_troop_creation(6)
 
                     # mortal deployment lane choices -- spawn the fighter created above in correct lane
                     elif m_deploy1.collidepoint(event.pos):
-                        mortal_troop_deploy(1)
+                        gamePlayFunctions.mortal_troop_deploy(1)
                     elif m_deploy2.collidepoint(event.pos):
-                        mortal_troop_deploy(2)
+                        gamePlayFunctions.mortal_troop_deploy(2)
                     elif m_deploy3.collidepoint(event.pos):
-                        mortal_troop_deploy(3)
+                        gamePlayFunctions.mortal_troop_deploy(3)
                     else:
                         m_tb_pressed = False
                         # if they didn't choice a valid deployment, nothing will happen
 
                     # Coin Upgrade Test
                     if m_coin_upgrade_b.collidepoint(event.pos):
-                        mortal_coin_upgrade()
+                        gamePlayFunctions.mortal_coin_upgrade()
 
                 # gods' buttons
                 else:
                     # god troop choices -- make deployment possible and create the fighters
                     if g_tb_1.collidepoint(event.pos):
-                        god_troop_creation(1)
+                        gamePlayFunctions.god_troop_creation(1)
                     elif g_tb_2.collidepoint(event.pos):
-                        god_troop_creation(2)
+                        gamePlayFunctions.god_troop_creation(2)
                     elif g_tb_3.collidepoint(event.pos):
-                        god_troop_creation(3)
+                        gamePlayFunctions.god_troop_creation(3)
                     elif g_tb_4.collidepoint(event.pos):
-                        god_troop_creation(4)
+                        gamePlayFunctions.god_troop_creation(4)
                     elif g_tb_5.collidepoint(event.pos):
-                        god_troop_creation(5)
+                        gamePlayFunctions.god_troop_creation(5)
                     elif g_tb_6.collidepoint(event.pos):
-                        god_troop_creation(6)
+                        gamePlayFunctions.god_troop_creation(6)
 
                     # mortal deployment lane choices -- spawn the fighter created above in correct lane
                     elif g_deploy1.collidepoint(event.pos):
-                        god_troop_deploy(1)
+                        gamePlayFunctions.god_troop_deploy(1)
                     elif g_deploy2.collidepoint(event.pos):
-                        god_troop_deploy(2)
+                        gamePlayFunctions.god_troop_deploy(2)
                     elif g_deploy3.collidepoint(event.pos):
-                        god_troop_deploy(3)
+                        gamePlayFunctions.god_troop_deploy(3)
                     else:
                         g_tb_pressed = False
                         # if they didn't choose a valid deployment, nothing will happen
 
                     # Coin Upgrade Test
                     if g_coin_upgrade_b.collidepoint(event.pos):
-                        god_coin_upgrade()
+                        gamePlayFunctions.god_coin_upgrade()
 
         # long-ranged attacks
         # check to see if anyone got hit by an arrow/spell
         for mortal in mortal_list:
             for spell in spell_list:
-                ranged_hit(mortal, spell)
+                gamePlayFunctions.ranged_hit(mortal, spell)
         for god in god_list:
             for arrow in arrow_list:
-                ranged_hit(god, arrow)
+                gamePlayFunctions.ranged_hit(god, arrow)
 
         # short range attacks
         # see if any monster in the lane is colliding
         for mortal in mortal_list:
             for god in god_list:
-                crash(mortal, god)
+                gamePlayFunctions.crash(mortal, god)
 
         # move the players
         for mortal in mortal_list:
@@ -190,7 +166,7 @@ while running:
                 mortal.hit_right_barrier = False
             # otherwise, they can attack the tower
             elif mortal.hit_right_barrier:
-                tower_damage("r", mortal)
+                gamePlayFunctions.tower_damage("r", mortal)
 
             # reset crash and moving in case of defeat for next run
             mortal.crash = False
@@ -198,7 +174,7 @@ while running:
 
             # if the mortal is an archer, launch an arrow (delay based on elapsed time later)
             if isinstance(mortal, Archer):
-                if can_attack(mortal):
+                if gamePlayFunctions.can_attack(mortal):
                     new_arrow = Arrow()
                     arrow_list.add(new_arrow)
                     new_arrow.rect.x = mortal.rect.x + mortal.width
@@ -215,13 +191,13 @@ while running:
                 god.rect.x -= god.width
                 god.hit_left_barrier = False
             elif god.hit_left_barrier:
-                tower_damage("l", god)
+                gamePlayFunctions.tower_damage("l", god)
 
             god.crash = False
             god.moving = True
 
             if isinstance(god, Sorceress):
-                if can_attack(god):
+                if gamePlayFunctions.can_attack(god):
                     new_spell = Spell()
                     spell_list.add(new_spell)
                     new_spell.rect.x = god.rect.x - new_spell.width
@@ -254,7 +230,7 @@ while running:
             god.update_health_label()
             god.update()
 
-    elif which_screen == "s":
+    elif gamePlayFunctions.which_screen == "s":
         StateMachine.draw_start_menu()
 
         for event in pygame.event.get():
@@ -266,18 +242,18 @@ while running:
                 # start the game
                 if start_b.collidepoint(event.pos):
                     # check that both players have clicked start before starting (NEEDED)
-                    which_screen = "g"
+                    gamePlayFunctions.which_screen = "g"
                     # reset all variables, so it's a new game in case this is round 2
-                    mortal_list.empty()
-                    god_list.empty()
-                    arrow_list.empty()
-                    spell_list.empty()
-                    m_tb_pressed = False
-                    g_tb_pressed = False
-                    mortal_creation_list.clear()
-                    god_creation_list.clear()
-                    archer_in_lane = [False, False, False]
-                    sorceress_in_lane = [False, False, False]
+                    gamePlayFunctions.mortal_list.empty()
+                    gamePlayFunctions.god_list.empty()
+                    gamePlayFunctions.arrow_list.empty()
+                    gamePlayFunctions.spell_list.empty()
+                    gamePlayFunctions.m_tb_pressed = False
+                    gamePlayFunctions.g_tb_pressed = False
+                    gamePlayFunctions.mortal_creation_list.clear()
+                    gamePlayFunctions.god_creation_list.clear()
+                    gamePlayFunctions.archer_in_lane = [False, False, False]
+                    gamePlayFunctions.sorceress_in_lane = [False, False, False]
                     StateMachine.right_tower_health = 100
                     StateMachine.left_tower_health = 100
                     StateMachine.gods_coins = 50
@@ -289,12 +265,12 @@ while running:
                     StateMachine.start_time = pygame.time.get_ticks()
                 # display stats
                 if stats_b.collidepoint(event.pos):
-                    which_screen = "u"
+                    gamePlayFunctions.which_screen = "u"
                 # quit game
                 if quit_b.collidepoint(event.pos):
                     running = False
 
-    elif which_screen == "c":
+    elif gamePlayFunctions.which_screen == "c":
         StateMachine.draw_connection_screen()
 
         for event in pygame.event.get():
@@ -311,7 +287,8 @@ while running:
                 if get_ip_b.collidepoint(event.pos):
                     StateMachine.ip_displayed = localhost_ip
                 if connect_b.collidepoint(event.pos):
-                    which_screen = "s"
+                    gamePlayFunctions.which_screen = "s"
+                    connect_to_server(StateMachine.ip_displayed)
                     # for now (NEEDS TO CHANGE), just go to start menu (until networking added here)
                     # Connect to the server with whatever ip_displayed is (NEEDED)
 
@@ -330,7 +307,7 @@ while running:
                     if StateMachine.input_box_active:
                         StateMachine.ip_displayed += event.unicode
 
-    elif which_screen == "u":
+    elif gamePlayFunctions.which_screen == "u":
         draw_stats_screen()
 
         for event in pygame.event.get():
@@ -339,9 +316,9 @@ while running:
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if back_b.collidepoint(event.pos):
-                    which_screen = "s"
+                    gamePlayFunctions.which_screen = "s"
 
-    elif which_screen == "e":
+    elif gamePlayFunctions.which_screen == "e":
         draw_end_screen()
 
         for event in pygame.event.get():
@@ -350,9 +327,9 @@ while running:
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if play_b.collidepoint(event.pos):
-                    which_screen = "s"
+                    gamePlayFunctions.which_screen = "s"
                 elif new_opp_b.collidepoint(event.pos):
-                    which_screen = "c"
+                    gamePlayFunctions.which_screen = "c"
                 elif e_quit_b.collidepoint(event.pos):
                     running = False
 
@@ -361,4 +338,5 @@ while running:
 # Wait for a few seconds before quitting
 # pygame.time.wait(3000)
 pygame.quit()
+client.close()
 sys.exit()
