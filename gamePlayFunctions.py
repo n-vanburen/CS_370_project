@@ -1,19 +1,36 @@
-import ClientWFunctions
-from ClientWFunctions import *
-from soldierTypes import *
+# import ClientWFunctions as client
+# from ClientWFunctions import *
+# from soldierTypes import *
+import soldierTypes
 import StateMachine
 import random
+import pygame
+
+
+mortal_list = pygame.sprite.Group()
+god_list = pygame.sprite.Group()
+
+arrow_list = pygame.sprite.Group()
+spell_list = pygame.sprite.Group()
+
+m_tb_pressed = False
+g_tb_pressed = False
+mortal_creation_list = []
+god_creation_list = []
+
+archer_in_lane = [False, False, False]
+sorceress_in_lane = [False, False, False]
+
+# which screen to display: s = start menu, c = connection, g = game board, e = end menu, u = user manual/stats
+which_screen = "c"
 
 
 def crash(fighter1, fighter2):
     # if the fighters are in the same lane
-    if fighter1.rect.y == fighter2.rect.y:
-        # if fighter1 collides with fighter2
-        if (fighter1.rect.x <= fighter2.rect.x <= fighter1.rect.x+fighter1.width
-                or fighter1.rect.x <= fighter2.rect.x+fighter2.width <= fighter1.rect.x+fighter1.width):
-            fight(fighter1, fighter2)
-            fighter1.crash = True
-            fighter2.crash = True
+    if fighter1.collidepoint(fighter2):
+        fight(fighter1, fighter2)
+        fighter1.crash = True
+        fighter2.crash = True
 
 
 def fight(fighter1, fighter2):
@@ -58,76 +75,80 @@ def defeat(fighter):
         mortal_list.remove(fighter)
 
         # for the handling of a single archer per lane
-        if isinstance(fighter, Archer):
-            if fighter.rect.y == lane1_top + fighter.height/2:
+        if isinstance(fighter, soldierTypes.Archer):
+            if fighter.rect.y == StateMachine.lane1_top + fighter.height/2:
                 archer_in_lane[0] = False
-            elif fighter.rect.y == lane2_top + fighter.height/2:
+            elif fighter.rect.y == StateMachine.lane2_top + fighter.height/2:
                 archer_in_lane[1] = False
-            elif fighter.rect.y == lane3_top + fighter.height/2:
+            elif fighter.rect.y == StateMachine.lane3_top + fighter.height/2:
                 archer_in_lane[2] = False
     else:
         god_list.remove(fighter)
 
-        if isinstance(fighter, Sorceress):
-            if fighter.rect.y == lane1_top + fighter.height/2:
+        if isinstance(fighter, soldierTypes.Sorceress):
+            if fighter.rect.y == StateMachine.lane1_top + fighter.height/2:
                 sorceress_in_lane[0] = False
-            elif fighter.rect.y == lane2_top + fighter.height/2:
+            elif fighter.rect.y == StateMachine.lane2_top + fighter.height/2:
                 sorceress_in_lane[1] = False
-            elif fighter.rect.y == lane3_top + fighter.height/2:
+            elif fighter.rect.y == StateMachine.lane3_top + fighter.height/2:
                 sorceress_in_lane[2] = False
 
 
 def mortal_troop_creation(troop_type):
+    global m_tb_pressed
+
     # create mortal troops to prep for deployment
     if troop_type == 1:
-        new_mortal = FootSoldier()
+        new_mortal = soldierTypes.FootSoldier()
     elif troop_type == 2:
-        new_mortal = Eagle()
+        new_mortal = soldierTypes.Eagle()
     elif troop_type == 3:
-        new_mortal = Archer()
+        new_mortal = soldierTypes.Archer()
     elif troop_type == 4:
-        new_mortal = Cavalry()
+        new_mortal = soldierTypes.Cavalry()
     elif troop_type == 5:
-        new_mortal = TrojanHorse()
+        new_mortal = soldierTypes.TrojanHorse()
     elif troop_type == 6:
-        new_mortal = Achilles()
+        new_mortal = soldierTypes.Achilles()
     else:
-        new_mortal = FootSoldier()
+        new_mortal = soldierTypes.FootSoldier()
         # impossible, but just to get the IDE to stop complaining
 
     # make sure they have enough coins to purchase the troop
     if StateMachine.mortals_coins >= new_mortal.cost:
         mortal_creation_list.append(new_mortal)
         # if there is a successful creation, allow for deployment
-        ClientWFunctions.m_tb_pressed = True
+        m_tb_pressed = True
     else:
-        ClientWFunctions.m_tb_pressed = False
+        m_tb_pressed = False
 
 
 def god_troop_creation(troop_type):
+    global g_tb_pressed
+
     # create god troops to prep for deployment
     if troop_type == 1:
-        new_god = Minion()
+        new_god = soldierTypes.Minion()
     elif troop_type == 2:
-        new_god = Harpy()
+        new_god = soldierTypes.Harpy()
     elif troop_type == 3:
-        new_god = Sorceress()
+        new_god = soldierTypes.Sorceress()
     elif troop_type == 4:
-        new_god = Hellhound()
+        new_god = soldierTypes.Hellhound()
     elif troop_type == 5:
-        new_god = Cyclops()
+        new_god = soldierTypes.Cyclops()
     elif troop_type == 6:
-        new_god = Medusa()
+        new_god = soldierTypes.Medusa()
     else:
-        new_god = Minion()
+        new_god = soldierTypes.Minion()
         # impossible, but just to get the IDE to stop complaining
 
     if StateMachine.gods_coins >= new_god.cost:
         god_creation_list.append(new_god)
         # if there is a successful creation, allow for deployment
-        ClientWFunctions.g_tb_pressed = True
+        g_tb_pressed = True
     else:
-        ClientWFunctions.g_tb_pressed = False
+        g_tb_pressed = False
 
 
 def buy_mortal(new_mortal):
@@ -143,16 +164,18 @@ def buy_god(new_god):
 
 
 def mortal_troop_deploy(lane):
+    global m_tb_pressed
+
     # If a troop hasn't been chosen (and created when there are enough coins), nothing will happen
-    if ClientWFunctions.m_tb_pressed:
+    if m_tb_pressed:
 
         # make the mortal drawable and draw it in the correct lane
         current_mortal = mortal_creation_list[-1]
-        current_mortal.rect.x = left_barrier_coord
+        current_mortal.rect.x = StateMachine.left_barrier_coord
 
         if lane == 1:
-            current_mortal.rect.y = lane1_top + current_mortal.height/2
-            if not isinstance(current_mortal, Archer):
+            current_mortal.rect.y = StateMachine.lane1_top + current_mortal.height/2
+            if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
             else:
                 if not archer_in_lane[0]:
@@ -160,10 +183,10 @@ def mortal_troop_deploy(lane):
                     buy_mortal(current_mortal)
                     add_attack_delay(current_mortal)
                 else:
-                    ClientWFunctions.m_tb_pressed = False
+                    m_tb_pressed = False
         elif lane == 2:
-            current_mortal.rect.y = lane2_top + current_mortal.height/2
-            if not isinstance(current_mortal, Archer):
+            current_mortal.rect.y = StateMachine.lane2_top + current_mortal.height/2
+            if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
             else:
                 if not archer_in_lane[1]:
@@ -171,10 +194,10 @@ def mortal_troop_deploy(lane):
                     buy_mortal(current_mortal)
                     add_attack_delay(current_mortal)
                 else:
-                    ClientWFunctions.m_tb_pressed = False
+                    m_tb_pressed = False
         elif lane == 3:
-            current_mortal.rect.y = lane3_top + current_mortal.height/2
-            if not isinstance(current_mortal, Archer):
+            current_mortal.rect.y = StateMachine.lane3_top + current_mortal.height/2
+            if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
             else:
                 if not archer_in_lane[2]:
@@ -182,24 +205,26 @@ def mortal_troop_deploy(lane):
                     buy_mortal(current_mortal)
                     add_attack_delay(current_mortal)
                 else:
-                    ClientWFunctions.m_tb_pressed = False
+                    m_tb_pressed = False
 
         # the player has deployed their troop, don't let them do it again
         # (important for coins)
-        ClientWFunctions.m_tb_pressed = False
+        m_tb_pressed = False
 
 
 def god_troop_deploy(lane):
+    global g_tb_pressed
+
     # If a troop hasn't been chosen (and created when there are enough coins), nothing will happen
-    if ClientWFunctions.g_tb_pressed:
+    if g_tb_pressed:
 
         # make the god drawable and draw it in the correct lane
         current_god = god_creation_list[-1]
-        current_god.rect.x = right_barrier_coord - current_god.width
+        current_god.rect.x = StateMachine.right_barrier_coord - current_god.width
 
         if lane == 1:
-            current_god.rect.y = lane1_top + current_god.height/2
-            if not isinstance(current_god, Sorceress):
+            current_god.rect.y = StateMachine.lane1_top + current_god.height/2
+            if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
             else:
                 if not sorceress_in_lane[0]:
@@ -207,10 +232,10 @@ def god_troop_deploy(lane):
                     buy_god(current_god)
                     add_attack_delay(current_god)
                 else:
-                    ClientWFunctions.g_tb_pressed = False
+                    g_tb_pressed = False
         elif lane == 2:
-            current_god.rect.y = lane2_top + current_god.height/2
-            if not isinstance(current_god, Sorceress):
+            current_god.rect.y = StateMachine.lane2_top + current_god.height/2
+            if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
             else:
                 if not sorceress_in_lane[1]:
@@ -218,10 +243,10 @@ def god_troop_deploy(lane):
                     buy_god(current_god)
                     add_attack_delay(current_god)
                 else:
-                    ClientWFunctions.g_tb_pressed = False
+                    g_tb_pressed = False
         elif lane == 3:
-            current_god.rect.y = lane3_top + current_god.height/2
-            if not isinstance(current_god, Sorceress):
+            current_god.rect.y = StateMachine.lane3_top + current_god.height/2
+            if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
             else:
                 if not sorceress_in_lane[2]:
@@ -229,14 +254,16 @@ def god_troop_deploy(lane):
                     buy_god(current_god)
                     add_attack_delay(current_god)
                 else:
-                    ClientWFunctions.g_tb_pressed = False
+                    g_tb_pressed = False
 
         # the player has deployed their troop, don't let them do it again
         # (important for coins)
-        ClientWFunctions.g_tb_pressed = False
+        g_tb_pressed = False
 
 
 def tower_damage(side, fighter):
+    global which_screen
+
     if fighter.first_hit:
         add_attack_delay(fighter)
         fighter.first_hit = False
@@ -249,15 +276,15 @@ def tower_damage(side, fighter):
             StateMachine.right_tower_health -= fighter.attack_strength
             if StateMachine.right_tower_health <= 0:
                 StateMachine.right_tower_health = 0
-                draw_game_screen()
-                ClientWFunctions.which_screen = "e"
+                StateMachine.draw_game_screen()
+                which_screen = "e"
                 StateMachine.winner = "Mortals Win!"
         else:
             StateMachine.left_tower_health -= fighter.attack_strength
             if StateMachine.left_tower_health <= 0:
                 StateMachine.left_tower_health = 0
-                draw_game_screen()
-                ClientWFunctions.which_screen = "e"
+                StateMachine.draw_game_screen()
+                which_screen = "e"
                 StateMachine.winner = "Gods Win!"
 
 
@@ -272,24 +299,20 @@ def can_attack(fighter):
 
 
 def ranged_hit(fighter, projectile):
-    # if they are in the same lane
-    if (fighter.rect.y <= projectile.rect.y <= fighter.rect.y+fighter.height
-            or fighter.rect.y <= projectile.rect.y+projectile.height <= fighter.rect.y+fighter.height):
-        # if fighter collides with arrow/spell
-        if (fighter.rect.x <= projectile.rect.x <= fighter.rect.x+fighter.width
-                or fighter.rect.x <= projectile.rect.x+projectile.width <= fighter.rect.x+fighter.width):
-            # only let a projectile deal damage once
-            if not projectile.crash:
-                projectile.crash = True
+    # if fighter collides with arrow/spell
+    if fighter.collidepoint(projectile):
+        # only let a projectile deal damage once
+        if not projectile.crash:
+            projectile.crash = True
 
-                fighter.health -= projectile.attack_strength
-                if fighter.health <= 0:
-                    defeat(fighter)
+            fighter.health -= projectile.attack_strength
+            if fighter.health <= 0:
+                defeat(fighter)
 
-                if projectile.team == 'm':
-                    arrow_list.remove(projectile)
-                else:
-                    spell_list.remove(projectile)
+            if projectile.team == 'm':
+                arrow_list.remove(projectile)
+            else:
+                spell_list.remove(projectile)
 
 
 def mortal_coin_upgrade():

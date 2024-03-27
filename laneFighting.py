@@ -6,7 +6,6 @@ import StateMachine
 import os
 
 
-
 def crash(fighter1, fighter2):
     # if the fighters are in the same lane
     if fighter1.rect.y == fighter2.rect.y:
