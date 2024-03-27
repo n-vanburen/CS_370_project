@@ -28,6 +28,7 @@ sorceress_in_lane = [False, False, False]
 # which screen to display: s = start menu, c = connection, g = game board, e = end menu, u = user manual/stats
 which_screen = "c"
 
+
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
@@ -60,9 +61,11 @@ def handle_server_message():
                     lane = data
                     god_troop_deploy(lane)
                     print("hi4")
+
             pygame.display.update()
+            break
         except:
-            print("you fool")
+            print("An error occurred!")
             break
 
 
