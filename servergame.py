@@ -38,10 +38,10 @@ def handle(client):
                 print("hi2")
             elif action == 'god_creation':
                 broadcast(('create_god', data))
-                print("hi")
+                print("hi3")
             elif action == 'god_deploy':
                 broadcast(('deploy_god', data))
-                print("hi2")
+                print("hi4")
 
         except:
             index = clients.index(client)

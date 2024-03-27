@@ -20,6 +20,7 @@ m_tb_pressed = False
 g_tb_pressed = False
 mortal_creation_list = []
 god_creation_list = []
+player_role = "g"
 
 archer_in_lane = [False, False, False]
 sorceress_in_lane = [False, False, False]
@@ -39,23 +40,33 @@ def handle_server_message():
         try:
             message = pickle.loads(client.recv(1024))
             action, data = message
+            if player_role == "g":
+                if action == 'create_mortal':
+                    troop_type = data
+                    mortal_troop_creation(troop_type)
+                    print("hi")
 
-            if action == 'create_mortal':
-                troop_type = data
-                mortal_troop_creation(troop_type)
-                print("hi")
+                elif action == 'deploy_mortal':
+                    lane = data
+                    mortal_troop_deploy(lane)
+                    print("hi2")
+            if player_role == "m":
+                if action == 'create_mortal':
+                    troop_type = data
+                    god_troop_creation(troop_type)
+                    print("hi3")
 
-            elif action == 'deploy_mortal':
-                lane = data
-                mortal_troop_deploy(lane)
-                print("hi2")
+                elif action == 'deploy_mortal':
+                    lane = data
+                    god_troop_deploy(lane)
+                    print("hi4")
             pygame.display.update()
         except:
             print("An error occurred!")
 
 
 def connect_to_server(server_host):
-    server_port = 12345
+    server_port = 55555
 
     client.connect((server_host, server_port))
 
@@ -155,7 +166,7 @@ def mortal_troop_creation(troop_type):
     # make sure they have enough coins to purchase the troop
     if StateMachine.mortals_coins >= new_mortal.cost:
         mortal_creation_list.append(new_mortal)
-        send_action(('mortal_creation', new_mortal))
+        send_action(('mortal_creation', troop_type))
         # if there is a successful creation, allow for deployment
         m_tb_pressed = True
     else:
@@ -184,7 +195,7 @@ def god_troop_creation(troop_type):
 
     if StateMachine.gods_coins >= new_god.cost:
         god_creation_list.append(new_god)
-        send_action(('god_creation', new_god))
+        send_action(('god_creation', troop_type))
         # if there is a successful creation, allow for deployment
         g_tb_pressed = True
     else:
