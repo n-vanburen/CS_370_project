@@ -48,7 +48,7 @@ def connect_to_server(server_host):
 
 
 # to stop players from accessing buttons that aren't theirs
-player_role = "m"
+player_role = "g"
 
 # get the ip of the localhost
 ip = os.popen('ipconfig').read()
