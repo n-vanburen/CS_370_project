@@ -1,3 +1,4 @@
+import gamePlayFunctions
 from gamePlayFunctions import *
 from soldierTypes import *
 import StateMachine
@@ -46,7 +47,8 @@ def handle_server_message():
 
 
 def connect_to_server(server_host):
-    server_port = 55555
+
+    server_port = 12345
 
     client.connect((server_host, server_port))
 
@@ -312,6 +314,7 @@ while running:
                     StateMachine.ip_displayed = localhost_ip
                 if connect_b.collidepoint(event.pos):
                     which_screen = "s"
+                    connect_to_server(StateMachine.ip_displayed)
                     # for now (NEEDS TO CHANGE), just go to start menu (until networking added here)
                     # Connect to the server with whatever ip_displayed is (NEEDED)
 
@@ -361,4 +364,6 @@ while running:
 # Wait for a few seconds before quitting
 # pygame.time.wait(3000)
 pygame.quit()
+socket.close()
+client.close()
 sys.exit()

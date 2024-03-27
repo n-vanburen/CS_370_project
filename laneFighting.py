@@ -6,6 +6,7 @@ import StateMachine
 import os
 
 
+
 def crash(fighter1, fighter2):
     # if the fighters are in the same lane
     if fighter1.rect.y == fighter2.rect.y:
@@ -246,12 +247,20 @@ def god_troop_deploy(lane):
 
 
 def mortal_heal_ability():
-    for mortal in mortal_list:
-        mortal.health += 50
-        """if mortal.health > mortal.max_health:
-            mortal.health = mortal.max_health"""
-        mortal.update_health_label()
-        mortal.update()
+    if StateMachine.mortals_coins >= 300:
+        StateMachine.mortals_coins -= 300
+        for mortal in mortal_list:
+            mortal.health += (int)((mortal.max_health - mortal.health) * .5)
+
+
+
+def god_heal_ability():
+    if StateMachine.gods_coins >= 300:
+        StateMachine.gods_coins -= 300
+        for god in god_list:
+            god.health += (int)((god.max_health - god.health) * .5)
+
+
 
 
 def tower_damage(side, fighter):
@@ -435,10 +444,11 @@ while running:
                     mortal_coin_upgrade()
                 if g_coin_upgrade_b.collidepoint(event.pos):
                     god_coin_upgrade()
-                #if (m_ability2_b.left <= mouse[0] <= m_ability2_b.left+800
-                     #       and m_ability2_b.top <= mouse[0] <= m_ability2_b.top+125):
-                    #mortal_heal_ability()
-                    #print("Hi")
+                if m_ability2_b.collidepoint(event.pos):
+                    mortal_heal_ability()
+                if g_ability2_b.collidepoint(event.pos):
+                    god_heal_ability()
+
 
         # long-ranged attacks
         # check to see if anyone got hit by an arrow/spell

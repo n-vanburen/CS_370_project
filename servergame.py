@@ -6,7 +6,7 @@ import os
 ip = os.popen('ipconfig').read()
 index = ip.find("IPv4", ip.find("IPv4")+1)
 SERVER_HOST = ip[index+36:index+50]
-SERVER_PORT = 55555
+SERVER_PORT = 12345
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((SERVER_HOST, SERVER_PORT))
@@ -25,7 +25,6 @@ def handle(client):
     while True:
         try:
             message = pickle.loads(client.recv(1024))
-            broadcast(message)
 
             # Additional logic to handle troop creation and deployment
             action, data = message
