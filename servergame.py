@@ -26,7 +26,7 @@ def handle(client):
     while True:
         try:
             message = pickle.loads(client.recv(1024))
-            broadcast(message)
+            # broadcast(message)
 
             # Additional logic to handle troop creation and deployment
             action, data = message
