@@ -76,7 +76,7 @@ def connect_to_server(server_host):
 
 def crash(fighter1, fighter2):
     # if the fighters are in the same lane
-    if fighter1.collidepoint(fighter2):
+    if pygame.sprite.collide_rect(fighter1, fighter2):
         fight(fighter1, fighter2)
         fighter1.crash = True
         fighter2.crash = True
@@ -363,7 +363,7 @@ def can_attack(fighter):
 
 def ranged_hit(fighter, projectile):
     # if fighter collides with arrow/spell
-    if fighter.collidepoint(projectile):
+    if pygame.sprite.collide_rect(fighter, projectile) or pygame.sprite.collide_rect(projectile, fighter):
         # only let a projectile deal damage once
         if not projectile.crash:
             projectile.crash = True
