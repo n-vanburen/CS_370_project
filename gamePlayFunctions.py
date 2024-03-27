@@ -27,6 +27,9 @@ sorceress_in_lane = [False, False, False]
 # which screen to display: s = start menu, c = connection, g = game board, e = end menu, u = user manual/stats
 which_screen = "c"
 
+# to stop players from accessing buttons that aren't theirs
+player_role = "m"
+
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
@@ -40,22 +43,34 @@ def handle_server_message():
             message = pickle.loads(client.recv(1024))
             action, data = message
 
-            if action == 'create_mortal':
-                troop_type = data
-                mortal_troop_creation(troop_type)
-                print("hi")
+            if player_role == "g":
+                if action == 'create_mortal':
+                    troop_type = data
+                    mortal_troop_creation(troop_type)
+                    print("hi")
 
-            elif action == 'deploy_mortal':
-                lane = data
-                mortal_troop_deploy(lane)
-                print("hi2")
+                elif action == 'deploy_mortal':
+                    lane = data
+                    mortal_troop_deploy(lane)
+                    print("hi2")
+            if player_role == "m":
+                if action == 'create_god':
+                    troop_type = data
+                    god_troop_creation(troop_type)
+                    print("hi3")
+
+                elif action == 'deploy_god':
+                    lane = data
+                    god_troop_deploy(lane)
+                    print("hi4")
+
             pygame.display.update()
         except:
             print("An error occurred!")
 
 
 def connect_to_server(server_host):
-    server_port = 12345
+    server_port = 55555
 
     client.connect((server_host, server_port))
 
@@ -65,7 +80,7 @@ def connect_to_server(server_host):
 
 def crash(fighter1, fighter2):
     # if the fighters are in the same lane
-    if fighter1.collidepoint(fighter2):
+    if pygame.sprite.collide_rect(fighter1, fighter2):
         fight(fighter1, fighter2)
         fighter1.crash = True
         fighter2.crash = True
@@ -155,7 +170,7 @@ def mortal_troop_creation(troop_type):
     # make sure they have enough coins to purchase the troop
     if StateMachine.mortals_coins >= new_mortal.cost:
         mortal_creation_list.append(new_mortal)
-        send_action(('mortal_creation', new_mortal))
+        send_action(('mortal_creation', troop_type))
         # if there is a successful creation, allow for deployment
         m_tb_pressed = True
     else:
@@ -184,7 +199,7 @@ def god_troop_creation(troop_type):
 
     if StateMachine.gods_coins >= new_god.cost:
         god_creation_list.append(new_god)
-        send_action(('god_creation', new_god))
+        send_action(('god_creation', troop_type))
         # if there is a successful creation, allow for deployment
         g_tb_pressed = True
     else:
@@ -352,7 +367,7 @@ def can_attack(fighter):
 
 def ranged_hit(fighter, projectile):
     # if fighter collides with arrow/spell
-    if fighter.collidepoint(projectile):
+    if pygame.sprite.collide_rect(fighter, projectile) or pygame.sprite.collide_rect(projectile, fighter):
         # only let a projectile deal damage once
         if not projectile.crash:
             projectile.crash = True

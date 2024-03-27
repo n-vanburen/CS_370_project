@@ -8,9 +8,6 @@ import os
 import random
 
 
-# to stop players from accessing buttons that aren't theirs
-player_role = "m"
-
 # get the ip of the localhost
 ip = os.popen('ipconfig').read()
 index = ip.find("IPv4", ip.find("IPv4")+1)
