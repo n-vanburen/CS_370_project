@@ -197,8 +197,19 @@ while running:
 
             if event.type == pygame.MOUSEBUTTONDOWN:
 
+                if mortal_rb.collidepoint(event.pos):
+                    # change the role and send to the server so the other can be set
+                    gamePlayFunctions.player_role = "m"
+                    send_action(('mortal_chosen', "m"))
+                    # (NEEDED): send to server that mortal was chosen
+                if god_rb.collidepoint(event.pos):
+                    gamePlayFunctions.player_role = "g"
+                    send_action(('god_chosen', "g"))
+                    # (NEEDED): send to server that god was chosen
+
                 # start the game
                 if start_b.collidepoint(event.pos):
+                    # (NEEDED): make sure the player has a role of g or m and that both players have pressed start
                     # check that both players have clicked start before starting (NEEDED)
                     gamePlayFunctions.which_screen = "g"
                     # reset all variables, so it's a new game in case this is round 2
@@ -249,11 +260,6 @@ while running:
                     connect_to_server(StateMachine.ip_displayed)
                     # for now (NEEDS TO CHANGE), just go to start menu (until networking added here)
                     # Connect to the server with whatever ip_displayed is (NEEDED)
-
-                # both clients have connected (boolean list in server) (one will have clicked host server)
-                # and at least one chose a role (choice blacked out for other player)
-                # both connect and a role have to have been clicked
-                # then, the start menu will be displayed (NEEDED)
 
             # This is how the input box text is changed by the user
             if event.type == pygame.KEYDOWN:

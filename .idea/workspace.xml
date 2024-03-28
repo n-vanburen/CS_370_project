@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="3/27">
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="3/28">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientWFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientWFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StateMachine.py" beforeDir="false" afterPath="$PROJECT_DIR$/StateMachine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamePlayFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamePlayFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servergame.py" beforeDir="false" afterPath="$PROJECT_DIR$/servergame.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -373,7 +377,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711561453065</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="3/28">
+      <option name="closed" value="true" />
+      <created>1711666287637</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1711666287637</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,6 +418,7 @@
     <MESSAGE value="moved client function" />
     <MESSAGE value="fixes" />
     <MESSAGE value="3/27" />
-    <option name="LAST_COMMIT_MESSAGE" value="3/27" />
+    <MESSAGE value="3/28" />
+    <option name="LAST_COMMIT_MESSAGE" value="3/28" />
   </component>
 </project>

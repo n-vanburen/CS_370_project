@@ -1,4 +1,5 @@
 import pygame
+import gamePlayFunctions
 
 pygame.init()
 
@@ -199,13 +200,21 @@ def draw_game_screen():
 
     # Coins
     # Mortal
-    pygame.draw.rect(screen, SECOND_GREEN, m_coin_display)
-    pygame.draw.rect(screen, SECOND_GREEN, m_coin_upgrade_b)
+    if gamePlayFunctions.player_role == "m":
+        pygame.draw.rect(screen, SECOND_GREEN, m_coin_display)
+        pygame.draw.rect(screen, SECOND_GREEN, m_coin_upgrade_b)
+    else:
+        pygame.draw.rect(screen, BLACK, m_coin_display)
+        pygame.draw.rect(screen, BLACK, m_coin_upgrade_b)
     pygame.draw.rect(screen, BLACK, m_coin_display, 2)
     pygame.draw.rect(screen, BLACK, m_coin_upgrade_b, 2)
     # God
-    pygame.draw.rect(screen, SECOND_GREEN, g_coin_display)
-    pygame.draw.rect(screen, SECOND_GREEN, g_coin_upgrade_b)
+    if gamePlayFunctions.player_role == "g":
+        pygame.draw.rect(screen, SECOND_GREEN, g_coin_display)
+        pygame.draw.rect(screen, SECOND_GREEN, g_coin_upgrade_b)
+    else:
+        pygame.draw.rect(screen, BLACK, g_coin_display)
+        pygame.draw.rect(screen, BLACK, g_coin_upgrade_b)
     pygame.draw.rect(screen, BLACK, g_coin_display, 2)
     pygame.draw.rect(screen, BLACK, g_coin_upgrade_b, 2)
     # Troop Spawn Buttons
@@ -331,10 +340,22 @@ title_text_dest = (((main_menu_rect.left + main_menu_rect.w/2) - title_text_surf
 
 # buttons
 s_button_size = (s_button_w, s_button_h) = (200, 50)
+
+# for player to choose their role (mortal or god) rb = role button
+mortal_rb = pygame.Rect(((main_menu_rect.left+main_menu_rect.w/2-s_button_w),
+                         (main_menu_rect.top+title_text_surface.get_height()+main_menu_rect.h/8+25)), s_button_size)
+mortal_rb_text_surface = s_button_font.render("Mortal", True, BLACK)
+mortal_rb_text_dest = (((mortal_rb.left+mortal_rb.w/2)-mortal_rb_text_surface.get_width()/2),
+                       ((mortal_rb.top+mortal_rb.h/2)-mortal_rb_text_surface.get_height()/2))
+god_rb = pygame.Rect(((main_menu_rect.left+main_menu_rect.w/2), mortal_rb.top), s_button_size)
+god_rb_text_surface = s_button_font.render("God", True, BLACK)
+god_rb_text_dest = (((god_rb.left+god_rb.w/2)-god_rb_text_surface.get_width()/2),
+                    ((god_rb.top+god_rb.h/2)-god_rb_text_surface.get_height()/2))
+
 start_b = pygame.Rect(((main_menu_rect.left+main_menu_rect.w/2-s_button_w/2),
-                       (main_menu_rect.top+title_text_surface.get_height()+main_menu_rect.h/8+50)), s_button_size)
-stats_b = pygame.Rect((start_b.left, start_b.top+s_button_h+main_menu_rect.h/8), s_button_size)
-quit_b = pygame.Rect((stats_b.left, stats_b.top+s_button_h+main_menu_rect.h/8), s_button_size)
+                       (mortal_rb.top+s_button_h+main_menu_rect.h/10)), s_button_size)
+stats_b = pygame.Rect((start_b.left, start_b.top+s_button_h+main_menu_rect.h/10), s_button_size)
+quit_b = pygame.Rect((stats_b.left, stats_b.top+s_button_h+main_menu_rect.h/10), s_button_size)
 
 # button text
 start_b_text_surface = s_button_font.render("Start", True, BLACK)
@@ -358,6 +379,22 @@ def draw_start_menu():
 
     # game title
     screen.blit(title_text_surface, title_text_dest)
+
+    # role choice buttons
+    if gamePlayFunctions.player_role == "m" or gamePlayFunctions.player_role == "d":
+        pygame.draw.rect(screen, THIRD_GREEN, mortal_rb)
+    else:
+        pygame.draw.rect(screen, BLACK, mortal_rb)
+
+    if gamePlayFunctions.player_role == "g" or gamePlayFunctions.player_role == "d":
+        pygame.draw.rect(screen, THIRD_GREEN, god_rb)
+    else:
+        pygame.draw.rect(screen, BLACK, god_rb)
+
+    pygame.draw.rect(screen, BLACK, mortal_rb, 2)
+    screen.blit(mortal_rb_text_surface, mortal_rb_text_dest)
+    pygame.draw.rect(screen, BLACK, god_rb, 2)
+    screen.blit(god_rb_text_surface, god_rb_text_dest)
 
     # buttons
     pygame.draw.rect(screen, THIRD_GREEN, start_b)
@@ -385,31 +422,17 @@ ip_displayed = "Enter Server IP"
 input_box_active = False
 
 # buttons for the user to either get their personal IP or connect to an entered IP
-ip_b_size = (ipw, iph) = (100, 40)
-get_ip_b = pygame.Rect((((connection_box.left+connection_box.w/2)-(ipw+20)),
-                        (input_box.top+ibh+10)), ip_b_size)
-connect_b = pygame.Rect((((connection_box.left+connection_box.w/2)+20),
-                         (input_box.top+ibh+10)), ip_b_size)
+# ip_b_size = (ipw, iph) = (100, 40)
+get_ip_b = pygame.Rect((input_box.left, (input_box.top+ibh+20)), s_button_size)
+connect_b = pygame.Rect((input_box.left, (get_ip_b.top+ibh+20)), s_button_size)
 
 # text for hosting server and connecting buttons
-get_ip_text_surface = ip_font.render("Host Server", True, BLACK)
+get_ip_text_surface = s_button_font.render("Host Server", True, BLACK)
 get_ip_text_dest = (((get_ip_b.left+get_ip_b.w/2)-get_ip_text_surface.get_width()/2),
                     ((get_ip_b.top+get_ip_b.h/2)-get_ip_text_surface.get_height()/2))
-connect_text_surface = ip_font.render("Connect", True, BLACK)
+connect_text_surface = s_button_font.render("Connect", True, BLACK)
 connect_text_dest = (((connect_b.left+connect_b.w/2)-connect_text_surface.get_width()/2),
                      ((connect_b.top+connect_b.h/2)-connect_text_surface.get_height()/2))
-
-# buttons for player to choose their role (mortal or god) rb = role button
-mortal_rb = pygame.Rect((((connection_box.left+connection_box.w/4)-ibw/2),
-                         (input_box.top+ibh+connection_box.h/4)), input_box_size)
-mortal_rb_text_surface = s_button_font.render("Mortal", True, BLACK)
-mortal_rb_text_dest = (((mortal_rb.left+mortal_rb.w/2)-mortal_rb_text_surface.get_width()/2),
-                       ((mortal_rb.top+mortal_rb.h/2)-mortal_rb_text_surface.get_height()/2))
-god_rb = pygame.Rect((((connection_box.left+connection_box.w*0.75)-ibw/2),
-                      (input_box.top+ibh+connection_box.h/4)), input_box_size)
-god_rb_text_surface = s_button_font.render("God", True, BLACK)
-god_rb_text_dest = (((god_rb.left+god_rb.w/2)-god_rb_text_surface.get_width()/2),
-                    ((god_rb.top+god_rb.h/2)-god_rb_text_surface.get_height()/2))
 
 
 def draw_connection_screen():
@@ -441,14 +464,6 @@ def draw_connection_screen():
     pygame.draw.rect(screen, THIRD_GREEN, connect_b)
     pygame.draw.rect(screen, BLACK, connect_b, 2)
     screen.blit(connect_text_surface, connect_text_dest)
-
-    # role choice buttons
-    pygame.draw.rect(screen, THIRD_GREEN, mortal_rb)
-    pygame.draw.rect(screen, BLACK, mortal_rb, 2)
-    screen.blit(mortal_rb_text_surface, mortal_rb_text_dest)
-    pygame.draw.rect(screen, THIRD_GREEN, god_rb)
-    pygame.draw.rect(screen, BLACK, god_rb, 2)
-    screen.blit(god_rb_text_surface, god_rb_text_dest)
 
 
 # Stats screen

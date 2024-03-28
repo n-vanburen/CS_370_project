@@ -28,7 +28,7 @@ sorceress_in_lane = [False, False, False]
 which_screen = "c"
 
 # to stop players from accessing buttons that aren't theirs
-player_role = "m"
+player_role = "d"
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -38,6 +38,8 @@ def send_action(action):
 
 
 def handle_server_message():
+    global player_role
+
     while True:
         try:
             message = pickle.loads(client.recv(1024))
@@ -53,6 +55,7 @@ def handle_server_message():
                     lane = data
                     mortal_troop_deploy(lane)
                     print("hi2")
+
             if player_role == "m":
                 if action == 'create_god':
                     troop_type = data
@@ -63,6 +66,11 @@ def handle_server_message():
                     lane = data
                     god_troop_deploy(lane)
                     print("hi4")
+
+            if player_role == "d":
+                if action == 'choose_god' or action == 'choose_mortal':
+                    role = data
+                    player_role = role
 
             pygame.display.update()
             break

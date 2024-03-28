@@ -42,6 +42,10 @@ def handle(client):
             elif action == 'god_deploy':
                 broadcast(('deploy_god', data))
                 print("hi4")
+            elif action == 'mortal_chosen':
+                broadcast(('choose_god', "g"))
+            elif action == 'god_chosen':
+                broadcast(('choose_mortal', "m"))
 
         except:
             index = clients.index(client)
