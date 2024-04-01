@@ -37,28 +37,37 @@ while running:
             if event.type == pygame.MOUSEBUTTONDOWN:
 
                 # mortal's buttons
-                if player_role == "m":
+                if gamePlayFunctions.player_role == "m":
                     # mortal troop choices -- make deployment possible and create the fighters
                     if m_tb_1.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_creation(1)
+                        gamePlayFunctions.send_action(('mortal_creation', 1))
                     elif m_tb_2.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_creation(2)
+                        gamePlayFunctions.send_action(('mortal_creation', 2))
                     elif m_tb_3.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_creation(3)
+                        gamePlayFunctions.send_action(('mortal_creation', 3))
                     elif m_tb_4.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_creation(4)
+                        gamePlayFunctions.send_action(('mortal_creation', 4))
                     elif m_tb_5.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_creation(5)
+                        gamePlayFunctions.send_action(('mortal_creation', 5))
                     elif m_tb_6.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_creation(6)
+                        gamePlayFunctions.send_action(('mortal_creation', 6))
 
                     # mortal deployment lane choices -- spawn the fighter created above in correct lane
                     elif m_deploy1.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_deploy(1)
+                        gamePlayFunctions.send_action(('mortal_deploy', 1))
                     elif m_deploy2.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_deploy(2)
+                        gamePlayFunctions.send_action(('mortal_deploy', 2))
                     elif m_deploy3.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_deploy(3)
+                        gamePlayFunctions.send_action(('mortal_deploy', 3))
                     else:
                         m_tb_pressed = False
                         # if they didn't choice a valid deployment, nothing will happen
@@ -72,6 +81,7 @@ while running:
                     # god troop choices -- make deployment possible and create the fighters
                     if g_tb_1.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_creation(1)
+                        gamePlayFunctions.send_action(('god_creation', 1))
                     elif g_tb_2.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_creation(2)
                     elif g_tb_3.collidepoint(event.pos):
@@ -86,10 +96,13 @@ while running:
                     # mortal deployment lane choices -- spawn the fighter created above in correct lane
                     elif g_deploy1.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_deploy(1)
+                        gamePlayFunctions.send_action(('god_deploy', 1))
                     elif g_deploy2.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_deploy(2)
+                        gamePlayFunctions.send_action(('god_deploy', 2))
                     elif g_deploy3.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_deploy(3)
+                        gamePlayFunctions.send_action(('god_deploy', 3))
                     else:
                         g_tb_pressed = False
                         # if they didn't choose a valid deployment, nothing will happen

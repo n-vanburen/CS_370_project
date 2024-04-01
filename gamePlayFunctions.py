@@ -180,7 +180,7 @@ def mortal_troop_creation(troop_type):
     # make sure they have enough coins to purchase the troop
     if StateMachine.mortals_coins >= new_mortal.cost:
         mortal_creation_list.append(new_mortal)
-        send_action(('mortal_creation', troop_type))
+        # send_action(('mortal_creation', troop_type))
         # if there is a successful creation, allow for deployment
         m_tb_pressed = True
     else:
@@ -209,7 +209,7 @@ def god_troop_creation(troop_type):
 
     if StateMachine.gods_coins >= new_god.cost:
         god_creation_list.append(new_god)
-        send_action(('god_creation', troop_type))
+        # send_action(('god_creation', troop_type))
         # if there is a successful creation, allow for deployment
         g_tb_pressed = True
     else:
@@ -242,12 +242,12 @@ def mortal_troop_deploy(lane):
             current_mortal.rect.y = StateMachine.lane1_top + current_mortal.height/2
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
-                send_action(('mortal_deploy', lane))
+                # send_action(('mortal_deploy', lane))
             else:
                 if not archer_in_lane[0]:
                     archer_in_lane[0] = True
                     buy_mortal(current_mortal)
-                    send_action(('mortal_deploy', lane))
+                    # send_action(('mortal_deploy', lane))
                     add_attack_delay(current_mortal)
                 else:
                     m_tb_pressed = False
@@ -255,12 +255,12 @@ def mortal_troop_deploy(lane):
             current_mortal.rect.y = StateMachine.lane2_top + current_mortal.height/2
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
-                send_action(('mortal_deploy', lane))
+                # send_action(('mortal_deploy', lane))
             else:
                 if not archer_in_lane[1]:
                     archer_in_lane[1] = True
                     buy_mortal(current_mortal)
-                    send_action(('mortal_deploy', lane))
+                    # send_action(('mortal_deploy', lane))
                     add_attack_delay(current_mortal)
                 else:
                     m_tb_pressed = False
@@ -268,12 +268,12 @@ def mortal_troop_deploy(lane):
             current_mortal.rect.y = StateMachine.lane3_top + current_mortal.height/2
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
-                send_action(('mortal_deploy', lane))
+                # send_action(('mortal_deploy', lane))
             else:
                 if not archer_in_lane[2]:
                     archer_in_lane[2] = True
                     buy_mortal(current_mortal)
-                    send_action(('mortal_deploy', lane))
+                    # send_action(('mortal_deploy', lane))
                     add_attack_delay(current_mortal)
                 else:
                     m_tb_pressed = False
@@ -297,12 +297,12 @@ def god_troop_deploy(lane):
             current_god.rect.y = StateMachine.lane1_top + current_god.height/2
             if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
-                send_action(('god_deploy', lane))
+                # send_action(('god_deploy', lane))
             else:
                 if not sorceress_in_lane[0]:
                     sorceress_in_lane[0] = True
                     buy_god(current_god)
-                    send_action(('god_deploy', lane))
+                    # send_action(('god_deploy', lane))
                     add_attack_delay(current_god)
                 else:
                     g_tb_pressed = False
@@ -310,12 +310,12 @@ def god_troop_deploy(lane):
             current_god.rect.y = StateMachine.lane2_top + current_god.height/2
             if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
-                send_action(('god_deploy', lane))
+                # send_action(('god_deploy', lane))
             else:
                 if not sorceress_in_lane[1]:
                     sorceress_in_lane[1] = True
                     buy_god(current_god)
-                    send_action(('god_deploy', lane))
+                    # send_action(('god_deploy', lane))
                     add_attack_delay(current_god)
                 else:
                     g_tb_pressed = False
@@ -323,12 +323,12 @@ def god_troop_deploy(lane):
             current_god.rect.y = StateMachine.lane3_top + current_god.height/2
             if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
-                send_action(('god_deploy', lane))
+                # send_action(('god_deploy', lane))
             else:
                 if not sorceress_in_lane[2]:
                     sorceress_in_lane[2] = True
                     buy_god(current_god)
-                    send_action(('god_deploy', lane))
+                    # send_action(('god_deploy', lane))
                     add_attack_delay(current_god)
                 else:
                     g_tb_pressed = False

@@ -371,6 +371,9 @@ quit_b_text_dest = (((quit_b.left+quit_b.w/2)-quit_b_text_surface.get_width()/2)
 
 
 def draw_start_menu():
+    global mortal_rb_text_surface
+    global god_rb_text_surface
+
     load_background()
 
     # main box
@@ -383,13 +386,17 @@ def draw_start_menu():
     # role choice buttons
     if gamePlayFunctions.player_role == "m" or gamePlayFunctions.player_role == "d":
         pygame.draw.rect(screen, THIRD_GREEN, mortal_rb)
+        mortal_rb_text_surface = s_button_font.render("Mortal", True, BLACK)
     else:
         pygame.draw.rect(screen, BLACK, mortal_rb)
+        mortal_rb_text_surface = s_button_font.render("Mortal", True, THIRD_GREEN)
 
     if gamePlayFunctions.player_role == "g" or gamePlayFunctions.player_role == "d":
         pygame.draw.rect(screen, THIRD_GREEN, god_rb)
+        god_rb_text_surface = s_button_font.render("God", True, BLACK)
     else:
         pygame.draw.rect(screen, BLACK, god_rb)
+        god_rb_text_surface = s_button_font.render("God", True, THIRD_GREEN)
 
     pygame.draw.rect(screen, BLACK, mortal_rb, 2)
     screen.blit(mortal_rb_text_surface, mortal_rb_text_dest)
