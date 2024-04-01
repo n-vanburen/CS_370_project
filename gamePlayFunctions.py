@@ -91,12 +91,22 @@ def connect_to_server(server_host):
     receive_thread.start()
 
 
-def crash(fighter1, fighter2):
+def crash(mortal, god):
+    # if they've reached the tower already, but a troop is spawned to push them back
+    if mortal.crash and mortal.hit_right_barrier:
+        mortal.rect.x -= god.width
+        mortal.hit_right_barrier = False
+    if god.crash and god.hit_left_barrier:
+        god.rect.x += mortal.width
+        god.hit_left_barrier = False
+
     # if the fighters are in the same lane
-    if pygame.sprite.collide_rect(fighter1, fighter2):
-        fight(fighter1, fighter2)
-        fighter1.crash = True
-        fighter2.crash = True
+    if pygame.sprite.collide_rect(mortal, god):
+        fight(mortal, god)
+        mortal.crash = True
+        god.crash = True
+
+
 
 
 def fight(fighter1, fighter2):

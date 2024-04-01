@@ -7,6 +7,7 @@ import sys
 import os
 import random
 
+# random.seed()
 
 # get the ip of the localhost
 ip = os.popen('ipconfig').read()
@@ -40,33 +41,33 @@ while running:
                 if gamePlayFunctions.player_role == "m":
                     # mortal troop choices -- make deployment possible and create the fighters
                     if m_tb_1.collidepoint(event.pos):
-                        gamePlayFunctions.mortal_troop_creation(1)
+                        # gamePlayFunctions.mortal_troop_creation(1)
                         send_action(('mortal_creation', 1))
                     elif m_tb_2.collidepoint(event.pos):
-                        gamePlayFunctions.mortal_troop_creation(2)
+                        # gamePlayFunctions.mortal_troop_creation(2)
                         send_action(('mortal_creation', 2))
                     elif m_tb_3.collidepoint(event.pos):
-                        gamePlayFunctions.mortal_troop_creation(3)
+                        # gamePlayFunctions.mortal_troop_creation(3)
                         send_action(('mortal_creation', 3))
                     elif m_tb_4.collidepoint(event.pos):
-                        gamePlayFunctions.mortal_troop_creation(4)
+                        # gamePlayFunctions.mortal_troop_creation(4)
                         send_action(('mortal_creation', 4))
                     elif m_tb_5.collidepoint(event.pos):
-                        gamePlayFunctions.mortal_troop_creation(5)
+                        # gamePlayFunctions.mortal_troop_creation(5)
                         send_action(('mortal_creation', 5))
                     elif m_tb_6.collidepoint(event.pos):
-                        gamePlayFunctions.mortal_troop_creation(6)
+                        # gamePlayFunctions.mortal_troop_creation(6)
                         send_action(('mortal_creation', 6))
 
                     # mortal deployment lane choices -- spawn the fighter created above in correct lane
                     elif m_deploy1.collidepoint(event.pos):
-                        gamePlayFunctions.mortal_troop_deploy(1)
+                        # gamePlayFunctions.mortal_troop_deploy(1)
                         send_action(('mortal_deploy', 1))
                     elif m_deploy2.collidepoint(event.pos):
-                        gamePlayFunctions.mortal_troop_deploy(2)
+                        # gamePlayFunctions.mortal_troop_deploy(2)
                         send_action(('mortal_deploy', 2))
                     elif m_deploy3.collidepoint(event.pos):
-                        gamePlayFunctions.mortal_troop_deploy(3)
+                        # gamePlayFunctions.mortal_troop_deploy(3)
                         send_action(('mortal_deploy', 3))
                     else:
                         m_tb_pressed = False
@@ -83,33 +84,33 @@ while running:
                 else:
                     # god troop choices -- make deployment possible and create the fighters
                     if g_tb_1.collidepoint(event.pos):
-                        gamePlayFunctions.god_troop_creation(1)
+                        # gamePlayFunctions.god_troop_creation(1)
                         send_action(('god_creation', 1))
                     elif g_tb_2.collidepoint(event.pos):
-                        gamePlayFunctions.god_troop_creation(2)
+                        # gamePlayFunctions.god_troop_creation(2)
                         send_action(('god_creation', 2))
                     elif g_tb_3.collidepoint(event.pos):
-                        gamePlayFunctions.god_troop_creation(3)
+                        # gamePlayFunctions.god_troop_creation(3)
                         send_action(('god_creation', 3))
                     elif g_tb_4.collidepoint(event.pos):
-                        gamePlayFunctions.god_troop_creation(4)
+                        # gamePlayFunctions.god_troop_creation(4)
                         send_action(('god_creation', 4))
                     elif g_tb_5.collidepoint(event.pos):
-                        gamePlayFunctions.god_troop_creation(5)
+                        # gamePlayFunctions.god_troop_creation(5)
                         send_action(('god_creation', 5))
                     elif g_tb_6.collidepoint(event.pos):
-                        gamePlayFunctions.god_troop_creation(6)
+                        # gamePlayFunctions.god_troop_creation(6)
                         send_action(('god_creation', 6))
 
                     # mortal deployment lane choices -- spawn the fighter created above in correct lane
                     elif g_deploy1.collidepoint(event.pos):
-                        gamePlayFunctions.god_troop_deploy(1)
+                        # gamePlayFunctions.god_troop_deploy(1)
                         send_action(('god_deploy', 1))
                     elif g_deploy2.collidepoint(event.pos):
-                        gamePlayFunctions.god_troop_deploy(2)
+                        # gamePlayFunctions.god_troop_deploy(2)
                         send_action(('god_deploy', 2))
                     elif g_deploy3.collidepoint(event.pos):
-                        gamePlayFunctions.god_troop_deploy(3)
+                        # gamePlayFunctions.god_troop_deploy(3)
                         send_action(('god_deploy', 3))
                     else:
                         g_tb_pressed = False
@@ -142,12 +143,8 @@ while running:
             if mortal.moving:
                 mortal.move_right(mortal.speed)
 
-            # if they've reached the tower already, but a troop is spawned to push them back
-            if mortal.crash and mortal.hit_right_barrier:
-                mortal.rect.x -= mortal.width
-                mortal.hit_right_barrier = False
-            # otherwise, they can attack the tower
-            elif mortal.hit_right_barrier:
+            # attack the tower
+            if mortal.hit_right_barrier:
                 gamePlayFunctions.tower_damage("r", mortal)
 
             # reset crash and moving in case of defeat for next run
@@ -169,10 +166,7 @@ while running:
             if god.moving:
                 god.move_left(god.speed)
 
-            if god.crash and god.hit_left_barrier:
-                god.rect.x -= god.width
-                god.hit_left_barrier = False
-            elif god.hit_left_barrier:
+            if god.hit_left_barrier:
                 gamePlayFunctions.tower_damage("l", god)
 
             god.crash = False
@@ -221,12 +215,12 @@ while running:
 
             if event.type == pygame.MOUSEBUTTONDOWN:
 
-                if mortal_rb.collidepoint(event.pos):
+                if mortal_rb.collidepoint(event.pos) and gamePlayFunctions.player_role == "d":
                     # change the role and send to the server so the other can be set
                     gamePlayFunctions.player_role = "m"
                     send_action(('mortal_chosen', "m"))
                     # (NEEDED): send to server that mortal was chosen
-                if god_rb.collidepoint(event.pos):
+                if god_rb.collidepoint(event.pos) and gamePlayFunctions.player_role == "d":
                     gamePlayFunctions.player_role = "g"
                     send_action(('god_chosen', "g"))
                     # (NEEDED): send to server that god was chosen
