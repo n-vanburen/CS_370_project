@@ -76,6 +76,9 @@ while running:
                     # Coin Upgrade Test
                     if m_coin_upgrade_b.collidepoint(event.pos):
                         gamePlayFunctions.mortal_coin_upgrade()
+                    if m_ability2_b.collidepoint(event.pos):
+                        mortal_heal_ability()
+                        send_action(('heal_mortal', "idk"))
 
                 # gods' buttons
                 else:
@@ -116,6 +119,9 @@ while running:
                     # Coin Upgrade Test
                     if g_coin_upgrade_b.collidepoint(event.pos):
                         gamePlayFunctions.god_coin_upgrade()
+                    if g_ability2_b.collidepoint(event.pos):
+                        god_heal_ability()
+                        send_action(('heal_god', "idk"))
 
         # long-ranged attacks
         # check to see if anyone got hit by an arrow/spell

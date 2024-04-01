@@ -48,6 +48,11 @@ def handle(client):
                 broadcast(('choose_god', "g"))
             elif action == 'god_chosen':
                 broadcast(('choose_mortal', "m"))
+            elif action == 'mortal_heal':
+                broadcast(('heal_mortal', "idk"))
+            elif action == 'god_heal':
+                broadcast(('heal_god', "idk"))
+
 
         except:
             index = clients.index(client)
