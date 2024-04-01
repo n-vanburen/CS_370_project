@@ -41,24 +41,33 @@ while running:
                     # mortal troop choices -- make deployment possible and create the fighters
                     if m_tb_1.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_creation(1)
+                        send_action(('mortal_creation', 1))
                     elif m_tb_2.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_creation(2)
+                        send_action(('mortal_creation', 2))
                     elif m_tb_3.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_creation(3)
+                        send_action(('mortal_creation', 3))
                     elif m_tb_4.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_creation(4)
+                        send_action(('mortal_creation', 4))
                     elif m_tb_5.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_creation(5)
+                        send_action(('mortal_creation', 5))
                     elif m_tb_6.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_creation(6)
+                        send_action(('mortal_creation', 6))
 
                     # mortal deployment lane choices -- spawn the fighter created above in correct lane
                     elif m_deploy1.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_deploy(1)
+                        send_action(('mortal_deploy', 1))
                     elif m_deploy2.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_deploy(2)
+                        send_action(('mortal_deploy', 2))
                     elif m_deploy3.collidepoint(event.pos):
                         gamePlayFunctions.mortal_troop_deploy(3)
+                        send_action(('mortal_deploy', 3))
                     else:
                         m_tb_pressed = False
                         # if they didn't choice a valid deployment, nothing will happen
@@ -66,6 +75,9 @@ while running:
                     # Coin Upgrade Test
                     if m_coin_upgrade_b.collidepoint(event.pos):
                         gamePlayFunctions.mortal_coin_upgrade()
+                    if m_ability2_b.collidepoint(event.pos):
+                        mortal_heal_ability()
+                        send_action(('heal_mortal', "idk"))
 
                 # gods' buttons
                 else:
@@ -75,14 +87,19 @@ while running:
                         send_action(('god_creation', 1))
                     elif g_tb_2.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_creation(2)
+                        send_action(('god_creation', 2))
                     elif g_tb_3.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_creation(3)
+                        send_action(('god_creation', 3))
                     elif g_tb_4.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_creation(4)
+                        send_action(('god_creation', 4))
                     elif g_tb_5.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_creation(5)
+                        send_action(('god_creation', 5))
                     elif g_tb_6.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_creation(6)
+                        send_action(('god_creation', 6))
 
                     # mortal deployment lane choices -- spawn the fighter created above in correct lane
                     elif g_deploy1.collidepoint(event.pos):
@@ -101,6 +118,9 @@ while running:
                     # Coin Upgrade Test
                     if g_coin_upgrade_b.collidepoint(event.pos):
                         gamePlayFunctions.god_coin_upgrade()
+                    if g_ability2_b.collidepoint(event.pos):
+                        god_heal_ability()
+                        send_action(('heal_god', "idk"))
 
         # long-ranged attacks
         # check to see if anyone got hit by an arrow/spell

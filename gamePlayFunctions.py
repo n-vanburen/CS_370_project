@@ -65,6 +65,10 @@ def handle_server_message():
                     lane = data
                     god_troop_deploy(lane)
                     print("hi4")
+            elif action == 'heal_mortal':
+                mortal_heal_ability()
+            elif action == 'heal_god':
+                god_heal_ability()
 
             if player_role == "d":
                 if action == 'choose_god' or action == 'choose_mortal':
@@ -411,3 +415,17 @@ def god_coin_upgrade():
         if StateMachine.gods_coins >= 500:
             StateMachine.gods_coins -= 500
             StateMachine.god_coin_level += 1
+
+
+def mortal_heal_ability():
+    if StateMachine.mortals_coins >= 300:
+        StateMachine.mortals_coins -= 300
+        for mortal in mortal_list:
+            mortal.health += (int)((mortal.max_health - mortal.health) * .5)
+
+
+def god_heal_ability():
+    if StateMachine.gods_coins >= 300:
+        StateMachine.gods_coins -= 300
+        for god in god_list:
+            god.health += (int)((god.max_health - god.health) * .5)
