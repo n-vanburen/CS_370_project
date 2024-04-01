@@ -7,9 +7,6 @@
     <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="networking">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClientWFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientWFunctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamePlayFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamePlayFunctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testClientWfunctions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testgamePlayFunctions.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +67,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="clickToDraw" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="clickToDraw" type="PythonConfigurationType" factoryName="Python" activateToolWindowBeforeRun="false" nameIsGenerated="true">
       <module name="CS_370_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -158,6 +155,12 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.clickToDraw" />
+      <item itemvalue="Python.sprite" />
+      <item itemvalue="Python.spriteHorizontalCollision" />
+      <item itemvalue="Python.tester" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.tester" />
