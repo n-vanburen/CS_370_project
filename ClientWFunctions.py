@@ -143,12 +143,8 @@ while running:
             if mortal.moving:
                 mortal.move_right(mortal.speed)
 
-            # if they've reached the tower already, but a troop is spawned to push them back
-            if mortal.crash and mortal.hit_right_barrier:
-                mortal.rect.x -= mortal.width
-                mortal.hit_right_barrier = False
-            # otherwise, they can attack the tower
-            elif mortal.hit_right_barrier:
+            # attack the tower
+            if mortal.hit_right_barrier:
                 gamePlayFunctions.tower_damage("r", mortal)
 
             # reset crash and moving in case of defeat for next run
@@ -170,10 +166,7 @@ while running:
             if god.moving:
                 god.move_left(god.speed)
 
-            if god.crash and god.hit_left_barrier:
-                god.rect.x -= god.width
-                god.hit_left_barrier = False
-            elif god.hit_left_barrier:
+            if god.hit_left_barrier:
                 gamePlayFunctions.tower_damage("l", god)
 
             god.crash = False
