@@ -50,8 +50,10 @@ def handle(client):
                 broadcast(('choose_mortal', "m"))
             elif action == 'mortal_heal':
                 broadcast(('heal_mortal', "idk"))
+                print("hi5")
             elif action == 'god_heal':
                 broadcast(('heal_god', "idk"))
+                print("hi6")
 
 
         except:
