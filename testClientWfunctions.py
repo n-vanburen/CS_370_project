@@ -1,11 +1,11 @@
-#import gamePlayFunctions
-#from gamePlayFunctions import *
+# import testgamePlayFunctions
+# from testgamePlayFunctions import *
 from soldierTypes import *
 import StateMachine
 from StateMachine import *
 import sys
-import os
 import random
+import os
 import soldierTypes
 import StateMachine
 import random
@@ -15,19 +15,18 @@ import threading
 import pickle
 
 
+# to stop players from accessing buttons that aren't theirs
 mortal_list = pygame.sprite.Group()
 god_list = pygame.sprite.Group()
 
 arrow_list = pygame.sprite.Group()
 spell_list = pygame.sprite.Group()
 
-
-
 m_tb_pressed = False
 g_tb_pressed = False
 mortal_creation_list = []
 god_creation_list = []
-player_role = "g"
+player_role = "m"
 
 archer_in_lane = [False, False, False]
 sorceress_in_lane = [False, False, False]
@@ -48,7 +47,7 @@ def handle_server_message():
         try:
             message = pickle.loads(client.recv(1024))
             action, data = message
-            if player_role == "g":
+            """if player_role == "g":
                 if action == 'create_mortal':
                     troop_type = data
                     mortal_troop_creation(troop_type)
@@ -57,9 +56,9 @@ def handle_server_message():
                 elif action == 'deploy_mortal':
                     lane = data
                     mortal_troop_deploy(lane)
-                    print("hi2")
+                    print("hi2")"""
 
-            """if player_role == "m":
+            if player_role == "m":
                 if action == 'create_god':
                     troop_type = data
                     god_troop_creation(troop_type)
@@ -68,7 +67,7 @@ def handle_server_message():
                 elif action == 'deploy_god':
                     lane = data
                     god_troop_deploy(lane)
-                    print("hi4")"""
+                    print("hi4")
 
             pygame.display.update()
 
@@ -410,9 +409,6 @@ def god_coin_upgrade():
         if StateMachine.gods_coins >= 500:
             StateMachine.gods_coins -= 500
             StateMachine.god_coin_level += 1
-
-
-# to stop players from accessing buttons that aren't theirs
 
 
 # get the ip of the localhost

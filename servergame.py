@@ -32,35 +32,24 @@ def handle(client):
             if action == 'mortal_creation':
                 broadcast(('create_mortal', data))
                 print("hi")
+
             elif action == 'mortal_deploy':
                 broadcast(('deploy_mortal', data))
                 print("hi2")
+
             elif action == 'god_creation':
                 broadcast(('create_god', data))
                 print("hi3")
+
             elif action == 'god_deploy':
                 broadcast(('deploy_god', data))
                 print("hi4")
-            break
 
         except:
             index = clients.index(client)
             clients.remove(client)
             client.close()
             break
-
-
-# def handle(client):
-    # while True:
-        # try:
-            # message = pickle.loads(client.recv(1024))
-            # broadcast(message)
-        # except:
-            # index = clients.index(client)
-            # clients.remove(client)
-            # client.close()
-            # break
-
 
 def receive():
     while True:

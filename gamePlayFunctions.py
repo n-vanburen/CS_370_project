@@ -16,6 +16,8 @@ god_list = pygame.sprite.Group()
 arrow_list = pygame.sprite.Group()
 spell_list = pygame.sprite.Group()
 
+
+
 m_tb_pressed = False
 g_tb_pressed = False
 mortal_creation_list = []
@@ -37,7 +39,8 @@ def send_action(action):
 
 
 def handle_server_message():
-    while True:
+    boolean_check = True
+    while boolean_check:
         try:
             message = pickle.loads(client.recv(1024))
             action, data = message
@@ -46,24 +49,29 @@ def handle_server_message():
                     troop_type = data
                     mortal_troop_creation(troop_type)
                     print("hi")
+                    boolean_check = False
 
                 elif action == 'deploy_mortal':
                     lane = data
                     mortal_troop_deploy(lane)
                     print("hi2")
+                    boolean_check = False
+
             if player_role == "m":
-                if action == 'create_mortal':
+                if action == 'create_god':
                     troop_type = data
                     god_troop_creation(troop_type)
                     print("hi3")
+                    boolean_check = False
 
-                elif action == 'deploy_mortal':
+                elif action == 'deploy_god':
                     lane = data
                     god_troop_deploy(lane)
                     print("hi4")
+                    boolean_check = False
 
             pygame.display.update()
-            break
+
         except:
             print("An error occurred!")
             break
@@ -170,7 +178,7 @@ def mortal_troop_creation(troop_type):
     # make sure they have enough coins to purchase the troop
     if StateMachine.mortals_coins >= new_mortal.cost:
         mortal_creation_list.append(new_mortal)
-        send_action(('mortal_creation', troop_type))
+        # send_action(('mortal_creation', troop_type))
         # if there is a successful creation, allow for deployment
         m_tb_pressed = True
     else:
@@ -232,12 +240,12 @@ def mortal_troop_deploy(lane):
             current_mortal.rect.y = StateMachine.lane1_top + current_mortal.height/2
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
-                send_action(('mortal_deploy', lane))
+                # send_action(('mortal_deploy', lane))
             else:
                 if not archer_in_lane[0]:
                     archer_in_lane[0] = True
                     buy_mortal(current_mortal)
-                    send_action(('mortal_deploy', lane))
+                    # send_action(('mortal_deploy', lane))
                     add_attack_delay(current_mortal)
                 else:
                     m_tb_pressed = False
@@ -245,12 +253,12 @@ def mortal_troop_deploy(lane):
             current_mortal.rect.y = StateMachine.lane2_top + current_mortal.height/2
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
-                send_action(('mortal_deploy', lane))
+                # send_action(('mortal_deploy', lane))
             else:
                 if not archer_in_lane[1]:
                     archer_in_lane[1] = True
                     buy_mortal(current_mortal)
-                    send_action(('mortal_deploy', lane))
+                    # send_action(('mortal_deploy', lane))
                     add_attack_delay(current_mortal)
                 else:
                     m_tb_pressed = False
@@ -258,12 +266,12 @@ def mortal_troop_deploy(lane):
             current_mortal.rect.y = StateMachine.lane3_top + current_mortal.height/2
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
-                send_action(('mortal_deploy', lane))
+                # send_action(('mortal_deploy', lane))
             else:
                 if not archer_in_lane[2]:
                     archer_in_lane[2] = True
                     buy_mortal(current_mortal)
-                    send_action(('mortal_deploy', lane))
+                    # send_action(('mortal_deploy', lane))
                     add_attack_delay(current_mortal)
                 else:
                     m_tb_pressed = False
