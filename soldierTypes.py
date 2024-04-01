@@ -24,7 +24,7 @@ class Fighter(pygame.sprite.Sprite):
     spawn_time = 0
 
     # constructor
-    def __init__(self, color, health, attack_strength, speed, cost, team, attack_speed, photo):
+    def __init__(self, color, health, attack_strength, speed, cost, team, attack_speed, photo, max_health):
         super().__init__()
         # inherits from pygame.sprite.Sprite class, so you need to call super().__init__()
 
@@ -36,12 +36,9 @@ class Fighter(pygame.sprite.Sprite):
         self.attack_speed = attack_speed
         self.color = color
         self.photo = photo
+        self.max_health = max_health
 
         self.image = pygame.Surface([self.width, self.height])
-        """if Sorceress or Cyclops:
-            self.image = pygame.transform.flip(pygame.image.load(self.photo).convert_alpha(),True, False)
-        else:
-            self.image = pygame.image.load(self.photo).convert_alpha()"""
         self.image = pygame.transform.scale(self.photo, (75, 75))
         self.rect = self.image.get_rect()
 
@@ -78,6 +75,7 @@ class Fighter(pygame.sprite.Sprite):
 
 class FootSoldier(Fighter):
     health = 20
+    max_health = 20
     attack_strength = 5
     speed = 1
     cost = 50
@@ -86,13 +84,15 @@ class FootSoldier(Fighter):
     attack_speed = 5000
     photo = pygame.image.load("heroknight_attack1_0.png").convert_alpha()
 
+
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed, self.photo)
+                         self.team, self.attack_speed, self.photo, self.max_health)
 
 
 class Minion(Fighter):
     health = 20
+    max_health = 20
     attack_strength = 5
     speed = 1
     cost = 50
@@ -103,11 +103,12 @@ class Minion(Fighter):
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed, self.photo)
+                         self.team, self.attack_speed, self.photo, self.max_health)
 
 
 class Eagle(Fighter):
     health = 20
+    max_health = 20
     attack_strength = 15
     speed = 1.4
     cost = 75
@@ -118,11 +119,12 @@ class Eagle(Fighter):
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed, self.photo)
+                         self.team, self.attack_speed, self.photo, self.max_health)
 
 
 class Harpy(Fighter):
     health = 20
+    max_health = 20
     attack_strength = 15
     speed = 1.4
     cost = 75
@@ -133,11 +135,12 @@ class Harpy(Fighter):
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed, self.photo)
+                         self.team, self.attack_speed, self.photo, self.max_health)
 
 
 class Archer(Fighter):
     health = 10
+    max_health = 10
     attack_strength = 0
     speed = 0
     cost = 100
@@ -148,11 +151,12 @@ class Archer(Fighter):
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed, self.photo)
+                         self.team, self.attack_speed, self.photo, self.max_health)
 
 
 class Sorceress(Fighter):
     health = 10
+    max_health = 10
     attack_strength = 10
     speed = 0
     cost = 100
@@ -163,11 +167,12 @@ class Sorceress(Fighter):
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed, self.photo)
+                         self.team, self.attack_speed, self.photo, self.max_health)
 
 
 class Cavalry(Fighter):
     health = 30
+    max_health = 30
     attack_strength = 15
     speed = 1.8
     cost = 125
@@ -178,11 +183,12 @@ class Cavalry(Fighter):
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed, self.photo)
+                         self.team, self.attack_speed, self.photo, self.max_health)
 
 
 class Hellhound(Fighter):
     health = 30
+    max_health = 30
     attack_strength = 15
     speed = 1.8
     cost = 125
@@ -193,11 +199,12 @@ class Hellhound(Fighter):
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed, self.photo)
+                         self.team, self.attack_speed, self.photo, self.max_health)
 
 
 class TrojanHorse(Fighter):
     health = 50
+    max_health = 50
     attack_strength = 20
     speed = 0.6
     cost = 200
@@ -208,11 +215,12 @@ class TrojanHorse(Fighter):
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed, self.photo)
+                         self.team, self.attack_speed, self.photo, self.max_health)
 
 
 class Cyclops(Fighter):
     health = 50
+    max_health = 50
     attack_strength = 20
     speed = 0.6
     cost = 200
@@ -223,11 +231,12 @@ class Cyclops(Fighter):
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed, self.photo)
+                         self.team, self.attack_speed, self.photo, self.max_health)
 
 
 class Achilles(Fighter):
     health = 40
+    max_health = 40
     attack_strength = 25
     speed = 1.4
     cost = 300
@@ -238,11 +247,12 @@ class Achilles(Fighter):
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed, self.photo)
+                         self.team, self.attack_speed, self.photo, self.max_health)
 
 
 class Medusa(Fighter):
     health = 40
+    max_health = 40
     attack_strength = 25
     speed = 1.4
     cost = 300
@@ -253,7 +263,7 @@ class Medusa(Fighter):
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
-                         self.team, self.attack_speed, self.photo)
+                         self.team, self.attack_speed, self.photo, self.max_health)
 
 
 class Arrow(pygame.sprite.Sprite):

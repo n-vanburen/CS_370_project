@@ -81,7 +81,7 @@ while running:
                     # god troop choices -- make deployment possible and create the fighters
                     if g_tb_1.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_creation(1)
-                        gamePlayFunctions.send_action(('god_creation', 1))
+                        send_action(('god_creation', 1))
                     elif g_tb_2.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_creation(2)
                     elif g_tb_3.collidepoint(event.pos):
@@ -96,13 +96,13 @@ while running:
                     # mortal deployment lane choices -- spawn the fighter created above in correct lane
                     elif g_deploy1.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_deploy(1)
-                        gamePlayFunctions.send_action(('god_deploy', 1))
+                        send_action(('god_deploy', 1))
                     elif g_deploy2.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_deploy(2)
-                        gamePlayFunctions.send_action(('god_deploy', 2))
+                        send_action(('god_deploy', 2))
                     elif g_deploy3.collidepoint(event.pos):
                         gamePlayFunctions.god_troop_deploy(3)
-                        gamePlayFunctions.send_action(('god_deploy', 3))
+                        send_action(('god_deploy', 3))
                     else:
                         g_tb_pressed = False
                         # if they didn't choose a valid deployment, nothing will happen

@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="move mortal/god role buttons and work on functionality for them">
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="networking">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClientWFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientWFunctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StateMachine.py" beforeDir="false" afterPath="$PROJECT_DIR$/StateMachine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamePlayFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamePlayFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testClientWfunctions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testgamePlayFunctions.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,63 +337,87 @@
       <option name="project" value="LOCAL" />
       <updated>1710960183429</updated>
     </task>
-    <task id="LOCAL-00019" summary="clean up/reformat state machine stuff into one file and make functions work in client files">
+    <task id="LOCAL-00019" summary="sprites added for each mortal and monster">
       <option name="closed" value="true" />
-      <created>1711140898047</created>
+      <created>1710967696762</created>
       <option name="number" value="00019" />
       <option name="presentableId" value="LOCAL-00019" />
       <option name="project" value="LOCAL" />
-      <updated>1711140898047</updated>
+      <updated>1710967696762</updated>
     </task>
-    <task id="LOCAL-00020" summary="Reformat for import issues">
+    <task id="LOCAL-00020" summary="sprites">
       <option name="closed" value="true" />
-      <created>1711556259675</created>
+      <created>1710967721158</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1711556259675</updated>
+      <updated>1710967721158</updated>
     </task>
-    <task id="LOCAL-00021" summary="moved client function">
+    <task id="LOCAL-00021" summary="sprites">
       <option name="closed" value="true" />
-      <created>1711557991411</created>
+      <created>1711375429257</created>
       <option name="number" value="00021" />
       <option name="presentableId" value="LOCAL-00021" />
       <option name="project" value="LOCAL" />
-      <updated>1711557991411</updated>
+      <updated>1711375429257</updated>
     </task>
-    <task id="LOCAL-00022" summary="fixes">
+    <task id="LOCAL-00022" summary="sprites">
       <option name="closed" value="true" />
-      <created>1711559979388</created>
+      <created>1711375471802</created>
       <option name="number" value="00022" />
       <option name="presentableId" value="LOCAL-00022" />
       <option name="project" value="LOCAL" />
-      <updated>1711559979388</updated>
+      <updated>1711375471802</updated>
     </task>
-    <task id="LOCAL-00023" summary="3/27">
+    <task id="LOCAL-00023" summary="sprites">
       <option name="closed" value="true" />
-      <created>1711561453065</created>
+      <created>1711556289951</created>
       <option name="number" value="00023" />
       <option name="presentableId" value="LOCAL-00023" />
       <option name="project" value="LOCAL" />
-      <updated>1711561453065</updated>
+      <updated>1711556289951</updated>
     </task>
-    <task id="LOCAL-00024" summary="3/28">
+    <task id="LOCAL-00024" summary="sprites">
       <option name="closed" value="true" />
-      <created>1711666287637</created>
+      <created>1711558052784</created>
       <option name="number" value="00024" />
       <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1711666287637</updated>
+      <updated>1711558052784</updated>
     </task>
-    <task id="LOCAL-00025" summary="move mortal/god role buttons and work on functionality for them">
+    <task id="LOCAL-00025" summary="networking">
       <option name="closed" value="true" />
-      <created>1711669501721</created>
+      <created>1711559977959</created>
       <option name="number" value="00025" />
       <option name="presentableId" value="LOCAL-00025" />
       <option name="project" value="LOCAL" />
-      <updated>1711669501721</updated>
+      <updated>1711559977959</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="networking">
+      <option name="closed" value="true" />
+      <created>1711580546053</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1711580546053</updated>
+    </task>
+    <task id="LOCAL-00027" summary="networking">
+      <option name="closed" value="true" />
+      <created>1711580576830</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1711580576830</updated>
+    </task>
+    <task id="LOCAL-00028" summary="networking">
+      <option name="closed" value="true" />
+      <created>1711986833978</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1711986833978</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,13 +445,9 @@
     <MESSAGE value="Rename" />
     <MESSAGE value="dynamic server ip" />
     <MESSAGE value="." />
-    <MESSAGE value="clean up/reformat state machine stuff into one file and make functions work in client files" />
-    <MESSAGE value="Reformat for import issues" />
-    <MESSAGE value="moved client function" />
-    <MESSAGE value="fixes" />
-    <MESSAGE value="3/27" />
-    <MESSAGE value="3/28" />
-    <MESSAGE value="move mortal/god role buttons and work on functionality for them" />
-    <option name="LAST_COMMIT_MESSAGE" value="move mortal/god role buttons and work on functionality for them" />
+    <MESSAGE value="sprites added for each mortal and monster" />
+    <MESSAGE value="sprites" />
+    <MESSAGE value="networking" />
+    <option name="LAST_COMMIT_MESSAGE" value="networking" />
   </component>
 </project>

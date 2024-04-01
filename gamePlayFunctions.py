@@ -39,30 +39,29 @@ def send_action(action):
 
 def handle_server_message():
     global player_role
-
     while True:
         try:
             message = pickle.loads(client.recv(1024))
             action, data = message
 
-            if player_role == "g":
-                if action == 'create_mortal':
+            # if player_role == "g":
+            if action == 'create_mortal':
                     troop_type = data
                     mortal_troop_creation(troop_type)
                     print("hi")
 
-                elif action == 'deploy_mortal':
+            elif action == 'deploy_mortal':
                     lane = data
                     mortal_troop_deploy(lane)
                     print("hi2")
 
-            if player_role == "m":
-                if action == 'create_god':
+            # if player_role == "m":
+            if action == 'create_god':
                     troop_type = data
                     god_troop_creation(troop_type)
                     print("hi3")
 
-                elif action == 'deploy_god':
+            elif action == 'deploy_god':
                     lane = data
                     god_troop_deploy(lane)
                     print("hi4")
@@ -73,7 +72,7 @@ def handle_server_message():
                     player_role = role
 
             pygame.display.update()
-            break
+
         except:
             print("An error occurred!")
             break
