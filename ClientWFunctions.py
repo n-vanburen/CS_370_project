@@ -25,6 +25,10 @@ while running:
     if gamePlayFunctions.which_screen == "g":
         screen.fill((0, 0, 0))
         draw_game_screen()
+        # ADD MUSIC
+        if not game_music:
+            game_music = True
+            music_unload_and_new("Music3.wav")
 
         # win/lose condition 1: time ran out
         if StateMachine.timed_out:
@@ -213,6 +217,10 @@ while running:
 
     elif gamePlayFunctions.which_screen == "s":
         StateMachine.draw_start_menu()
+        # ADD MUSIC
+        if not user_manual_stats_music:
+            user_manual_stats_music = True
+            music_unload_and_new("Music2.wav")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -242,6 +250,10 @@ while running:
 
     elif gamePlayFunctions.which_screen == "c":
         StateMachine.draw_connection_screen()
+        # ADD MUSIC
+        if not connection_music:
+            connection_music = True
+            music_unload_and_new("Music1.wav")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -274,6 +286,10 @@ while running:
 
     elif gamePlayFunctions.which_screen == "u":
         draw_stats_screen()
+        # ADD MUSIC
+        if not user_manual_stats_music:
+            user_manual_stats_music = True
+            music_unload_and_new("Music2.wav")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -285,6 +301,11 @@ while running:
 
     elif gamePlayFunctions.which_screen == "e":
         draw_end_screen()
+        # ADD MUSIC
+        game_music = False
+        connection_music = False
+        start_music = False
+        user_manual_stats_music = False
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
