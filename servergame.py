@@ -2,7 +2,8 @@ import socket
 import threading
 import pickle
 import os
-
+god_count = 0
+mortal_count = 0
 ip = os.popen('ipconfig').read()
 index = ip.find("IPv4", ip.find("IPv4")+1)
 # SERVER_HOST = ip[index+36:index+50]
@@ -23,6 +24,8 @@ def broadcast(message):
 
 # Inside receive function before starting the thread
 def handle(client):
+    global god_count
+    global mortal_count
     while True:
         try:
             message = pickle.loads(client.recv(1024))
@@ -33,25 +36,39 @@ def handle(client):
                 broadcast(('create_mortal', data))
                 print("hi")
 
-            elif action == 'mortal_deploy':
+            if action == 'mortal_deploy':
                 broadcast(('deploy_mortal', data))
                 print("hi2")
 
-            elif action == 'god_creation':
+            if action == 'god_creation':
                 broadcast(('create_god', data))
                 print("hi3")
 
-            elif action == 'god_deploy':
+            if action == 'god_deploy':
                 broadcast(('deploy_god', data))
                 print("hi4")
-            elif action == 'mortal_chosen':
+            if action == 'mortal_chosen':
                 broadcast(('choose_god', "g"))
-            elif action == 'god_chosen':
+
+            if action == 'god_chosen':
                 broadcast(('choose_mortal', "m"))
-            elif action == 'mortal_heal':
+
+            if action == 'mortal_heal':
                 broadcast(('heal_mortal', "idk"))
-            elif action == 'god_heal':
+                print("hi5")
+
+            if action == 'god_heal':
                 broadcast(('heal_god', "idk"))
+                print("hi6")
+
+            if action == 'press_start':
+                if data == 'g':
+                    god_count += 1
+                if data == 'm':
+                    mortal_count += 1
+                if mortal_count >= 1 and god_count >= 1:
+                    broadcast(('start_game', "epic"))
+
 
         except:
             index = clients.index(client)

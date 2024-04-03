@@ -50,7 +50,7 @@ def handle_server_message():
                 mortal_troop_creation(troop_type)
                 print("hi")
 
-            elif action == 'deploy_mortal':
+            if action == 'deploy_mortal':
                 lane = data
                 mortal_troop_deploy(lane)
                 print("hi2")
@@ -61,19 +61,23 @@ def handle_server_message():
                 god_troop_creation(troop_type)
                 print("hi3")
 
-            elif action == 'deploy_god':
+            if action == 'deploy_god':
                 lane = data
                 god_troop_deploy(lane)
                 print("hi4")
-            elif action == 'heal_mortal':
+            if action == 'heal_mortal':
                 mortal_heal_ability()
-            elif action == 'heal_god':
+            if action == 'heal_god':
                 god_heal_ability()
 
             if player_role == "d":
                 if action == 'choose_god' or action == 'choose_mortal':
                     role = data
                     player_role = role
+
+            if action == 'start_game':
+                start_game()
+
 
             pygame.display.update()
 
