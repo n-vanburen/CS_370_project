@@ -7,7 +7,7 @@ import sys
 import os
 import random
 
-# random.seed()
+random.seed(370)
 
 # get the ip of the localhost
 ip = os.popen('ipconfig').read()
