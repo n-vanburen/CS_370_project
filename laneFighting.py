@@ -161,7 +161,6 @@ def mortal_troop_deploy(lane):
         current_mortal = mortal_creation_list[-1]
         current_mortal.rect.x = left_barrier_coord
 
-        print(current_mortal)
         if isinstance(current_mortal, FootSoldier):
             deploy_footsoldier.play()
         if isinstance(current_mortal, Eagle):
