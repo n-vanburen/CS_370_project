@@ -523,7 +523,6 @@ def start_game():
     god_creation_list.clear()
     archer_in_lane = [False, False, False]
     sorceress_in_lane = [False, False, False]
-    player_role = "d"
     StateMachine.right_tower_health = 100
     StateMachine.left_tower_health = 100
     StateMachine.gods_coins = 50

@@ -306,6 +306,7 @@ while running:
         connection_music = False
         start_music = False
         user_manual_stats_music = False
+        gamePlayFunctions.player_role = "d"
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
