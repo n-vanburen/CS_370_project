@@ -435,6 +435,7 @@ def start_game():
     global which_screen, m_tb_pressed, g_tb_pressed, archer_in_lane, sorceress_in_lane
 
     which_screen = "g"
+
     # reset all variables, so it's a new game in case this is round 2
     mortal_list.empty()
     god_list.empty()
