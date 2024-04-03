@@ -10,8 +10,8 @@ def crash(fighter1, fighter2):
     # if the fighters are in the same lane
     if fighter1.rect.y == fighter2.rect.y:
         # if fighter1 collides with fighter2
-        if (fighter1.rect.x <= fighter2.rect.x <= fighter1.rect.x+fighter1.width
-                or fighter1.rect.x <= fighter2.rect.x+fighter2.width <= fighter1.rect.x+fighter1.width):
+        if (fighter1.rect.x <= fighter2.rect.x <= fighter1.rect.x + fighter1.width
+                or fighter1.rect.x <= fighter2.rect.x + fighter2.width <= fighter1.rect.x + fighter1.width):
             fight(fighter1, fighter2)
             fighter1.crash = True
             fighter2.crash = True
@@ -34,6 +34,8 @@ def fight(fighter1, fighter2):
     if can_attack(fighter1):
         print("1")
         fighter2.health -= fighter1.attack_strength
+        attack = pygame.mixer.Sound("attack.wav")
+        attack.play()
         print(str(fighter2.health))
         print(str(StateMachine.elapsed_time))
         add_attack_delay(fighter1)
@@ -41,6 +43,8 @@ def fight(fighter1, fighter2):
     if can_attack(fighter2):
         print("2")
         fighter1.health -= fighter2.attack_strength
+        attack = pygame.mixer.Sound("attack.wav")
+        attack.play()
         print(str(fighter1.health))
         print(str(StateMachine.elapsed_time))
         add_attack_delay(fighter2)
@@ -60,39 +64,39 @@ def defeat(fighter):
 
         # for the handling of a single archer per lane
         if isinstance(fighter, Archer):
-            if fighter.rect.y == lane1_top + fighter.height/2:
+            if fighter.rect.y == lane1_top + fighter.height / 2:
                 archer_in_lane[0] = False
-            elif fighter.rect.y == lane2_top + fighter.height/2:
+            elif fighter.rect.y == lane2_top + fighter.height / 2:
                 archer_in_lane[1] = False
-            elif fighter.rect.y == lane3_top + fighter.height/2:
+            elif fighter.rect.y == lane3_top + fighter.height / 2:
                 archer_in_lane[2] = False
     else:
         god_list.remove(fighter)
 
         if isinstance(fighter, Sorceress):
-            if fighter.rect.y == lane1_top + fighter.height/2:
+            if fighter.rect.y == lane1_top + fighter.height / 2:
                 sorceress_in_lane[0] = False
-            elif fighter.rect.y == lane2_top + fighter.height/2:
+            elif fighter.rect.y == lane2_top + fighter.height / 2:
                 sorceress_in_lane[1] = False
-            elif fighter.rect.y == lane3_top + fighter.height/2:
+            elif fighter.rect.y == lane3_top + fighter.height / 2:
                 sorceress_in_lane[2] = False
 
 
-def mortal_troop_creation(troop_type):
+def mortal_troop_creation(troop_type1):
     global m_tb_pressed
 
     # create mortal troops to prep for deployment
-    if troop_type == 1:
+    if troop_type1 == 1:
         new_mortal = FootSoldier()
-    elif troop_type == 2:
+    elif troop_type1 == 2:
         new_mortal = Eagle()
-    elif troop_type == 3:
+    elif troop_type1 == 3:
         new_mortal = Archer()
-    elif troop_type == 4:
+    elif troop_type1 == 4:
         new_mortal = Cavalry()
-    elif troop_type == 5:
+    elif troop_type1 == 5:
         new_mortal = TrojanHorse()
-    elif troop_type == 6:
+    elif troop_type1 == 6:
         new_mortal = Achilles()
     else:
         new_mortal = FootSoldier()
@@ -107,21 +111,21 @@ def mortal_troop_creation(troop_type):
         m_tb_pressed = False
 
 
-def god_troop_creation(troop_type):
+def god_troop_creation(troop_type2):
     global g_tb_pressed
 
     # create god troops to prep for deployment
-    if troop_type == 1:
+    if troop_type2 == 1:
         new_god = Minion()
-    elif troop_type == 2:
+    elif troop_type2 == 2:
         new_god = Harpy()
-    elif troop_type == 3:
+    elif troop_type2 == 3:
         new_god = Sorceress()
-    elif troop_type == 4:
+    elif troop_type2 == 4:
         new_god = Hellhound()
-    elif troop_type == 5:
+    elif troop_type2 == 5:
         new_god = Cyclops()
-    elif troop_type == 6:
+    elif troop_type2 == 6:
         new_god = Medusa()
     else:
         new_god = Minion()
@@ -157,8 +161,22 @@ def mortal_troop_deploy(lane):
         current_mortal = mortal_creation_list[-1]
         current_mortal.rect.x = left_barrier_coord
 
+        print(current_mortal)
+        if isinstance(current_mortal, FootSoldier):
+            deploy_footsoldier.play()
+        if isinstance(current_mortal, Eagle):
+            deploy_eagle.play()
+        if isinstance(current_mortal, Archer):
+            deploy_archer.play()
+        if isinstance(current_mortal, Cavalry):
+            deploy_cavalry.play()
+        if isinstance(current_mortal, TrojanHorse):
+            deploy_trojanhorse.play()
+        if isinstance(current_mortal, Achilles):
+            deploy_achilles.play()
+
         if lane == 1:
-            current_mortal.rect.y = lane1_top + current_mortal.height/2
+            current_mortal.rect.y = lane1_top + current_mortal.height / 2
             if not isinstance(current_mortal, Archer):
                 buy_mortal(current_mortal)
             else:
@@ -169,7 +187,7 @@ def mortal_troop_deploy(lane):
                 else:
                     m_tb_pressed = False
         elif lane == 2:
-            current_mortal.rect.y = lane2_top + current_mortal.height/2
+            current_mortal.rect.y = lane2_top + current_mortal.height / 2
             if not isinstance(current_mortal, Archer):
                 buy_mortal(current_mortal)
             else:
@@ -180,7 +198,7 @@ def mortal_troop_deploy(lane):
                 else:
                     m_tb_pressed = False
         elif lane == 3:
-            current_mortal.rect.y = lane3_top + current_mortal.height/2
+            current_mortal.rect.y = lane3_top + current_mortal.height / 2
             if not isinstance(current_mortal, Archer):
                 buy_mortal(current_mortal)
             else:
@@ -206,8 +224,21 @@ def god_troop_deploy(lane):
         current_god = god_creation_list[-1]
         current_god.rect.x = right_barrier_coord - current_god.width
 
+        if isinstance(current_god, Minion):
+            deploy_minion.play()
+        if isinstance(current_god, Harpy):
+            deploy_harpy.play()
+        if isinstance(current_god, Sorceress):
+            deploy_sorceress.play()
+        if isinstance(current_god, Hellhound):
+            deploy_hellhound.play()
+        if isinstance(current_god, Cyclops):
+            deploy_cyclops.play()
+        if isinstance(current_god, Medusa):
+            deploy_medusa.play()
+
         if lane == 1:
-            current_god.rect.y = lane1_top + current_god.height/2
+            current_god.rect.y = lane1_top + current_god.height / 2
             if not isinstance(current_god, Sorceress):
                 buy_god(current_god)
             else:
@@ -218,7 +249,7 @@ def god_troop_deploy(lane):
                 else:
                     g_tb_pressed = False
         elif lane == 2:
-            current_god.rect.y = lane2_top + current_god.height/2
+            current_god.rect.y = lane2_top + current_god.height / 2
             if not isinstance(current_god, Sorceress):
                 buy_god(current_god)
             else:
@@ -229,7 +260,7 @@ def god_troop_deploy(lane):
                 else:
                     g_tb_pressed = False
         elif lane == 3:
-            current_god.rect.y = lane3_top + current_god.height/2
+            current_god.rect.y = lane3_top + current_god.height / 2
             if not isinstance(current_god, Sorceress):
                 buy_god(current_god)
             else:
@@ -252,14 +283,11 @@ def mortal_heal_ability():
             mortal.health += (int)((mortal.max_health - mortal.health) * .5)
 
 
-
 def god_heal_ability():
     if StateMachine.gods_coins >= 300:
         StateMachine.gods_coins -= 300
         for god in god_list:
             god.health += (int)((god.max_health - god.health) * .5)
-
-
 
 
 def tower_damage(side, fighter):
@@ -276,6 +304,8 @@ def tower_damage(side, fighter):
 
         if side == "r":
             StateMachine.right_tower_health -= fighter.attack_strength
+            attack = pygame.mixer.Sound("attack.wav")
+            attack.play()
             if StateMachine.right_tower_health <= 0:
                 StateMachine.right_tower_health = 0
                 draw_game_screen()
@@ -283,6 +313,8 @@ def tower_damage(side, fighter):
                 StateMachine.winner = "Mortals Win!"
         else:
             StateMachine.left_tower_health -= fighter.attack_strength
+            attack = pygame.mixer.Sound("attack.wav")
+            attack.play()
             if StateMachine.left_tower_health <= 0:
                 StateMachine.left_tower_health = 0
                 draw_game_screen()
@@ -292,26 +324,32 @@ def tower_damage(side, fighter):
 
 def add_attack_delay(fighter):
     delay = random.randint(500, fighter.attack_speed)
-    fighter.attack_time_counter = StateMachine.elapsed_time-fighter.spawn_time + delay
+    fighter.attack_time_counter = StateMachine.elapsed_time - fighter.spawn_time + delay
 
 
 def can_attack(fighter):
     # checks that the attack delay has been respected
-    return StateMachine.elapsed_time-fighter.spawn_time >= fighter.attack_time_counter
+    return StateMachine.elapsed_time - fighter.spawn_time >= fighter.attack_time_counter
 
 
 def ranged_hit(fighter, projectile):
     # if they are in the same lane
-    if (fighter.rect.y <= projectile.rect.y <= fighter.rect.y+fighter.height
-            or fighter.rect.y <= projectile.rect.y+projectile.height <= fighter.rect.y+fighter.height):
+    if (fighter.rect.y <= projectile.rect.y <= fighter.rect.y + fighter.height
+            or fighter.rect.y <= projectile.rect.y + projectile.height <= fighter.rect.y + fighter.height):
         # if fighter collides with arrow/spell
-        if (fighter.rect.x <= projectile.rect.x <= fighter.rect.x+fighter.width
-                or fighter.rect.x <= projectile.rect.x+projectile.width <= fighter.rect.x+fighter.width):
+        if (fighter.rect.x <= projectile.rect.x <= fighter.rect.x + fighter.width
+                or fighter.rect.x <= projectile.rect.x + projectile.width <= fighter.rect.x + fighter.width):
             # only let a projectile deal damage once
             if not projectile.crash:
                 projectile.crash = True
 
                 fighter.health -= projectile.attack_strength
+                if projectile == arrow:
+                    attack = pygame.mixer.Sound("attack_archer.wav")
+                    attack.play()
+                if projectile == spell:
+                    attack = pygame.mixer.Sound("attack_sorceress.wav")
+                    attack.play()
                 if fighter.health <= 0:
                     defeat(fighter)
 
@@ -343,14 +381,22 @@ def god_coin_upgrade():
             StateMachine.god_coin_level += 1
 
 
+# ADD MUSIC
+def music_unload_and_new(music):
+    pygame.mixer.music.stop()
+    pygame.mixer.music.unload()
+    pygame.mixer.music.load(music)
+    pygame.mixer.music.play(-1)
+
+
 # which screen to display: s = start menu, c = connection, g = game board, e = end menu, u = user manual/stats
 which_screen = "c"
 
 # get the ip of the localhost
 ip = os.popen('ipconfig').read()
-index = ip.find("IPv4", ip.find("IPv4")+1)
+index = ip.find("IPv4", ip.find("IPv4") + 1)
 # localhost_ip = ip[index+36:index+50]
-localhost_ip = ip[index+36: ip.find(" ", index+36)-1]
+localhost_ip = ip[index + 36: ip.find(" ", index + 36) - 1]
 
 mortal_list = pygame.sprite.Group()
 god_list = pygame.sprite.Group()
@@ -366,6 +412,28 @@ god_creation_list = []
 archer_in_lane = [False, False, False]
 sorceress_in_lane = [False, False, False]
 
+# Music Booleans Initializing ADD MUSIC
+game_music = False
+connection_music = False
+start_music = False
+user_manual_stats_music = False
+
+#Music Booleans Initilizing Sound Effects
+deploy_footsoldier = pygame.mixer.Sound("deploy_footsoldier.wav")
+deploy_eagle = pygame.mixer.Sound("deploy_eagle.wav")
+deploy_archer = pygame.mixer.Sound("deploy_archer.wav")
+deploy_cavalry = pygame.mixer.Sound("deploy_cavalry.wav")
+deploy_trojanhorse = pygame.mixer.Sound("deploy_trojanhorse.wav")
+deploy_achilles = pygame.mixer.Sound("deploy_achilles.wav")
+
+deploy_minion = pygame.mixer.Sound("deploy_minion.wav")
+deploy_harpy = pygame.mixer.Sound("deploy_harpy.wav")
+deploy_sorceress = pygame.mixer.Sound("deploy_sorceress.wav")
+deploy_hellhound = pygame.mixer.Sound("deploy_hellhound.wav")
+deploy_cyclops = pygame.mixer.Sound("deploy_cyclops.wav")
+deploy_medusa = pygame.mixer.Sound("deploy_medusa.wav")
+
+
 # font = pygame.font.SysFont("Font.tff", 36)
 
 running = True
@@ -376,6 +444,10 @@ while running:
     if which_screen == "g":
         screen.fill((0, 0, 0))
         draw_game_screen()
+        # ADD MUSIC
+        if not game_music:
+            game_music = True
+            music_unload_and_new("Music3.wav")
 
         # win/lose condition 1: time ran out
         if StateMachine.timed_out:
@@ -448,7 +520,6 @@ while running:
                 if g_ability2_b.collidepoint(event.pos):
                     god_heal_ability()
 
-
         # long-ranged attacks
         # check to see if anyone got hit by an arrow/spell
         for mortal in mortal_list:
@@ -487,10 +558,10 @@ while running:
                     new_arrow = Arrow()
                     arrow_list.add(new_arrow)
                     new_arrow.rect.x = mortal.rect.x + mortal.width
-                    new_arrow.rect.y = mortal.rect.y + mortal.height/2 - new_arrow.height/2
+                    new_arrow.rect.y = mortal.rect.y + mortal.height / 2 - new_arrow.height / 2
 
-                    random_attack_delay = random.randint(mortal.attack_speed/2, mortal.attack_speed)
-                    mortal.attack_time_counter = StateMachine.elapsed_time-mortal.spawn_time + random_attack_delay
+                    random_attack_delay = random.randint(mortal.attack_speed / 2, mortal.attack_speed)
+                    mortal.attack_time_counter = StateMachine.elapsed_time - mortal.spawn_time + random_attack_delay
 
         for god in god_list:
             if god.moving:
@@ -510,10 +581,10 @@ while running:
                     new_spell = Spell()
                     spell_list.add(new_spell)
                     new_spell.rect.x = god.rect.x - new_spell.width
-                    new_spell.rect.y = god.rect.y + god.height/2 - new_spell.height/2
+                    new_spell.rect.y = god.rect.y + god.height / 2 - new_spell.height / 2
 
-                    random_attack_delay = random.randint(god.attack_speed/2, god.attack_speed)
-                    god.attack_time_counter = StateMachine.elapsed_time-god.spawn_time + random_attack_delay
+                    random_attack_delay = random.randint(god.attack_speed / 2, god.attack_speed)
+                    god.attack_time_counter = StateMachine.elapsed_time - god.spawn_time + random_attack_delay
 
         # move the arrows/spells and de-spawn them if they're out of range
         for arrow in arrow_list:
@@ -541,6 +612,10 @@ while running:
 
     elif which_screen == "s":
         StateMachine.draw_start_menu()
+        # ADD MUSIC
+        if not user_manual_stats_music:
+            user_manual_stats_music = True
+            music_unload_and_new("Music2.wav")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -581,6 +656,10 @@ while running:
 
     elif which_screen == "c":
         StateMachine.draw_connection_screen()
+        # ADD MUSIC
+        if not connection_music:
+            connection_music = True
+            music_unload_and_new("Music1.wav")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -617,6 +696,10 @@ while running:
 
     elif which_screen == "u":
         draw_stats_screen()
+        # ADD MUSIC
+        if not user_manual_stats_music:
+            user_manual_stats_music = True
+            music_unload_and_new("Music2.wav")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -628,6 +711,11 @@ while running:
 
     elif which_screen == "e":
         draw_end_screen()
+        # ADD MUSIC
+        game_music = False
+        connection_music = False
+        start_music = False
+        user_manual_stats_music = False
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -642,7 +730,6 @@ while running:
                     running = False
 
     pygame.display.update()
-
 
 pygame.display.flip()
 
