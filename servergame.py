@@ -47,6 +47,7 @@ def handle(client):
             if action == 'god_deploy':
                 broadcast(('deploy_god', data))
                 print("hi4")
+
             if action == 'mortal_chosen':
                 broadcast(('choose_god', "g"))
 

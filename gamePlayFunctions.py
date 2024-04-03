@@ -9,7 +9,7 @@ import socket
 import threading
 import pickle
 
-
+random.seed(370)
 mortal_list = pygame.sprite.Group()
 god_list = pygame.sprite.Group()
 
@@ -67,6 +67,7 @@ def handle_server_message():
                 print("hi4")
             if action == 'heal_mortal':
                 mortal_heal_ability()
+
             if action == 'heal_god':
                 god_heal_ability()
 
@@ -118,14 +119,14 @@ def fight(fighter1, fighter2):
 
     # deal damage while having collided (attack delay applicable)
     if can_attack(fighter1):
-        print("1")
+        # print("1")
         fighter2.health -= fighter1.attack_strength
         print(str(fighter2.health))
         print(str(StateMachine.elapsed_time))
         add_attack_delay(fighter1)
 
     if can_attack(fighter2):
-        print("2")
+        # print("2")
         fighter1.health -= fighter2.attack_strength
         print(str(fighter1.health))
         print(str(StateMachine.elapsed_time))
