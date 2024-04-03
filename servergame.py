@@ -2,7 +2,8 @@ import socket
 import threading
 import pickle
 import os
-
+god_count = 0
+mortal_count = 0
 ip = os.popen('ipconfig').read()
 index = ip.find("IPv4", ip.find("IPv4")+1)
 # SERVER_HOST = ip[index+36:index+50]
@@ -23,6 +24,8 @@ def broadcast(message):
 
 # Inside receive function before starting the thread
 def handle(client):
+    global god_count
+    global mortal_count
     while True:
         try:
             message = pickle.loads(client.recv(1024))
@@ -46,14 +49,26 @@ def handle(client):
                 print("hi4")
             elif action == 'mortal_chosen':
                 broadcast(('choose_god', "g"))
+
             elif action == 'god_chosen':
                 broadcast(('choose_mortal', "m"))
+
             elif action == 'mortal_heal':
                 broadcast(('heal_mortal', "idk"))
                 print("hi5")
+
             elif action == 'god_heal':
                 broadcast(('heal_god', "idk"))
                 print("hi6")
+
+            elif action == 'press_start':
+                if data == 'g':
+                    god_count += 1
+                if data == 'm':
+                    mortal_count += 1
+                if mortal_count >= 1 and god_count >= 1:
+                    broadcast(('start_game', "epic"))
+
 
 
         except:

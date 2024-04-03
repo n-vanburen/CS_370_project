@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="networking fixed!" />
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment=".">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -435,7 +437,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711992018979</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary=".">
+      <option name="closed" value="true" />
+      <created>1711992961457</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1711992961457</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,11 +472,11 @@
     <MESSAGE value="Fixed timer to be at 5 mins" />
     <MESSAGE value="Rename" />
     <MESSAGE value="dynamic server ip" />
-    <MESSAGE value="." />
     <MESSAGE value="sprites added for each mortal and monster" />
     <MESSAGE value="sprites" />
     <MESSAGE value="networking" />
     <MESSAGE value="networking fixed!" />
-    <option name="LAST_COMMIT_MESSAGE" value="networking fixed!" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>
