@@ -70,12 +70,12 @@ def handle(client):
                     broadcast(('start_game', "epic"))
 
 
-
         except:
             index = clients.index(client)
             clients.remove(client)
             client.close()
             break
+
 
 def receive():
     while True:
