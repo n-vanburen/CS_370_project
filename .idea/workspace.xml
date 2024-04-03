@@ -4,8 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment=".">
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment=".&#10;&#10;This reverts commit dfface18">
+      <change afterPath="$PROJECT_DIR$/achilles.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cavalry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hellhound.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medusa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spell.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/B_witch_idle.png" beforeDir="false" afterPath="$PROJECT_DIR$/sorceress.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientWFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientWFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cyclops.png" beforeDir="false" afterPath="$PROJECT_DIR$/cyclops.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroKnight_Attack1_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/footsoldier.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minotaur.png" beforeDir="false" afterPath="$PROJECT_DIR$/minion.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Preview.png" beforeDir="false" afterPath="$PROJECT_DIR$/archer.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Static.png" beforeDir="false" afterPath="$PROJECT_DIR$/arrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/achilles.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cavalry.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamePlayFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamePlayFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hellhouns.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/horse.png" beforeDir="false" afterPath="$PROJECT_DIR$/trojanhorse.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laneFighting.py" beforeDir="false" afterPath="$PROJECT_DIR$/laneFighting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medusa.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/soldierTypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/soldierTypes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +41,13 @@
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -36,26 +62,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/donat/Downloads&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "8a152a20",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/donat/Downloads",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\donat\IdeaProjects\CS_370_project" />
@@ -66,7 +92,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="clickToDraw" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="clickToDraw" type="PythonConfigurationType" factoryName="Python" activateToolWindowBeforeRun="false" nameIsGenerated="true">
       <module name="CS_370_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -154,6 +180,12 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.clickToDraw" />
+      <item itemvalue="Python.sprite" />
+      <item itemvalue="Python.spriteHorizontalCollision" />
+      <item itemvalue="Python.tester" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.tester" />
@@ -188,6 +220,8 @@
       <workItem from="1709744047479" duration="2321000" />
       <workItem from="1710014938832" duration="3449000" />
       <workItem from="1710167468597" duration="8328000" />
+      <workItem from="1712081634348" duration="6407000" />
+      <workItem from="1712159715684" duration="257000" />
     </task>
     <task id="LOCAL-00001" summary="testing">
       <option name="closed" value="true" />
@@ -413,39 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711986833978</updated>
     </task>
-    <task id="LOCAL-00029" summary="networking">
+    <task id="LOCAL-00029" summary="4/1">
       <option name="closed" value="true" />
-      <created>1711989154632</created>
+      <created>1711991297078</created>
       <option name="number" value="00029" />
       <option name="presentableId" value="LOCAL-00029" />
       <option name="project" value="LOCAL" />
-      <updated>1711989154632</updated>
+      <updated>1711991297078</updated>
     </task>
-    <task id="LOCAL-00030" summary="networking fixed!">
-      <option name="closed" value="true" />
-      <created>1711991306791</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1711991306791</updated>
-    </task>
-    <task id="LOCAL-00031" summary="networking fixed!">
-      <option name="closed" value="true" />
-      <created>1711992018979</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1711992018979</updated>
-    </task>
-    <task id="LOCAL-00032" summary=".">
-      <option name="closed" value="true" />
-      <created>1711992961457</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1711992961457</updated>
-    </task>
-    <option name="localTasksCounter" value="33" />
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,11 +482,43 @@
     <MESSAGE value="Fixed timer to be at 5 mins" />
     <MESSAGE value="Rename" />
     <MESSAGE value="dynamic server ip" />
+    <MESSAGE value="." />
     <MESSAGE value="sprites added for each mortal and monster" />
     <MESSAGE value="sprites" />
     <MESSAGE value="networking" />
-    <MESSAGE value="networking fixed!" />
-    <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="4/1" />
+    <option name="LAST_COMMIT_MESSAGE" value="4/1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/laneFighting.py</url>
+          <line>225</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CS_370_project$twistedTester.coverage" NAME="twistedTester Coverage Results" MODIFIED="1707324996003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$tester.coverage" NAME="tester Coverage Results" MODIFIED="1707926394143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$scaleNRotateWMouse.coverage" NAME="scaleNRotateWMouse Coverage Results" MODIFIED="1706473392898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$soldierTypes.coverage" NAME="soldierTypes Coverage Results" MODIFIED="1712160954665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$ClientWFunctions.coverage" NAME="ClientWFunctions Coverage Results" MODIFIED="1712164419225" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$moveImgWMouse.coverage" NAME="moveImgWMouse Coverage Results" MODIFIED="1706472665257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$clienttest.coverage" NAME="clienttest Coverage Results" MODIFIED="1708367008833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$customEvent.coverage" NAME="customEvent Coverage Results" MODIFIED="1706473078358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$laneFightTesting.coverage" NAME="laneFightTesting Coverage Results" MODIFIED="1709142798576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$gameBoard.coverage" NAME="gameBoard Coverage Results" MODIFIED="1710019278286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$gamePlayFunctions.coverage" NAME="gamePlayFunctions Coverage Results" MODIFIED="1712163845838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$laneFighting.coverage" NAME="laneFighting Coverage Results" MODIFIED="1712163848794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$spriteHorizontalCollision.coverage" NAME="spriteHorizontalCollision Coverage Results" MODIFIED="1706724207949" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$StateMachine.coverage" NAME="StateMachine Coverage Results" MODIFIED="1711383142124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$clickToDraw.coverage" NAME="clickToDraw Coverage Results" MODIFIED="1712161115389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$sprite.coverage" NAME="sprite Coverage Results" MODIFIED="1706717434471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$InputTextBox.coverage" NAME="InputTextBox Coverage Results" MODIFIED="1706473203460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$Test.coverage" NAME="Test Coverage Results" MODIFIED="1708368277705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$servergame.coverage" NAME="servergame Coverage Results" MODIFIED="1712164154969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
