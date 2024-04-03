@@ -36,32 +36,32 @@ def handle(client):
                 broadcast(('create_mortal', data))
                 print("hi")
 
-            elif action == 'mortal_deploy':
+            if action == 'mortal_deploy':
                 broadcast(('deploy_mortal', data))
                 print("hi2")
 
-            elif action == 'god_creation':
+            if action == 'god_creation':
                 broadcast(('create_god', data))
                 print("hi3")
 
-            elif action == 'god_deploy':
+            if action == 'god_deploy':
                 broadcast(('deploy_god', data))
                 print("hi4")
-            elif action == 'mortal_chosen':
+            if action == 'mortal_chosen':
                 broadcast(('choose_god', "g"))
 
-            elif action == 'god_chosen':
+            if action == 'god_chosen':
                 broadcast(('choose_mortal', "m"))
 
-            elif action == 'mortal_heal':
+            if action == 'mortal_heal':
                 broadcast(('heal_mortal', "idk"))
                 print("hi5")
 
-            elif action == 'god_heal':
+            if action == 'god_heal':
                 broadcast(('heal_god', "idk"))
                 print("hi6")
 
-            elif action == 'press_start':
+            if action == 'press_start':
                 if data == 'g':
                     god_count += 1
                 if data == 'm':
