@@ -439,7 +439,7 @@ def god_heal_ability():
 
 
 def start_game():
-    global which_screen, m_tb_pressed, g_tb_pressed, archer_in_lane, sorceress_in_lane
+    global which_screen, m_tb_pressed, g_tb_pressed, archer_in_lane, sorceress_in_lane, player_role
 
     which_screen = "g"
 
@@ -454,6 +454,7 @@ def start_game():
     god_creation_list.clear()
     archer_in_lane = [False, False, False]
     sorceress_in_lane = [False, False, False]
+    player_role = "d"
     StateMachine.right_tower_health = 100
     StateMachine.left_tower_health = 100
     StateMachine.gods_coins = 50
