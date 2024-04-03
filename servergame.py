@@ -53,12 +53,12 @@ def handle(client):
             elif action == 'god_heal':
                 broadcast(('heal_god', "idk"))
 
-
         except:
             index = clients.index(client)
             clients.remove(client)
             client.close()
             break
+
 
 def receive():
     while True:

@@ -12,8 +12,8 @@ font = pygame.font.Font(None, 20)
 
 
 class Fighter(pygame.sprite.Sprite):
-    height = 50
-    width = 50
+    height = 75
+    width = 75
     moving = True
     crash = False
     hit_right_barrier = False
@@ -39,8 +39,9 @@ class Fighter(pygame.sprite.Sprite):
         self.max_health = max_health
 
         self.image = pygame.Surface([self.width, self.height])
-        self.image = pygame.transform.scale(self.photo, (75, 75))
+        self.image = pygame.transform.scale(self.photo, (self.width, self.height))
         self.rect = self.image.get_rect()
+
 
         # pygame.draw.rect(self.image, color, pygame.Rect(0, 0, self.width, self.height))
         # self.rect = self.image.get_rect()

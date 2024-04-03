@@ -46,25 +46,25 @@ def handle_server_message():
 
             # if player_role == "g":
             if action == 'create_mortal':
-                    troop_type = data
-                    mortal_troop_creation(troop_type)
-                    print("hi")
+                troop_type = data
+                mortal_troop_creation(troop_type)
+                print("hi")
 
             elif action == 'deploy_mortal':
-                    lane = data
-                    mortal_troop_deploy(lane)
-                    print("hi2")
+                lane = data
+                mortal_troop_deploy(lane)
+                print("hi2")
 
             # if player_role == "m":
             if action == 'create_god':
-                    troop_type = data
-                    god_troop_creation(troop_type)
-                    print("hi3")
+                troop_type = data
+                god_troop_creation(troop_type)
+                print("hi3")
 
             elif action == 'deploy_god':
-                    lane = data
-                    god_troop_deploy(lane)
-                    print("hi4")
+                lane = data
+                god_troop_deploy(lane)
+                print("hi4")
             elif action == 'heal_mortal':
                 mortal_heal_ability()
             elif action == 'heal_god':
@@ -92,21 +92,11 @@ def connect_to_server(server_host):
 
 
 def crash(mortal, god):
-    # if they've reached the tower already, but a troop is spawned to push them back
-    if mortal.crash and mortal.hit_right_barrier:
-        mortal.rect.x -= god.width
-        mortal.hit_right_barrier = False
-    if god.crash and god.hit_left_barrier:
-        god.rect.x += mortal.width
-        god.hit_left_barrier = False
-
     # if the fighters are in the same lane
     if pygame.sprite.collide_rect(mortal, god):
         fight(mortal, god)
         mortal.crash = True
         god.crash = True
-
-
 
 
 def fight(fighter1, fighter2):
@@ -152,21 +142,21 @@ def defeat(fighter):
 
         # for the handling of a single archer per lane
         if isinstance(fighter, soldierTypes.Archer):
-            if fighter.rect.y == StateMachine.lane1_top + fighter.height/2:
+            if fighter.rect.y == StateMachine.lane1_top + StateMachine.top_lane.h - fighter.height:
                 archer_in_lane[0] = False
-            elif fighter.rect.y == StateMachine.lane2_top + fighter.height/2:
+            elif fighter.rect.y == StateMachine.lane2_top + StateMachine.middle_lane.h - fighter.height/2:
                 archer_in_lane[1] = False
-            elif fighter.rect.y == StateMachine.lane3_top + fighter.height/2:
+            elif fighter.rect.y == StateMachine.lane3_top + StateMachine.bottom_lane.h - fighter.height/2:
                 archer_in_lane[2] = False
     else:
         god_list.remove(fighter)
 
         if isinstance(fighter, soldierTypes.Sorceress):
-            if fighter.rect.y == StateMachine.lane1_top + fighter.height/2:
+            if fighter.rect.y == StateMachine.lane1_top + StateMachine.top_lane.h - fighter.height/2:
                 sorceress_in_lane[0] = False
-            elif fighter.rect.y == StateMachine.lane2_top + fighter.height/2:
+            elif fighter.rect.y == StateMachine.lane2_top + StateMachine.middle_lane.h - fighter.height/2:
                 sorceress_in_lane[1] = False
-            elif fighter.rect.y == StateMachine.lane3_top + fighter.height/2:
+            elif fighter.rect.y == StateMachine.lane3_top + StateMachine.bottom_lane.h - fighter.height/2:
                 sorceress_in_lane[2] = False
 
 
@@ -252,7 +242,7 @@ def mortal_troop_deploy(lane):
         current_mortal.rect.x = StateMachine.left_barrier_coord
 
         if lane == 1:
-            current_mortal.rect.y = StateMachine.lane1_top + current_mortal.height/2
+            current_mortal.rect.y = StateMachine.lane1_top + StateMachine.top_lane.h - current_mortal.height
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
                 # send_action(('mortal_deploy', lane))
@@ -265,7 +255,7 @@ def mortal_troop_deploy(lane):
                 else:
                     m_tb_pressed = False
         elif lane == 2:
-            current_mortal.rect.y = StateMachine.lane2_top + current_mortal.height/2
+            current_mortal.rect.y = StateMachine.lane2_top + StateMachine.middle_lane.h - current_mortal.height
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
                 # send_action(('mortal_deploy', lane))
@@ -278,7 +268,7 @@ def mortal_troop_deploy(lane):
                 else:
                     m_tb_pressed = False
         elif lane == 3:
-            current_mortal.rect.y = StateMachine.lane3_top + current_mortal.height/2
+            current_mortal.rect.y = StateMachine.lane3_top + StateMachine.bottom_lane.h - current_mortal.height
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
                 # send_action(('mortal_deploy', lane))
@@ -307,7 +297,7 @@ def god_troop_deploy(lane):
         current_god.rect.x = StateMachine.right_barrier_coord - current_god.width
 
         if lane == 1:
-            current_god.rect.y = StateMachine.lane1_top + current_god.height/2
+            current_god.rect.y = StateMachine.lane1_top + StateMachine.top_lane.h - current_god.height
             if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
                 # send_action(('god_deploy', lane))
@@ -320,7 +310,7 @@ def god_troop_deploy(lane):
                 else:
                     g_tb_pressed = False
         elif lane == 2:
-            current_god.rect.y = StateMachine.lane2_top + current_god.height/2
+            current_god.rect.y = StateMachine.lane2_top + StateMachine.middle_lane.h - current_god.height
             if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
                 # send_action(('god_deploy', lane))
@@ -333,7 +323,7 @@ def god_troop_deploy(lane):
                 else:
                     g_tb_pressed = False
         elif lane == 3:
-            current_god.rect.y = StateMachine.lane3_top + current_god.height/2
+            current_god.rect.y = StateMachine.lane3_top + StateMachine.bottom_lane.h - current_god.height
             if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
                 # send_action(('god_deploy', lane))
@@ -431,11 +421,37 @@ def mortal_heal_ability():
     if StateMachine.mortals_coins >= 300:
         StateMachine.mortals_coins -= 300
         for mortal in mortal_list:
-            mortal.health += (int)((mortal.max_health - mortal.health) * .5)
+            mortal.health += int((mortal.max_health - mortal.health) * .5)
 
 
 def god_heal_ability():
     if StateMachine.gods_coins >= 300:
         StateMachine.gods_coins -= 300
         for god in god_list:
-            god.health += (int)((god.max_health - god.health) * .5)
+            god.health += int((god.max_health - god.health) * .5)
+
+
+def start_game():
+    global which_screen, m_tb_pressed, g_tb_pressed, archer_in_lane, sorceress_in_lane
+
+    which_screen = "g"
+    # reset all variables, so it's a new game in case this is round 2
+    mortal_list.empty()
+    god_list.empty()
+    arrow_list.empty()
+    spell_list.empty()
+    m_tb_pressed = False
+    g_tb_pressed = False
+    mortal_creation_list.clear()
+    god_creation_list.clear()
+    archer_in_lane = [False, False, False]
+    sorceress_in_lane = [False, False, False]
+    StateMachine.right_tower_health = 100
+    StateMachine.left_tower_health = 100
+    StateMachine.gods_coins = 50
+    StateMachine.mortals_coins = 50
+    StateMachine.god_coin_level = 1
+    StateMachine.mortal_coin_level = 1
+    StateMachine.one_second_tracker = 1000
+    StateMachine.timed_out = False
+    StateMachine.start_time = pygame.time.get_ticks()

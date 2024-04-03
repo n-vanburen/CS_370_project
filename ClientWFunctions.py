@@ -123,28 +123,27 @@ while running:
                         god_heal_ability()
                         send_action(('heal_god', "idk"))
 
-        # long-ranged attacks
-        # check to see if anyone got hit by an arrow/spell
         for mortal in mortal_list:
+            # long-ranged attacks
+            # check to see if anyone got hit by an arrow/spell
             for spell in spell_list:
                 gamePlayFunctions.ranged_hit(mortal, spell)
-        for god in god_list:
-            for arrow in arrow_list:
-                gamePlayFunctions.ranged_hit(god, arrow)
 
-        # short range attacks
-        # see if any monster in the lane is colliding
-        for mortal in mortal_list:
+            # short range attacks
+            # see if any monster in the lane is colliding
             for god in god_list:
                 gamePlayFunctions.crash(mortal, god)
 
-        # move the players
-        for mortal in mortal_list:
+            # move the players
             if mortal.moving:
                 mortal.move_right(mortal.speed)
 
             # attack the tower
-            if mortal.hit_right_barrier:
+            # if they've reached the tower already, but a troop is spawned to push them back
+            if mortal.crash and mortal.hit_right_barrier:
+                mortal.rect.x -= mortal.width
+                mortal.hit_right_barrier = False
+            elif mortal.hit_right_barrier:
                 gamePlayFunctions.tower_damage("r", mortal)
 
             # reset crash and moving in case of defeat for next run
@@ -163,9 +162,15 @@ while running:
                     mortal.attack_time_counter = StateMachine.elapsed_time-mortal.spawn_time + random_attack_delay
 
         for god in god_list:
+            for arrow in arrow_list:
+                gamePlayFunctions.ranged_hit(god, arrow)
+
             if god.moving:
                 god.move_left(god.speed)
 
+            if god.crash and god.hit_left_barrier:
+                god.rect.x += god.width
+                god.hit_left_barrier = False
             if god.hit_left_barrier:
                 gamePlayFunctions.tower_damage("l", god)
 
@@ -227,29 +232,7 @@ while running:
 
                 # start the game
                 if start_b.collidepoint(event.pos):
-                    # (NEEDED): make sure the player has a role of g or m and that both players have pressed start
-                    # check that both players have clicked start before starting (NEEDED)
-                    gamePlayFunctions.which_screen = "g"
-                    # reset all variables, so it's a new game in case this is round 2
-                    gamePlayFunctions.mortal_list.empty()
-                    gamePlayFunctions.god_list.empty()
-                    gamePlayFunctions.arrow_list.empty()
-                    gamePlayFunctions.spell_list.empty()
-                    gamePlayFunctions.m_tb_pressed = False
-                    gamePlayFunctions.g_tb_pressed = False
-                    gamePlayFunctions.mortal_creation_list.clear()
-                    gamePlayFunctions.god_creation_list.clear()
-                    gamePlayFunctions.archer_in_lane = [False, False, False]
-                    gamePlayFunctions.sorceress_in_lane = [False, False, False]
-                    StateMachine.right_tower_health = 100
-                    StateMachine.left_tower_health = 100
-                    StateMachine.gods_coins = 50
-                    StateMachine.mortals_coins = 50
-                    StateMachine.god_coin_level = 1
-                    StateMachine.mortal_coin_level = 1
-                    StateMachine.one_second_tracker = 1000
-                    StateMachine.timed_out = False
-                    StateMachine.start_time = pygame.time.get_ticks()
+                    send_action(("press_start", gamePlayFunctions.player_role))
                 # display stats
                 if stats_b.collidepoint(event.pos):
                     gamePlayFunctions.which_screen = "u"
