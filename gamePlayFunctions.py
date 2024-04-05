@@ -9,7 +9,10 @@ import socket
 import threading
 import pickle
 
+
 random.seed(370)
+
+
 mortal_list = pygame.sprite.Group()
 god_list = pygame.sprite.Group()
 

@@ -127,7 +127,7 @@ while running:
                         send_action(('coin_up_god', 'holder'))
                     if g_ability2_b.collidepoint(event.pos):
                         god_heal_ability()
-                        send_action(('mortal_heal', "idk"))
+                        send_action(("god_heal", "holder"))
 
         for mortal in mortal_list:
             # long-ranged attacks
