@@ -249,7 +249,7 @@ while running:
                 if start_b.collidepoint(event.pos):
                     send_action(("press_start", gamePlayFunctions.player_role))
                 # display user manual/troop stats
-                if stats_b.collidepoint(event.pos):
+                if manual_b.collidepoint(event.pos):
                     gamePlayFunctions.which_screen = "u"
                 # quit game
                 if quit_b.collidepoint(event.pos):
@@ -289,7 +289,7 @@ while running:
                         StateMachine.ip_displayed += event.unicode
 
     elif gamePlayFunctions.which_screen == "u":
-        draw_stats_screen()
+        draw_manual_screen()
         if not gamePlayFunctions.user_manual_stats_music:
             gamePlayFunctions.user_manual_stats_music = True
             music_unload_and_new("Music2.wav")

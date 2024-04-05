@@ -351,18 +351,18 @@ god_rb_text_dest = (((god_rb.left+god_rb.w/2)-god_rb_text_surface.get_width()/2)
 
 start_b = pygame.Rect(((main_menu_rect.left+main_menu_rect.w/2-s_button_w/2),
                        (mortal_rb.top+s_button_h+main_menu_rect.h/10)), s_button_size)
-stats_b = pygame.Rect((start_b.left, start_b.top+s_button_h+main_menu_rect.h/10), s_button_size)
-quit_b = pygame.Rect((stats_b.left, stats_b.top+s_button_h+main_menu_rect.h/10), s_button_size)
+manual_b = pygame.Rect((start_b.left, start_b.top+s_button_h+main_menu_rect.h/10), s_button_size)
+quit_b = pygame.Rect((manual_b.left, manual_b.top+s_button_h+main_menu_rect.h/10), s_button_size)
 
 # button text
 start_b_text_surface = s_button_font.render("Start", True, BLACK)
-stats_b_text_surface = s_button_font.render("User Manual", True, BLACK)
+manual_b_text_surface = s_button_font.render("User Manual", True, BLACK)
 quit_b_text_surface = s_button_font.render("Quit", True, BLACK)
 
 start_b_text_dest = (((start_b.left+start_b.w/2)-start_b_text_surface.get_width()/2),
                      ((start_b.top+start_b.h/2)-start_b_text_surface.get_height()/2))
-stats_b_text_dest = (((stats_b.left+stats_b.w/2)-stats_b_text_surface.get_width()/2),
-                     ((stats_b.top+stats_b.h/2)-stats_b_text_surface.get_height()/2))
+manual_b_text_dest = (((manual_b.left+manual_b.w/2)-manual_b_text_surface.get_width()/2),
+                     ((manual_b.top+manual_b.h/2)-manual_b_text_surface.get_height()/2))
 quit_b_text_dest = (((quit_b.left+quit_b.w/2)-quit_b_text_surface.get_width()/2),
                     ((quit_b.top+quit_b.h/2)-quit_b_text_surface.get_height()/2))
 
@@ -403,14 +403,14 @@ def draw_start_menu():
     # buttons
     pygame.draw.rect(screen, THIRD_GREEN, start_b)
     pygame.draw.rect(screen, BLACK, start_b, 2)
-    pygame.draw.rect(screen, THIRD_GREEN, stats_b)
-    pygame.draw.rect(screen, BLACK, stats_b, 2)
+    pygame.draw.rect(screen, THIRD_GREEN, manual_b)
+    pygame.draw.rect(screen, BLACK, manual_b, 2)
     pygame.draw.rect(screen, THIRD_GREEN, quit_b)
     pygame.draw.rect(screen, BLACK, quit_b, 2)
 
     # button text
     screen.blit(start_b_text_surface, start_b_text_dest)
-    screen.blit(stats_b_text_surface, stats_b_text_dest)
+    screen.blit(manual_b_text_surface, manual_b_text_dest)
     screen.blit(quit_b_text_surface, quit_b_text_dest)
 
 
@@ -485,7 +485,7 @@ back_b_text_dest = (((back_b.left+back_b.w/2)-back_b_text_surface.get_width()/2)
                     ((back_b.top+back_b.h/2)-back_b_text_surface.get_height()/2))
 
 
-def draw_stats_screen():
+def draw_manual_screen():
     load_background()
 
     pygame.draw.rect(screen, MAIN_GREEN, stats_main_box)

@@ -314,6 +314,9 @@ def buy_mortal(new_mortal):
     if player_role == "m":
         troops_spawned += 1
         coins_spent += new_mortal.cost
+    else:
+        opp_troops_spawned += 1
+        opp_coins_spent += new_mortal.cost
 
 
 def buy_god(new_god):
