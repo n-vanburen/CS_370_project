@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="networking">
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="prep for meeting">
+      <change afterPath="$PROJECT_DIR$/solotesting.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/userManualCycle2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClientWFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientWFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StateMachine.py" beforeDir="false" afterPath="$PROJECT_DIR$/StateMachine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamePlayFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamePlayFunctions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servergame.py" beforeDir="false" afterPath="$PROJECT_DIR$/servergame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soldierTypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/soldierTypes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +51,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/donat/Downloads&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Isabella/IdeaProjects/CS_370_project/ClientWFunctions.py&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -60,6 +64,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Isabella\IdeaProjects\CS_370_project" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\donat\IdeaProjects\CS_370_project" />
       <recent name="C:\Users\donat\IdeaProjects\CS_370_project\.idea" />
@@ -68,8 +75,30 @@
       <recent name="C:\CS_370_project\venv\Lib\site-packages" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="clickToDraw" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.ClientWFunctions">
+    <configuration name="ClientWFunctions" type="PythonConfigurationType" factoryName="Python" singleton="false">
+      <module name="CS_370_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.9 (CS_370_project)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ClientWFunctions.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="clickToDraw" type="PythonConfigurationType" factoryName="Python" activateToolWindowBeforeRun="false" nameIsGenerated="true">
       <module name="CS_370_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -157,6 +186,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.ClientWFunctions" />
+      <item itemvalue="Python.clickToDraw" />
+      <item itemvalue="Python.sprite" />
+      <item itemvalue="Python.spriteHorizontalCollision" />
+      <item itemvalue="Python.tester" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.tester" />
@@ -416,63 +452,71 @@
       <option name="project" value="LOCAL" />
       <updated>1711986833978</updated>
     </task>
-    <task id="LOCAL-00029" summary="networking">
+    <task id="LOCAL-00029" summary="4/1">
       <option name="closed" value="true" />
-      <created>1711989154632</created>
+      <created>1711991297078</created>
       <option name="number" value="00029" />
       <option name="presentableId" value="LOCAL-00029" />
       <option name="project" value="LOCAL" />
-      <updated>1711989154632</updated>
+      <updated>1711991297078</updated>
     </task>
-    <task id="LOCAL-00030" summary="networking fixed!">
+    <task id="LOCAL-00030" summary="4/1">
       <option name="closed" value="true" />
-      <created>1711991306791</created>
+      <created>1711991992623</created>
       <option name="number" value="00030" />
       <option name="presentableId" value="LOCAL-00030" />
       <option name="project" value="LOCAL" />
-      <updated>1711991306791</updated>
+      <updated>1711991992623</updated>
     </task>
-    <task id="LOCAL-00031" summary="networking fixed!">
+    <task id="LOCAL-00031" summary="4/3">
       <option name="closed" value="true" />
-      <created>1711992018979</created>
+      <created>1712161121056</created>
       <option name="number" value="00031" />
       <option name="presentableId" value="LOCAL-00031" />
       <option name="project" value="LOCAL" />
-      <updated>1711992018979</updated>
+      <updated>1712161121056</updated>
     </task>
-    <task id="LOCAL-00032" summary=".">
+    <task id="LOCAL-00032" summary="4/3">
       <option name="closed" value="true" />
-      <created>1711992961457</created>
+      <created>1712161175825</created>
       <option name="number" value="00032" />
       <option name="presentableId" value="LOCAL-00032" />
       <option name="project" value="LOCAL" />
-      <updated>1711992961457</updated>
+      <updated>1712161175826</updated>
     </task>
-    <task id="LOCAL-00033" summary="networking">
+    <task id="LOCAL-00033" summary="4/3">
       <option name="closed" value="true" />
-      <created>1712161118358</created>
+      <created>1712161493147</created>
       <option name="number" value="00033" />
       <option name="presentableId" value="LOCAL-00033" />
       <option name="project" value="LOCAL" />
-      <updated>1712161118358</updated>
+      <updated>1712161493147</updated>
     </task>
-    <task id="LOCAL-00034" summary="networking">
+    <task id="LOCAL-00034" summary="4/3">
       <option name="closed" value="true" />
-      <created>1712161463285</created>
+      <created>1712161666960</created>
       <option name="number" value="00034" />
       <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1712161463285</updated>
+      <updated>1712161666960</updated>
     </task>
-    <task id="LOCAL-00035" summary="networking">
+    <task id="LOCAL-00035" summary="4/3">
       <option name="closed" value="true" />
-      <created>1712165063962</created>
+      <created>1712165279493</created>
       <option name="number" value="00035" />
       <option name="presentableId" value="LOCAL-00035" />
       <option name="project" value="LOCAL" />
-      <updated>1712165063962</updated>
+      <updated>1712165279493</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="4/3">
+      <option name="closed" value="true" />
+      <created>1712167943754</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1712167943754</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,11 +543,13 @@
     <MESSAGE value="Fixed timer to be at 5 mins" />
     <MESSAGE value="Rename" />
     <MESSAGE value="dynamic server ip" />
+    <MESSAGE value="." />
     <MESSAGE value="sprites added for each mortal and monster" />
     <MESSAGE value="sprites" />
-    <MESSAGE value="networking fixed!" />
-    <MESSAGE value="." />
     <MESSAGE value="networking" />
-    <option name="LAST_COMMIT_MESSAGE" value="networking" />
+    <MESSAGE value="4/1" />
+    <MESSAGE value="4/3" />
+    <MESSAGE value="prep for meeting" />
+    <option name="LAST_COMMIT_MESSAGE" value="prep for meeting" />
   </component>
 </project>

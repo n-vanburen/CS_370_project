@@ -33,7 +33,7 @@ connection_music = False
 start_music = False
 user_manual_stats_music = False
 
-# Music Booleans Initilizing Sound Effects
+# Music Booleans Initializing Sound Effects
 pygame.init()
 deploy_footsoldier = pygame.mixer.Sound("deploy_footsoldier.wav")
 deploy_eagle = pygame.mixer.Sound("deploy_eagle.wav")
@@ -55,6 +55,24 @@ which_screen = "c"
 # to stop players from accessing buttons that aren't theirs
 player_role = "d"
 
+# stats
+troops_defeated = 0
+troops_spawned = 0
+coins_spent = 0
+wins = 0
+total_td = 0
+total_ts = 0
+total_cs = 0
+# opponent stats
+opp_troops_defeated = 0
+opp_troops_spawned = 0
+opp_coins_spent = 0
+opp_wins = 0
+total_opp_td = 0
+total_opp_ts = 0
+total_opp_cs = 0
+
+
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
@@ -63,7 +81,8 @@ def send_action(action):
 
 
 def handle_server_message():
-    global player_role
+    global player_role, opp_troops_spawned, opp_troops_defeated, opp_wins, opp_coins_spent
+
     while True:
         try:
             message = pickle.loads(client.recv(1024))
@@ -111,6 +130,26 @@ def handle_server_message():
             if action == 'mortal_up_coin':
                 mortal_coin_upgrade()
 
+            if player_role == "m":
+                if action == "g_td":
+                    opp_troops_defeated = data
+                if action == "g_ts":
+                    opp_troops_spawned = data
+                if action == "g_cs":
+                    opp_coins_spent = data
+                if action == "g_w":
+                    opp_wins = data
+
+            if player_role == "g":
+                if action == "m_td":
+                    opp_troops_defeated = data
+                if action == "m_ts":
+                    opp_troops_spawned = data
+                if action == "m_cs":
+                    opp_coins_spent = data
+                if action == "m_w":
+                    opp_wins = data
+
             pygame.display.update()
 
         except:
@@ -135,6 +174,11 @@ def crash(mortal, god):
         god.crash = True
 
 
+def play_attack_sound():
+    attack = pygame.mixer.Sound("attack.wav")
+    attack.play()
+
+
 def fight(fighter1, fighter2):
     # stop moving
     fighter1.moving = False
@@ -150,21 +194,13 @@ def fight(fighter1, fighter2):
 
     # deal damage while having collided (attack delay applicable)
     if can_attack(fighter1):
-        # print("1")
         fighter2.health -= fighter1.attack_strength
-        attack = pygame.mixer.Sound("attack.wav")
-        attack.play()
-        print(str(fighter2.health))
-        print(str(StateMachine.elapsed_time))
+        play_attack_sound()
         add_attack_delay(fighter1)
 
     if can_attack(fighter2):
-        # print("2")
         fighter1.health -= fighter2.attack_strength
-        attack = pygame.mixer.Sound("attack.wav")
-        attack.play()
-        print(str(fighter1.health))
-        print(str(StateMachine.elapsed_time))
+        play_attack_sound()
         add_attack_delay(fighter2)
 
     # check if a fighter has been defeated
@@ -177,6 +213,8 @@ def fight(fighter1, fighter2):
 
 
 def defeat(fighter):
+    global troops_defeated
+
     if fighter.team == 'm':
         mortal_list.remove(fighter)
 
@@ -188,6 +226,10 @@ def defeat(fighter):
                 archer_in_lane[1] = False
             elif fighter.rect.y == StateMachine.lane3_top + StateMachine.bottom_lane.h - fighter.height/2:
                 archer_in_lane[2] = False
+
+        if player_role == "g":
+            troops_defeated += 1
+
     else:
         god_list.remove(fighter)
 
@@ -198,6 +240,9 @@ def defeat(fighter):
                 sorceress_in_lane[1] = False
             elif fighter.rect.y == StateMachine.lane3_top + StateMachine.bottom_lane.h - fighter.height/2:
                 sorceress_in_lane[2] = False
+
+        if player_role == "m":
+            troops_defeated += 1
 
 
 def mortal_troop_creation(troop_type):
@@ -260,15 +305,55 @@ def god_troop_creation(troop_type):
 
 
 def buy_mortal(new_mortal):
+    global troops_spawned, coins_spent
+
     mortal_list.add(new_mortal)
     StateMachine.mortals_coins -= new_mortal.cost
     new_mortal.spawn_time = pygame.time.get_ticks()
 
+    if player_role == "m":
+        troops_spawned += 1
+        coins_spent += new_mortal.cost
+
 
 def buy_god(new_god):
+    global troops_spawned, coins_spent
+
     god_list.add(new_god)
     StateMachine.gods_coins -= new_god.cost
     new_god.spawn_time = pygame.time.get_ticks()
+
+    if player_role == "g":
+        troops_spawned += 1
+        coins_spent += new_god.cost
+
+
+def play_deployment_sound(troop):
+    if isinstance(troop, FootSoldier):
+        deploy_footsoldier.play()
+    if isinstance(troop, Eagle):
+        deploy_eagle.play()
+    if isinstance(troop, Archer):
+        deploy_archer.play()
+    if isinstance(troop, Cavalry):
+        deploy_cavalry.play()
+    if isinstance(troop, TrojanHorse):
+        deploy_trojanhorse.play()
+    if isinstance(troop, Achilles):
+        deploy_achilles.play()
+
+    if isinstance(troop, Minion):
+        deploy_minion.play()
+    if isinstance(troop, Harpy):
+        deploy_harpy.play()
+    if isinstance(troop, Sorceress):
+        deploy_sorceress.play()
+    if isinstance(troop, Hellhound):
+        deploy_hellhound.play()
+    if isinstance(troop, Cyclops):
+        deploy_cyclops.play()
+    if isinstance(troop, Medusa):
+        deploy_medusa.play()
 
 
 def mortal_troop_deploy(lane):
@@ -281,28 +366,17 @@ def mortal_troop_deploy(lane):
         current_mortal = mortal_creation_list[-1]
         current_mortal.rect.x = StateMachine.left_barrier_coord
 
-        if isinstance(current_mortal, FootSoldier):
-            deploy_footsoldier.play()
-        if isinstance(current_mortal, Eagle):
-            deploy_eagle.play()
-        if isinstance(current_mortal, Archer):
-            deploy_archer.play()
-        if isinstance(current_mortal, Cavalry):
-            deploy_cavalry.play()
-        if isinstance(current_mortal, TrojanHorse):
-            deploy_trojanhorse.play()
-        if isinstance(current_mortal, Achilles):
-            deploy_achilles.play()
-
         if lane == 1:
             current_mortal.rect.y = StateMachine.lane1_top + StateMachine.top_lane.h - current_mortal.height
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
+                play_deployment_sound(current_mortal)
                 # send_action(('mortal_deploy', lane))
             else:
                 if not archer_in_lane[0]:
                     archer_in_lane[0] = True
                     buy_mortal(current_mortal)
+                    play_deployment_sound(current_mortal)
                     # send_action(('mortal_deploy', lane))
                     add_attack_delay(current_mortal)
                 else:
@@ -311,11 +385,13 @@ def mortal_troop_deploy(lane):
             current_mortal.rect.y = StateMachine.lane2_top + StateMachine.middle_lane.h - current_mortal.height
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
+                play_deployment_sound(current_mortal)
                 # send_action(('mortal_deploy', lane))
             else:
                 if not archer_in_lane[1]:
                     archer_in_lane[1] = True
                     buy_mortal(current_mortal)
+                    play_deployment_sound(current_mortal)
                     # send_action(('mortal_deploy', lane))
                     add_attack_delay(current_mortal)
                 else:
@@ -324,11 +400,13 @@ def mortal_troop_deploy(lane):
             current_mortal.rect.y = StateMachine.lane3_top + StateMachine.bottom_lane.h - current_mortal.height
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
+                play_deployment_sound(current_mortal)
                 # send_action(('mortal_deploy', lane))
             else:
                 if not archer_in_lane[2]:
                     archer_in_lane[2] = True
                     buy_mortal(current_mortal)
+                    play_deployment_sound(current_mortal)
                     # send_action(('mortal_deploy', lane))
                     add_attack_delay(current_mortal)
                 else:
@@ -349,28 +427,17 @@ def god_troop_deploy(lane):
         current_god = god_creation_list[-1]
         current_god.rect.x = StateMachine.right_barrier_coord - current_god.width
 
-        if isinstance(current_god, Minion):
-            deploy_minion.play()
-        if isinstance(current_god, Harpy):
-            deploy_harpy.play()
-        if isinstance(current_god, Sorceress):
-            deploy_sorceress.play()
-        if isinstance(current_god, Hellhound):
-            deploy_hellhound.play()
-        if isinstance(current_god, Cyclops):
-            deploy_cyclops.play()
-        if isinstance(current_god, Medusa):
-            deploy_medusa.play()
-
         if lane == 1:
             current_god.rect.y = StateMachine.lane1_top + StateMachine.top_lane.h - current_god.height
             if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
+                play_deployment_sound(current_god)
                 # send_action(('god_deploy', lane))
             else:
                 if not sorceress_in_lane[0]:
                     sorceress_in_lane[0] = True
                     buy_god(current_god)
+                    play_deployment_sound(current_god)
                     # send_action(('god_deploy', lane))
                     add_attack_delay(current_god)
                 else:
@@ -379,11 +446,13 @@ def god_troop_deploy(lane):
             current_god.rect.y = StateMachine.lane2_top + StateMachine.middle_lane.h - current_god.height
             if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
+                play_deployment_sound(current_god)
                 # send_action(('god_deploy', lane))
             else:
                 if not sorceress_in_lane[1]:
                     sorceress_in_lane[1] = True
                     buy_god(current_god)
+                    play_deployment_sound(current_god)
                     # send_action(('god_deploy', lane))
                     add_attack_delay(current_god)
                 else:
@@ -392,11 +461,13 @@ def god_troop_deploy(lane):
             current_god.rect.y = StateMachine.lane3_top + StateMachine.bottom_lane.h - current_god.height
             if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
+                play_deployment_sound(current_god)
                 # send_action(('god_deploy', lane))
             else:
                 if not sorceress_in_lane[2]:
                     sorceress_in_lane[2] = True
                     buy_god(current_god)
+                    play_deployment_sound(current_god)
                     # send_action(('god_deploy', lane))
                     add_attack_delay(current_god)
                 else:
@@ -408,7 +479,7 @@ def god_troop_deploy(lane):
 
 
 def tower_damage(side, fighter):
-    global which_screen
+    global wins
 
     if fighter.first_hit:
         add_attack_delay(fighter)
@@ -420,32 +491,34 @@ def tower_damage(side, fighter):
 
         if side == "r":
             StateMachine.right_tower_health -= fighter.attack_strength
-            attack = pygame.mixer.Sound("attack.wav")
-            attack.play()
+            play_attack_sound()
             if StateMachine.right_tower_health <= 0:
                 StateMachine.right_tower_health = 0
                 StateMachine.draw_game_screen()
-                which_screen = "e"
                 StateMachine.winner = "Mortals Win!"
+                if player_role == "m":
+                    wins += 1
+                end_game()
         else:
             StateMachine.left_tower_health -= fighter.attack_strength
-            attack = pygame.mixer.Sound("attack.wav")
-            attack.play()
+            play_attack_sound()
             if StateMachine.left_tower_health <= 0:
                 StateMachine.left_tower_health = 0
                 StateMachine.draw_game_screen()
-                which_screen = "e"
                 StateMachine.winner = "Gods Win!"
+                if player_role == "g":
+                    wins += 1
+                end_game()
 
 
 def add_attack_delay(fighter):
     delay = random.randint(500, fighter.attack_speed)
-    fighter.attack_time_counter = StateMachine.elapsed_time-fighter.spawn_time + delay
+    fighter.attack_time_counter = StateMachine.elapsed_time - fighter.spawn_time + delay
 
 
 def can_attack(fighter):
     # checks that the attack delay has been respected
-    return StateMachine.elapsed_time-fighter.spawn_time >= fighter.attack_time_counter
+    return StateMachine.elapsed_time - fighter.spawn_time >= fighter.attack_time_counter
 
 
 def ranged_hit(fighter, projectile):
@@ -472,39 +545,45 @@ def ranged_hit(fighter, projectile):
 
 
 def mortal_coin_upgrade():
-    if StateMachine.mortal_coin_level == 1:
-        if StateMachine.mortals_coins >= 300:
-            StateMachine.mortals_coins -= 300
-            StateMachine.mortal_coin_level += 1
-    elif StateMachine.mortal_coin_level == 2:
-        if StateMachine.mortals_coins >= 500:
-            StateMachine.mortals_coins -= 500
-            StateMachine.mortal_coin_level += 1
+    global coins_spent
+
+    if StateMachine.mortals_coins >= StateMachine.m_upgrade_cost and StateMachine.mortal_coin_level <= 2:
+        StateMachine.mortals_coins -= StateMachine.m_upgrade_cost
+        StateMachine.mortal_coin_level += 1
+        if player_role == "m":
+            coins_spent += StateMachine.m_upgrade_cost
 
 
 def god_coin_upgrade():
-    if StateMachine.god_coin_level == 1:
-        if StateMachine.gods_coins >= 300:
-            StateMachine.gods_coins -= 300
-            StateMachine.god_coin_level += 1
-    elif StateMachine.god_coin_level == 2:
-        if StateMachine.gods_coins >= 500:
-            StateMachine.gods_coins -= 500
-            StateMachine.god_coin_level += 1
+    global coins_spent
+
+    if StateMachine.gods_coins >= StateMachine.g_upgrade_cost and StateMachine.god_coin_level <= 2:
+        StateMachine.gods_coins -= StateMachine.g_upgrade_cost
+        StateMachine.mortal_coin_level += 1
+        if player_role == "g":
+            coins_spent += StateMachine.g_upgrade_cost
 
 
 def mortal_heal_ability():
+    global coins_spent
+
     if StateMachine.mortals_coins >= 300:
         StateMachine.mortals_coins -= 300
         for mortal in mortal_list:
             mortal.health += int((mortal.max_health - mortal.health) * .5)
+        if player_role == "m":
+            coins_spent += 300
 
 
 def god_heal_ability():
+    global coins_spent
+
     if StateMachine.gods_coins >= 300:
         StateMachine.gods_coins -= 300
         for god in god_list:
             god.health += int((god.max_health - god.health) * .5)
+        if player_role == "g":
+            coins_spent += 300
 
 
 def music_unload_and_new(music):
@@ -513,10 +592,13 @@ def music_unload_and_new(music):
     pygame.mixer.music.load(music)
     pygame.mixer.music.play(-1)
 
+
 def start_game():
-    global which_screen, m_tb_pressed, g_tb_pressed, archer_in_lane, sorceress_in_lane
+    global which_screen, m_tb_pressed, g_tb_pressed, archer_in_lane, sorceress_in_lane, player_role, troops_spawned
+    global troops_defeated, coins_spent
 
     which_screen = "g"
+
     # reset all variables, so it's a new game in case this is round 2
     mortal_list.empty()
     god_list.empty()
@@ -537,3 +619,32 @@ def start_game():
     StateMachine.one_second_tracker = 1000
     StateMachine.timed_out = False
     StateMachine.start_time = pygame.time.get_ticks()
+    troops_defeated = 0
+    troops_spawned = 0
+    coins_spent = 0
+
+
+def end_game():
+    global which_screen, total_td, total_cs, total_ts, total_opp_td, total_opp_cs, total_opp_ts
+
+    which_screen = 'e'
+
+    # string that is sent over network depends on player role
+    td_action = player_role + "_troops_defeated"
+    ts_action = player_role + "_troops_spawned"
+    cs_action = player_role + "_coins_spent"
+    wins_action = player_role + "_wins"
+
+    # send the stats for the opponent's display
+    send_action((td_action, troops_defeated))
+    send_action((ts_action, troops_spawned))
+    send_action((cs_action, coins_spent))
+    send_action((wins_action, wins))
+
+    total_td += troops_defeated
+    total_ts += troops_spawned
+    total_cs += coins_spent
+
+    total_opp_td += opp_troops_defeated
+    total_opp_ts += opp_troops_spawned
+    total_opp_cs += opp_coins_spent

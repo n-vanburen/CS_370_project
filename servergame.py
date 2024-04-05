@@ -76,6 +76,22 @@ def handle(client):
             if action == 'coin_up_mortal':
                 broadcast(('mortal_coin_up', 'holder'))
 
+            if action == 'm_troops_defeated':
+                broadcast(("m_td", data))
+            if action == 'g_troops_defeated':
+                broadcast(("g_td", data))
+            if action == 'm_troops_spawned':
+                broadcast(("m_ts", data))
+            if action == 'g_troops_spawned':
+                broadcast(("g_ts", data))
+            if action == 'm_coins_spent':
+                broadcast(("m_cs", data))
+            if action == 'g_coins_spent':
+                broadcast(("g_cs", data))
+            if action == 'm_wins':
+                broadcast(("m_w", data))
+            if action == 'g_wins':
+                broadcast(("g_w", data))
 
         except:
             index = clients.index(client)
