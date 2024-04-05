@@ -87,6 +87,7 @@ def handle_server_message():
                 lane = data
                 god_troop_deploy(lane)
                 print("hi4")
+
             if action == 'heal_mortal':
                 mortal_heal_ability()
 
@@ -101,6 +102,11 @@ def handle_server_message():
             if action == 'start_game':
                 start_game()
 
+            if action == 'god_up_coin':
+                god_coin_upgrade()
+
+            if action == 'mortal_up_coin':
+                mortal_coin_upgrade()
 
             pygame.display.update()
 

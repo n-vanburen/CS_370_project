@@ -80,9 +80,10 @@ while running:
                     # Coin Upgrade Test
                     if m_coin_upgrade_b.collidepoint(event.pos):
                         gamePlayFunctions.mortal_coin_upgrade()
+                        send_action(('coin_up_mortal', 'holder'))
                     if m_ability2_b.collidepoint(event.pos):
                         mortal_heal_ability()
-                        send_action(('mortal_heal', "idk"))
+                        send_action(('mortal_heal', "holder"))
 
                 # gods' buttons
                 else:
@@ -123,6 +124,7 @@ while running:
                     # Coin Upgrade Test
                     if g_coin_upgrade_b.collidepoint(event.pos):
                         gamePlayFunctions.god_coin_upgrade()
+                        send_action(('coin_up_god', 'holder'))
                     if g_ability2_b.collidepoint(event.pos):
                         god_heal_ability()
                         send_action(('mortal_heal', "idk"))
@@ -306,7 +308,7 @@ while running:
         connection_music = False
         start_music = False
         user_manual_stats_music = False
-
+        gamePlayFunctions.player_role = 'd'
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False

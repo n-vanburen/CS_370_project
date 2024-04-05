@@ -69,6 +69,12 @@ def handle(client):
                     mortal_count += 1
                 if mortal_count >= 1 and god_count >= 1:
                     broadcast(('start_game', "epic"))
+                    mortal_count = 0
+                    god_count = 0
+            if action == 'coin_up_god':
+                broadcast(('god_coin_up', 'holder'))
+            if action == 'coin_up_mortal':
+                broadcast(('mortal_coin_up', 'holder'))
 
 
         except:
