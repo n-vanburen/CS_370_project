@@ -90,7 +90,7 @@ while running:
                         gamePlayFunctions.mortal_coin_upgrade()
                         send_action(('coin_up_mortal', 'holder'))
                     if m_ability2_b.collidepoint(event.pos):
-                        mortal_heal_ability()
+                        # mortal_heal_ability()
                         send_action(('mortal_heal', "holder"))
 
                 # gods' buttons
@@ -134,7 +134,7 @@ while running:
                         gamePlayFunctions.god_coin_upgrade()
                         send_action(('coin_up_god', 'holder'))
                     if g_ability2_b.collidepoint(event.pos):
-                        god_heal_ability()
+                        # god_heal_ability()
                         send_action(("god_heal", "holder"))
 
         for mortal in mortal_list:
