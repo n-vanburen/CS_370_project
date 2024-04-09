@@ -42,7 +42,6 @@ class Fighter(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.photo, (self.width, self.height))
         self.rect = self.image.get_rect()
 
-
         # pygame.draw.rect(self.image, color, pygame.Rect(0, 0, self.width, self.height))
         # self.rect = self.image.get_rect()
 
@@ -179,7 +178,7 @@ class Cavalry(Fighter):
     cost = 125
     team = 'm'
     color = (40, 80, 120)
-    attack_speed = 3000
+    attack_speed = 4000
     photo = pygame.image.load("cavalry.png").convert_alpha()
 
     def __init__(self):
@@ -195,7 +194,7 @@ class Hellhound(Fighter):
     cost = 125
     team = 'g'
     color = (200, 70, 90)
-    attack_speed = 3000
+    attack_speed = 4000
     photo = pygame.image.load("hellhound.png").convert_alpha()
 
     def __init__(self):
@@ -243,7 +242,7 @@ class Achilles(Fighter):
     cost = 300
     team = 'm'
     color = (20, 200, 100)
-    attack_speed = 6000
+    attack_speed = 5000
     photo = pygame.image.load("achilles.png").convert_alpha()
 
     def __init__(self):
@@ -259,7 +258,7 @@ class Medusa(Fighter):
     cost = 300
     team = 'g'
     color = (70, 30, 20)
-    attack_speed = 6000
+    attack_speed = 5000
     photo = pygame.image.load("medusa.png").convert_alpha()
 
     def __init__(self):
@@ -282,8 +281,6 @@ class Arrow(pygame.sprite.Sprite):
         super().__init__()
         self.image = pygame.image.load("arrow.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
-        # self.image = pygame.Surface([self.width, self.height])
-        # pygame.draw.rect(self.image, self.color, pygame.Rect(0, 0, self.width, self.height))
         self.rect = self.image.get_rect()
 
     def move_right(self, pixels):
@@ -309,8 +306,6 @@ class Spell(pygame.sprite.Sprite):
         super().__init__()
         self.image = pygame.image.load("spell.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
-        # self.image = pygame.Surface([self.width, self.height])
-        # pygame.draw.rect(self.image, self.color, pygame.Rect(0, 0, self.width, self.height))
         self.rect = self.image.get_rect()
 
     def move_left(self, pixels):

@@ -25,15 +25,23 @@ while running:
     if gamePlayFunctions.which_screen == "g":
         screen.fill((0, 0, 0))
         draw_game_screen()
-        # ADD MUSIC
-        if not game_music:
-            game_music = True
+        if not gamePlayFunctions.game_music:
+            gamePlayFunctions.game_music = True
             music_unload_and_new("Music3.wav")
 
         # win/lose condition 1: time ran out
         if StateMachine.timed_out:
-            gamePlayFunctions.which_screen = "e"
-            StateMachine.winner = "Time's Up! No Winner!"
+            if StateMachine.right_tower_health > StateMachine.left_tower_health:
+                StateMachine.winner = "Times up! Mortals Win!"
+                if gamePlayFunctions.player_role == "m":
+                    gamePlayFunctions.wins += 1
+            elif StateMachine.left_tower_health > StateMachine.right_tower_health:
+                StateMachine.winner = "Times up! Gods Win!"
+                if gamePlayFunctions.player_role == "g":
+                    gamePlayFunctions.wins += 1
+            else:
+                StateMachine.winner = "Time's Up! No Winner!"
+            end_game()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -82,7 +90,7 @@ while running:
                         gamePlayFunctions.mortal_coin_upgrade()
                         send_action(('coin_up_mortal', 'holder'))
                     if m_ability2_b.collidepoint(event.pos):
-                        mortal_heal_ability()
+                        # mortal_heal_ability()
                         send_action(('mortal_heal', "holder"))
 
                 # gods' buttons
@@ -126,12 +134,12 @@ while running:
                         gamePlayFunctions.god_coin_upgrade()
                         send_action(('coin_up_god', 'holder'))
                     if g_ability2_b.collidepoint(event.pos):
-                        god_heal_ability()
+                        # god_heal_ability()
                         send_action(("god_heal", "holder"))
 
         for mortal in mortal_list:
             # long-ranged attacks
-            # check to see if anyone got hit by an arrow/spell
+            # check to see if any mortals got hit by an arrow/spell
             for spell in spell_list:
                 gamePlayFunctions.ranged_hit(mortal, spell)
 
@@ -156,7 +164,7 @@ while running:
             mortal.crash = False
             mortal.moving = True
 
-            # if the mortal is an archer, launch an arrow (delay based on elapsed time later)
+            # if the mortal is an archer, launch an arrow (delay based on elapsed time)
             if isinstance(mortal, Archer):
                 if gamePlayFunctions.can_attack(mortal):
                     new_arrow = Arrow()
@@ -219,9 +227,8 @@ while running:
 
     elif gamePlayFunctions.which_screen == "s":
         StateMachine.draw_start_menu()
-        # ADD MUSIC
-        if not user_manual_stats_music:
-            user_manual_stats_music = True
+        if not gamePlayFunctions.user_manual_stats_music:
+            gamePlayFunctions.user_manual_stats_music = True
             music_unload_and_new("Music2.wav")
 
         for event in pygame.event.get():
@@ -234,17 +241,15 @@ while running:
                     # change the role and send to the server so the other can be set
                     gamePlayFunctions.player_role = "m"
                     send_action(('mortal_chosen', "m"))
-                    # (NEEDED): send to server that mortal was chosen
                 if god_rb.collidepoint(event.pos) and gamePlayFunctions.player_role == "d":
                     gamePlayFunctions.player_role = "g"
                     send_action(('god_chosen', "g"))
-                    # (NEEDED): send to server that god was chosen
 
                 # start the game
                 if start_b.collidepoint(event.pos):
                     send_action(("press_start", gamePlayFunctions.player_role))
-                # display stats
-                if stats_b.collidepoint(event.pos):
+                # display user manual/troop stats
+                if manual_b.collidepoint(event.pos):
                     gamePlayFunctions.which_screen = "u"
                 # quit game
                 if quit_b.collidepoint(event.pos):
@@ -252,9 +257,8 @@ while running:
 
     elif gamePlayFunctions.which_screen == "c":
         StateMachine.draw_connection_screen()
-        # ADD MUSIC
-        if not connection_music:
-            connection_music = True
+        if not gamePlayFunctions.connection_music:
+            gamePlayFunctions.connection_music = True
             music_unload_and_new("Music1.wav")
 
         for event in pygame.event.get():
@@ -273,8 +277,6 @@ while running:
                 if connect_b.collidepoint(event.pos):
                     gamePlayFunctions.which_screen = "s"
                     connect_to_server(StateMachine.ip_displayed)
-                    # for now (NEEDS TO CHANGE), just go to start menu (until networking added here)
-                    # Connect to the server with whatever ip_displayed is (NEEDED)
 
             # This is how the input box text is changed by the user
             if event.type == pygame.KEYDOWN:
@@ -287,10 +289,9 @@ while running:
                         StateMachine.ip_displayed += event.unicode
 
     elif gamePlayFunctions.which_screen == "u":
-        draw_stats_screen()
-        # ADD MUSIC
-        if not user_manual_stats_music:
-            user_manual_stats_music = True
+        draw_manual_screen()
+        if not gamePlayFunctions.user_manual_stats_music:
+            gamePlayFunctions.user_manual_stats_music = True
             music_unload_and_new("Music2.wav")
 
         for event in pygame.event.get():
@@ -303,23 +304,35 @@ while running:
 
     elif gamePlayFunctions.which_screen == "e":
         draw_end_screen()
-        # ADD MUSIC
+        # music resets
         game_music = False
         connection_music = False
         start_music = False
         user_manual_stats_music = False
-        gamePlayFunctions.player_role = 'd'
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if play_b.collidepoint(event.pos):
+                    gamePlayFunctions.player_role = "d"
                     gamePlayFunctions.which_screen = "s"
-                elif new_opp_b.collidepoint(event.pos):
-                    gamePlayFunctions.which_screen = "c"
+                elif scores_b.collidepoint(event.pos):
+                    gamePlayFunctions.which_screen = "b"
                 elif e_quit_b.collidepoint(event.pos):
                     running = False
+
+    elif gamePlayFunctions.which_screen == "b":
+        draw_score_board()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if back_b.collidepoint(event.pos):
+                    gamePlayFunctions.which_screen = "e"
 
     pygame.display.update()
 
