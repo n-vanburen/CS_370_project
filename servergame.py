@@ -78,16 +78,22 @@ def handle(client):
 
             if action == 'm_troops_defeated':
                 broadcast(("m_td", data))
+                print("m troop")
             if action == 'g_troops_defeated':
                 broadcast(("g_td", data))
+                print("g troop")
             if action == 'm_troops_spawned':
                 broadcast(("m_ts", data))
+                print("m troop spawn")
             if action == 'g_troops_spawned':
                 broadcast(("g_ts", data))
+                print("g troop spawn")
             if action == 'm_coins_spent':
                 broadcast(("m_cs", data))
+                print("m gold")
             if action == 'g_coins_spent':
                 broadcast(("g_cs", data))
+                print("g coins")
             if action == 'm_wins':
                 broadcast(("m_w", data))
             if action == 'g_wins':

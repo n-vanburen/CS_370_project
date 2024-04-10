@@ -42,6 +42,10 @@ while running:
             else:
                 StateMachine.winner = "Time's Up! No Winner!"
             end_game()
+            send_action((player_role + "_troops_defeated", troops_defeated))
+            send_action((player_role + "_troops_spawned", troops_spawned))
+            send_action((player_role + "_coins_spent", coins_spent))
+            send_action((player_role + "_wins", wins))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

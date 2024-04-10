@@ -567,12 +567,12 @@ def draw_score_board():
 
     player_txt = main_font.render("YOU", True, BLACK)
     td_txt = main_font.render("Troops Defeated:  " + str(gamePlayFunctions.troops_defeated), True, BLACK)
-    ts_txt = main_font.render("Troops Spawned: " + str(gamePlayFunctions.troops_defeated), True, BLACK)
-    cs_txt = main_font.render("Coins Spent:        " + str(gamePlayFunctions.troops_defeated), True, BLACK)
+    ts_txt = main_font.render("Troops Spawned: " + str(gamePlayFunctions.troops_spawned), True, BLACK)
+    cs_txt = main_font.render("Coins Spent:        " + str(gamePlayFunctions.coins_spent), True, BLACK)
     opponent_txt = main_font.render("OPPONENT", True, BLACK)
-    opp_td_txt = main_font.render("Troops Defeated:  " + str(gamePlayFunctions.troops_defeated), True, BLACK)
-    opp_ts_txt = main_font.render("Troops Spawned: " + str(gamePlayFunctions.troops_defeated), True, BLACK)
-    opp_cs_txt = main_font.render("Coins Spent:        " + str(gamePlayFunctions.troops_defeated), True, BLACK)
+    opp_td_txt = main_font.render("Troops Defeated:  " + str(gamePlayFunctions.opp_troops_defeated), True, BLACK)
+    opp_ts_txt = main_font.render("Troops Spawned: " + str(gamePlayFunctions.opp_troops_spawned), True, BLACK)
+    opp_cs_txt = main_font.render("Coins Spent:        " + str(gamePlayFunctions.opp_coins_spent), True, BLACK)
 
     screen.blit(player_txt, (stats_main_box.left + stats_main_box.w/4 - player_txt.get_width()/2,
                              stats_main_box.top + 50))
@@ -593,16 +593,16 @@ def draw_score_board():
                              opp_ts_txt.get_height()+60))
 
     totals_txt = main_font.render("TOTALS", True, BLACK)
-    tot_td_txt = main_font.render("Troops Defeated:  " + str(gamePlayFunctions.troops_defeated), True, BLACK)
-    tot_ts_txt = main_font.render("Troops Spawned: " + str(gamePlayFunctions.troops_defeated), True, BLACK)
-    tot_cs_txt = main_font.render("Coins Spent:        " + str(gamePlayFunctions.troops_defeated), True, BLACK)
-    wins_txt = main_font.render("Games Won:         " + str(gamePlayFunctions.troops_defeated), True, BLACK)
-    opp_tot_td_txt = main_font.render("Troops Defeated:  " + str(gamePlayFunctions.troops_defeated), True,
+    tot_td_txt = main_font.render("Troops Defeated:  " + str(gamePlayFunctions.total_td), True, BLACK)
+    tot_ts_txt = main_font.render("Troops Spawned: " + str(gamePlayFunctions.total_ts), True, BLACK)
+    tot_cs_txt = main_font.render("Coins Spent:        " + str(gamePlayFunctions.total_cs), True, BLACK)
+    wins_txt = main_font.render("Games Won:         " + str(gamePlayFunctions.wins), True, BLACK)
+    opp_tot_td_txt = main_font.render("Troops Defeated:  " + str(gamePlayFunctions.total_opp_td), True,
                                       BLACK)
-    opp_tot_ts_txt = main_font.render("Troops Spawned: " + str(gamePlayFunctions.troops_defeated), True, BLACK)
-    opp_tot_cs_txt = main_font.render("Coins Spent:        " + str(gamePlayFunctions.troops_defeated), True,
+    opp_tot_ts_txt = main_font.render("Troops Spawned: " + str(gamePlayFunctions.total_opp_ts), True, BLACK)
+    opp_tot_cs_txt = main_font.render("Coins Spent:        " + str(gamePlayFunctions.total_opp_cs), True,
                                       BLACK)
-    opp_wins_txt = main_font.render("Games Won:         " + str(gamePlayFunctions.troops_defeated), True, BLACK)
+    opp_wins_txt = main_font.render("Games Won:         " + str(gamePlayFunctions.opp_wins), True, BLACK)
 
     screen.blit(totals_txt, (stats_main_box.left + stats_main_box.w/4 - totals_txt.get_width()/2,
                              stats_main_box.top + stats_main_box.h/2 + 50))

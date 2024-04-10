@@ -118,8 +118,7 @@ def handle_server_message():
 
             if player_role == "d":
                 if action == 'choose_god' or action == 'choose_mortal':
-                    role = data
-                    player_role = role
+                    player_role = data
 
             if action == 'start_game':
                 start_game()
@@ -154,7 +153,7 @@ def handle_server_message():
 
         except:
             print("An error occurred!")
-            break
+
 
 
 def connect_to_server(server_host):
@@ -562,7 +561,7 @@ def god_coin_upgrade():
 
     if StateMachine.gods_coins >= StateMachine.g_upgrade_cost and StateMachine.god_coin_level <= 2:
         StateMachine.gods_coins -= StateMachine.g_upgrade_cost
-        StateMachine.mortal_coin_level += 1
+        StateMachine.god_coin_level += 1
         if player_role == "g":
             coins_spent += StateMachine.g_upgrade_cost
 
@@ -632,13 +631,11 @@ def end_game():
 
     which_screen = 'e'
 
-    # string that is sent over network depends on player role
     td_action = player_role + "_troops_defeated"
     ts_action = player_role + "_troops_spawned"
     cs_action = player_role + "_coins_spent"
     wins_action = player_role + "_wins"
 
-    # send the stats for the opponent's display
     send_action((td_action, troops_defeated))
     send_action((ts_action, troops_spawned))
     send_action((cs_action, coins_spent))
