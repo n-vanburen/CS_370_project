@@ -19,10 +19,16 @@ god_list = pygame.sprite.Group()
 arrow_list = pygame.sprite.Group()
 spell_list = pygame.sprite.Group()
 
+lightning_list = pygame.sprite.Group()
+catapult_list = pygame.sprite.Group()
+
 m_tb_pressed = False
 g_tb_pressed = False
 mortal_creation_list = []
 god_creation_list = []
+
+lightning_pressed = False
+catapult_pressed = False
 
 archer_in_lane = [False, False, False]
 sorceress_in_lane = [False, False, False]
@@ -153,7 +159,6 @@ def handle_server_message():
 
         except:
             print("An error occurred!")
-
 
 
 def connect_to_server(server_host):
@@ -304,7 +309,7 @@ def god_troop_creation(troop_type):
 
 
 def buy_mortal(new_mortal):
-    global troops_spawned, coins_spent
+    global troops_spawned, coins_spent, opp_troops_spawned, opp_coins_spent
 
     mortal_list.add(new_mortal)
     StateMachine.mortals_coins -= new_mortal.cost
@@ -525,7 +530,7 @@ def can_attack(fighter):
 
 def ranged_hit(fighter, projectile):
     # if fighter collides with arrow/spell
-    if pygame.sprite.collide_rect(fighter, projectile) or pygame.sprite.collide_rect(projectile, fighter):
+    if pygame.sprite.collide_rect(fighter, projectile):
         # only let a projectile deal damage once
         if not projectile.crash:
             projectile.crash = True
@@ -648,3 +653,38 @@ def end_game():
     total_opp_td += opp_troops_defeated
     total_opp_ts += opp_troops_spawned
     total_opp_cs += opp_coins_spent
+
+
+def lightning_attack(position):
+    global coins_spent
+
+    if StateMachine.gods_coins >= 300:
+        StateMachine.gods_coins -= 300
+        new_lightning = soldierTypes.Lightning(position)
+        new_lightning.spawn_time = pygame.time.get_ticks()
+        lightning_list.add(new_lightning)
+        # check for overlap with sprites (should only happen once bc in function -- good thing)
+        for mortal in mortal_list:
+            if pygame.sprite.collide_circle(mortal, new_lightning):
+                mortal.health -= new_lightning.damage
+                if mortal.health <= 0:
+                    defeat(mortal)
+        if player_role == 'm':
+            coins_spent += 300
+
+
+def catapult_attack(position):
+    global coins_spent
+
+    if StateMachine.mortals_coins >= 300:
+        StateMachine.mortals_coins -= 300
+        new_catapult = soldierTypes.Catapult(position)
+        new_catapult.spawn_time = pygame.time.get_ticks()
+        catapult_list.add(new_catapult)
+        for god in god_list:
+            if pygame.sprite.collide_circle(god, new_catapult):
+                god.health -= new_catapult.damage
+                if god.health <= 0:
+                    defeat(god)
+        if player_role == 'g':
+            coins_spent += 300

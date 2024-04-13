@@ -14,6 +14,7 @@ font = pygame.font.Font(None, 20)
 class Fighter(pygame.sprite.Sprite):
     height = 75
     width = 75
+    radius = width/2
     moving = True
     crash = False
     hit_right_barrier = False
@@ -83,7 +84,6 @@ class FootSoldier(Fighter):
     color = (255, 255, 255)
     attack_speed = 5000
     photo = pygame.image.load("footsoldier.png").convert_alpha()
-
 
     def __init__(self):
         super().__init__(self.color, self.health, self.attack_strength, self.speed, self.cost,
@@ -314,3 +314,49 @@ class Spell(pygame.sprite.Sprite):
             self.halfway = True
         else:
             self.halfway = False
+
+
+class Lightning(pygame.sprite.Sprite):
+    image_height = 20
+    image_width = 20
+
+    center = (0, 0)
+    radius = 75
+
+    spawn_time = 0
+    life_span = 2000
+
+    damage = 25
+
+    def __init__(self, center):
+        super().__init__()
+
+        self.center = center
+
+        self.image = pygame.Surface([self.image_width, self.image_height])
+        self.rect = pygame.Rect(((self.center[0]-self.image_width/2), (self.center[1]-self.image_height)),
+                                (self.image_width, self.image_height))
+
+
+class Catapult(pygame.sprite.Sprite):
+    image_height = 20
+    image_width = 20
+
+    center = (0, 0)
+    radius = 75
+
+    spawn_time = 0
+    life_span = 2000
+
+    damage = 25
+
+    def __init__(self, center):
+        super().__init__()
+
+        # DO NOT REMOVE RECT, when you implement an image for this, CHANGE IT to self.rect = self.image.get_rect()
+        # IF YOU REMOVE THIS, THE ABILITY WILL NOT WORK ANYMORE
+        self.center = center
+
+        self.image = pygame.Surface([self.image_width, self.image_height])
+        self.rect = pygame.Rect(((self.center[0]-self.image_width/2), (self.center[1]-self.image_height)),
+                                (self.image_width, self.image_height))

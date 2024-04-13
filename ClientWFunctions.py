@@ -97,6 +97,15 @@ while running:
                         # mortal_heal_ability()
                         send_action(('mortal_heal', "holder"))
 
+                    if m_ability1_b.collidepoint(event.pos):
+                        gamePlayFunctions.catapult_pressed = True
+                    elif ((top_lane.collidepoint(event.pos) or middle_lane.collidepoint(event.pos) or
+                           bottom_lane.collidepoint(event.pos))):
+                        if gamePlayFunctions.catapult_pressed:
+                            catapult_attack(event.pos)
+                    else:
+                        gamePlayFunctions.catapult_pressed = False
+
                 # gods' buttons
                 else:
                     # god troop choices -- make deployment possible and create the fighters
@@ -137,9 +146,19 @@ while running:
                     if g_coin_upgrade_b.collidepoint(event.pos):
                         gamePlayFunctions.god_coin_upgrade()
                         send_action(('coin_up_god', 'holder'))
+
                     if g_ability2_b.collidepoint(event.pos):
                         # god_heal_ability()
                         send_action(("god_heal", "holder"))
+
+                    if g_ability1_b.collidepoint(event.pos):
+                        gamePlayFunctions.lightning_pressed = True
+                    elif ((top_lane.collidepoint(event.pos) or middle_lane.collidepoint(event.pos) or
+                           bottom_lane.collidepoint(event.pos))):
+                        if gamePlayFunctions.lightning_pressed:
+                            lightning_attack(event.pos)
+                    else:
+                        gamePlayFunctions.lightning_pressed = False
 
         for mortal in mortal_list:
             # long-ranged attacks
@@ -215,11 +234,28 @@ while running:
             if spell.halfway:
                 spell_list.remove(spell)
 
+        for lightning in lightning_list:
+            lightning.update()
+            if StateMachine.elapsed_time - lightning.spawn_time >= lightning.life_span:
+                print("l rem")
+                lightning_list.remove(lightning)
+            else:
+                pygame.draw.circle(StateMachine.screen, StateMachine.BLACK, lightning.center, lightning.radius, 2)
+        for catapult in catapult_list:
+            catapult.update()
+            if StateMachine.elapsed_time - catapult.spawn_time >= catapult.life_span:
+                print("c rem")
+                catapult_list.remove(catapult)
+            else:
+                pygame.draw.circle(StateMachine.screen, StateMachine.BLACK, catapult.center, catapult.radius, 2)
+
         # draw sprites
         mortal_list.draw(screen)
         god_list.draw(screen)
         arrow_list.draw(screen)
         spell_list.draw(screen)
+        lightning_list.draw(screen)
+        catapult_list.draw(screen)
 
         # update health labels (after .draw() so that it isn't overwritten)
         for mortal in mortal_list:

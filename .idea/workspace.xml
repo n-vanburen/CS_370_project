@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="code review">
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientWFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientWFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamePlayFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamePlayFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soldierTypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/soldierTypes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solotesting.py" beforeDir="false" afterPath="$PROJECT_DIR$/solotesting.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +72,7 @@
       <recent name="C:\CS_370_project\venv\Lib\site-packages" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ClientWFunctions">
+  <component name="RunManager">
     <configuration name="ClientWFunctions" type="PythonConfigurationType" factoryName="Python" singleton="false">
       <module name="CS_370_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -533,7 +537,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712517549958</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary=".">
+      <option name="closed" value="true" />
+      <created>1712712220195</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1712712220195</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -560,7 +572,6 @@
     <MESSAGE value="Fixed timer to be at 5 mins" />
     <MESSAGE value="Rename" />
     <MESSAGE value="dynamic server ip" />
-    <MESSAGE value="." />
     <MESSAGE value="sprites added for each mortal and monster" />
     <MESSAGE value="sprites" />
     <MESSAGE value="networking" />
@@ -568,6 +579,7 @@
     <MESSAGE value="4/3" />
     <MESSAGE value="prep for meeting" />
     <MESSAGE value="code review" />
-    <option name="LAST_COMMIT_MESSAGE" value="code review" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>
