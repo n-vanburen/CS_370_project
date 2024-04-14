@@ -368,8 +368,6 @@ quit_b_text_dest = (((quit_b.left+quit_b.w/2)-quit_b_text_surface.get_width()/2)
 
 
 def draw_start_menu():
-    global mortal_rb_text_surface
-    global god_rb_text_surface
 
     load_background()
 
@@ -382,18 +380,14 @@ def draw_start_menu():
 
     # role choice buttons
     if gamePlayFunctions.player_role == "m" or gamePlayFunctions.player_role == "d":
-        pygame.draw.rect(screen, THIRD_GREEN, mortal_rb)
-        mortal_rb_text_surface = s_button_font.render("Mortal", True, BLACK)
+        pygame.draw.rect(screen, SECOND_GREEN, mortal_rb)
     else:
-        pygame.draw.rect(screen, BLACK, mortal_rb)
-        mortal_rb_text_surface = s_button_font.render("Mortal", True, THIRD_GREEN)
+        pygame.draw.rect(screen, THIRD_GREEN, mortal_rb)
 
     if gamePlayFunctions.player_role == "g" or gamePlayFunctions.player_role == "d":
-        pygame.draw.rect(screen, THIRD_GREEN, god_rb)
-        god_rb_text_surface = s_button_font.render("God", True, BLACK)
+        pygame.draw.rect(screen, SECOND_GREEN, god_rb)
     else:
-        pygame.draw.rect(screen, BLACK, god_rb)
-        god_rb_text_surface = s_button_font.render("God", True, THIRD_GREEN)
+        pygame.draw.rect(screen, THIRD_GREEN, god_rb)
 
     pygame.draw.rect(screen, BLACK, mortal_rb, 2)
     screen.blit(mortal_rb_text_surface, mortal_rb_text_dest)
@@ -401,11 +395,14 @@ def draw_start_menu():
     screen.blit(god_rb_text_surface, god_rb_text_dest)
 
     # buttons
-    pygame.draw.rect(screen, THIRD_GREEN, start_b)
+    if gamePlayFunctions.player_role == 'm' or gamePlayFunctions.player_role == 'g':
+        pygame.draw.rect(screen, SECOND_GREEN, start_b)
+    else:
+        pygame.draw.rect(screen, THIRD_GREEN, start_b)
     pygame.draw.rect(screen, BLACK, start_b, 2)
-    pygame.draw.rect(screen, THIRD_GREEN, manual_b)
+    pygame.draw.rect(screen, SECOND_GREEN, manual_b)
     pygame.draw.rect(screen, BLACK, manual_b, 2)
-    pygame.draw.rect(screen, THIRD_GREEN, quit_b)
+    pygame.draw.rect(screen, SECOND_GREEN, quit_b)
     pygame.draw.rect(screen, BLACK, quit_b, 2)
 
     # button text
@@ -461,10 +458,13 @@ def draw_connection_screen():
     screen.blit(input_box_text_surface, input_box_text_dest)
 
     # get ip and connect buttons
-    pygame.draw.rect(screen, THIRD_GREEN, get_ip_b)
+    pygame.draw.rect(screen, SECOND_GREEN, get_ip_b)
     pygame.draw.rect(screen, BLACK, get_ip_b, 2)
     screen.blit(get_ip_text_surface, get_ip_text_dest)
-    pygame.draw.rect(screen, THIRD_GREEN, connect_b)
+    if ip_displayed != '' and ip_displayed != 'Enter Server IP':
+        pygame.draw.rect(screen, SECOND_GREEN, connect_b)
+    else:
+        pygame.draw.rect(screen, THIRD_GREEN, connect_b)
     pygame.draw.rect(screen, BLACK, connect_b, 2)
     screen.blit(connect_text_surface, connect_text_dest)
 
@@ -491,7 +491,7 @@ def draw_manual_screen():
     pygame.draw.rect(screen, MAIN_GREEN, stats_main_box)
     pygame.draw.rect(screen, BLACK, stats_main_box, 2)
 
-    pygame.draw.rect(screen, THIRD_GREEN, back_b)
+    pygame.draw.rect(screen, SECOND_GREEN, back_b)
     pygame.draw.rect(screen, BLACK, back_b, 2)
     screen.blit(back_b_text_surface, back_b_text_dest)
 
@@ -542,15 +542,15 @@ def draw_end_screen():
                         main_menu_rect.top + 50)
     screen.blit(winner_text_surface, winner_text_dest)
 
-    pygame.draw.rect(screen, THIRD_GREEN, play_b)
+    pygame.draw.rect(screen, SECOND_GREEN, play_b)
     pygame.draw.rect(screen, BLACK, play_b, 2)
     screen.blit(play_b_text_surface, play_b_text_dest)
 
-    pygame.draw.rect(screen, THIRD_GREEN, scores_b)
+    pygame.draw.rect(screen, SECOND_GREEN, scores_b)
     pygame.draw.rect(screen, BLACK, scores_b, 2)
     screen.blit(scores_b_text_surface, scores_b_text_dest)
 
-    pygame.draw.rect(screen, THIRD_GREEN, e_quit_b)
+    pygame.draw.rect(screen, SECOND_GREEN, e_quit_b)
     pygame.draw.rect(screen, BLACK, e_quit_b, 2)
     screen.blit(e_quit_b_text_surface, e_quit_b_text_dest)
 
@@ -561,7 +561,7 @@ def draw_score_board():
     pygame.draw.rect(screen, MAIN_GREEN, stats_main_box)
     pygame.draw.rect(screen, BLACK, stats_main_box, 2)
 
-    pygame.draw.rect(screen, THIRD_GREEN, back_b)
+    pygame.draw.rect(screen, SECOND_GREEN, back_b)
     pygame.draw.rect(screen, BLACK, back_b, 2)
     screen.blit(back_b_text_surface, back_b_text_dest)
 

@@ -87,7 +87,7 @@ def send_action(action):
 
 
 def handle_server_message():
-    global player_role, opp_troops_spawned, opp_troops_defeated, opp_wins, opp_coins_spent
+    global player_role
 
     while True:
         try:
@@ -134,26 +134,6 @@ def handle_server_message():
 
             if action == 'mortal_up_coin':
                 mortal_coin_upgrade()
-
-            if player_role == "m":
-                if action == "g_td":
-                    opp_troops_defeated = data
-                if action == "g_ts":
-                    opp_troops_spawned = data
-                if action == "g_cs":
-                    opp_coins_spent = data
-                if action == "g_w":
-                    opp_wins = data
-
-            if player_role == "g":
-                if action == "m_td":
-                    opp_troops_defeated = data
-                if action == "m_ts":
-                    opp_troops_spawned = data
-                if action == "m_cs":
-                    opp_coins_spent = data
-                if action == "m_w":
-                    opp_wins = data
 
             pygame.display.update()
 
@@ -217,7 +197,7 @@ def fight(fighter1, fighter2):
 
 
 def defeat(fighter):
-    global troops_defeated
+    global troops_defeated, opp_troops_defeated
 
     if fighter.team == 'm':
         mortal_list.remove(fighter)
@@ -233,6 +213,8 @@ def defeat(fighter):
 
         if player_role == "g":
             troops_defeated += 1
+        else:
+            opp_troops_defeated += 1
 
     else:
         god_list.remove(fighter)
@@ -247,6 +229,8 @@ def defeat(fighter):
 
         if player_role == "m":
             troops_defeated += 1
+        else:
+            opp_troops_defeated += 1
 
 
 def mortal_troop_creation(troop_type):
@@ -324,7 +308,7 @@ def buy_mortal(new_mortal):
 
 
 def buy_god(new_god):
-    global troops_spawned, coins_spent
+    global troops_spawned, coins_spent, opp_troops_spawned, opp_coins_spent
 
     god_list.add(new_god)
     StateMachine.gods_coins -= new_god.cost
@@ -333,6 +317,9 @@ def buy_god(new_god):
     if player_role == "g":
         troops_spawned += 1
         coins_spent += new_god.cost
+    else:
+        opp_troops_spawned += 1
+        opp_coins_spent += new_god.cost
 
 
 def play_deployment_sound(troop):
@@ -552,27 +539,31 @@ def ranged_hit(fighter, projectile):
 
 
 def mortal_coin_upgrade():
-    global coins_spent
+    global coins_spent, opp_coins_spent
 
     if StateMachine.mortals_coins >= StateMachine.m_upgrade_cost and StateMachine.mortal_coin_level <= 2:
         StateMachine.mortals_coins -= StateMachine.m_upgrade_cost
         StateMachine.mortal_coin_level += 1
         if player_role == "m":
             coins_spent += StateMachine.m_upgrade_cost
+        else:
+            opp_coins_spent += StateMachine.m_upgrade_cost
 
 
 def god_coin_upgrade():
-    global coins_spent
+    global coins_spent, opp_coins_spent
 
     if StateMachine.gods_coins >= StateMachine.g_upgrade_cost and StateMachine.god_coin_level <= 2:
         StateMachine.gods_coins -= StateMachine.g_upgrade_cost
         StateMachine.god_coin_level += 1
         if player_role == "g":
             coins_spent += StateMachine.g_upgrade_cost
+        else:
+            opp_coins_spent += StateMachine.g_upgrade_cost
 
 
 def mortal_heal_ability():
-    global coins_spent
+    global coins_spent, opp_coins_spent
 
     if StateMachine.mortals_coins >= 300:
         StateMachine.mortals_coins -= 300
@@ -580,10 +571,12 @@ def mortal_heal_ability():
             mortal.health += int((mortal.max_health - mortal.health) * .5)
         if player_role == "m":
             coins_spent += 300
+        else:
+            opp_coins_spent += 300
 
 
 def god_heal_ability():
-    global coins_spent
+    global coins_spent, opp_coins_spent
 
     if StateMachine.gods_coins >= 300:
         StateMachine.gods_coins -= 300
@@ -591,6 +584,8 @@ def god_heal_ability():
             god.health += int((god.max_health - god.health) * .5)
         if player_role == "g":
             coins_spent += 300
+        else:
+            opp_coins_spent += 300
 
 
 def music_unload_and_new(music):
@@ -602,7 +597,7 @@ def music_unload_and_new(music):
 
 def start_game():
     global which_screen, m_tb_pressed, g_tb_pressed, archer_in_lane, sorceress_in_lane, player_role, troops_spawned
-    global troops_defeated, coins_spent
+    global troops_defeated, coins_spent, opp_troops_spawned, opp_coins_spent, opp_troops_defeated
 
     which_screen = "g"
 
@@ -629,22 +624,15 @@ def start_game():
     troops_defeated = 0
     troops_spawned = 0
     coins_spent = 0
+    opp_troops_spawned = 0
+    opp_troops_defeated = 0
+    opp_coins_spent = 0
 
 
 def end_game():
     global which_screen, total_td, total_cs, total_ts, total_opp_td, total_opp_cs, total_opp_ts
 
     which_screen = 'e'
-
-    td_action = player_role + "_troops_defeated"
-    ts_action = player_role + "_troops_spawned"
-    cs_action = player_role + "_coins_spent"
-    wins_action = player_role + "_wins"
-
-    send_action((td_action, troops_defeated))
-    send_action((ts_action, troops_spawned))
-    send_action((cs_action, coins_spent))
-    send_action((wins_action, wins))
 
     total_td += troops_defeated
     total_ts += troops_spawned
@@ -656,7 +644,7 @@ def end_game():
 
 
 def lightning_attack(position):
-    global coins_spent
+    global coins_spent, opp_coins_spent
 
     if StateMachine.gods_coins >= 300:
         StateMachine.gods_coins -= 300
@@ -671,10 +659,12 @@ def lightning_attack(position):
                     defeat(mortal)
         if player_role == 'm':
             coins_spent += 300
+        else:
+            opp_coins_spent += 300
 
 
 def catapult_attack(position):
-    global coins_spent
+    global coins_spent, opp_coins_spent
 
     if StateMachine.mortals_coins >= 300:
         StateMachine.mortals_coins -= 300
@@ -688,3 +678,5 @@ def catapult_attack(position):
                     defeat(god)
         if player_role == 'g':
             coins_spent += 300
+        else:
+            opp_coins_spent += 300

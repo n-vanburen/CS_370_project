@@ -235,12 +235,14 @@ while running:
                 spell_list.remove(spell)
 
         for lightning in lightning_list:
+            lightning.update()
             if StateMachine.elapsed_time - lightning.spawn_time >= lightning.life_span:
                 print("l rem")
                 lightning_list.remove(lightning)
             else:
                 pygame.draw.circle(StateMachine.screen, StateMachine.BLACK, lightning.center, lightning.radius, 2)
         for catapult in catapult_list:
+            catapult.update()
             if StateMachine.elapsed_time - catapult.spawn_time >= catapult.life_span:
                 print("c rem")
                 catapult_list.remove(catapult)
