@@ -98,7 +98,8 @@ while running:
                     elif ((top_lane.collidepoint(event.pos) or middle_lane.collidepoint(event.pos) or
                            bottom_lane.collidepoint(event.pos))):
                         if gamePlayFunctions.catapult_pressed:
-                            catapult_attack(event.pos)
+                            # catapult_attack(event.pos)
+                            send_action(('mortal_catapult',event.pos))
                     else:
                         gamePlayFunctions.catapult_pressed = False
 
@@ -152,7 +153,8 @@ while running:
                     elif ((top_lane.collidepoint(event.pos) or middle_lane.collidepoint(event.pos) or
                            bottom_lane.collidepoint(event.pos))):
                         if gamePlayFunctions.lightning_pressed:
-                            lightning_attack(event.pos)
+                            # lightning_attack(event.pos)
+                            send_action(("god_lightning", event.pos))
                     else:
                         gamePlayFunctions.lightning_pressed = False
 
