@@ -72,9 +72,11 @@ def handle(client):
                     mortal_count = 0
                     god_count = 0
             if action == 'coin_up_god':
-                broadcast(('god_coin_up', 'holder'))
+                broadcast(('god_up_coin', 'holder'))
+                print("g upgrade coins")
             if action == 'coin_up_mortal':
-                broadcast(('mortal_coin_up', 'holder'))
+                broadcast(('mortal_up_coin', 'holder'))
+                print("m upgrade coins")
 
             if action == 'm_troops_defeated':
                 broadcast(("m_td", data))
@@ -94,16 +96,18 @@ def handle(client):
             if action == 'g_coins_spent':
                 broadcast(("g_cs", data))
                 print("g coins")
+            print("reached checkpoint 1")
             if action == 'm_wins':
                 broadcast(("m_w", data))
             if action == 'g_wins':
                 broadcast(("g_w", data))
+            print("reached checkpoint 2")
 
         except:
             index = clients.index(client)
             clients.remove(client)
             client.close()
-            break
+            return 0
 
 
 def receive():
