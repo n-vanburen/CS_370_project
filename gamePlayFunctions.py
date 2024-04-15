@@ -473,7 +473,7 @@ def god_troop_deploy(lane):
 
 
 def tower_damage(side, fighter):
-    global wins
+    global wins, opp_wins
 
     if fighter.first_hit:
         add_attack_delay(fighter)
@@ -492,6 +492,8 @@ def tower_damage(side, fighter):
                 StateMachine.winner = "Mortals Win!"
                 if player_role == "m":
                     wins += 1
+                else:
+                    opp_wins += 1
                 end_game()
         else:
             StateMachine.left_tower_health -= fighter.attack_strength
@@ -502,6 +504,8 @@ def tower_damage(side, fighter):
                 StateMachine.winner = "Gods Win!"
                 if player_role == "g":
                     wins += 1
+                else:
+                    opp_wins += 1
                 end_game()
 
 
