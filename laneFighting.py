@@ -235,6 +235,8 @@ def god_troop_deploy(lane):
             deploy_cyclops.play()
         if isinstance(current_god, Medusa):
             deploy_medusa.play()
+        if isinstance(current_god, Lightning):
+            deploy_lightning.play()
 
         if lane == 1:
             current_god.rect.y = lane1_top + current_god.height / 2
@@ -279,6 +281,7 @@ def mortal_heal_ability():
     if StateMachine.mortals_coins >= 300:
         StateMachine.mortals_coins -= 300
         for mortal in mortal_list:
+
             mortal.health += (int)((mortal.max_health - mortal.health) * .5)
 
 
@@ -432,6 +435,8 @@ deploy_hellhound = pygame.mixer.Sound("deploy_hellhound.wav")
 deploy_cyclops = pygame.mixer.Sound("deploy_cyclops.wav")
 deploy_medusa = pygame.mixer.Sound("deploy_medusa.wav")
 
+deploy_lightning = pygame.mixer.Sound("deploy_lightning.wav")
+deploy_heal = pygame.mixer.Sound("deploy_heal.wav")
 
 # font = pygame.font.SysFont("Font.tff", 36)
 

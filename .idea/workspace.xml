@@ -4,8 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="networking">
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment=".">
+      <change afterPath="$PROJECT_DIR$/catapult.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deploy_heal.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deploy_lightning.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/heal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lightning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StateMachine.py" beforeDir="false" afterPath="$PROJECT_DIR$/StateMachine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamePlayFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamePlayFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laneFighting.py" beforeDir="false" afterPath="$PROJECT_DIR$/laneFighting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soldierTypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/soldierTypes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +31,13 @@
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -66,7 +82,29 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="clickToDraw" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="ClientWFunctions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CS_370_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ClientWFunctions.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="clickToDraw" type="PythonConfigurationType" factoryName="Python" activateToolWindowBeforeRun="false" nameIsGenerated="true">
       <module name="CS_370_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -154,8 +192,16 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.clickToDraw" />
+      <item itemvalue="Python.ClientWFunctions" />
+      <item itemvalue="Python.sprite" />
+      <item itemvalue="Python.spriteHorizontalCollision" />
+      <item itemvalue="Python.tester" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.ClientWFunctions" />
         <item itemvalue="Python.tester" />
         <item itemvalue="Python.spriteHorizontalCollision" />
         <item itemvalue="Python.sprite" />
@@ -188,6 +234,14 @@
       <workItem from="1709744047479" duration="2321000" />
       <workItem from="1710014938832" duration="3449000" />
       <workItem from="1710167468597" duration="8328000" />
+      <workItem from="1712081634348" duration="6407000" />
+      <workItem from="1712159715684" duration="257000" />
+      <workItem from="1712347200496" duration="3518000" />
+      <workItem from="1712516454670" duration="1879000" />
+      <workItem from="1712760987523" duration="2960000" />
+      <workItem from="1713037753479" duration="6218000" />
+      <workItem from="1713195507189" duration="2118000" />
+      <workItem from="1713198570994" duration="4433000" />
     </task>
     <task id="LOCAL-00001" summary="testing">
       <option name="closed" value="true" />
@@ -413,122 +467,109 @@
       <option name="project" value="LOCAL" />
       <updated>1711986833978</updated>
     </task>
-    <task id="LOCAL-00029" summary="networking">
+    <task id="LOCAL-00029" summary="4/1">
       <option name="closed" value="true" />
-      <created>1711989154632</created>
+      <created>1711991297078</created>
       <option name="number" value="00029" />
       <option name="presentableId" value="LOCAL-00029" />
       <option name="project" value="LOCAL" />
-      <updated>1711989154632</updated>
+      <updated>1711991297078</updated>
     </task>
-    <task id="LOCAL-00030" summary="networking fixed!">
+    <task id="LOCAL-00030" summary="Complete Design Changes and Audio Fixes&#10;&#10;This reverts commit dfface18">
       <option name="closed" value="true" />
-      <created>1711991306791</created>
+      <created>1712164703015</created>
       <option name="number" value="00030" />
       <option name="presentableId" value="LOCAL-00030" />
       <option name="project" value="LOCAL" />
-      <updated>1711991306791</updated>
+      <updated>1712164703015</updated>
     </task>
-    <task id="LOCAL-00031" summary="networking fixed!">
+    <task id="LOCAL-00031" summary="Complete Design Changes and Audio Fixes&#10;&#10;This reverts commit dfface18">
       <option name="closed" value="true" />
-      <created>1711992018979</created>
+      <created>1712164893658</created>
       <option name="number" value="00031" />
       <option name="presentableId" value="LOCAL-00031" />
       <option name="project" value="LOCAL" />
-      <updated>1711992018979</updated>
+      <updated>1712164893658</updated>
     </task>
     <task id="LOCAL-00032" summary=".">
       <option name="closed" value="true" />
-      <created>1711992961457</created>
+      <created>1712164943616</created>
       <option name="number" value="00032" />
       <option name="presentableId" value="LOCAL-00032" />
       <option name="project" value="LOCAL" />
-      <updated>1711992961457</updated>
+      <updated>1712164943616</updated>
     </task>
-    <task id="LOCAL-00033" summary="networking">
+    <task id="LOCAL-00033" summary=".">
       <option name="closed" value="true" />
-      <created>1712161118358</created>
+      <created>1712516931520</created>
       <option name="number" value="00033" />
       <option name="presentableId" value="LOCAL-00033" />
       <option name="project" value="LOCAL" />
-      <updated>1712161118358</updated>
+      <updated>1712516931522</updated>
     </task>
-    <task id="LOCAL-00034" summary="networking">
+    <task id="LOCAL-00034" summary=".">
       <option name="closed" value="true" />
-      <created>1712161463285</created>
+      <created>1712517589942</created>
       <option name="number" value="00034" />
       <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1712161463285</updated>
+      <updated>1712517589942</updated>
     </task>
-    <task id="LOCAL-00035" summary="networking">
+    <task id="LOCAL-00035" summary=".">
       <option name="closed" value="true" />
-      <created>1712165063962</created>
+      <created>1712761516835</created>
       <option name="number" value="00035" />
       <option name="presentableId" value="LOCAL-00035" />
       <option name="project" value="LOCAL" />
-      <updated>1712165063962</updated>
+      <updated>1712761516835</updated>
     </task>
-    <task id="LOCAL-00036" summary="networking">
+    <task id="LOCAL-00036" summary=".">
       <option name="closed" value="true" />
-      <created>1712343029325</created>
+      <created>1713037778846</created>
       <option name="number" value="00036" />
       <option name="presentableId" value="LOCAL-00036" />
       <option name="project" value="LOCAL" />
-      <updated>1712343029325</updated>
+      <updated>1713037778846</updated>
     </task>
-    <task id="LOCAL-00037" summary="networking">
-      <option name="closed" value="true" />
-      <created>1712347347371</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1712347347371</updated>
-    </task>
-    <task id="LOCAL-00038" summary="networking">
-      <option name="closed" value="true" />
-      <created>1712679049430</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1712679049430</updated>
-    </task>
-    <task id="LOCAL-00039" summary="networking">
-      <option name="closed" value="true" />
-      <created>1712711567244</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1712711567244</updated>
-    </task>
-    <task id="LOCAL-00040" summary="networking">
-      <option name="closed" value="true" />
-      <created>1712879871028</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1712879871028</updated>
-    </task>
-    <task id="LOCAL-00041" summary="networking">
-      <option name="closed" value="true" />
-      <created>1713197575462</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1713197575462</updated>
-    </task>
-    <option name="localTasksCounter" value="42" />
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="user">
+                    <value>
+                      <list>
+                        <option value="*" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -546,9 +587,33 @@
     <MESSAGE value="dynamic server ip" />
     <MESSAGE value="sprites added for each mortal and monster" />
     <MESSAGE value="sprites" />
-    <MESSAGE value="networking fixed!" />
-    <MESSAGE value="." />
     <MESSAGE value="networking" />
-    <option name="LAST_COMMIT_MESSAGE" value="networking" />
+    <MESSAGE value="4/1" />
+    <MESSAGE value="Complete Design Changes and Audio Fixes&#10;&#10;This reverts commit dfface18" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CS_370_project$twistedTester.coverage" NAME="twistedTester Coverage Results" MODIFIED="1707324996003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$tester.coverage" NAME="tester Coverage Results" MODIFIED="1707926394143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$solotesting.coverage" NAME="solotesting Coverage Results" MODIFIED="1713038564808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$scaleNRotateWMouse.coverage" NAME="scaleNRotateWMouse Coverage Results" MODIFIED="1706473392898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$soldierTypes.coverage" NAME="soldierTypes Coverage Results" MODIFIED="1712160954665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$ClientWFunctions.coverage" NAME="ClientWFunctions Coverage Results" MODIFIED="1713202799901" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$moveImgWMouse.coverage" NAME="moveImgWMouse Coverage Results" MODIFIED="1706472665257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$clienttest.coverage" NAME="clienttest Coverage Results" MODIFIED="1708367008833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$customEvent.coverage" NAME="customEvent Coverage Results" MODIFIED="1706473078358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$laneFightTesting.coverage" NAME="laneFightTesting Coverage Results" MODIFIED="1709142798576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$gamePlayFunctions.coverage" NAME="gamePlayFunctions Coverage Results" MODIFIED="1712163845838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$gameBoard.coverage" NAME="gameBoard Coverage Results" MODIFIED="1712517122416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$laneFighting.coverage" NAME="laneFighting Coverage Results" MODIFIED="1713038607097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$spriteHorizontalCollision.coverage" NAME="spriteHorizontalCollision Coverage Results" MODIFIED="1706724207949" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$clickToDraw.coverage" NAME="clickToDraw Coverage Results" MODIFIED="1713195656108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$StateMachine.coverage" NAME="StateMachine Coverage Results" MODIFIED="1713195659165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$sprite.coverage" NAME="sprite Coverage Results" MODIFIED="1706717434471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$InputTextBox.coverage" NAME="InputTextBox Coverage Results" MODIFIED="1706473203460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$Test.coverage" NAME="Test Coverage Results" MODIFIED="1708368277705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$clientgame1.coverage" NAME="clientgame1 Coverage Results" MODIFIED="1713040430195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS_370_project$servergame.coverage" NAME="servergame Coverage Results" MODIFIED="1713202791533" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -333,9 +333,9 @@ class Lightning(pygame.sprite.Sprite):
 
         self.center = center
 
-        self.image = pygame.Surface([self.image_width, self.image_height])
-        self.rect = pygame.Rect(((self.center[0]-self.image_width/2), (self.center[1]-self.image_height)),
-                                (self.image_width, self.image_height))
+        self.image = pygame.image.load("lightning.png").convert_alpha()
+        self.image = pygame.transform.scale(self.image, self.center)
+        self.rect = self.image.get_rect()
 
 
 class Catapult(pygame.sprite.Sprite):

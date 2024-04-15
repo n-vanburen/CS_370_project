@@ -162,14 +162,14 @@ def draw_game_screen():
     screen.blit(tower_img, left_tower_dest)
     pygame.draw.rect(screen, BLACK, left_tower_rect, 2)
     left_tower_text_surface = main_font.render(str(left_tower_health), True, BLACK)
-    left_tower_health_dest = ((left_tower_rect.x + left_tower_rect.w) - (left_tower_text_surface.get_width()+3),
+    left_tower_health_dest = ((left_tower_rect.x + left_tower_rect.w) - (left_tower_text_surface.get_width() + 3),
                               (left_tower_rect.y + left_tower_rect.h) - left_tower_text_surface.get_height())
     screen.blit(left_tower_text_surface, left_tower_health_dest)
     # Right
     screen.blit(tower_img, right_tower_dest)
     pygame.draw.rect(screen, BLACK, right_tower_rect, 2)
     right_tower_text_surface = main_font.render(str(right_tower_health), True, BLACK)
-    right_tower_health_dest = ((right_tower_rect.x + right_tower_rect.w) - (right_tower_text_surface.get_width()+3),
+    right_tower_health_dest = ((right_tower_rect.x + right_tower_rect.w) - (right_tower_text_surface.get_width() + 3),
                                (right_tower_rect.y + right_tower_rect.h) - right_tower_text_surface.get_height())
     screen.blit(right_tower_text_surface, right_tower_health_dest)
 
@@ -188,10 +188,30 @@ def draw_game_screen():
     pygame.draw.rect(screen, THIRD_GREEN, m_ability1_b)
     pygame.draw.rect(screen, THIRD_GREEN, m_ability2_b)
     pygame.draw.rect(screen, BLACK, m_ability1_b, 2)
+    m_ability1_b_image = pygame.image.load("catapult.png").convert_alpha()
+    m_ability1_b_image = pygame.transform.scale(m_ability1_b_image, (95, 95))
+    screen.blit(m_ability1_b_image, (m_ability1_b.left+5, m_ability1_b.top+5))
+    m_ability1_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
+    screen.blit(m_ability1_b_text, (m_ability1_b.left+2, m_ability1_b.top))
     pygame.draw.rect(screen, BLACK, m_ability2_b, 2)
+    m_ability2_b_image = pygame.image.load("heal.png").convert_alpha()
+    m_ability2_b_image = pygame.transform.scale(m_ability2_b_image, (95, 95))
+    screen.blit(m_ability2_b_image, (m_ability2_b.left+5, m_ability2_b.top+5))
+    m_ability2_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
+    screen.blit(m_ability2_b_text, (m_ability2_b.left+2, m_ability2_b.top))
     # God
     pygame.draw.rect(screen, THIRD_GREEN, g_ability1_b)
+    g_ability1_b_image = pygame.image.load("lightning.png").convert_alpha()
+    g_ability1_b_image = pygame.transform.scale(g_ability1_b_image, (60, 100))
+    screen.blit(g_ability1_b_image, (g_ability1_b.left+20, g_ability1_b.top+3))
+    g_ability1_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
+    screen.blit(g_ability1_b_text, (g_ability1_b.left+2, g_ability1_b.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_ability2_b)
+    g_ability2_b_image = pygame.image.load("heal.png").convert_alpha()
+    g_ability2_b_image = pygame.transform.scale(g_ability2_b_image, (95, 95))
+    screen.blit(g_ability2_b_image, (g_ability2_b.left+5, g_ability2_b.top+5))
+    g_ability2_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
+    screen.blit(g_ability2_b_text, (g_ability2_b.left+2, g_ability2_b.top))
     pygame.draw.rect(screen, BLACK, g_ability1_b, 2)
     pygame.draw.rect(screen, BLACK, g_ability2_b, 2)
 
@@ -217,11 +237,41 @@ def draw_game_screen():
     # Troop Spawn Buttons
     # Mortal
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_1)
-    pygame.draw.rect(screen, THIRD_GREEN, m_tb_3)
+    m_tb_1_image = pygame.image.load("footsoldier.png").convert_alpha()
+    m_tb_1_image = pygame.transform.scale(m_tb_1_image, (60, 60))
+    screen.blit(m_tb_1_image, (m_tb_1.left+5, m_tb_1.top+5))
+    m_tb_1_text = fontCoins.render(f"$50", True, (0, 0, 0))
+    screen.blit(m_tb_1_text, (m_tb_1.left+2, m_tb_1.top))
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_2)
+    m_tb_2_image = pygame.image.load("eagle.png").convert_alpha()
+    m_tb_2_image = pygame.transform.scale(m_tb_2_image, (60, 60))
+    screen.blit(m_tb_2_image, (m_tb_2.left+5, m_tb_2.top+5))
+    m_tb_2_text = fontCoins.render(f"$75", True, (0, 0, 0))
+    screen.blit(m_tb_2_text, (m_tb_2.left+2, m_tb_2.top))
+    pygame.draw.rect(screen, THIRD_GREEN, m_tb_3)
+    m_tb_3_image = pygame.image.load("archer.png").convert_alpha()
+    m_tb_3_image = pygame.transform.scale(m_tb_3_image, (60, 60))
+    screen.blit(m_tb_3_image, (m_tb_3.left+5, m_tb_3.top+5))
+    m_tb_3_text = fontCoins.render(f"$100", True, (0, 0, 0))
+    screen.blit(m_tb_3_text, (m_tb_3.left+2, m_tb_3.top))
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_4)
+    m_tb_4_image = pygame.image.load("cavalry.png").convert_alpha()
+    m_tb_4_image = pygame.transform.scale(m_tb_4_image, (60, 60))
+    screen.blit(m_tb_4_image, (m_tb_4.left+5, m_tb_4.top+5))
+    m_tb_4_text = fontCoins.render(f"$125", True, (0, 0, 0))
+    screen.blit(m_tb_4_text, (m_tb_4.left+2, m_tb_4.top))
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_5)
+    m_tb_5_image = pygame.image.load("trojanhorse.png").convert_alpha()
+    m_tb_5_image = pygame.transform.scale(m_tb_5_image, (60, 60))
+    screen.blit(m_tb_5_image, (m_tb_5.left+5, m_tb_5.top+5))
+    m_tb_5_text = fontCoins.render(f"$200", True, (0, 0, 0))
+    screen.blit(m_tb_5_text, (m_tb_5.left+2, m_tb_5.top))
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_6)
+    m_tb_6_image = pygame.image.load("achilles.png").convert_alpha()
+    m_tb_6_image = pygame.transform.scale(m_tb_6_image, (60, 60))
+    screen.blit(m_tb_6_image, (m_tb_6.left+5, m_tb_6.top+5))
+    m_tb_6_text = fontCoins.render(f"$300", True, (0, 0, 0))
+    screen.blit(m_tb_6_text, (m_tb_6.left+2, m_tb_6.top))
     pygame.draw.rect(screen, BLACK, m_tb_1, 2)
     pygame.draw.rect(screen, BLACK, m_tb_2, 2)
     pygame.draw.rect(screen, BLACK, m_tb_3, 2)
@@ -230,11 +280,41 @@ def draw_game_screen():
     pygame.draw.rect(screen, BLACK, m_tb_6, 2)
     # God
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_1)
+    g_tb_1_image = pygame.image.load("minion.png").convert_alpha()
+    g_tb_1_image = pygame.transform.scale(g_tb_1_image, (60, 60))
+    screen.blit(g_tb_1_image, (g_tb_1.left+5, g_tb_1.top+5))
+    g_tb_1_text = fontCoins.render(f"$50", True, (0, 0, 0))
+    screen.blit(g_tb_1_text, (g_tb_1.left+2, g_tb_1.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_2)
+    g_tb_2_image = pygame.image.load("harpy.png").convert_alpha()
+    g_tb_2_image = pygame.transform.scale(g_tb_2_image, (60, 60))
+    screen.blit(g_tb_2_image, (g_tb_2.left+5, g_tb_2.top+5))
+    g_tb_2_text = fontCoins.render(f"$75", True, (0, 0, 0))
+    screen.blit(g_tb_2_text, (g_tb_2.left+2, g_tb_2.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_3)
+    g_tb_3_image = pygame.image.load("sorceress.png").convert_alpha()
+    g_tb_3_image = pygame.transform.scale(g_tb_3_image, (60, 60))
+    screen.blit(g_tb_3_image, (g_tb_3.left+5, g_tb_3.top+5))
+    g_tb_3_text = fontCoins.render(f"$100", True, (0, 0, 0))
+    screen.blit(g_tb_3_text, (g_tb_3.left+2, g_tb_3.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_4)
+    g_tb_4_image = pygame.image.load("hellhound.png").convert_alpha()
+    g_tb_4_image = pygame.transform.scale(g_tb_4_image, (60, 60))
+    screen.blit(g_tb_4_image, (g_tb_4.left+5, g_tb_4.top+5))
+    g_tb_4_text = fontCoins.render(f"$125", True, (0, 0, 0))
+    screen.blit(g_tb_4_text, (g_tb_4.left+2, g_tb_4.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_5)
+    g_tb_5_image = pygame.image.load("cyclops.png").convert_alpha()
+    g_tb_5_image = pygame.transform.scale(g_tb_5_image, (60, 60))
+    screen.blit(g_tb_5_image, (g_tb_5.left+5, g_tb_5.top+5))
+    g_tb_5_text = fontCoins.render(f"$200", True, (0, 0, 0))
+    screen.blit(g_tb_5_text, (g_tb_5.left+2, g_tb_5.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_6)
+    g_tb_6_image = pygame.image.load("medusa.png").convert_alpha()
+    g_tb_6_image = pygame.transform.scale(g_tb_6_image, (60, 60))
+    screen.blit(g_tb_6_image, (g_tb_6.left+5, g_tb_6.top+5))
+    g_tb_6_text = fontCoins.render(f"$300", True, (0, 0, 0))
+    screen.blit(g_tb_6_text, (g_tb_6.left+2, g_tb_6.top))
     pygame.draw.rect(screen, BLACK, g_tb_1, 2)
     pygame.draw.rect(screen, BLACK, g_tb_2, 2)
     pygame.draw.rect(screen, BLACK, g_tb_3, 2)
@@ -295,15 +375,15 @@ def draw_game_screen():
 
     # Display to screen current coins
     mortal_coin_text = fontCoins.render(f"Coins: {mortals_coins}", True, (0, 0, 0))
-    screen.blit(mortal_coin_text, (m_coin_display.x+4, m_coin_display.y+6))
+    screen.blit(mortal_coin_text, (m_coin_display.x + 4, m_coin_display.y + 6))
     gods_coin_text = fontCoins.render(f"Coins: {gods_coins}", True, (0, 0, 0))
-    screen.blit(gods_coin_text, (g_coin_display.x+4, g_coin_display.y+6))
+    screen.blit(gods_coin_text, (g_coin_display.x + 4, g_coin_display.y + 6))
 
     # Display to screen current levels and upgrade cost
     mortal_coin_level_text = fontCoins.render(f"Level: {mortal_coin_level}", True, (0, 0, 0))
-    screen.blit(mortal_coin_level_text, (m_coin_upgrade_b.x+16, m_coin_upgrade_b.y))
+    screen.blit(mortal_coin_level_text, (m_coin_upgrade_b.x + 16, m_coin_upgrade_b.y))
     god_coin_level_text = fontCoins.render(f"Level: {god_coin_level}", True, (0, 0, 0))
-    screen.blit(god_coin_level_text, (g_coin_upgrade_b.x+16, g_coin_upgrade_b.y))
+    screen.blit(god_coin_level_text, (g_coin_upgrade_b.x + 16, g_coin_upgrade_b.y))
     if god_coin_level == 1:
         g_upgrade_cost = 300
     elif god_coin_level == 2:
@@ -321,50 +401,51 @@ def draw_game_screen():
 
     if mortal_coin_level < 3:
         mortal_coin_upgrade_text = fontCoinsUpgrade.render(f"Upgrade: {m_upgrade_cost}", True, (0, 0, 0))
-        screen.blit(mortal_coin_upgrade_text, (m_coin_upgrade_b.x+2, m_coin_upgrade_b.y+16))
+        screen.blit(mortal_coin_upgrade_text, (m_coin_upgrade_b.x + 2, m_coin_upgrade_b.y + 16))
     if god_coin_level < 3:
         god_coin_upgrade_text = fontCoinsUpgrade.render(f"Upgrade: {g_upgrade_cost}", True, (0, 0, 0))
-        screen.blit(god_coin_upgrade_text, (g_coin_upgrade_b.x+2, g_coin_upgrade_b.y+16))
+        screen.blit(god_coin_upgrade_text, (g_coin_upgrade_b.x + 2, g_coin_upgrade_b.y + 16))
 
 
 # Main box for the start menu
-main_menu_rect = pygame.Rect(screen_w/4, screen_h/16, screen_w/2, screen_h*0.875)
+main_menu_rect = pygame.Rect(screen_w / 4, screen_h / 16, screen_w / 2, screen_h * 0.875)
 
 # game title
 title_text_surface = title_font.render("Lightning Town!", True, BLACK)
-title_text_dest = (((main_menu_rect.left + main_menu_rect.w/2) - title_text_surface.get_width()/2),
+title_text_dest = (((main_menu_rect.left + main_menu_rect.w / 2) - title_text_surface.get_width() / 2),
                    main_menu_rect.top + 50)
 
 # buttons
 s_button_size = (s_button_w, s_button_h) = (200, 50)
 
 # for player to choose their role (mortal or god) rb = role button
-mortal_rb = pygame.Rect(((main_menu_rect.left+main_menu_rect.w/2-s_button_w),
-                         (main_menu_rect.top+title_text_surface.get_height()+main_menu_rect.h/8+25)), s_button_size)
+mortal_rb = pygame.Rect(((main_menu_rect.left + main_menu_rect.w / 2 - s_button_w),
+                         (main_menu_rect.top + title_text_surface.get_height() + main_menu_rect.h / 8 + 25)),
+                        s_button_size)
 mortal_rb_text_surface = s_button_font.render("Mortal", True, BLACK)
-mortal_rb_text_dest = (((mortal_rb.left+mortal_rb.w/2)-mortal_rb_text_surface.get_width()/2),
-                       ((mortal_rb.top+mortal_rb.h/2)-mortal_rb_text_surface.get_height()/2))
-god_rb = pygame.Rect(((main_menu_rect.left+main_menu_rect.w/2), mortal_rb.top), s_button_size)
+mortal_rb_text_dest = (((mortal_rb.left + mortal_rb.w / 2) - mortal_rb_text_surface.get_width() / 2),
+                       ((mortal_rb.top + mortal_rb.h / 2) - mortal_rb_text_surface.get_height() / 2))
+god_rb = pygame.Rect(((main_menu_rect.left + main_menu_rect.w / 2), mortal_rb.top), s_button_size)
 god_rb_text_surface = s_button_font.render("God", True, BLACK)
-god_rb_text_dest = (((god_rb.left+god_rb.w/2)-god_rb_text_surface.get_width()/2),
-                    ((god_rb.top+god_rb.h/2)-god_rb_text_surface.get_height()/2))
+god_rb_text_dest = (((god_rb.left + god_rb.w / 2) - god_rb_text_surface.get_width() / 2),
+                    ((god_rb.top + god_rb.h / 2) - god_rb_text_surface.get_height() / 2))
 
-start_b = pygame.Rect(((main_menu_rect.left+main_menu_rect.w/2-s_button_w/2),
-                       (mortal_rb.top+s_button_h+main_menu_rect.h/10)), s_button_size)
-manual_b = pygame.Rect((start_b.left, start_b.top+s_button_h+main_menu_rect.h/10), s_button_size)
-quit_b = pygame.Rect((manual_b.left, manual_b.top+s_button_h+main_menu_rect.h/10), s_button_size)
+start_b = pygame.Rect(((main_menu_rect.left + main_menu_rect.w / 2 - s_button_w / 2),
+                       (mortal_rb.top + s_button_h + main_menu_rect.h / 10)), s_button_size)
+manual_b = pygame.Rect((start_b.left, start_b.top + s_button_h + main_menu_rect.h / 10), s_button_size)
+quit_b = pygame.Rect((manual_b.left, manual_b.top + s_button_h + main_menu_rect.h / 10), s_button_size)
 
 # button text
 start_b_text_surface = s_button_font.render("Start", True, BLACK)
 manual_b_text_surface = s_button_font.render("User Manual", True, BLACK)
 quit_b_text_surface = s_button_font.render("Quit", True, BLACK)
 
-start_b_text_dest = (((start_b.left+start_b.w/2)-start_b_text_surface.get_width()/2),
-                     ((start_b.top+start_b.h/2)-start_b_text_surface.get_height()/2))
-manual_b_text_dest = (((manual_b.left+manual_b.w/2)-manual_b_text_surface.get_width()/2),
-                     ((manual_b.top+manual_b.h/2)-manual_b_text_surface.get_height()/2))
-quit_b_text_dest = (((quit_b.left+quit_b.w/2)-quit_b_text_surface.get_width()/2),
-                    ((quit_b.top+quit_b.h/2)-quit_b_text_surface.get_height()/2))
+start_b_text_dest = (((start_b.left + start_b.w / 2) - start_b_text_surface.get_width() / 2),
+                     ((start_b.top + start_b.h / 2) - start_b_text_surface.get_height() / 2))
+manual_b_text_dest = (((manual_b.left + manual_b.w / 2) - manual_b_text_surface.get_width() / 2),
+                      ((manual_b.top + manual_b.h / 2) - manual_b_text_surface.get_height() / 2))
+quit_b_text_dest = (((quit_b.left + quit_b.w / 2) - quit_b_text_surface.get_width() / 2),
+                    ((quit_b.top + quit_b.h / 2) - quit_b_text_surface.get_height() / 2))
 
 
 def draw_start_menu():
@@ -412,27 +493,27 @@ def draw_start_menu():
 
 
 # a different screen. This one is used to connect to the server/other client and choose the player's role
-connection_box = pygame.Rect(screen_w/4, screen_h/4, screen_w/2, screen_h/2)
+connection_box = pygame.Rect(screen_w / 4, screen_h / 4, screen_w / 2, screen_h / 2)
 
 # box for user to enter or view IP address
 input_box_size = (ibw, ibh) = s_button_size
-input_box = pygame.Rect((((connection_box.left+connection_box.w/2)-ibw/2),
-                         ((connection_box.top+title_text_surface.get_height()+connection_box.h/5)-ibh/2)),
+input_box = pygame.Rect((((connection_box.left + connection_box.w / 2) - ibw / 2),
+                         ((connection_box.top + title_text_surface.get_height() + connection_box.h / 5) - ibh / 2)),
                         input_box_size)
 ip_displayed = "Enter Server IP"
 input_box_active = False
 
 # buttons for the user to either get their personal IP or connect to an entered IP
-get_ip_b = pygame.Rect((input_box.left, (input_box.top+ibh+20)), s_button_size)
-connect_b = pygame.Rect((input_box.left, (get_ip_b.top+ibh+20)), s_button_size)
+get_ip_b = pygame.Rect((input_box.left, (input_box.top + ibh + 20)), s_button_size)
+connect_b = pygame.Rect((input_box.left, (get_ip_b.top + ibh + 20)), s_button_size)
 
 # text for hosting server and connecting buttons
 get_ip_text_surface = s_button_font.render("Host Server", True, BLACK)
-get_ip_text_dest = (((get_ip_b.left+get_ip_b.w/2)-get_ip_text_surface.get_width()/2),
-                    ((get_ip_b.top+get_ip_b.h/2)-get_ip_text_surface.get_height()/2))
+get_ip_text_dest = (((get_ip_b.left + get_ip_b.w / 2) - get_ip_text_surface.get_width() / 2),
+                    ((get_ip_b.top + get_ip_b.h / 2) - get_ip_text_surface.get_height() / 2))
 connect_text_surface = s_button_font.render("Connect", True, BLACK)
-connect_text_dest = (((connect_b.left+connect_b.w/2)-connect_text_surface.get_width()/2),
-                     ((connect_b.top+connect_b.h/2)-connect_text_surface.get_height()/2))
+connect_text_dest = (((connect_b.left + connect_b.w / 2) - connect_text_surface.get_width() / 2),
+                     ((connect_b.top + connect_b.h / 2) - connect_text_surface.get_height() / 2))
 
 
 def draw_connection_screen():
@@ -445,16 +526,17 @@ def draw_connection_screen():
     pygame.draw.rect(screen, BLACK, connection_box, 2)
 
     # title
-    screen.blit(title_text_surface, (((connection_box.left + connection_box.w/2) - title_text_surface.get_width()/2),
-                                     connection_box.top + 20))
+    screen.blit(title_text_surface,
+                (((connection_box.left + connection_box.w / 2) - title_text_surface.get_width() / 2),
+                 connection_box.top + 20))
 
     # input box for IP
     pygame.draw.rect(screen, THIRD_GREEN, input_box)
     pygame.draw.rect(screen, BLACK, input_box, 2)
 
     input_box_text_surface = s_button_font.render(ip_displayed, True, BLACK)
-    input_box_text_dest = (((input_box.left+input_box.w/2)-input_box_text_surface.get_width()/2),
-                           ((input_box.top+input_box.h/2)-input_box_text_surface.get_height()/2))
+    input_box_text_dest = (((input_box.left + input_box.w / 2) - input_box_text_surface.get_width() / 2),
+                           ((input_box.top + input_box.h / 2) - input_box_text_surface.get_height() / 2))
     screen.blit(input_box_text_surface, input_box_text_dest)
 
     # get ip and connect buttons
@@ -472,17 +554,17 @@ def draw_connection_screen():
 # Stats screen
 # image that displays the user manual
 user_manual_img = pygame.image.load('userManualCycle2.png')
-user_manual_img_size = (umw, umh) = (user_manual_img.get_width()*0.85, user_manual_img.get_height()*0.85)
+user_manual_img_size = (umw, umh) = (user_manual_img.get_width() * 0.85, user_manual_img.get_height() * 0.85)
 user_manual_img = pygame.transform.scale(user_manual_img, (umw, umh))
 
 # main box
-stats_main_box = pygame.Rect(screen_w/2-umw/2, screen_h/2-umh/2, umw, umh)
+stats_main_box = pygame.Rect(screen_w / 2 - umw / 2, screen_h / 2 - umh / 2, umw, umh)
 
 # back button
 back_b = pygame.Rect(25, 25, 100, 50)
 back_b_text_surface = s_button_font.render("<- Back", True, BLACK)
-back_b_text_dest = (((back_b.left+back_b.w/2)-back_b_text_surface.get_width()/2),
-                    ((back_b.top+back_b.h/2)-back_b_text_surface.get_height()/2))
+back_b_text_dest = (((back_b.left + back_b.w / 2) - back_b_text_surface.get_width() / 2),
+                    ((back_b.top + back_b.h / 2) - back_b_text_surface.get_height() / 2))
 
 
 def draw_manual_screen():
@@ -504,27 +586,28 @@ def draw_manual_screen():
 # winner text
 winner = "Mortals Win!"
 winner_text_surface = title_font.render(winner, True, BLACK)
-winner_text_dest = (((main_menu_rect.left + main_menu_rect.w/2) - winner_text_surface.get_width()/2),
+winner_text_dest = (((main_menu_rect.left + main_menu_rect.w / 2) - winner_text_surface.get_width() / 2),
                     main_menu_rect.top + 50)
 
 # play again button
-play_b = pygame.Rect(((main_menu_rect.left+main_menu_rect.w/2-s_button_w/2),
-                      (main_menu_rect.top+winner_text_surface.get_height()+main_menu_rect.h/8+50)), s_button_size)
+play_b = pygame.Rect(((main_menu_rect.left + main_menu_rect.w / 2 - s_button_w / 2),
+                      (main_menu_rect.top + winner_text_surface.get_height() + main_menu_rect.h / 8 + 50)),
+                     s_button_size)
 play_b_text_surface = s_button_font.render("Play Again", True, BLACK)
-play_b_text_dest = (((play_b.left+play_b.w/2)-play_b_text_surface.get_width()/2),
-                    ((play_b.top+play_b.h/2)-play_b_text_surface.get_height()/2))
+play_b_text_dest = (((play_b.left + play_b.w / 2) - play_b_text_surface.get_width() / 2),
+                    ((play_b.top + play_b.h / 2) - play_b_text_surface.get_height() / 2))
 
 # scoreboard button (if we have it, change /8 to /10 and add 25 on play_b not 50)
-scores_b = pygame.Rect((play_b.left, play_b.top+s_button_h+main_menu_rect.h/8), s_button_size)
+scores_b = pygame.Rect((play_b.left, play_b.top + s_button_h + main_menu_rect.h / 8), s_button_size)
 scores_b_text_surface = s_button_font.render("Scoreboard", True, BLACK)
-scores_b_text_dest = (((scores_b.left+scores_b.w/2)-scores_b_text_surface.get_width()/2),
-                      ((scores_b.top+scores_b.h/2)-scores_b_text_surface.get_height()/2))
+scores_b_text_dest = (((scores_b.left + scores_b.w / 2) - scores_b_text_surface.get_width() / 2),
+                      ((scores_b.top + scores_b.h / 2) - scores_b_text_surface.get_height() / 2))
 
 # quit button
-e_quit_b = pygame.Rect((scores_b.left, scores_b.top+s_button_h+main_menu_rect.h/8), s_button_size)
+e_quit_b = pygame.Rect((scores_b.left, scores_b.top + s_button_h + main_menu_rect.h / 8), s_button_size)
 e_quit_b_text_surface = s_button_font.render("Quit", True, BLACK)
-e_quit_b_text_dest = (((e_quit_b.left+e_quit_b.w/2)-e_quit_b_text_surface.get_width()/2),
-                      ((e_quit_b.top+e_quit_b.h/2)-e_quit_b_text_surface.get_height()/2))
+e_quit_b_text_dest = (((e_quit_b.left + e_quit_b.w / 2) - e_quit_b_text_surface.get_width() / 2),
+                      ((e_quit_b.top + e_quit_b.h / 2) - e_quit_b_text_surface.get_height() / 2))
 
 
 def draw_end_screen():
@@ -538,7 +621,7 @@ def draw_end_screen():
     pygame.draw.rect(screen, BLACK, main_menu_rect, 2)
 
     winner_text_surface = title_font.render(winner, True, BLACK)
-    winner_text_dest = (((main_menu_rect.left + main_menu_rect.w/2) - winner_text_surface.get_width()/2),
+    winner_text_dest = (((main_menu_rect.left + main_menu_rect.w / 2) - winner_text_surface.get_width() / 2),
                         main_menu_rect.top + 50)
     screen.blit(winner_text_surface, winner_text_dest)
 
@@ -574,23 +657,23 @@ def draw_score_board():
     opp_ts_txt = main_font.render("Troops Spawned: " + str(gamePlayFunctions.opp_troops_spawned), True, BLACK)
     opp_cs_txt = main_font.render("Coins Spent:        " + str(gamePlayFunctions.opp_coins_spent), True, BLACK)
 
-    screen.blit(player_txt, (stats_main_box.left + stats_main_box.w/4 - player_txt.get_width()/2,
+    screen.blit(player_txt, (stats_main_box.left + stats_main_box.w / 4 - player_txt.get_width() / 2,
                              stats_main_box.top + 50))
-    screen.blit(td_txt, (stats_main_box.left + 100, stats_main_box.top+player_txt.get_height()+60))
+    screen.blit(td_txt, (stats_main_box.left + 100, stats_main_box.top + player_txt.get_height() + 60))
     screen.blit(ts_txt, (stats_main_box.left + 100,
-                         stats_main_box.top+player_txt.get_height()+td_txt.get_height()+60))
+                         stats_main_box.top + player_txt.get_height() + td_txt.get_height() + 60))
     screen.blit(cs_txt, (stats_main_box.left + 100,
-                         stats_main_box.top+player_txt.get_height()+td_txt.get_height()+ts_txt.get_height()+60))
+                         stats_main_box.top + player_txt.get_height() + td_txt.get_height() + ts_txt.get_height() + 60))
 
-    screen.blit(opponent_txt, (stats_main_box.left + stats_main_box.w*0.75 - opponent_txt.get_width()/2,
+    screen.blit(opponent_txt, (stats_main_box.left + stats_main_box.w * 0.75 - opponent_txt.get_width() / 2,
                                stats_main_box.top + 50))
     screen.blit(opp_td_txt, (stats_main_box.left + stats_main_box.w - (opp_td_txt.get_width() + 85),
-                             stats_main_box.top+opponent_txt.get_height()+60))
+                             stats_main_box.top + opponent_txt.get_height() + 60))
     screen.blit(opp_ts_txt, (stats_main_box.left + stats_main_box.w - (opp_td_txt.get_width() + 85),
-                             stats_main_box.top+opponent_txt.get_height()+opp_td_txt.get_height()+60))
+                             stats_main_box.top + opponent_txt.get_height() + opp_td_txt.get_height() + 60))
     screen.blit(opp_cs_txt, (stats_main_box.left + stats_main_box.w - (opp_td_txt.get_width() + 85),
-                             stats_main_box.top+opponent_txt.get_height()+opp_td_txt.get_height() +
-                             opp_ts_txt.get_height()+60))
+                             stats_main_box.top + opponent_txt.get_height() + opp_td_txt.get_height() +
+                             opp_ts_txt.get_height() + 60))
 
     totals_txt = main_font.render("TOTALS", True, BLACK)
     tot_td_txt = main_font.render("Troops Defeated:  " + str(gamePlayFunctions.total_td), True, BLACK)
@@ -604,28 +687,28 @@ def draw_score_board():
                                       BLACK)
     opp_wins_txt = main_font.render("Games Won:         " + str(gamePlayFunctions.opp_wins), True, BLACK)
 
-    screen.blit(totals_txt, (stats_main_box.left + stats_main_box.w/4 - totals_txt.get_width()/2,
-                             stats_main_box.top + stats_main_box.h/2 + 50))
-    screen.blit(tot_td_txt, (stats_main_box.left + 100, stats_main_box.top+stats_main_box.h/2 +
-                             totals_txt.get_height()+60))
-    screen.blit(tot_ts_txt, (stats_main_box.left + 100, stats_main_box.top+totals_txt.get_height() +
-                             stats_main_box.h/2+tot_td_txt.get_height()+60))
-    screen.blit(tot_cs_txt, (stats_main_box.left + 100, stats_main_box.top+totals_txt.get_height() +
-                             stats_main_box.h/2+tot_td_txt.get_height()+tot_ts_txt.get_height()+60))
-    screen.blit(wins_txt, (stats_main_box.left + 100, stats_main_box.top+totals_txt.get_height() +
-                           stats_main_box.h/2+tot_td_txt.get_height()+tot_ts_txt.get_height() +
-                           tot_cs_txt.get_height()+60))
+    screen.blit(totals_txt, (stats_main_box.left + stats_main_box.w / 4 - totals_txt.get_width() / 2,
+                             stats_main_box.top + stats_main_box.h / 2 + 50))
+    screen.blit(tot_td_txt, (stats_main_box.left + 100, stats_main_box.top + stats_main_box.h / 2 +
+                             totals_txt.get_height() + 60))
+    screen.blit(tot_ts_txt, (stats_main_box.left + 100, stats_main_box.top + totals_txt.get_height() +
+                             stats_main_box.h / 2 + tot_td_txt.get_height() + 60))
+    screen.blit(tot_cs_txt, (stats_main_box.left + 100, stats_main_box.top + totals_txt.get_height() +
+                             stats_main_box.h / 2 + tot_td_txt.get_height() + tot_ts_txt.get_height() + 60))
+    screen.blit(wins_txt, (stats_main_box.left + 100, stats_main_box.top + totals_txt.get_height() +
+                           stats_main_box.h / 2 + tot_td_txt.get_height() + tot_ts_txt.get_height() +
+                           tot_cs_txt.get_height() + 60))
 
-    screen.blit(totals_txt, (stats_main_box.left + stats_main_box.w*0.75 - totals_txt.get_width()/2,
-                             stats_main_box.top + stats_main_box.h/2 + 50))
+    screen.blit(totals_txt, (stats_main_box.left + stats_main_box.w * 0.75 - totals_txt.get_width() / 2,
+                             stats_main_box.top + stats_main_box.h / 2 + 50))
     screen.blit(opp_tot_td_txt, (stats_main_box.left + stats_main_box.w - (opp_tot_td_txt.get_width() + 85),
-                                 stats_main_box.top+stats_main_box.h/2+totals_txt.get_height()+60))
+                                 stats_main_box.top + stats_main_box.h / 2 + totals_txt.get_height() + 60))
     screen.blit(opp_tot_ts_txt, (stats_main_box.left + stats_main_box.w - (opp_tot_td_txt.get_width() + 85),
-                                 stats_main_box.top+stats_main_box.h/2+totals_txt.get_height() +
-                                 opp_tot_td_txt.get_height()+60))
+                                 stats_main_box.top + stats_main_box.h / 2 + totals_txt.get_height() +
+                                 opp_tot_td_txt.get_height() + 60))
     screen.blit(opp_tot_cs_txt, (stats_main_box.left + stats_main_box.w - (opp_tot_td_txt.get_width() + 85),
-                                 stats_main_box.top+stats_main_box.h/2+totals_txt.get_height() +
-                                 opp_tot_td_txt.get_height()+opp_ts_txt.get_height()+60))
+                                 stats_main_box.top + stats_main_box.h / 2 + totals_txt.get_height() +
+                                 opp_tot_td_txt.get_height() + opp_ts_txt.get_height() + 60))
     screen.blit(opp_wins_txt, (stats_main_box.left + stats_main_box.w - (opp_tot_td_txt.get_width() + 85),
-                               stats_main_box.top+stats_main_box.h/2+totals_txt.get_height() +
-                               opp_tot_td_txt.get_height()+opp_ts_txt.get_height()+opp_tot_cs_txt.get_height()+60))
+                               stats_main_box.top + stats_main_box.h / 2 + totals_txt.get_height() +
+                               opp_tot_td_txt.get_height() + opp_ts_txt.get_height() + opp_tot_cs_txt.get_height() + 60))
