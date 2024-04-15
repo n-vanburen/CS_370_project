@@ -135,6 +135,12 @@ def handle_server_message():
             if action == 'mortal_up_coin':
                 mortal_coin_upgrade()
 
+            if action == 'god_strike':
+                lightning_attack(data)
+
+            if action == 'mortal_strike':
+                catapult_attack(data)
+
             pygame.display.update()
 
         except:
