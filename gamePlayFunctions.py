@@ -55,6 +55,9 @@ deploy_hellhound = pygame.mixer.Sound("deploy_hellhound.wav")
 deploy_cyclops = pygame.mixer.Sound("deploy_cyclops.wav")
 deploy_medusa = pygame.mixer.Sound("deploy_medusa.wav")
 
+deploy_lightning = pygame.mixer.Sound("deploy_lightning.wav")
+deploy_heal = pygame.mixer.Sound("deploy_heal.wav")
+
 # which screen to display: s = start menu, c = connection, g = game board, e = end menu, u = user manual/stats
 which_screen = "c"
 
@@ -573,6 +576,7 @@ def mortal_heal_ability():
         StateMachine.mortals_coins -= 300
         for mortal in mortal_list:
             mortal.health += int((mortal.max_health - mortal.health) * .5)
+        deploy_heal.play()
         if player_role == "m":
             coins_spent += 300
         else:
@@ -586,6 +590,7 @@ def god_heal_ability():
         StateMachine.gods_coins -= 300
         for god in god_list:
             god.health += int((god.max_health - god.health) * .5)
+        deploy_heal.play()
         if player_role == "g":
             coins_spent += 300
         else:
@@ -655,6 +660,7 @@ def lightning_attack(position):
         new_lightning = soldierTypes.Lightning(position)
         new_lightning.spawn_time = pygame.time.get_ticks()
         lightning_list.add(new_lightning)
+        deploy_lightning.play()
         # check for overlap with sprites (should only happen once bc in function -- good thing)
         for mortal in mortal_list:
             if pygame.sprite.collide_circle(mortal, new_lightning):
@@ -677,6 +683,7 @@ def catapult_attack(position):
         catapult_list.add(new_catapult)
         for god in god_list:
             if pygame.sprite.collide_circle(god, new_catapult):
+                #CATAPULT SOUND is deploy_catapult.play()
                 god.health -= new_catapult.damage
                 if god.health <= 0:
                     defeat(god)
