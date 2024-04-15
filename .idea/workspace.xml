@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment=".">
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="wins">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientWFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientWFunctions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamePlayFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamePlayFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servergame.py" beforeDir="false" afterPath="$PROJECT_DIR$/servergame.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -495,7 +497,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713197845282</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="wins">
+      <option name="closed" value="true" />
+      <created>1713199241534</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1713199241534</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +565,8 @@
     <MESSAGE value="4/1" />
     <MESSAGE value="Complete Design Changes and Audio Fixes&#10;&#10;This reverts commit dfface18" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="wins" />
+    <option name="LAST_COMMIT_MESSAGE" value="wins" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

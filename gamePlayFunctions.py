@@ -94,27 +94,21 @@ def handle_server_message():
             message = pickle.loads(client.recv(1024))
             action, data = message
 
-            # if player_role == "g":
             if action == 'create_mortal':
                 troop_type = data
                 mortal_troop_creation(troop_type)
-                print("hi")
 
             if action == 'deploy_mortal':
                 lane = data
                 mortal_troop_deploy(lane)
-                print("hi2")
 
-            # if player_role == "m":
             if action == 'create_god':
                 troop_type = data
                 god_troop_creation(troop_type)
-                print("hi3")
 
             if action == 'deploy_god':
                 lane = data
                 god_troop_deploy(lane)
-                print("hi4")
 
             if action == 'heal_mortal':
                 mortal_heal_ability()
@@ -212,9 +206,9 @@ def defeat(fighter):
         if isinstance(fighter, soldierTypes.Archer):
             if fighter.rect.y == StateMachine.lane1_top + StateMachine.top_lane.h - fighter.height:
                 archer_in_lane[0] = False
-            elif fighter.rect.y == StateMachine.lane2_top + StateMachine.middle_lane.h - fighter.height/2:
+            elif fighter.rect.y == StateMachine.lane2_top + StateMachine.middle_lane.h - fighter.height:
                 archer_in_lane[1] = False
-            elif fighter.rect.y == StateMachine.lane3_top + StateMachine.bottom_lane.h - fighter.height/2:
+            elif fighter.rect.y == StateMachine.lane3_top + StateMachine.bottom_lane.h - fighter.height:
                 archer_in_lane[2] = False
 
         if player_role == "g":
@@ -226,11 +220,11 @@ def defeat(fighter):
         god_list.remove(fighter)
 
         if isinstance(fighter, soldierTypes.Sorceress):
-            if fighter.rect.y == StateMachine.lane1_top + StateMachine.top_lane.h - fighter.height/2:
+            if fighter.rect.y == StateMachine.lane1_top + StateMachine.top_lane.h - fighter.height:
                 sorceress_in_lane[0] = False
-            elif fighter.rect.y == StateMachine.lane2_top + StateMachine.middle_lane.h - fighter.height/2:
+            elif fighter.rect.y == StateMachine.lane2_top + StateMachine.middle_lane.h - fighter.height:
                 sorceress_in_lane[1] = False
-            elif fighter.rect.y == StateMachine.lane3_top + StateMachine.bottom_lane.h - fighter.height/2:
+            elif fighter.rect.y == StateMachine.lane3_top + StateMachine.bottom_lane.h - fighter.height:
                 sorceress_in_lane[2] = False
 
         if player_role == "m":

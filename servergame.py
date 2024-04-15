@@ -2,11 +2,12 @@ import socket
 import threading
 import pickle
 import os
+
 god_count = 0
 mortal_count = 0
 ip = os.popen('ipconfig').read()
 index = ip.find("IPv4", ip.find("IPv4")+1)
-# SERVER_HOST = ip[index+36:index+50]
+
 SERVER_HOST = ip[index+36: ip.find(" ", index+36)-1]
 SERVER_PORT = 55555
 
@@ -34,19 +35,15 @@ def handle(client):
             action, data = message
             if action == 'mortal_creation':
                 broadcast(('create_mortal', data))
-                print("hi")
 
             if action == 'mortal_deploy':
                 broadcast(('deploy_mortal', data))
-                print("hi2")
 
             if action == 'god_creation':
                 broadcast(('create_god', data))
-                print("hi3")
 
             if action == 'god_deploy':
                 broadcast(('deploy_god', data))
-                print("hi4")
 
             if action == 'mortal_chosen':
                 broadcast(('choose_god', "g"))
@@ -56,11 +53,9 @@ def handle(client):
 
             if action == 'mortal_heal':
                 broadcast(('heal_mortal', "idk"))
-                print("hi5")
 
             if action == 'god_heal':
                 broadcast(('heal_god', "idk"))
-                print("hi6")
 
             if action == 'press_start':
                 if data == 'g':
@@ -71,23 +66,22 @@ def handle(client):
                     broadcast(('start_game', "epic"))
                     mortal_count = 0
                     god_count = 0
+
             if action == 'coin_up_god':
                 broadcast(('god_up_coin', 'holder'))
             if action == 'coin_up_mortal':
                 broadcast(('mortal_up_coin', 'holder'))
+
             if action == 'god_lightning':
                 broadcast(("god_strike", data))
-                print("lighting")
             if action == 'mortal_catapult':
                 broadcast(('mortal_strike', data))
-                print("catapult")
-
 
         except:
             index = clients.index(client)
-            clients.remove(client)
             client.close()
-            return 0
+            clients.remove(client)
+            break
 
 
 def receive():
