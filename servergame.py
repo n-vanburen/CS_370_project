@@ -86,23 +86,17 @@ def handle(client):
             if len(clients) == 0:
                 sys.exit()
             break
-            # sys.exit()
-            # ended prints twice when you close both clients!!
-            # there's a thread.start, maybe we have to stop that before it will stop???
-            # once both clients have exited, return 0????
 
 
 def receive():
-    while True:
+    while len(clients) < 2:
         client, address = server.accept()
         print(f"Connected with {str(address)}")
 
         clients.append(client)
 
-        thread = threading.Thread(target=handle, args=(client,))
+        thread = threading.Thread(target=handle, args=(client, ))
         thread.start()
-
-    # sys.exit()
 
 
 print("Server is running...")

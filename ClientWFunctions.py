@@ -32,11 +32,11 @@ while running:
         # win/lose condition 1: time ran out
         if StateMachine.timed_out:
             if StateMachine.right_tower_health > StateMachine.left_tower_health:
-                StateMachine.winner = "Times up! Mortals Win!"
+                StateMachine.winner = "Times up! Gods Win!"
                 if gamePlayFunctions.player_role == "m":
                     gamePlayFunctions.wins += 1
             elif StateMachine.left_tower_health > StateMachine.right_tower_health:
-                StateMachine.winner = "Times up! Gods Win!"
+                StateMachine.winner = "Times up! Mortals Win!"
                 if gamePlayFunctions.player_role == "g":
                     gamePlayFunctions.wins += 1
             else:
@@ -214,7 +214,7 @@ while running:
 
         for lightning in lightning_list:
             lightning.update()
-            if lightning.spawn_time - StateMachine.elapsed_time >= lightning.life_span:
+            if StateMachine.elapsed_time - lightning.spawn_time >= lightning.life_span:
                 print("l rem")
                 lightning_list.remove(lightning)
             else:
