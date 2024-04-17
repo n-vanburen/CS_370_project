@@ -317,8 +317,8 @@ class Spell(pygame.sprite.Sprite):
 
 
 class Lightning(pygame.sprite.Sprite):
-    image_height = 20
-    image_width = 20
+    image_height = 120
+    image_width = 60
 
     center = (0, 0)
     radius = 75
@@ -334,13 +334,14 @@ class Lightning(pygame.sprite.Sprite):
         self.center = center
 
         self.image = pygame.image.load("lightning.png").convert_alpha()
-        self.image = pygame.transform.scale(self.image, self.center)
-        self.rect = self.image.get_rect()
+        self.image = pygame.transform.scale(self.image, (self.image_width, self.image_height))
+        self.rect = pygame.Rect(((self.center[0]-self.image_width/2), (self.center[1]-self.image_height)),
+                                (self.image_width, self.image_height))
 
 
 class Catapult(pygame.sprite.Sprite):
-    image_height = 20
-    image_width = 20
+    image_height = 50
+    image_width = 50
 
     center = (0, 0)
     radius = 75
@@ -353,10 +354,9 @@ class Catapult(pygame.sprite.Sprite):
     def __init__(self, center):
         super().__init__()
 
-        # DO NOT REMOVE RECT, when you implement an image for this, CHANGE IT to self.rect = self.image.get_rect()
-        # IF YOU REMOVE THIS, THE ABILITY WILL NOT WORK ANYMORE
         self.center = center
 
-        self.image = pygame.Surface([self.image_width, self.image_height])
-        self.rect = pygame.Rect(((self.center[0]-self.image_width/2), (self.center[1]-self.image_height)),
+        self.image = pygame.image.load("catapult.png").convert_alpha()
+        self.image = pygame.transform.scale(self.image, (self.image_width, self.image_height))
+        self.rect = pygame.Rect(((self.center[0]-self.image_width/2), (self.center[1]-self.image_height/2)),
                                 (self.image_width, self.image_height))

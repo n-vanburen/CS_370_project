@@ -57,6 +57,7 @@ deploy_medusa = pygame.mixer.Sound("deploy_medusa.wav")
 
 deploy_lightning = pygame.mixer.Sound("deploy_lightning.wav")
 deploy_heal = pygame.mixer.Sound("deploy_heal.wav")
+deploy_catapult = pygame.mixer.Sound("deploy_catapult.wav")
 
 # which screen to display: s = start menu, c = connection, g = game board, e = end menu, u = user manual/stats
 which_screen = "c"
@@ -681,6 +682,7 @@ def catapult_attack(position):
         new_catapult = soldierTypes.Catapult(position)
         new_catapult.spawn_time = pygame.time.get_ticks()
         catapult_list.add(new_catapult)
+        deploy_catapult.play()
         for god in god_list:
             if pygame.sprite.collide_circle(god, new_catapult):
                 #CATAPULT SOUND is deploy_catapult.play()

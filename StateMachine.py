@@ -188,7 +188,7 @@ def draw_game_screen():
     pygame.draw.rect(screen, THIRD_GREEN, m_ability1_b)
     pygame.draw.rect(screen, THIRD_GREEN, m_ability2_b)
     pygame.draw.rect(screen, BLACK, m_ability1_b, 2)
-    m_ability1_b_image = pygame.image.load("catapult.png").convert_alpha()
+    m_ability1_b_image = pygame.image.load("catapult_icon.png").convert_alpha()
     m_ability1_b_image = pygame.transform.scale(m_ability1_b_image, (95, 95))
     screen.blit(m_ability1_b_image, (m_ability1_b.left+5, m_ability1_b.top+5))
     m_ability1_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
