@@ -2,6 +2,7 @@ import socket
 import threading
 import pickle
 import os
+import sys
 
 god_count = 0
 mortal_count = 0
@@ -81,7 +82,12 @@ def handle(client):
             index = clients.index(client)
             client.close()
             clients.remove(client)
+            print("ENDED")
             break
+            # sys.exit()
+            # ended prints twice when you close both clients!!
+            # there's a thread.start, maybe we have to stop that before it will stop???
+            # once both clients have exited, return 0????
 
 
 def receive():

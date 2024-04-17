@@ -8,6 +8,7 @@ import pygame
 import socket
 import threading
 import pickle
+import sys
 
 
 random.seed(370)
@@ -142,7 +143,9 @@ def handle_server_message():
             pygame.display.update()
 
         except:
-            print("An error occurred!")
+            print("Client Closed")
+            client.close()
+            sys.exit()
 
 
 def connect_to_server(server_host):
@@ -685,7 +688,7 @@ def catapult_attack(position):
         deploy_catapult.play()
         for god in god_list:
             if pygame.sprite.collide_circle(god, new_catapult):
-                #CATAPULT SOUND is deploy_catapult.play()
+                # CATAPULT SOUND is deploy_catapult.play()
                 god.health -= new_catapult.damage
                 if god.health <= 0:
                     defeat(god)

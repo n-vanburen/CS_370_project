@@ -460,12 +460,20 @@ def draw_start_menu():
     screen.blit(title_text_surface, title_text_dest)
 
     # role choice buttons
-    if gamePlayFunctions.player_role == "m" or gamePlayFunctions.player_role == "d":
+    if gamePlayFunctions.player_role == "m":
+        pygame.draw.rect(screen, SECOND_GREEN, mortal_rb)
+        pygame.draw.rect(screen, BLACK, pygame.Rect((mortal_rb.left+50, mortal_rb.top+10),
+                                                    (mortal_rb.width-100, mortal_rb.height-20)), 2)
+    elif gamePlayFunctions.player_role == "d":
         pygame.draw.rect(screen, SECOND_GREEN, mortal_rb)
     else:
         pygame.draw.rect(screen, THIRD_GREEN, mortal_rb)
 
-    if gamePlayFunctions.player_role == "g" or gamePlayFunctions.player_role == "d":
+    if gamePlayFunctions.player_role == "g":
+        pygame.draw.rect(screen, SECOND_GREEN, god_rb)
+        pygame.draw.rect(screen, BLACK, pygame.Rect((god_rb.left+50, god_rb.top+10),
+                                                   (god_rb.width-100, god_rb.height-20)), 2)
+    elif gamePlayFunctions.player_role == "d":
         pygame.draw.rect(screen, SECOND_GREEN, god_rb)
     else:
         pygame.draw.rect(screen, THIRD_GREEN, god_rb)
