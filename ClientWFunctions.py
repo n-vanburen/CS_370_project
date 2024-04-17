@@ -214,7 +214,7 @@ while running:
 
         for lightning in lightning_list:
             lightning.update()
-            if StateMachine.elapsed_time - lightning.spawn_time >= lightning.life_span:
+            if lightning.spawn_time - StateMachine.elapsed_time >= lightning.life_span:
                 print("l rem")
                 lightning_list.remove(lightning)
             else:

@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="code review">
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="Lil Choice box (&amp; client killing maybe)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StateMachine.py" beforeDir="false" afterPath="$PROJECT_DIR$/StateMachine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamePlayFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamePlayFunctions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servergame.py" beforeDir="false" afterPath="$PROJECT_DIR$/servergame.py" afterDir="false" />
     </list>
@@ -513,7 +512,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713204215082</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Lil Choice box (&amp; client killing maybe)">
+      <option name="closed" value="true" />
+      <created>1713319589359</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1713319589359</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,7 +582,8 @@
     <MESSAGE value="." />
     <MESSAGE value="wins" />
     <MESSAGE value="code review" />
-    <option name="LAST_COMMIT_MESSAGE" value="code review" />
+    <MESSAGE value="Lil Choice box (&amp; client killing maybe)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lil Choice box (&amp; client killing maybe)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

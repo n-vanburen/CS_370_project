@@ -83,6 +83,8 @@ def handle(client):
             client.close()
             clients.remove(client)
             print("ENDED")
+            if len(clients) == 0:
+                sys.exit()
             break
             # sys.exit()
             # ended prints twice when you close both clients!!
@@ -99,6 +101,8 @@ def receive():
 
         thread = threading.Thread(target=handle, args=(client,))
         thread.start()
+
+    # sys.exit()
 
 
 print("Server is running...")

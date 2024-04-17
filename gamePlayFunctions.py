@@ -662,7 +662,7 @@ def lightning_attack(position):
     if StateMachine.gods_coins >= 300:
         StateMachine.gods_coins -= 300
         new_lightning = soldierTypes.Lightning(position)
-        new_lightning.spawn_time = pygame.time.get_ticks()
+        new_lightning.spawn_time = pygame.time.get_ticks() - (StateMachine.start_time - StateMachine.elapsed_time)
         lightning_list.add(new_lightning)
         deploy_lightning.play()
         # check for overlap with sprites (should only happen once bc in function -- good thing)
