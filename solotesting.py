@@ -7,14 +7,13 @@ import sys
 import os
 import random
 
-
 random.seed(370)
 
 
 def resource_path(relative_path):
     if hasattr(sys, '_MEIPASS'):
         return os.path.join(sys._MEIPASS, relative_path)
-    return os.path.join(os.path.abspath("."), relative_path)
+    return os.path.join(os.path.abspath("assets\\"), relative_path)
 
 
 running = True
@@ -215,14 +214,12 @@ while running:
         for lightning in lightning_list:
             lightning.update()
             if StateMachine.elapsed_time - lightning.spawn_time >= lightning.life_span:
-                print("l rem")
                 lightning_list.remove(lightning)
             else:
                 pygame.draw.circle(StateMachine.screen, StateMachine.BLACK, lightning.center, lightning.radius, 2)
         for catapult in catapult_list:
             catapult.update()
             if StateMachine.elapsed_time - catapult.spawn_time >= catapult.life_span:
-                print("c rem")
                 catapult_list.remove(catapult)
             else:
                 pygame.draw.circle(StateMachine.screen, StateMachine.BLACK, catapult.center, catapult.radius, 2)

@@ -1,5 +1,3 @@
-# import ClientWFunctions as client
-# from ClientWFunctions import *
 from soldierTypes import *
 import soldierTypes
 import StateMachine
@@ -17,6 +15,12 @@ random.seed(370)
 
 
 def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("assets\\"), relative_path)
+
+
+def server_resource_path(relative_path):
     if hasattr(sys, '_MEIPASS'):
         return os.path.join(sys._MEIPASS, relative_path)
     return os.path.join(os.path.abspath("."), relative_path)
@@ -99,13 +103,14 @@ ip = os.popen('ipconfig').read()
 index = ip.find("IPv4", ip.find("IPv4")+1)
 localhost_ip = ip[index+36: ip.find(" ", index+36)-1]
 
+
 def start_server():
     server_thread = threading.Thread(target=run_server)
     server_thread.start()
 
 
 def run_server():
-    server_file_path = resource_path("servergame.py")
+    server_file_path = server_resource_path("servergame.py")
     subprocess.run("python " + server_file_path)
 
 
@@ -165,7 +170,6 @@ def handle_server_message():
             pygame.display.update()
 
         except:
-            print("Client Closed")
             client.close()
             sys.exit()
 
@@ -285,7 +289,6 @@ def mortal_troop_creation(troop_type):
     # make sure they have enough coins to purchase the troop
     if StateMachine.mortals_coins >= new_mortal.cost:
         mortal_creation_list.append(new_mortal)
-        # send_action(('mortal_creation', troop_type))
         # if there is a successful creation, allow for deployment
         m_tb_pressed = True
     else:
@@ -314,7 +317,6 @@ def god_troop_creation(troop_type):
 
     if StateMachine.gods_coins >= new_god.cost:
         god_creation_list.append(new_god)
-        # send_action(('god_creation', troop_type))
         # if there is a successful creation, allow for deployment
         g_tb_pressed = True
     else:
@@ -394,13 +396,11 @@ def mortal_troop_deploy(lane):
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
                 play_deployment_sound(current_mortal)
-                # send_action(('mortal_deploy', lane))
             else:
                 if not archer_in_lane[0]:
                     archer_in_lane[0] = True
                     buy_mortal(current_mortal)
                     play_deployment_sound(current_mortal)
-                    # send_action(('mortal_deploy', lane))
                     add_attack_delay(current_mortal)
                 else:
                     m_tb_pressed = False
@@ -409,13 +409,11 @@ def mortal_troop_deploy(lane):
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
                 play_deployment_sound(current_mortal)
-                # send_action(('mortal_deploy', lane))
             else:
                 if not archer_in_lane[1]:
                     archer_in_lane[1] = True
                     buy_mortal(current_mortal)
                     play_deployment_sound(current_mortal)
-                    # send_action(('mortal_deploy', lane))
                     add_attack_delay(current_mortal)
                 else:
                     m_tb_pressed = False
@@ -424,13 +422,11 @@ def mortal_troop_deploy(lane):
             if not isinstance(current_mortal, soldierTypes.Archer):
                 buy_mortal(current_mortal)
                 play_deployment_sound(current_mortal)
-                # send_action(('mortal_deploy', lane))
             else:
                 if not archer_in_lane[2]:
                     archer_in_lane[2] = True
                     buy_mortal(current_mortal)
                     play_deployment_sound(current_mortal)
-                    # send_action(('mortal_deploy', lane))
                     add_attack_delay(current_mortal)
                 else:
                     m_tb_pressed = False
@@ -455,13 +451,11 @@ def god_troop_deploy(lane):
             if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
                 play_deployment_sound(current_god)
-                # send_action(('god_deploy', lane))
             else:
                 if not sorceress_in_lane[0]:
                     sorceress_in_lane[0] = True
                     buy_god(current_god)
                     play_deployment_sound(current_god)
-                    # send_action(('god_deploy', lane))
                     add_attack_delay(current_god)
                 else:
                     g_tb_pressed = False
@@ -470,13 +464,11 @@ def god_troop_deploy(lane):
             if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
                 play_deployment_sound(current_god)
-                # send_action(('god_deploy', lane))
             else:
                 if not sorceress_in_lane[1]:
                     sorceress_in_lane[1] = True
                     buy_god(current_god)
                     play_deployment_sound(current_god)
-                    # send_action(('god_deploy', lane))
                     add_attack_delay(current_god)
                 else:
                     g_tb_pressed = False
@@ -485,13 +477,11 @@ def god_troop_deploy(lane):
             if not isinstance(current_god, soldierTypes.Sorceress):
                 buy_god(current_god)
                 play_deployment_sound(current_god)
-                # send_action(('god_deploy', lane))
             else:
                 if not sorceress_in_lane[2]:
                     sorceress_in_lane[2] = True
                     buy_god(current_god)
                     play_deployment_sound(current_god)
-                    # send_action(('god_deploy', lane))
                     add_attack_delay(current_god)
                 else:
                     g_tb_pressed = False
@@ -693,7 +683,7 @@ def lightning_attack(position):
                 mortal.health -= new_lightning.damage
                 if mortal.health <= 0:
                     defeat(mortal)
-        if player_role == 'm':
+        if player_role == 'g':
             coins_spent += 300
         else:
             opp_coins_spent += 300
@@ -714,7 +704,7 @@ def catapult_attack(position):
                 god.health -= new_catapult.damage
                 if god.health <= 0:
                     defeat(god)
-        if player_role == 'g':
+        if player_role == 'm':
             coins_spent += 300
         else:
             opp_coins_spent += 300

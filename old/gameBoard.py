@@ -19,7 +19,7 @@ SECOND_GREEN = (170,225,92)
 THIRD_GREEN = (217,231,129)
 
 # Background
-background_img = pygame.image.load('Background.png').convert()
+background_img = pygame.image.load('../assets/Background.png').convert()
 background_img = pygame.transform.scale(background_img, screen_size)
 
 # variables for use in other files
@@ -27,7 +27,7 @@ background_img = pygame.transform.scale(background_img, screen_size)
 tower_size = (100, 100)
 left_tower_dest = (25, 275)
 right_tower_dest = (1075, 275)
-tower_img = pygame.image.load('Tower.png').convert()
+tower_img = pygame.image.load('../assets/Tower.png').convert()
 tower_img = pygame.transform.scale(tower_img, tower_size)
 left_tower_rect = pygame.Rect(left_tower_dest, tower_size)
 right_tower_rect = pygame.Rect(right_tower_dest, tower_size)
@@ -280,7 +280,7 @@ def draw_game_screen():
         one_second_tracker += 1000
 
     # Display to screen current coins
-    fontCoins = pygame.font.Font("Font.ttf", 14)
+    fontCoins = pygame.font.Font("../assets/Font.ttf", 14)
     mortal_coin_text = fontCoins.render(f"Coins: {mortals_coins}", True, (0, 0, 0))
     screen.blit(mortal_coin_text, (m_coin_display.x+4, m_coin_display.y+6))
     gods_coin_text = fontCoins.render(f"Coins: {gods_coins}", True, (0, 0, 0))
@@ -300,7 +300,7 @@ def draw_game_screen():
     elif mortal_coin_level == 2:
         m_upgrade_cost = 500
 
-    fontCoinsUpgrade = pygame.font.Font("Font.ttf", 12)
+    fontCoinsUpgrade = pygame.font.Font("../assets/Font.ttf", 12)
     if mortal_coin_level < 3:
         mortal_coin_upgrade_text = fontCoinsUpgrade.render(f"Upgrade: {m_upgrade_cost}", True, (0, 0, 0))
         screen.blit(mortal_coin_upgrade_text, (m_coin_upgrade_b.x+2, m_coin_upgrade_b.y+16))

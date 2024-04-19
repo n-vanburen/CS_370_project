@@ -82,7 +82,6 @@ def handle(client):
             index = clients.index(client)
             client.close()
             clients.remove(client)
-            print("ENDED")
             if len(clients) == 0:
                 sys.exit()
             break
@@ -91,7 +90,6 @@ def handle(client):
 def receive():
     while len(clients) < 2:
         client, address = server.accept()
-        print(f"Connected with {str(address)}")
 
         clients.append(client)
 
@@ -99,5 +97,4 @@ def receive():
         thread.start()
 
 
-print("Server is running...")
 receive()

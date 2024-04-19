@@ -1,13 +1,5 @@
 import pygame
-# import pygame
-# import pygame.display
-
-# import gameBoard
-# from gameBoard import *
 import StateMachine
-# pygame.init()  # need this for font
-# commented out is already included in gameBoard
-
 import os
 import sys
 
@@ -17,7 +9,7 @@ font = pygame.font.Font(None, 20)
 def resource_path(relative_path):
     if hasattr(sys, '_MEIPASS'):
         return os.path.join(sys._MEIPASS, relative_path)
-    return os.path.join(os.path.abspath("."), relative_path)
+    return os.path.join(os.path.abspath("assets\\"), relative_path)
 
 
 class Fighter(pygame.sprite.Sprite):
@@ -52,11 +44,6 @@ class Fighter(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.photo, (self.width, self.height))
         self.rect = self.image.get_rect()
 
-        # pygame.draw.rect(self.image, color, pygame.Rect(0, 0, self.width, self.height))
-        # self.rect = self.image.get_rect()
-
-        # self.text_surface = font.render(str(self.health), True, (0, 0, 0))
-        # self.image.blit(self.text_surface, (self.rect.x+5, self.rect.y+5))
         self.update_health_label()
 
     def move_right(self, pixels):
@@ -76,10 +63,7 @@ class Fighter(pygame.sprite.Sprite):
             self.hit_left_barrier = False
 
     def update_health_label(self):
-        # text_surface = font.render(input_text, True, (255, 255, 255))
-        # screen.blit(text_surface, (input_rect.x + 5, input_rect.y + 5))
         self.text_surface = font.render(str(self.health), True, (150, 150, 150))
-        # screen.blit(self.text_surface, (self.rect.x+self.rect.width+10, self.rect.y+self.rect.height+10))
         StateMachine.screen.blit(self.text_surface, (self.rect.x+5, self.rect.y+5))
 
 
@@ -303,7 +287,7 @@ class Arrow(pygame.sprite.Sprite):
 class Spell(pygame.sprite.Sprite):
     height = 10
     width = 25
-    halfway = False  # the archers only have a range of half the battlefield
+    halfway = False  # the sorceress only has a range of half the battlefield
     team = 'g'
     attack_strength = 5
     speed = 0.6

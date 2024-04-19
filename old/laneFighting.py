@@ -34,7 +34,7 @@ def fight(fighter1, fighter2):
     if can_attack(fighter1):
         print("1")
         fighter2.health -= fighter1.attack_strength
-        attack = pygame.mixer.Sound("attack.wav")
+        attack = pygame.mixer.Sound("../assets/attack.wav")
         attack.play()
         print(str(fighter2.health))
         print(str(StateMachine.elapsed_time))
@@ -43,7 +43,7 @@ def fight(fighter1, fighter2):
     if can_attack(fighter2):
         print("2")
         fighter1.health -= fighter2.attack_strength
-        attack = pygame.mixer.Sound("attack.wav")
+        attack = pygame.mixer.Sound("../assets/attack.wav")
         attack.play()
         print(str(fighter1.health))
         print(str(StateMachine.elapsed_time))
@@ -306,7 +306,7 @@ def tower_damage(side, fighter):
 
         if side == "r":
             StateMachine.right_tower_health -= fighter.attack_strength
-            attack = pygame.mixer.Sound("attack.wav")
+            attack = pygame.mixer.Sound("../assets/attack.wav")
             attack.play()
             if StateMachine.right_tower_health <= 0:
                 StateMachine.right_tower_health = 0
@@ -315,7 +315,7 @@ def tower_damage(side, fighter):
                 StateMachine.winner = "Mortals Win!"
         else:
             StateMachine.left_tower_health -= fighter.attack_strength
-            attack = pygame.mixer.Sound("attack.wav")
+            attack = pygame.mixer.Sound("../assets/attack.wav")
             attack.play()
             if StateMachine.left_tower_health <= 0:
                 StateMachine.left_tower_health = 0
@@ -347,10 +347,10 @@ def ranged_hit(fighter, projectile):
 
                 fighter.health -= projectile.attack_strength
                 if projectile == arrow:
-                    attack = pygame.mixer.Sound("attack_archer.wav")
+                    attack = pygame.mixer.Sound("../assets/attack_archer.wav")
                     attack.play()
                 if projectile == spell:
-                    attack = pygame.mixer.Sound("attack_sorceress.wav")
+                    attack = pygame.mixer.Sound("../assets/attack_sorceress.wav")
                     attack.play()
                 if fighter.health <= 0:
                     defeat(fighter)
@@ -421,22 +421,22 @@ start_music = False
 user_manual_stats_music = False
 
 #Music Booleans Initilizing Sound Effects
-deploy_footsoldier = pygame.mixer.Sound("deploy_footsoldier.wav")
-deploy_eagle = pygame.mixer.Sound("deploy_eagle.wav")
-deploy_archer = pygame.mixer.Sound("deploy_archer.wav")
-deploy_cavalry = pygame.mixer.Sound("deploy_cavalry.wav")
-deploy_trojanhorse = pygame.mixer.Sound("deploy_trojanhorse.wav")
-deploy_achilles = pygame.mixer.Sound("deploy_achilles.wav")
+deploy_footsoldier = pygame.mixer.Sound("../assets/deploy_footsoldier.wav")
+deploy_eagle = pygame.mixer.Sound("../assets/deploy_eagle.wav")
+deploy_archer = pygame.mixer.Sound("../assets/deploy_archer.wav")
+deploy_cavalry = pygame.mixer.Sound("../assets/deploy_cavalry.wav")
+deploy_trojanhorse = pygame.mixer.Sound("../assets/deploy_trojanhorse.wav")
+deploy_achilles = pygame.mixer.Sound("../assets/deploy_achilles.wav")
 
-deploy_minion = pygame.mixer.Sound("deploy_minion.wav")
-deploy_harpy = pygame.mixer.Sound("deploy_harpy.wav")
-deploy_sorceress = pygame.mixer.Sound("deploy_sorceress.wav")
-deploy_hellhound = pygame.mixer.Sound("deploy_hellhound.wav")
-deploy_cyclops = pygame.mixer.Sound("deploy_cyclops.wav")
-deploy_medusa = pygame.mixer.Sound("deploy_medusa.wav")
+deploy_minion = pygame.mixer.Sound("../assets/deploy_minion.wav")
+deploy_harpy = pygame.mixer.Sound("../assets/deploy_harpy.wav")
+deploy_sorceress = pygame.mixer.Sound("../assets/deploy_sorceress.wav")
+deploy_hellhound = pygame.mixer.Sound("../assets/deploy_hellhound.wav")
+deploy_cyclops = pygame.mixer.Sound("../assets/deploy_cyclops.wav")
+deploy_medusa = pygame.mixer.Sound("../assets/deploy_medusa.wav")
 
-deploy_lightning = pygame.mixer.Sound("deploy_lightning.wav")
-deploy_heal = pygame.mixer.Sound("deploy_heal.wav")
+deploy_lightning = pygame.mixer.Sound("../assets/deploy_lightning.wav")
+deploy_heal = pygame.mixer.Sound("../assets/deploy_heal.wav")
 
 # font = pygame.font.SysFont("Font.tff", 36)
 

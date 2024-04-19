@@ -7,7 +7,8 @@ import sys
 def resource_path(relative_path):
     if hasattr(sys, '_MEIPASS'):
         return os.path.join(sys._MEIPASS, relative_path)
-    return os.path.join(os.path.abspath("."), relative_path)
+    return os.path.join(os.path.abspath("assets\\"), relative_path)
+
 
 pygame.init()
 
@@ -84,6 +85,23 @@ g_ability2_coord = (1095, 0)
 g_ability1_b = pygame.Rect(g_ability1_coord, ability_size)
 g_ability2_b = pygame.Rect(g_ability2_coord, ability_size)
 
+# ability images/icons
+# mortal
+m_ability1_b_image = pygame.image.load(resource_path("catapult_icon.png")).convert_alpha()
+m_ability1_b_image = pygame.transform.scale(m_ability1_b_image, (95, 95))
+m_ability1_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
+m_ability2_b_image = pygame.image.load(resource_path("heal.png")).convert_alpha()
+m_ability2_b_image = pygame.transform.scale(m_ability2_b_image, (95, 95))
+m_ability2_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
+# gods
+g_ability1_b_image = pygame.image.load(resource_path("lightning.png")).convert_alpha()
+g_ability1_b_image = pygame.transform.scale(g_ability1_b_image, (60, 100))
+g_ability1_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
+g_ability2_b_image = pygame.image.load(resource_path("heal.png")).convert_alpha()
+g_ability2_b_image = pygame.transform.scale(g_ability2_b_image, (95, 95))
+g_ability2_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
+
+
 # Coins
 coin_size = (coin_w, coin_h) = (80, 40)
 one_second_tracker = 1000
@@ -131,6 +149,47 @@ g_tb_3 = pygame.Rect((g_tb_col3_x, tb_row1_y), tb_size)
 g_tb_4 = pygame.Rect((g_tb_col1_x, tb_row2_y), tb_size)
 g_tb_5 = pygame.Rect((g_tb_col2_x, tb_row2_y), tb_size)
 g_tb_6 = pygame.Rect((g_tb_col3_x, tb_row2_y), tb_size)
+
+# troop images
+# mortal
+m_tb_1_image = pygame.image.load(resource_path("footsoldier.png")).convert_alpha()
+m_tb_1_image = pygame.transform.scale(m_tb_1_image, (60, 60))
+m_tb_1_text = fontCoins.render(f"$50", True, (0, 0, 0))
+m_tb_2_image = pygame.image.load(resource_path("eagle.png")).convert_alpha()
+m_tb_2_image = pygame.transform.scale(m_tb_2_image, (60, 60))
+m_tb_2_text = fontCoins.render(f"$75", True, (0, 0, 0))
+m_tb_3_image = pygame.image.load(resource_path("archer.png")).convert_alpha()
+m_tb_3_image = pygame.transform.scale(m_tb_3_image, (60, 60))
+m_tb_3_text = fontCoins.render(f"$100", True, (0, 0, 0))
+m_tb_4_image = pygame.image.load(resource_path("cavalry.png")).convert_alpha()
+m_tb_4_image = pygame.transform.scale(m_tb_4_image, (60, 60))
+m_tb_4_text = fontCoins.render(f"$125", True, (0, 0, 0))
+m_tb_5_image = pygame.image.load(resource_path("trojanhorse.png")).convert_alpha()
+m_tb_5_image = pygame.transform.scale(m_tb_5_image, (60, 60))
+m_tb_5_text = fontCoins.render(f"$200", True, (0, 0, 0))
+m_tb_6_image = pygame.image.load(resource_path("achilles.png")).convert_alpha()
+m_tb_6_image = pygame.transform.scale(m_tb_6_image, (60, 60))
+m_tb_6_text = fontCoins.render(f"$300", True, (0, 0, 0))
+
+# gods
+g_tb_1_image = pygame.image.load(resource_path("minion.png")).convert_alpha()
+g_tb_1_image = pygame.transform.scale(g_tb_1_image, (60, 60))
+g_tb_1_text = fontCoins.render(f"$50", True, (0, 0, 0))
+g_tb_2_image = pygame.image.load(resource_path("harpy.png")).convert_alpha()
+g_tb_2_image = pygame.transform.scale(g_tb_2_image, (60, 60))
+g_tb_2_text = fontCoins.render(f"$75", True, (0, 0, 0))
+g_tb_3_image = pygame.image.load(resource_path("sorceress.png")).convert_alpha()
+g_tb_3_image = pygame.transform.scale(g_tb_3_image, (60, 60))
+g_tb_3_text = fontCoins.render(f"$100", True, (0, 0, 0))
+g_tb_4_image = pygame.image.load(resource_path("hellhound.png")).convert_alpha()
+g_tb_4_image = pygame.transform.scale(g_tb_4_image, (60, 60))
+g_tb_4_text = fontCoins.render(f"$125", True, (0, 0, 0))
+g_tb_5_image = pygame.image.load(resource_path("cyclops.png")).convert_alpha()
+g_tb_5_image = pygame.transform.scale(g_tb_5_image, (60, 60))
+g_tb_5_text = fontCoins.render(f"$200", True, (0, 0, 0))
+g_tb_6_image = pygame.image.load(resource_path("medusa.png")).convert_alpha()
+g_tb_6_image = pygame.transform.scale(g_tb_6_image, (60, 60))
+g_tb_6_text = fontCoins.render(f"$300", True, (0, 0, 0))
 
 # Lanes
 lane_size = (782, 100)
@@ -196,29 +255,18 @@ def draw_game_screen():
     pygame.draw.rect(screen, THIRD_GREEN, m_ability1_b)
     pygame.draw.rect(screen, THIRD_GREEN, m_ability2_b)
     pygame.draw.rect(screen, BLACK, m_ability1_b, 2)
-    m_ability1_b_image = pygame.image.load(resource_path("catapult_icon.png")).convert_alpha()
-    m_ability1_b_image = pygame.transform.scale(m_ability1_b_image, (95, 95))
     screen.blit(m_ability1_b_image, (m_ability1_b.left+5, m_ability1_b.top+5))
-    m_ability1_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
     screen.blit(m_ability1_b_text, (m_ability1_b.left+2, m_ability1_b.top))
     pygame.draw.rect(screen, BLACK, m_ability2_b, 2)
-    m_ability2_b_image = pygame.image.load(resource_path("heal.png")).convert_alpha()
-    m_ability2_b_image = pygame.transform.scale(m_ability2_b_image, (95, 95))
     screen.blit(m_ability2_b_image, (m_ability2_b.left+5, m_ability2_b.top+5))
-    m_ability2_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
     screen.blit(m_ability2_b_text, (m_ability2_b.left+2, m_ability2_b.top))
+
     # God
     pygame.draw.rect(screen, THIRD_GREEN, g_ability1_b)
-    g_ability1_b_image = pygame.image.load(resource_path("lightning.png")).convert_alpha()
-    g_ability1_b_image = pygame.transform.scale(g_ability1_b_image, (60, 100))
     screen.blit(g_ability1_b_image, (g_ability1_b.left+20, g_ability1_b.top+3))
-    g_ability1_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
     screen.blit(g_ability1_b_text, (g_ability1_b.left+2, g_ability1_b.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_ability2_b)
-    g_ability2_b_image = pygame.image.load(resource_path("heal.png")).convert_alpha()
-    g_ability2_b_image = pygame.transform.scale(g_ability2_b_image, (95, 95))
     screen.blit(g_ability2_b_image, (g_ability2_b.left+5, g_ability2_b.top+5))
-    g_ability2_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
     screen.blit(g_ability2_b_text, (g_ability2_b.left+2, g_ability2_b.top))
     pygame.draw.rect(screen, BLACK, g_ability1_b, 2)
     pygame.draw.rect(screen, BLACK, g_ability2_b, 2)
@@ -242,87 +290,65 @@ def draw_game_screen():
         pygame.draw.rect(screen, BLACK, g_coin_upgrade_b)
     pygame.draw.rect(screen, BLACK, g_coin_display, 2)
     pygame.draw.rect(screen, BLACK, g_coin_upgrade_b, 2)
+
     # Troop Spawn Buttons
     # Mortal
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_1)
-    m_tb_1_image = pygame.image.load(resource_path("footsoldier.png")).convert_alpha()
-    m_tb_1_image = pygame.transform.scale(m_tb_1_image, (60, 60))
     screen.blit(m_tb_1_image, (m_tb_1.left+5, m_tb_1.top+5))
-    m_tb_1_text = fontCoins.render(f"$50", True, (0, 0, 0))
     screen.blit(m_tb_1_text, (m_tb_1.left+2, m_tb_1.top))
+
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_2)
-    m_tb_2_image = pygame.image.load(resource_path("eagle.png")).convert_alpha()
-    m_tb_2_image = pygame.transform.scale(m_tb_2_image, (60, 60))
     screen.blit(m_tb_2_image, (m_tb_2.left+5, m_tb_2.top+5))
-    m_tb_2_text = fontCoins.render(f"$75", True, (0, 0, 0))
     screen.blit(m_tb_2_text, (m_tb_2.left+2, m_tb_2.top))
+
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_3)
-    m_tb_3_image = pygame.image.load(resource_path("archer.png")).convert_alpha()
-    m_tb_3_image = pygame.transform.scale(m_tb_3_image, (60, 60))
     screen.blit(m_tb_3_image, (m_tb_3.left+5, m_tb_3.top+5))
-    m_tb_3_text = fontCoins.render(f"$100", True, (0, 0, 0))
     screen.blit(m_tb_3_text, (m_tb_3.left+2, m_tb_3.top))
+
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_4)
-    m_tb_4_image = pygame.image.load(resource_path("cavalry.png")).convert_alpha()
-    m_tb_4_image = pygame.transform.scale(m_tb_4_image, (60, 60))
     screen.blit(m_tb_4_image, (m_tb_4.left+5, m_tb_4.top+5))
-    m_tb_4_text = fontCoins.render(f"$125", True, (0, 0, 0))
     screen.blit(m_tb_4_text, (m_tb_4.left+2, m_tb_4.top))
+
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_5)
-    m_tb_5_image = pygame.image.load(resource_path("trojanhorse.png")).convert_alpha()
-    m_tb_5_image = pygame.transform.scale(m_tb_5_image, (60, 60))
     screen.blit(m_tb_5_image, (m_tb_5.left+5, m_tb_5.top+5))
-    m_tb_5_text = fontCoins.render(f"$200", True, (0, 0, 0))
     screen.blit(m_tb_5_text, (m_tb_5.left+2, m_tb_5.top))
+
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_6)
-    m_tb_6_image = pygame.image.load(resource_path("achilles.png")).convert_alpha()
-    m_tb_6_image = pygame.transform.scale(m_tb_6_image, (60, 60))
     screen.blit(m_tb_6_image, (m_tb_6.left+5, m_tb_6.top+5))
-    m_tb_6_text = fontCoins.render(f"$300", True, (0, 0, 0))
     screen.blit(m_tb_6_text, (m_tb_6.left+2, m_tb_6.top))
+
     pygame.draw.rect(screen, BLACK, m_tb_1, 2)
     pygame.draw.rect(screen, BLACK, m_tb_2, 2)
     pygame.draw.rect(screen, BLACK, m_tb_3, 2)
     pygame.draw.rect(screen, BLACK, m_tb_4, 2)
     pygame.draw.rect(screen, BLACK, m_tb_5, 2)
     pygame.draw.rect(screen, BLACK, m_tb_6, 2)
+
     # God
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_1)
-    g_tb_1_image = pygame.image.load(resource_path("minion.png")).convert_alpha()
-    g_tb_1_image = pygame.transform.scale(g_tb_1_image, (60, 60))
     screen.blit(g_tb_1_image, (g_tb_1.left+5, g_tb_1.top+5))
-    g_tb_1_text = fontCoins.render(f"$50", True, (0, 0, 0))
     screen.blit(g_tb_1_text, (g_tb_1.left+2, g_tb_1.top))
+
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_2)
-    g_tb_2_image = pygame.image.load(resource_path("harpy.png")).convert_alpha()
-    g_tb_2_image = pygame.transform.scale(g_tb_2_image, (60, 60))
     screen.blit(g_tb_2_image, (g_tb_2.left+5, g_tb_2.top+5))
-    g_tb_2_text = fontCoins.render(f"$75", True, (0, 0, 0))
     screen.blit(g_tb_2_text, (g_tb_2.left+2, g_tb_2.top))
+
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_3)
-    g_tb_3_image = pygame.image.load(resource_path("sorceress.png")).convert_alpha()
-    g_tb_3_image = pygame.transform.scale(g_tb_3_image, (60, 60))
     screen.blit(g_tb_3_image, (g_tb_3.left+5, g_tb_3.top+5))
-    g_tb_3_text = fontCoins.render(f"$100", True, (0, 0, 0))
     screen.blit(g_tb_3_text, (g_tb_3.left+2, g_tb_3.top))
+
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_4)
-    g_tb_4_image = pygame.image.load(resource_path("hellhound.png")).convert_alpha()
-    g_tb_4_image = pygame.transform.scale(g_tb_4_image, (60, 60))
     screen.blit(g_tb_4_image, (g_tb_4.left+5, g_tb_4.top+5))
-    g_tb_4_text = fontCoins.render(f"$125", True, (0, 0, 0))
     screen.blit(g_tb_4_text, (g_tb_4.left+2, g_tb_4.top))
+
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_5)
-    g_tb_5_image = pygame.image.load(resource_path("cyclops.png")).convert_alpha()
-    g_tb_5_image = pygame.transform.scale(g_tb_5_image, (60, 60))
     screen.blit(g_tb_5_image, (g_tb_5.left+5, g_tb_5.top+5))
-    g_tb_5_text = fontCoins.render(f"$200", True, (0, 0, 0))
     screen.blit(g_tb_5_text, (g_tb_5.left+2, g_tb_5.top))
+
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_6)
-    g_tb_6_image = pygame.image.load(resource_path("medusa.png")).convert_alpha()
-    g_tb_6_image = pygame.transform.scale(g_tb_6_image, (60, 60))
     screen.blit(g_tb_6_image, (g_tb_6.left+5, g_tb_6.top+5))
-    g_tb_6_text = fontCoins.render(f"$300", True, (0, 0, 0))
     screen.blit(g_tb_6_text, (g_tb_6.left+2, g_tb_6.top))
+
     pygame.draw.rect(screen, BLACK, g_tb_1, 2)
     pygame.draw.rect(screen, BLACK, g_tb_2, 2)
     pygame.draw.rect(screen, BLACK, g_tb_3, 2)
@@ -593,7 +619,6 @@ def draw_manual_screen():
     pygame.draw.rect(screen, BLACK, back_b, 2)
     screen.blit(back_b_text_surface, back_b_text_dest)
 
-    # pygame.Surface.set_colorkey(user_manual_img, (255, 255, 255))
     screen.blit(user_manual_img, (stats_main_box.left, stats_main_box.top))
 
 
@@ -727,4 +752,4 @@ def draw_score_board():
                                  opp_tot_td_txt.get_height() + opp_ts_txt.get_height() + 60))
     screen.blit(opp_wins_txt, (stats_main_box.left + stats_main_box.w - (opp_tot_td_txt.get_width() + 85),
                                stats_main_box.top + stats_main_box.h / 2 + totals_txt.get_height() +
-                               opp_tot_td_txt.get_height() + opp_ts_txt.get_height() + opp_tot_cs_txt.get_height() + 60))
+                               opp_tot_td_txt.get_height() + opp_ts_txt.get_height() + opp_tot_cs_txt.get_height()+60))

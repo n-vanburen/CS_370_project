@@ -10,7 +10,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Game Timer Example")
 
 #Load your background image
-background_image = pygame.image.load("Background.png")  # Change "background.jpg" to your image file path
+background_image = pygame.image.load("../assets/Background.png")  # Change "background.jpg" to your image file path
 
 #Colors
 WHITE = (255, 255, 255)
