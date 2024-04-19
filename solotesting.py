@@ -7,18 +7,15 @@ import sys
 import os
 import random
 
-# import servergame
 
 random.seed(370)
 
+
 def resource_path(relative_path):
-    if hasattr(sys, '_MEIPASS'):
-        return os.path.join(sys._MEIPASS, relative_path)
+    # if hasattr(sys, '_MEIPASS'):
+        # return os.path.join(sys._MEIPASS, relative_path)
     return os.path.join(os.path.abspath("."), relative_path)
 
-# gamePlayFunctionsFile = resource_path("gamePlayFunctions.py")
-# import gamePlayFunctionsFile
-# from gamePlayFunctionsFile import *
 
 running = True
 clock = pygame.time.Clock()
@@ -92,7 +89,7 @@ while running:
                     elif ((top_lane.collidepoint(event.pos) or middle_lane.collidepoint(event.pos) or
                            bottom_lane.collidepoint(event.pos))):
                         if gamePlayFunctions.catapult_pressed:
-                            send_action(('mortal_catapult',event.pos))
+                            send_action(('mortal_catapult', event.pos))
                     else:
                         gamePlayFunctions.catapult_pressed = False
 

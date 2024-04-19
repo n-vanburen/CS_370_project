@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="lightning disappearance" />
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="EXECUTABLE" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -532,7 +532,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713377502862</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="EXECUTABLE">
+      <option name="closed" value="true" />
+      <created>1713492736384</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1713492736384</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,7 +604,8 @@
     <MESSAGE value="Lil Choice box (&amp; client killing maybe)" />
     <MESSAGE value="." />
     <MESSAGE value="lightning disappearance" />
-    <option name="LAST_COMMIT_MESSAGE" value="lightning disappearance" />
+    <MESSAGE value="EXECUTABLE" />
+    <option name="LAST_COMMIT_MESSAGE" value="EXECUTABLE" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
