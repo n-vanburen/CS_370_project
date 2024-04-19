@@ -595,8 +595,8 @@ def draw_connection_screen():
 
 # Stats screen
 # image that displays the user manual
-user_manual_img = pygame.image.load(resource_path('userManualCycle2.png'))
-user_manual_img_size = (umw, umh) = (user_manual_img.get_width() * 0.85, user_manual_img.get_height() * 0.85)
+user_manual_img = pygame.image.load(resource_path('userManual.png'))
+user_manual_img_size = (umw, umh) = (user_manual_img.get_width(), user_manual_img.get_height())
 user_manual_img = pygame.transform.scale(user_manual_img, (umw, umh))
 
 # main box

@@ -4,66 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="EXECUTABLE">
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="EXECUTABLE (&amp; organization)">
+      <change afterPath="$PROJECT_DIR$/assets/userManual.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Background.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientWFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientWFunctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Font.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Font.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Music1.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Music1.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Music2.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Music2.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Music3.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Music3.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StateMachine.py" beforeDir="false" afterPath="$PROJECT_DIR$/StateMachine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Timer_Test_Temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/old/Timer_Test_Temp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tower.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Tower.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/achilles.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/achilles.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archer.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/archer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/arrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/arrow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attack.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/attack.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attack_archer.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/attack_archer.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attack_sorceress.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/attack_sorceress.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catapult.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/catapult.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catapult_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/catapult_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cavalry.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cavalry.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientgame1.py" beforeDir="false" afterPath="$PROJECT_DIR$/old/clientgame1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientgame2.py" beforeDir="false" afterPath="$PROJECT_DIR$/old/clientgame2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cyclops.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cyclops.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_achilles.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_achilles.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_archer.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_archer.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_catapult.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_catapult.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_cavalry.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_cavalry.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_cyclops.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_cyclops.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_eagle.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_eagle.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_footsoldier.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_footsoldier.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_harpy.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_harpy.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_heal.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_heal.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_hellhound.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_hellhound.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_lightning.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_lightning.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_medusa.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_medusa.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_minion.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_minion.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_sorceress.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_sorceress.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy_trojanhorse.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/deploy_trojanhorse.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eagle.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/eagle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footsoldier.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/footsoldier.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameBoard.py" beforeDir="false" afterPath="$PROJECT_DIR$/old/gameBoard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamePlayFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamePlayFunctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/harpy.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/harpy.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/heal.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/heal.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hellhound.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/hellhound.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laneFighting.py" beforeDir="false" afterPath="$PROJECT_DIR$/old/laneFighting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lightning.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/lightning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localhostTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/old/localhostTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/medusa.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/medusa.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minion.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/minion.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servergame.py" beforeDir="false" afterPath="$PROJECT_DIR$/servergame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soldierTypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/soldierTypes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solotesting.py" beforeDir="false" afterPath="$PROJECT_DIR$/solotesting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sorceress.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sorceress.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spell.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/spell.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trojanhorse.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/trojanhorse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userManualCycle2.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/userManualCycle2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_manual.png" beforeDir="false" afterPath="$PROJECT_DIR$/old/user_manual.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workingclient.py" beforeDir="false" afterPath="$PROJECT_DIR$/old/workingclient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workingserver.py" beforeDir="false" afterPath="$PROJECT_DIR$/old/workingserver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/userManualCycle2.png" beforeDir="false" afterPath="$PROJECT_DIR$/old/userManualCycle2.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -616,7 +561,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713549676148</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="EXECUTABLE (&amp; organization)">
+      <option name="closed" value="true" />
+      <created>1713553493976</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1713553493976</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -681,7 +634,8 @@
     <MESSAGE value="." />
     <MESSAGE value="lightning disappearance" />
     <MESSAGE value="EXECUTABLE" />
-    <option name="LAST_COMMIT_MESSAGE" value="EXECUTABLE" />
+    <MESSAGE value="EXECUTABLE (&amp; organization)" />
+    <option name="LAST_COMMIT_MESSAGE" value="EXECUTABLE (&amp; organization)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
