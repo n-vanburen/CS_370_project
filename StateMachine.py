@@ -1,5 +1,13 @@
 import pygame
 import gamePlayFunctions
+import os
+import sys
+
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 pygame.init()
 
@@ -11,12 +19,12 @@ screen_size = (screen_w, screen_h) = (1200, 700)
 screen = pygame.display.set_mode(screen_size)
 
 # fonts
-main_font = pygame.font.SysFont("Font.ttf", 36)
-fontCoins = pygame.font.Font("Font.ttf", 14)
-title_font = pygame.font.SysFont("Font.tff", 75)
-s_button_font = pygame.font.SysFont("Font.tff", 36)
-ip_font = pygame.font.SysFont("Font.tff", 23)
-fontCoinsUpgrade = pygame.font.Font("Font.ttf", 12)
+main_font = pygame.font.SysFont(resource_path("Font.ttf"), 36)
+fontCoins = pygame.font.Font(resource_path("Font.ttf"), 14)
+title_font = pygame.font.SysFont(resource_path("Font.ttf"), 75)
+s_button_font = pygame.font.SysFont(resource_path("Font.ttf"), 36)
+ip_font = pygame.font.SysFont(resource_path("Font.ttf"), 23)
+fontCoinsUpgrade = pygame.font.Font(resource_path("Font.ttf"), 12)
 
 # Colors
 WHITE = (255, 255, 255)
@@ -27,7 +35,7 @@ SECOND_GREEN = (170, 225, 92)
 THIRD_GREEN = (217, 231, 129)
 
 # Background
-background_img = pygame.image.load('Background.png').convert()
+background_img = pygame.image.load(resource_path('Background.png')).convert()
 background_img = pygame.transform.scale(background_img, screen_size)
 
 
@@ -40,7 +48,7 @@ def load_background():
 tower_size = (100, 100)
 left_tower_dest = (25, 275)
 right_tower_dest = (1075, 275)
-tower_img = pygame.image.load('Tower.png').convert()
+tower_img = pygame.image.load(resource_path('Tower.png')).convert()
 tower_img = pygame.transform.scale(tower_img, tower_size)
 left_tower_rect = pygame.Rect(left_tower_dest, tower_size)
 right_tower_rect = pygame.Rect(right_tower_dest, tower_size)
@@ -188,26 +196,26 @@ def draw_game_screen():
     pygame.draw.rect(screen, THIRD_GREEN, m_ability1_b)
     pygame.draw.rect(screen, THIRD_GREEN, m_ability2_b)
     pygame.draw.rect(screen, BLACK, m_ability1_b, 2)
-    m_ability1_b_image = pygame.image.load("catapult_icon.png").convert_alpha()
+    m_ability1_b_image = pygame.image.load(resource_path("catapult_icon.png")).convert_alpha()
     m_ability1_b_image = pygame.transform.scale(m_ability1_b_image, (95, 95))
     screen.blit(m_ability1_b_image, (m_ability1_b.left+5, m_ability1_b.top+5))
     m_ability1_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
     screen.blit(m_ability1_b_text, (m_ability1_b.left+2, m_ability1_b.top))
     pygame.draw.rect(screen, BLACK, m_ability2_b, 2)
-    m_ability2_b_image = pygame.image.load("heal.png").convert_alpha()
+    m_ability2_b_image = pygame.image.load(resource_path("heal.png")).convert_alpha()
     m_ability2_b_image = pygame.transform.scale(m_ability2_b_image, (95, 95))
     screen.blit(m_ability2_b_image, (m_ability2_b.left+5, m_ability2_b.top+5))
     m_ability2_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
     screen.blit(m_ability2_b_text, (m_ability2_b.left+2, m_ability2_b.top))
     # God
     pygame.draw.rect(screen, THIRD_GREEN, g_ability1_b)
-    g_ability1_b_image = pygame.image.load("lightning.png").convert_alpha()
+    g_ability1_b_image = pygame.image.load(resource_path("lightning.png")).convert_alpha()
     g_ability1_b_image = pygame.transform.scale(g_ability1_b_image, (60, 100))
     screen.blit(g_ability1_b_image, (g_ability1_b.left+20, g_ability1_b.top+3))
     g_ability1_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
     screen.blit(g_ability1_b_text, (g_ability1_b.left+2, g_ability1_b.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_ability2_b)
-    g_ability2_b_image = pygame.image.load("heal.png").convert_alpha()
+    g_ability2_b_image = pygame.image.load(resource_path("heal.png")).convert_alpha()
     g_ability2_b_image = pygame.transform.scale(g_ability2_b_image, (95, 95))
     screen.blit(g_ability2_b_image, (g_ability2_b.left+5, g_ability2_b.top+5))
     g_ability2_b_text = fontCoins.render(f"$300", True, (0, 0, 0))
@@ -237,37 +245,37 @@ def draw_game_screen():
     # Troop Spawn Buttons
     # Mortal
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_1)
-    m_tb_1_image = pygame.image.load("footsoldier.png").convert_alpha()
+    m_tb_1_image = pygame.image.load(resource_path("footsoldier.png")).convert_alpha()
     m_tb_1_image = pygame.transform.scale(m_tb_1_image, (60, 60))
     screen.blit(m_tb_1_image, (m_tb_1.left+5, m_tb_1.top+5))
     m_tb_1_text = fontCoins.render(f"$50", True, (0, 0, 0))
     screen.blit(m_tb_1_text, (m_tb_1.left+2, m_tb_1.top))
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_2)
-    m_tb_2_image = pygame.image.load("eagle.png").convert_alpha()
+    m_tb_2_image = pygame.image.load(resource_path("eagle.png")).convert_alpha()
     m_tb_2_image = pygame.transform.scale(m_tb_2_image, (60, 60))
     screen.blit(m_tb_2_image, (m_tb_2.left+5, m_tb_2.top+5))
     m_tb_2_text = fontCoins.render(f"$75", True, (0, 0, 0))
     screen.blit(m_tb_2_text, (m_tb_2.left+2, m_tb_2.top))
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_3)
-    m_tb_3_image = pygame.image.load("archer.png").convert_alpha()
+    m_tb_3_image = pygame.image.load(resource_path("archer.png")).convert_alpha()
     m_tb_3_image = pygame.transform.scale(m_tb_3_image, (60, 60))
     screen.blit(m_tb_3_image, (m_tb_3.left+5, m_tb_3.top+5))
     m_tb_3_text = fontCoins.render(f"$100", True, (0, 0, 0))
     screen.blit(m_tb_3_text, (m_tb_3.left+2, m_tb_3.top))
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_4)
-    m_tb_4_image = pygame.image.load("cavalry.png").convert_alpha()
+    m_tb_4_image = pygame.image.load(resource_path("cavalry.png")).convert_alpha()
     m_tb_4_image = pygame.transform.scale(m_tb_4_image, (60, 60))
     screen.blit(m_tb_4_image, (m_tb_4.left+5, m_tb_4.top+5))
     m_tb_4_text = fontCoins.render(f"$125", True, (0, 0, 0))
     screen.blit(m_tb_4_text, (m_tb_4.left+2, m_tb_4.top))
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_5)
-    m_tb_5_image = pygame.image.load("trojanhorse.png").convert_alpha()
+    m_tb_5_image = pygame.image.load(resource_path("trojanhorse.png")).convert_alpha()
     m_tb_5_image = pygame.transform.scale(m_tb_5_image, (60, 60))
     screen.blit(m_tb_5_image, (m_tb_5.left+5, m_tb_5.top+5))
     m_tb_5_text = fontCoins.render(f"$200", True, (0, 0, 0))
     screen.blit(m_tb_5_text, (m_tb_5.left+2, m_tb_5.top))
     pygame.draw.rect(screen, THIRD_GREEN, m_tb_6)
-    m_tb_6_image = pygame.image.load("achilles.png").convert_alpha()
+    m_tb_6_image = pygame.image.load(resource_path("achilles.png")).convert_alpha()
     m_tb_6_image = pygame.transform.scale(m_tb_6_image, (60, 60))
     screen.blit(m_tb_6_image, (m_tb_6.left+5, m_tb_6.top+5))
     m_tb_6_text = fontCoins.render(f"$300", True, (0, 0, 0))
@@ -280,37 +288,37 @@ def draw_game_screen():
     pygame.draw.rect(screen, BLACK, m_tb_6, 2)
     # God
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_1)
-    g_tb_1_image = pygame.image.load("minion.png").convert_alpha()
+    g_tb_1_image = pygame.image.load(resource_path("minion.png")).convert_alpha()
     g_tb_1_image = pygame.transform.scale(g_tb_1_image, (60, 60))
     screen.blit(g_tb_1_image, (g_tb_1.left+5, g_tb_1.top+5))
     g_tb_1_text = fontCoins.render(f"$50", True, (0, 0, 0))
     screen.blit(g_tb_1_text, (g_tb_1.left+2, g_tb_1.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_2)
-    g_tb_2_image = pygame.image.load("harpy.png").convert_alpha()
+    g_tb_2_image = pygame.image.load(resource_path("harpy.png")).convert_alpha()
     g_tb_2_image = pygame.transform.scale(g_tb_2_image, (60, 60))
     screen.blit(g_tb_2_image, (g_tb_2.left+5, g_tb_2.top+5))
     g_tb_2_text = fontCoins.render(f"$75", True, (0, 0, 0))
     screen.blit(g_tb_2_text, (g_tb_2.left+2, g_tb_2.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_3)
-    g_tb_3_image = pygame.image.load("sorceress.png").convert_alpha()
+    g_tb_3_image = pygame.image.load(resource_path("sorceress.png")).convert_alpha()
     g_tb_3_image = pygame.transform.scale(g_tb_3_image, (60, 60))
     screen.blit(g_tb_3_image, (g_tb_3.left+5, g_tb_3.top+5))
     g_tb_3_text = fontCoins.render(f"$100", True, (0, 0, 0))
     screen.blit(g_tb_3_text, (g_tb_3.left+2, g_tb_3.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_4)
-    g_tb_4_image = pygame.image.load("hellhound.png").convert_alpha()
+    g_tb_4_image = pygame.image.load(resource_path("hellhound.png")).convert_alpha()
     g_tb_4_image = pygame.transform.scale(g_tb_4_image, (60, 60))
     screen.blit(g_tb_4_image, (g_tb_4.left+5, g_tb_4.top+5))
     g_tb_4_text = fontCoins.render(f"$125", True, (0, 0, 0))
     screen.blit(g_tb_4_text, (g_tb_4.left+2, g_tb_4.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_5)
-    g_tb_5_image = pygame.image.load("cyclops.png").convert_alpha()
+    g_tb_5_image = pygame.image.load(resource_path("cyclops.png")).convert_alpha()
     g_tb_5_image = pygame.transform.scale(g_tb_5_image, (60, 60))
     screen.blit(g_tb_5_image, (g_tb_5.left+5, g_tb_5.top+5))
     g_tb_5_text = fontCoins.render(f"$200", True, (0, 0, 0))
     screen.blit(g_tb_5_text, (g_tb_5.left+2, g_tb_5.top))
     pygame.draw.rect(screen, THIRD_GREEN, g_tb_6)
-    g_tb_6_image = pygame.image.load("medusa.png").convert_alpha()
+    g_tb_6_image = pygame.image.load(resource_path("medusa.png")).convert_alpha()
     g_tb_6_image = pygame.transform.scale(g_tb_6_image, (60, 60))
     screen.blit(g_tb_6_image, (g_tb_6.left+5, g_tb_6.top+5))
     g_tb_6_text = fontCoins.render(f"$300", True, (0, 0, 0))
@@ -472,7 +480,7 @@ def draw_start_menu():
     if gamePlayFunctions.player_role == "g":
         pygame.draw.rect(screen, SECOND_GREEN, god_rb)
         pygame.draw.rect(screen, BLACK, pygame.Rect((god_rb.left+50, god_rb.top+10),
-                                                   (god_rb.width-100, god_rb.height-20)), 2)
+                                                    (god_rb.width-100, god_rb.height-20)), 2)
     elif gamePlayFunctions.player_role == "d":
         pygame.draw.rect(screen, SECOND_GREEN, god_rb)
     else:
@@ -561,7 +569,7 @@ def draw_connection_screen():
 
 # Stats screen
 # image that displays the user manual
-user_manual_img = pygame.image.load('userManualCycle2.png')
+user_manual_img = pygame.image.load(resource_path('userManualCycle2.png'))
 user_manual_img_size = (umw, umh) = (user_manual_img.get_width() * 0.85, user_manual_img.get_height() * 0.85)
 user_manual_img = pygame.transform.scale(user_manual_img, (umw, umh))
 

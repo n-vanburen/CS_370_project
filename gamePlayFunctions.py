@@ -9,9 +9,17 @@ import socket
 import threading
 import pickle
 import sys
+import os
+import subprocess
 
 
 random.seed(370)
+
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 
 mortal_list = pygame.sprite.Group()
@@ -42,23 +50,23 @@ user_manual_stats_music = False
 
 # Music Booleans Initializing Sound Effects
 pygame.init()
-deploy_footsoldier = pygame.mixer.Sound("deploy_footsoldier.wav")
-deploy_eagle = pygame.mixer.Sound("deploy_eagle.wav")
-deploy_archer = pygame.mixer.Sound("deploy_archer.wav")
-deploy_cavalry = pygame.mixer.Sound("deploy_cavalry.wav")
-deploy_trojanhorse = pygame.mixer.Sound("deploy_trojanhorse.wav")
-deploy_achilles = pygame.mixer.Sound("deploy_achilles.wav")
+deploy_footsoldier = pygame.mixer.Sound(resource_path("deploy_footsoldier.wav"))
+deploy_eagle = pygame.mixer.Sound(resource_path("deploy_eagle.wav"))
+deploy_archer = pygame.mixer.Sound(resource_path("deploy_archer.wav"))
+deploy_cavalry = pygame.mixer.Sound(resource_path("deploy_cavalry.wav"))
+deploy_trojanhorse = pygame.mixer.Sound(resource_path("deploy_trojanhorse.wav"))
+deploy_achilles = pygame.mixer.Sound(resource_path("deploy_achilles.wav"))
 
-deploy_minion = pygame.mixer.Sound("deploy_minion.wav")
-deploy_harpy = pygame.mixer.Sound("deploy_harpy.wav")
-deploy_sorceress = pygame.mixer.Sound("deploy_sorceress.wav")
-deploy_hellhound = pygame.mixer.Sound("deploy_hellhound.wav")
-deploy_cyclops = pygame.mixer.Sound("deploy_cyclops.wav")
-deploy_medusa = pygame.mixer.Sound("deploy_medusa.wav")
+deploy_minion = pygame.mixer.Sound(resource_path("deploy_minion.wav"))
+deploy_harpy = pygame.mixer.Sound(resource_path("deploy_harpy.wav"))
+deploy_sorceress = pygame.mixer.Sound(resource_path("deploy_sorceress.wav"))
+deploy_hellhound = pygame.mixer.Sound(resource_path("deploy_hellhound.wav"))
+deploy_cyclops = pygame.mixer.Sound(resource_path("deploy_cyclops.wav"))
+deploy_medusa = pygame.mixer.Sound(resource_path("deploy_medusa.wav"))
 
-deploy_lightning = pygame.mixer.Sound("deploy_lightning.wav")
-deploy_heal = pygame.mixer.Sound("deploy_heal.wav")
-deploy_catapult = pygame.mixer.Sound("deploy_catapult.wav")
+deploy_lightning = pygame.mixer.Sound(resource_path("deploy_lightning.wav"))
+deploy_heal = pygame.mixer.Sound(resource_path("deploy_heal.wav"))
+deploy_catapult = pygame.mixer.Sound(resource_path("deploy_catapult.wav"))
 
 # which screen to display: s = start menu, c = connection, g = game board, e = end menu, u = user manual/stats
 which_screen = "c"
@@ -85,6 +93,20 @@ total_opp_cs = 0
 
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# get the ip of the localhost
+ip = os.popen('ipconfig').read()
+index = ip.find("IPv4", ip.find("IPv4")+1)
+localhost_ip = ip[index+36: ip.find(" ", index+36)-1]
+
+def start_server():
+    server_thread = threading.Thread(target=run_server)
+    server_thread.start()
+
+
+def run_server():
+    server_file_path = resource_path("servergame.py")
+    subprocess.run("python " + server_file_path)
 
 
 def send_action(action):
@@ -166,7 +188,7 @@ def crash(mortal, god):
 
 
 def play_attack_sound():
-    attack = pygame.mixer.Sound("attack.wav")
+    attack = pygame.mixer.Sound(resource_path("attack.wav"))
     attack.play()
 
 
@@ -535,10 +557,10 @@ def ranged_hit(fighter, projectile):
 
             fighter.health -= projectile.attack_strength
             if isinstance(projectile, Arrow):
-                attack = pygame.mixer.Sound("attack_archer.wav")
+                attack = pygame.mixer.Sound(resource_path("attack_archer.wav"))
                 attack.play()
             if isinstance(projectile, Spell):
-                attack = pygame.mixer.Sound("attack_sorceress.wav")
+                attack = pygame.mixer.Sound(resource_path("attack_sorceress.wav"))
                 attack.play()
             if fighter.health <= 0:
                 defeat(fighter)

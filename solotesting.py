@@ -7,15 +7,18 @@ import sys
 import os
 import random
 
+# import servergame
+
 random.seed(370)
 
-# get the ip of the localhost
-ip = os.popen('ipconfig').read()
-index = ip.find("IPv4", ip.find("IPv4")+1)
-# localhost_ip = ip[index+36:index+50]
-localhost_ip = ip[index+36: ip.find(" ", index+36)-1]
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
-# font = pygame.font.SysFont("Font.tff", 36)
+# gamePlayFunctionsFile = resource_path("gamePlayFunctions.py")
+# import gamePlayFunctionsFile
+# from gamePlayFunctionsFile import *
 
 running = True
 clock = pygame.time.Clock()
@@ -27,7 +30,7 @@ while running:
         draw_game_screen()
         if not gamePlayFunctions.game_music:
             gamePlayFunctions.game_music = True
-            music_unload_and_new("Music3.wav")
+            music_unload_and_new(resource_path("Music3.wav"))
 
         # win/lose condition 1: time ran out
         if StateMachine.timed_out:
@@ -247,7 +250,7 @@ while running:
         StateMachine.draw_start_menu()
         if not gamePlayFunctions.user_manual_stats_music:
             gamePlayFunctions.user_manual_stats_music = True
-            music_unload_and_new("Music2.wav")
+            music_unload_and_new(resource_path("Music2.wav"))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -277,7 +280,7 @@ while running:
         StateMachine.draw_connection_screen()
         if not gamePlayFunctions.connection_music:
             gamePlayFunctions.connection_music = True
-            music_unload_and_new("Music1.wav")
+            music_unload_and_new(resource_path("Music1.wav"))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -292,6 +295,7 @@ while running:
 
                 if get_ip_b.collidepoint(event.pos):
                     StateMachine.ip_displayed = localhost_ip
+                    gamePlayFunctions.start_server()
                 if connect_b.collidepoint(event.pos):
                     gamePlayFunctions.which_screen = "s"
                     connect_to_server(StateMachine.ip_displayed)
@@ -310,7 +314,7 @@ while running:
         draw_manual_screen()
         if not gamePlayFunctions.user_manual_stats_music:
             gamePlayFunctions.user_manual_stats_music = True
-            music_unload_and_new("Music2.wav")
+            music_unload_and_new(resource_path("Music2.wav"))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
