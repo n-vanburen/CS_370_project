@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="EXECUTABLE (&amp; organization)">
-      <change afterPath="$PROJECT_DIR$/assets/userManual.png" afterDir="false" />
+    <list default="true" id="08d6ac05-ca96-4792-96d8-71ea720a455b" name="Changes" comment="update user manual image">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StateMachine.py" beforeDir="false" afterPath="$PROJECT_DIR$/StateMachine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/userManualCycle2.png" beforeDir="false" afterPath="$PROJECT_DIR$/old/userManualCycle2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientWFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientWFunctions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -569,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713553493976</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="update user manual image">
+      <option name="closed" value="true" />
+      <created>1713554932090</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1713554932090</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -635,7 +641,8 @@
     <MESSAGE value="lightning disappearance" />
     <MESSAGE value="EXECUTABLE" />
     <MESSAGE value="EXECUTABLE (&amp; organization)" />
-    <option name="LAST_COMMIT_MESSAGE" value="EXECUTABLE (&amp; organization)" />
+    <MESSAGE value="update user manual image" />
+    <option name="LAST_COMMIT_MESSAGE" value="update user manual image" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

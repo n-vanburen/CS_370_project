@@ -32,12 +32,16 @@ while running:
         if StateMachine.timed_out:
             if StateMachine.right_tower_health > StateMachine.left_tower_health:
                 StateMachine.winner = "Times up! Gods Win!"
-                if gamePlayFunctions.player_role == "m":
-                    gamePlayFunctions.wins += 1
-            elif StateMachine.left_tower_health > StateMachine.right_tower_health:
-                StateMachine.winner = "Times up! Mortals Win!"
                 if gamePlayFunctions.player_role == "g":
                     gamePlayFunctions.wins += 1
+                else:
+                    gamePlayFunctions.opp_wins += 1
+            elif StateMachine.left_tower_health > StateMachine.right_tower_health:
+                StateMachine.winner = "Times up! Mortals Win!"
+                if gamePlayFunctions.player_role == "m":
+                    gamePlayFunctions.wins += 1
+                else:
+                    gamePlayFunctions.opp_wins += 1
             else:
                 StateMachine.winner = "Time's Up! No Winner!"
             end_game()
